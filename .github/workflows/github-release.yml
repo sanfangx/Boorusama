@@ -2,11 +2,6 @@ name: GitHub release
 
 on:
   workflow_dispatch:
-    inputs:
-      release_tag:
-        description: "Release tag to build."
-        required: true
-        default: ""
 
 permissions:
   contents: write
@@ -28,8 +23,6 @@ jobs:
     steps:
       - name: Check out Boorusama
         uses: actions/checkout@v6
-        with:
-          ref: ${{ inputs.release_tag }}
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
