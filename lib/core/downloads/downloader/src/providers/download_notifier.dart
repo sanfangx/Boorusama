@@ -50,10 +50,13 @@ class DownloadNotifier extends FamilyNotifier<void, DownloadNotifierParams> {
     return;
   }
 
-  Future<PermissionStatus?> _getPermissionStatus() async {
-    final perm = await ref.read(deviceStoragePermissionProvider.future);
-    return isAndroid() || isIOS() ? perm.storagePermission : null;
-  }
+ Future<PermissionStatus?> _getPermissionStatus() async {
+   final perm = await ref.read(deviceStoragePermissionProvider.future);
+    // iOS does not have a Storage permission — the app writes to its
+    // own sandboxed Documents directory which requires no user grant.
+    if (isIOS()) return null;
+    return isAndroid() ? perm.storagePermission : null;
+ }
 
   void _showToastIfPossible({String? message}) {
     final context = navigatorKey.currentState?.context;
