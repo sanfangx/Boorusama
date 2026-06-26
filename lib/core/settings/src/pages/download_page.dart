@@ -8,6 +8,7 @@ import 'package:i18n/i18n.dart';
 
 // Project imports:
 import '../../../../foundation/info/device_info.dart';
+import '../../../../foundation/platform.dart';
 import '../../../configs/config/providers.dart';
 import '../../../configs/config/widgets.dart';
 import '../../../configs/create/routes.dart';
@@ -37,7 +38,8 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
     return SettingsPageScaffold(
       title: Text(context.t.settings.download.title),
       children: [
-        DownloadSettingsInteractionBlocker(
+        if (!isIOS())
+          DownloadSettingsInteractionBlocker(
           child: DownloadFolderSelectorSection(
             storagePath: settings.downloadPath,
             onPathChanged: (path) =>
@@ -65,18 +67,21 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
           },
         ),
        const SizedBox(height: 4),
-       ListTile(
-          title: Text(context.t.settings.download.save_to_gallery),
-         subtitle: Text(
-            context.t.settings.download.save_to_gallery_explanation,
-         ),
-         trailing: Switch(
-           value: settings.saveToGallery,
-            onChanged: (value) =>
-                notifer.updateSettings(settings.copyWith(saveToGallery: value)),
-          ),
-        ),
-        const SizedBox(height: 4),
+        if (!isIOS())
+          Column(children: [
+            ListTile(
+              title: Text(context.t.settings.download.save_to_gallery),
+              subtitle: Text(
+                context.t.settings.download.save_to_gallery_explanation,
+              ),
+              trailing: Switch(
+                value: settings.saveToGallery,
+                onChanged: (value) =>
+                    notifer.updateSettings(settings.copyWith(saveToGallery: value)),
+              ),
+            ),
+            const SizedBox(height: 4),
+          ]),
        ListTile(
          title: Text(context.t.settings.download.skip_existing_files),
           subtitle: Text(

@@ -1,7 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Dart imports:
+import 'dart:io';
+
 // Package imports:
+import 'package:dio/dio.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
 import 'package:oktoast/oktoast.dart';
@@ -10,10 +15,12 @@ import 'package:oktoast/oktoast.dart';
 import '../../../../../foundation/loggers.dart';
 import '../../../../../foundation/permissions.dart';
 import '../../../../../foundation/platform.dart';
+import 'package:gal/gal.dart';
 import '../../../../../foundation/toast.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../ddos/handler/providers.dart';
 import '../../../../http/client/types.dart';
+import '../../../../http/client/providers.dart';
 import '../../../../posts/post/types.dart';
 import '../../../../router.dart';
 import '../../../../settings/types.dart';
@@ -211,7 +218,67 @@ Future<DownloadTaskInfo?> _download(
       bypassDdosHeadersProvider(urlData.url).future,
     );
 
+    // On iOS, save directly to Photos instead of downloading to filesystem
+    if (isIOS()) {
+      try {
+        onStarted?.call();
+
+        final context = navigatorKey.currentState?.context;
+        if (context != null && context.mounted) {
+          showDownloadStartToast(context, message: 'Saving to Photos...');
+        }
+
+        final dio = ref.read(dioForWidgetProvider(params.auth));
+        final tempDir = await Directory.systemTemp.createTemp('boorusama_');
+        final tempPath = ${tempDir.path}/';
+
+        await dio.download(
+          urlData.url,
+          tempPath,
+          options: Options(headers: {
+            ...headers,
+            ...bypassHeaders,
+            if (urlData.cookie != null)
+              AppHttpHeaders.cookieHeader: urlData.cookie!,
+          }),
+        );
+
+        await Gal.putImage(tempPath);
+
+        try { await tempDir.delete(recursive: true); } catch (_) {}
+
+        if (context != null && context.mounted) {
+          showToast(
+            'Saved to Photos',
+            context: context,
+            position: const ToastPosition(align: Alignment.bottomCenter),
+            backgroundColor: Colors.green,
+          );
+        }
+
+        return DownloadTaskInfo(
+          path: tempPath,
+          id: 'gal_${DateTime.now().millisecondsSinceEpoch}',
+        );
+      } on GalException catch (e) {
+        logger.error('iOS Download', 'Failed to save to Photos: ${e.type}');
+        showDownloadErrorToast(
+          navigatorKey.currentState?.context,
+          'Failed to save to Photos',
+        );
+        return null;
+      } catch (e) {
+        logger.error('iOS Download', 'Download failed: $e');
+        showDownloadErrorToast(
+          navigatorKey.currentState?.context,
+          'Download failed',
+        );
+        return null;
+      }
+    }
+
     final result = await service.download(
+
       DownloadOptions.fromSettings(
         params.settings,
         config: downloadConfig,
