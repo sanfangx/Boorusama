@@ -11,6 +11,7 @@ import 'package:path/path.dart';
 // Project imports:
 import '../../../foundation/filesystem.dart';
 import '../../../foundation/loggers.dart';
+import '../../../foundation/platform.dart';
 import '../../ddos/solver/types.dart';
 import '../downloader/types.dart';
 import '../path/types.dart';
@@ -72,8 +73,8 @@ class BackgroundDownloader implements DownloadService {
       UnsupportedPlatform(:final path) => (
         null,
         BaseDirectory.root,
-        _createUnsupportedPlatformError(options.filename, path),
-      ),
+      _createUnsupportedPlatformError(options.filename, path),
+    ),
 
       // Default path - use system default
       DefaultPath() => await _getDefaultDirectory(),
@@ -201,6 +202,14 @@ class BackgroundDownloader implements DownloadService {
 
   Future<(String?, BaseDirectory, DownloadError?)>
   _getDefaultDirectory() async {
+    if (isIOS()) {
+      return (
+        null,
+        BaseDirectory.applicationDocuments,
+        null,
+      );
+    }
+
     return switch (await tryGetDownloadDirectory(fs)) {
       DownloadDirectorySuccess(:final path) => (
         path,
