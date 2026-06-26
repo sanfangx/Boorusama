@@ -229,8 +229,8 @@ Future<DownloadTaskInfo?> _download(
         }
 
         final dio = ref.read(dioForWidgetProvider(params.auth));
-        final tempDir = await Directory.systemTemp.createTemp('boorusama_');
-        final tempPath = ${tempDir.path}/';
+       final tempDir = await Directory.systemTemp.createTemp('boorusama_');
+        final tempPath = '${tempDir.path}/$fileName';
 
         await dio.download(
           urlData.url,
