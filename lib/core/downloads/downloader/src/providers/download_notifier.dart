@@ -6,6 +6,7 @@ import 'dart:io';
 
 // Package imports:
 import 'package:dio/dio.dart';
+import 'package:background_downloader/background_downloader.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
@@ -21,6 +22,7 @@ import '../../../../configs/config/types.dart';
 import '../../../../ddos/handler/providers.dart';
 import '../../../../http/client/types.dart';
 import '../../../../http/client/providers.dart';
+import '../../../../download_manager/providers.dart';
 import '../../../../posts/post/types.dart';
 import '../../../../router.dart';
 import '../../../../settings/types.dart';
@@ -229,12 +231,50 @@ Future<DownloadTaskInfo?> _download(
         }
 
         final dio = ref.read(dioForWidgetProvider(params.auth));
-       final tempDir = await Directory.systemTemp.createTemp('boorusama_');
-        final tempPath = '${tempDir.path}/$fileName';
+        final taskId = 'gal_${DateTime.now().millisecondsSinceEpoch}';
+        final task = Task(
+          taskId: taskId,
+          url: urlData.url,
+          filename: fileName,
+          group: ${group ?? FileDownloader.defaultGroup}',
+          headers: urlData.cookie != null
+              ? {AppHttpHeaders.cookieHeader: urlData.cookie!}
+              : null,
+        );
+        final updates = ref.read(downloadTaskUpdatesProvider.notifier);
+        updates.addOrUpdate(
+          TaskStatusUpdate(task: task, status: TaskStatus.enqueued),
+        );
+
+        final tempDir = await Directory.systemTemp.createTemp('boorusama_');
+        final tempPath = ${tempDir.path}/$fileName';
+        final startTime = DateTime.now();
 
         await dio.download(
           urlData.url,
           tempPath,
+          onReceiveProgress: (received, total) {
+            final progress = total > 0 ? received / total : 0.0;
+            final elapsed = DateTime.now().difference(startTime);
+            final speed = elapsed.inMilliseconds > 0
+                ? received / (elapsed.inMilliseconds / 1000) / (1024 * 1024)
+                : 0.0;
+            final remaining = speed > 0 && total > 0
+                ? Duration(
+                    milliseconds:
+                        ((total - received) / (received / elapsed.inMilliseconds))
+                            .round())
+                : null;
+            updates.addOrUpdate(
+              TaskProgressUpdate(
+                task: task,
+                progress: progress,
+                expectedFileSize: total > 0 ? total : null,
+                networkSpeed: speed,
+                timeRemaining: remaining,
+              ),
+            );
+          },
           options: Options(headers: {
             ...headers,
             ...bypassHeaders,
@@ -247,6 +287,10 @@ Future<DownloadTaskInfo?> _download(
 
         try { await tempDir.delete(recursive: true); } catch (_) {}
 
+        updates.addOrUpdate(
+          TaskStatusUpdate(task: task, status: TaskStatus.complete),
+        );
+
         if (context != null && context.mounted) {
           showToast(
             'Saved to Photos',
@@ -256,10 +300,7 @@ Future<DownloadTaskInfo?> _download(
           );
         }
 
-        return DownloadTaskInfo(
-          path: tempPath,
-          id: 'gal_${DateTime.now().millisecondsSinceEpoch}',
-        );
+        return DownloadTaskInfo(path: tempPath, id: taskId);
       } on GalException catch (e) {
         logger.error('iOS Download', 'Failed to save to Photos: ${e.type}');
         showDownloadErrorToast(
