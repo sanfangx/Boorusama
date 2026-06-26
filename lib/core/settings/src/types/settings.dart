@@ -50,8 +50,9 @@ class Settings extends Equatable {
     required this.swipeAreaToOpenSidebarPercentage,
     required this.booruConfigLabelVisibility,
     required this.reduceAnimations,
-    required this.downloadFileExistedBehavior,
-    required this.colors,
+   required this.downloadFileExistedBehavior,
+    required this.saveToGallery,
+   required this.colors,
     required this.volumeKeyViewerNavigation,
     required this.searchBarScrollBehavior,
     required this.searchBarPosition,
@@ -97,10 +98,11 @@ class Settings extends Equatable {
       booruConfigLabelVisibility = BooruConfigLabelVisibility.parse(
         json['booruConfigLabelVisibility'],
       ),
-      downloadFileExistedBehavior = DownloadFileExistedBehavior.parse(
-        json['downloadFileExistedBehavior'],
-      ),
-      colors = json['colors'] != null
+     downloadFileExistedBehavior = DownloadFileExistedBehavior.parse(
+       json['downloadFileExistedBehavior'],
+     ),
+      saveToGallery = json['saveToGallery'] ?? true,
+     colors = json['colors'] != null
           ? ColorSettings.fromJson(json['colors'])
           : null,
       searchBarScrollBehavior = SearchBarScrollBehavior.parse(
@@ -174,8 +176,9 @@ class Settings extends Equatable {
     swipeAreaToOpenSidebarPercentage: 5,
     booruConfigLabelVisibility: BooruConfigLabelVisibility.defaultValue,
     reduceAnimations: false,
-    downloadFileExistedBehavior: DownloadFileExistedBehavior.defaultValue,
-    volumeKeyViewerNavigation: false,
+   downloadFileExistedBehavior: DownloadFileExistedBehavior.defaultValue,
+    saveToGallery: true,
+   volumeKeyViewerNavigation: false,
     searchBarScrollBehavior: SearchBarScrollBehavior.defaultValue,
     searchBarPosition: SearchBarPosition.defaultValue,
     hapticFeedbackLevel: HapticFeedbackLevel.defaultValue,
@@ -225,9 +228,11 @@ class Settings extends Equatable {
 
   final bool reduceAnimations;
 
-  final DownloadFileExistedBehavior downloadFileExistedBehavior;
+ final DownloadFileExistedBehavior downloadFileExistedBehavior;
 
-  final ColorSettings? colors;
+  final bool saveToGallery;
+
+ final ColorSettings? colors;
 
   final bool volumeKeyViewerNavigation;
 
@@ -264,8 +269,9 @@ class Settings extends Equatable {
     int? swipeAreaToOpenSidebarPercentage,
     BooruConfigLabelVisibility? booruConfigLabelVisibility,
     bool? reduceAnimations,
-    DownloadFileExistedBehavior? downloadFileExistedBehavior,
-    ImageListingSettings? listing,
+   DownloadFileExistedBehavior? downloadFileExistedBehavior,
+    bool? saveToGallery,
+   ImageListingSettings? listing,
     ImageViewerSettings? viewer,
     ColorSettings? colors,
     bool? volumeKeyViewerNavigation,
@@ -307,9 +313,10 @@ class Settings extends Equatable {
     booruConfigLabelVisibility:
         booruConfigLabelVisibility ?? this.booruConfigLabelVisibility,
     reduceAnimations: reduceAnimations ?? this.reduceAnimations,
-    downloadFileExistedBehavior:
-        downloadFileExistedBehavior ?? this.downloadFileExistedBehavior,
-    colors: colors ?? this.colors,
+   downloadFileExistedBehavior:
+       downloadFileExistedBehavior ?? this.downloadFileExistedBehavior,
+    saveToGallery: saveToGallery ?? this.saveToGallery,
+   colors: colors ?? this.colors,
     volumeKeyViewerNavigation:
         volumeKeyViewerNavigation ?? this.volumeKeyViewerNavigation,
     searchBarScrollBehavior:
@@ -349,8 +356,9 @@ class Settings extends Equatable {
       'swipeAreaToOpenSidebarPercentage': swipeAreaToOpenSidebarPercentage,
       'booruConfigLabelVisibility': booruConfigLabelVisibility.toData(),
       'reduceAnimations': reduceAnimations,
-      'downloadFileExistedBehavior': downloadFileExistedBehavior.toData(),
-      'colors': colors?.toJson(),
+     'downloadFileExistedBehavior': downloadFileExistedBehavior.toData(),
+      'saveToGallery': saveToGallery,
+     'colors': colors?.toJson(),
       'volumeKeyViewerNavigation': volumeKeyViewerNavigation,
       'searchBarScrollBehavior': searchBarScrollBehavior.toData(),
       'searchBarPosition': searchBarPosition.toData(),
@@ -385,8 +393,9 @@ class Settings extends Equatable {
     swipeAreaToOpenSidebarPercentage,
     booruConfigLabelVisibility,
     reduceAnimations,
-    downloadFileExistedBehavior,
-    colors,
+   downloadFileExistedBehavior,
+    saveToGallery,
+   colors,
     volumeKeyViewerNavigation,
     searchBarScrollBehavior,
     searchBarPosition,

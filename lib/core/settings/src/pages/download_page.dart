@@ -64,9 +64,21 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
             ),
           },
         ),
+       const SizedBox(height: 4),
+       ListTile(
+          title: Text(context.t.settings.download.save_to_gallery),
+         subtitle: Text(
+            context.t.settings.download.save_to_gallery_explanation,
+         ),
+         trailing: Switch(
+           value: settings.saveToGallery,
+            onChanged: (value) =>
+                notifer.updateSettings(settings.copyWith(saveToGallery: value)),
+          ),
+        ),
         const SizedBox(height: 4),
-        ListTile(
-          title: Text(context.t.settings.download.skip_existing_files),
+       ListTile(
+         title: Text(context.t.settings.download.skip_existing_files),
           subtitle: Text(
             context.t.settings.download.skip_existing_files_explanation,
           ),

@@ -15,6 +15,7 @@ import '../../../foundation/path.dart' as path;
 import '../../../foundation/platform.dart';
 import '../../../foundation/toast.dart';
 import '../../configs/config/providers.dart';
+import '../../settings/providers.dart';
 import '../../ddos/handler/providers.dart';
 import '../../download_manager/providers.dart';
 import 'types.dart';
@@ -44,20 +45,19 @@ class _BackgroundDownloaderScopeState
       if (update.status case TaskStatus.complete) {
         WidgetsBinding.instance.addPostFrameCallback(
           (_) async {
-            final path = await update.task.filePath();
-            if (isAndroid()) {
-              await MediaScanner.loadMedia(path: path);
-            } else if (isIOS()) {
-              try {
-                final hasAccess = await Gal.hasAccess(toAlbum: true);
-                if (!hasAccess) {
-                  await Gal.requestAccess(toAlbum: true);
+           final path = await update.task.filePath();
+            final settings = ref.read(settingsProvider);
+            if (settings.saveToGallery) {
+              if (isAndroid()) {
+                await MediaScanner.loadMedia(path: path);
+              } else if (isIOS()) {
+                try {
+                  await Gal.putImage(path);
+                } on GalException catch (e) {
+                  debugPrint('Failed to save image to gallery: ${e.type}');
                 }
-                await Gal.putImage(path);
-              } on GalException catch (e) {
-                debugPrint('Failed to save image to gallery: ${e.type}');
-              }
-            }
+             }
+           }
           },
         );
       } else if (update.status case TaskStatus.notFound) {

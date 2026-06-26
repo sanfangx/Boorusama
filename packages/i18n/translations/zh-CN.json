@@ -679,7 +679,9 @@
       "no_canceled_downloads": "无已取消下载",
       "no_failed_downloads": "无失败下载",
       "no_downloads": "无下载"
-    }
+    },
+    "save_to_gallery": "保存到相册",
+    "save_to_gallery_explanation": "自动将下载的图片保存到系统相册中。"
   },
   "saved_search": {
     "saved_search": "预设搜索",
@@ -736,8 +738,14 @@
     },
     "drag_hint": "长按并拖动以重新排序",
     "confirm_edit_title": "确认更改",
-    "confirm_edit_adding": {"one": "将添加 $n 个新帖子", "other": "将添加 $n 个新帖子"},
-    "confirm_edit_removing": {"one": "将移除 $n 个帖子", "other": "将移除 $n 个帖子"},
+    "confirm_edit_adding": {
+      "one": "将添加 $n 个新帖子",
+      "other": "将添加 $n 个新帖子"
+    },
+    "confirm_edit_removing": {
+      "one": "将移除 $n 个帖子",
+      "other": "将移除 $n 个帖子"
+    },
     "invalid_post_ids": "包含无效 ID：{0}"
   },
   "favorite_tags": {
@@ -1284,7 +1292,16 @@
     }
   },
   "eshuushuu": {
-    "personal_info": {"title": "个人信息", "gender": "性别", "location": "位置", "interests": "兴趣", "website": "网站"},
-    "profile": {"joined": "加入时间", "last_active": "最后活跃"}
+    "personal_info": {
+      "title": "个人信息",
+      "gender": "性别",
+      "location": "位置",
+      "interests": "兴趣",
+      "website": "网站"
+    },
+    "profile": {
+      "joined": "加入时间",
+      "last_active": "最后活跃"
+    }
   }
 }
