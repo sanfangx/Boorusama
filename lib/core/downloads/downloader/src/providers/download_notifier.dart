@@ -6,7 +6,7 @@ import 'dart:io';
 
 // Package imports:
 import 'package:dio/dio.dart';
-import 'package:background_downloader/background_downloader.dart';
+import 'package:background_downloader/background_downloader.dart' hide PermissionStatus;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
@@ -232,22 +232,22 @@ Future<DownloadTaskInfo?> _download(
 
         final dio = ref.read(dioForWidgetProvider(params.auth));
         final taskId = 'gal_${DateTime.now().millisecondsSinceEpoch}';
-        final task = Task(
+        final task = DownloadTask(
           taskId: taskId,
           url: urlData.url,
           filename: fileName,
-          group: ${group ?? FileDownloader.defaultGroup}',
+          group: '${group ?? FileDownloader.defaultGroup}',
           headers: urlData.cookie != null
               ? {AppHttpHeaders.cookieHeader: urlData.cookie!}
               : null,
         );
         final updates = ref.read(downloadTaskUpdatesProvider.notifier);
         updates.addOrUpdate(
-          TaskStatusUpdate(task: task, status: TaskStatus.enqueued),
+          TaskStatusUpdate(task, TaskStatus.enqueued),
         );
 
         final tempDir = await Directory.systemTemp.createTemp('boorusama_');
-        final tempPath = ${tempDir.path}/$fileName';
+        final tempPath = '${tempDir.path}/$fileName';
         final startTime = DateTime.now();
 
         await dio.download(
@@ -266,13 +266,7 @@ Future<DownloadTaskInfo?> _download(
                             .round())
                 : null;
             updates.addOrUpdate(
-              TaskProgressUpdate(
-                task: task,
-                progress: progress,
-                expectedFileSize: total > 0 ? total : null,
-                networkSpeed: speed,
-                timeRemaining: remaining,
-              ),
+              TaskProgressUpdate(task, progress),
             );
           },
           options: Options(headers: {
@@ -288,7 +282,7 @@ Future<DownloadTaskInfo?> _download(
         try { await tempDir.delete(recursive: true); } catch (_) {}
 
         updates.addOrUpdate(
-          TaskStatusUpdate(task: task, status: TaskStatus.complete),
+          TaskStatusUpdate(task, TaskStatus.complete),
         );
 
         if (context != null && context.mounted) {
