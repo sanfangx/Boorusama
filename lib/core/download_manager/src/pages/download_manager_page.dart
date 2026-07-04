@@ -249,7 +249,7 @@ class _DownloadManagerPageState extends ConsumerState<DownloadManagerPage> {
                                 }
                               : null,
                           icon: const Icon(Symbols.share),
-                          name: context.t.post.detail.share.image,
+                          name: context.t.post.action.share,
                         ),
                       ],
                     ),

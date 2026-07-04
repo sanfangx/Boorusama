@@ -85,6 +85,7 @@ class PostModalShare extends ConsumerWidget {
     final postLinkGenerator = ref.watch(postLinkGeneratorProvider(auth));
     final booruLink = postLinkGenerator.getLink(post);
     final sourceLink = post.source;
+    final isVideo = post.isVideo;
 
     return Material(
       child: SafeArea(
@@ -120,64 +121,76 @@ class PostModalShare extends ConsumerWidget {
                     );
                   },
                 ),
-            ref
-                .watch(_cachedImageFileProvider(imageData))
-                .when(
-                  data: (file) {
-                    return file != null
-                        ? ListTile(
-                            title: Text(context.t.post.detail.share.image),
-                            leading: const Icon(
-                              Symbols.image,
-                              fill: 1,
-                            ),
-                            subtitle: Text(
-                              'Image quality will depend on the current selected booru profile.'
-                                  .hc,
-                            ),
-                            onTap: () {
-                              Navigator.of(context).pop();
-
-                              SharePlus.instance.share(
-                                ShareParams(
-                                  files: [file],
-                                  subject: file.name,
-                                ),
-                              );
-                            },
-                          )
-                        : const SizedBox.shrink();
-                  },
-                  loading: () => ListTile(
-                    title: Text('Loading image...'.hc),
-                  ),
-                  error: (error, stack) => ListTile(
-                    title: Text('Failed to load image'.hc),
-                  ),
+            if (isVideo)
+              ListTile(
+                title: Text(context.t.post.detail.share.file),
+                leading: const Icon(
+                  Symbols.play_circle,
+                  fill: 1,
                 ),
-            ListTile(
-              title: Text('Download and share image'.hc),
-              leading: const Icon(
-                Symbols.download,
-                fill: 1,
-              ),
-              subtitle: Text(
-                'Download the original image and share it directly.'.hc,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
+                onTap: () {
+                  Navigator.of(context).pop();
 
-                showDialog(
-                  context: context,
-                  builder: (context) => DownloadAndShareDialog(
-                    post: post,
-                    auth: auth,
-                    download: download,
-                    filenameBuilder: filenameBuilder,
+                  showDialog(
+                    context: context,
+                    builder: (context) => DownloadAndShareDialog(
+                      post: post,
+                      auth: auth,
+                      download: download,
+                      filenameBuilder: filenameBuilder,
+                    ),
+                  );
+                },
+              )
+            else ...[
+              ref
+                  .watch(_cachedImageFileProvider(imageData))
+                  .when(
+                    data: (file) {
+                      return file != null
+                          ? ListTile(
+                              title: Text(context.t.post.detail.share.image),
+                              leading: const Icon(
+                                Symbols.image,
+                                fill: 1,
+                              ),
+                              onTap: () {
+                                Navigator.of(context).pop();
+
+                                SharePlus.instance.share(
+                                  ShareParams(
+                                    files: [file],
+                                    subject: file.name,
+                                  ),
+                                );
+                              },
+                            )
+                          : const SizedBox.shrink();
+                    },
+                    loading: () => const SizedBox.shrink(),
+                    error: (error, stack) => const SizedBox.shrink(),
                   ),
-                );
-              },
-            ),
+              ListTile(
+                title: Text(context.t.post.detail.share.file),
+                leading: const Icon(
+                  Symbols.download,
+                  fill: 1,
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+
+                  showDialog(
+                    context: context,
+                    builder: (context) => DownloadAndShareDialog(
+                      post: post,
+                      auth: auth,
+                      download: download,
+                      filenameBuilder: filenameBuilder,
+                    ),
+                  );
+                },
+              ),
+            ],
           ],
         ),
       ),

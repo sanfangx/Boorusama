@@ -1,6 +1,4 @@
 // Flutter imports:
-
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
@@ -265,7 +263,7 @@ class _ModalOptions extends ConsumerWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
-                title: Text(context.t.post.detail.share.image),
+                title: Text(context.t.post.detail.share.file),
                 onTap: () {
                   navigator.pop();
 
