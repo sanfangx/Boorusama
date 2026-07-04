@@ -17,6 +17,7 @@ import '../../../../router.dart';
 import '../../../../tags/show/routes.dart';
 import '../../../../widgets/booru_context_menu.dart';
 import '../../../../widgets/context_menu_tile.dart';
+import '../../../favorites/widgets.dart';
 import '../../../post/providers.dart';
 import '../../../post/types.dart';
 import 'post_grid_controller.dart';
@@ -44,6 +45,7 @@ class GeneralPostContextMenu extends ConsumerWidget {
         ?.commentPageBuilder;
     final postLinkGenerator = ref.watch(postLinkGeneratorProvider(booruConfig));
     final selectionModeController = SelectionMode.maybeOf(context);
+    final feedbackContext = context;
 
     final isBookmarkLoading = bookmarkStateAsync.isLoading;
     final downloadNotifier = ref.watch(
@@ -104,6 +106,10 @@ class GeneralPostContextMenu extends ConsumerWidget {
                         );
                       },
               ),
+            FavoriteContextMenuTile(
+              post: post,
+              feedbackContext: feedbackContext,
+            ),
             const BooruContextMenuDivider(),
             if (commentPageBuilder != null && post.hasComment)
               ContextMenuTile(

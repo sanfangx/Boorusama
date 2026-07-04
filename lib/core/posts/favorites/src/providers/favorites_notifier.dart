@@ -25,6 +25,26 @@ final favoriteProvider = Provider.autoDispose
       },
     );
 
+final favoriteStatusProvider = Provider.autoDispose
+    .family<bool?, (BooruConfigAuth, int)>(
+      (ref, params) {
+        final (config, postId) = params;
+        return ref.watch(favoritesProvider(config))[postId];
+      },
+    );
+
+final favoriteStatusLoaderProvider = FutureProvider.autoDispose
+    .family<void, (BooruConfigAuth, int)>((ref, params) async {
+      final (config, postId) = params;
+      final status = ref.watch(favoriteStatusProvider(params));
+
+      if (status != null) return;
+
+      await ref.read(favoritesProvider(config).notifier).checkFavorites([
+        postId,
+      ]);
+    });
+
 final canFavoriteProvider = Provider.family<bool, BooruConfigAuth>((
   ref,
   config,
@@ -80,8 +100,8 @@ class FavoritesNotifier
     return status;
   }
 
-  Future<void> remove(int postId) async {
-    if (state[postId] == false) return;
+  Future<bool> remove(int postId) async {
+    if (state[postId] == false) return true;
 
     state = state.add(postId, false);
 
@@ -89,6 +109,8 @@ class FavoritesNotifier
     if (!success) {
       state = state.add(postId, true);
     }
+
+    return success;
   }
 
   void removeLocalFavorite(int postId) {

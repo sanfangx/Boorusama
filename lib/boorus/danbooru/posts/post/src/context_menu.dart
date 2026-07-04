@@ -11,6 +11,7 @@ import '../../../../../core/bookmarks/providers.dart';
 import '../../../../../core/bookmarks/types.dart';
 import '../../../../../core/configs/config/providers.dart';
 import '../../../../../core/downloads/downloader/providers.dart';
+import '../../../../../core/posts/favorites/widgets.dart';
 import '../../../../../core/posts/post/providers.dart';
 import '../../../../../core/router.dart';
 import '../../../../../core/tags/show/routes.dart';
@@ -50,6 +51,7 @@ class DanbooruPostContextMenu extends ConsumerWidget {
     final hasAccount = loginDetails.hasLogin();
     final postLinkGenerator = ref.watch(postLinkGeneratorProvider(booruConfig));
     final selectionModeController = SelectionMode.maybeOf(context);
+    final feedbackContext = context;
 
     return BooruContextMenu(
       menuItemsBuilder: (context) => [
@@ -97,6 +99,11 @@ class DanbooruPostContextMenu extends ConsumerWidget {
                       ),
                     );
                   },
+          ),
+        if (hasAccount)
+          FavoriteContextMenuTile(
+            post: post,
+            feedbackContext: feedbackContext,
           ),
         if (hasAccount)
           ContextMenuTile(
