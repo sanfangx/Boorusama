@@ -277,7 +277,11 @@ Future<DownloadTaskInfo?> _download(
           }),
         );
 
-        await Gal.putImage(tempPath);
+        if (downloadable.isVideo) {
+          await Gal.putVideo(tempPath);
+        } else {
+          await Gal.putImage(tempPath);
+        }
 
         try { await tempDir.delete(recursive: true); } catch (_) {}
 
