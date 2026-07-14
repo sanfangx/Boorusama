@@ -191,14 +191,8 @@ class _FavoriteGroupEditPageState extends State<FavoriteGroupEditPage> {
   late final List<DanbooruPost> posts = widget.posts;
 
   void _onReorder(int oldIndex, int newIndex) {
-    var newIdx = newIndex;
-
-    if (newIdx > oldIndex) {
-      newIdx -= 1;
-    }
-
     final post = posts.removeAt(oldIndex);
-    posts.insert(newIdx, post);
+    posts.insert(newIndex, post);
     setState(() {});
   }
 
@@ -298,7 +292,7 @@ class _FavoriteGroupEditPageState extends State<FavoriteGroupEditPage> {
             );
           },
           itemCount: widget.posts.length,
-          onReorder: _onReorder,
+          onReorderItem: _onReorder,
         ),
       ),
     );

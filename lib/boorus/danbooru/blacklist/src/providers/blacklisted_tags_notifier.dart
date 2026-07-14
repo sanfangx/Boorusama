@@ -153,7 +153,7 @@ class DanbooruBlacklistTagRepository implements BlacklistTagRefRepository {
     final censoredTagsBanned = booru.hasCensoredTagsBanned(config.url);
 
     return {
-      if (danbooruBlacklistedTags != null) ...danbooruBlacklistedTags,
+      ...?danbooruBlacklistedTags,
       if (!isUnverified && censoredTagsBanned && !currentUser.level.isGoldPlus)
         ...kCensoredTags,
     };

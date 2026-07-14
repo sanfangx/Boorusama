@@ -155,7 +155,7 @@ class PostStatisticsPage extends StatelessWidget {
                 value:
                     '${stats.tags.mean.toStringAsFixed(1)} ± ${stats.tags.standardDeviation.toStringAsFixed(1)}',
               ),
-              if (customStats != null) ...customStats!,
+              ...?customStats,
             ],
           ),
         ),

@@ -106,6 +106,9 @@ linter:
     # so we will use `prefer_final_locals` instead.
     unnecessary_final: false
 
+    # Named constructor parameters should not have to expose private field names.
+    prefer_initializing_formals: false
+
     # Not quite suitable for Flutter, which may have a `build` method with a single
     # return, but that return is still complex enough that a "body" is worth it.
     prefer_expression_function_bodies: false

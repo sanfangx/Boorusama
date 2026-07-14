@@ -112,7 +112,7 @@ class HomeContent extends ConsumerWidget {
 
     final views = [
       const CustomHomePage(),
-      if (desktopViews != null) ...desktopViews!,
+      ...?desktopViews,
     ];
 
     return ValueListenableBuilder(

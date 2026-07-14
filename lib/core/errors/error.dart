@@ -16,7 +16,7 @@ sealed class BooruError extends Error {
   final String message;
 }
 
-class AppError extends BooruError with EquatableMixin {
+class AppError extends BooruError with Equatable {
   AppError({
     required this.type,
     required super.message,
@@ -31,7 +31,7 @@ class AppError extends BooruError with EquatableMixin {
   List<Object?> get props => [type, message];
 }
 
-class ServerError extends BooruError with EquatableMixin {
+class ServerError extends BooruError with Equatable {
   ServerError({
     required this.httpStatusCode,
     required super.message,
@@ -59,5 +59,8 @@ class UnknownError extends BooruError {
 }
 
 extension ServerErrorX on ServerError {
-  bool get isServerError => httpStatusCode! >= 500 && httpStatusCode! < 600;
+  bool get isServerError => switch (httpStatusCode) {
+    final statusCode? => statusCode >= 500 && statusCode < 600,
+    null => false,
+  };
 }

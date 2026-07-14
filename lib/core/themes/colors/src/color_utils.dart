@@ -1,7 +1,4 @@
 // Dart imports:
-// ignore_for_file: experimental_member_use
-
-// Dart imports:
 import 'dart:math';
 
 // Flutter imports:

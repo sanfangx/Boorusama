@@ -14,7 +14,7 @@ sealed class PostId {
   }
 }
 
-class NumericPostId extends PostId with EquatableMixin {
+class NumericPostId extends PostId with Equatable {
   const NumericPostId(this.value);
 
   final int value;
@@ -26,7 +26,7 @@ class NumericPostId extends PostId with EquatableMixin {
   List<Object?> get props => [value];
 }
 
-class StringPostId extends PostId with EquatableMixin {
+class StringPostId extends PostId with Equatable {
   const StringPostId(this.value);
 
   final String value;

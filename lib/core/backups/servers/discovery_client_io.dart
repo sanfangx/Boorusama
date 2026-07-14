@@ -119,7 +119,7 @@ class DiscoveryClient implements DiscoveryClientInterface {
   DiscoveredService _convertService(BonsoirService service) {
     return DiscoveredService(
       name: service.name,
-      host: service.host ?? '',
+      host: service.hostAddress ?? '',
       port: service.port,
       attributes: service.attributes,
     );

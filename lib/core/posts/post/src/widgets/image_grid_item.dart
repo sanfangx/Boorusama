@@ -109,7 +109,7 @@ class ImageGridItem extends StatelessWidget {
         child: Wrap(
           spacing: 1,
           children: [
-            if (leadingIcons != null) ...leadingIcons!,
+            ...?leadingIcons,
             if (isGif)
               const ImageOverlayIcon(
                 icon: Symbols.gif,

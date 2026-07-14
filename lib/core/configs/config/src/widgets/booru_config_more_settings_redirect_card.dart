@@ -64,7 +64,7 @@ class BooruConfigMoreSettingsRedirectCard extends ConsumerWidget {
             );
           },
         ),
-        if (actions != null) ...actions,
+        ...?actions,
       ],
     );
   }

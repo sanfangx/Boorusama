@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 
 class ExtendedColorScheme extends ThemeExtension<ExtendedColorScheme>
-    with EquatableMixin {
+    with Equatable {
   const ExtendedColorScheme({
     Color? surfaceContainerOverlay,
     Color? onSurfaceContainerOverlay,

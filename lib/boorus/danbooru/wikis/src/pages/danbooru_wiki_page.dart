@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,7 +52,7 @@ class DanbooruWikiPage extends ConsumerWidget {
             }
 
             return CustomScrollView(
-              cacheExtent: 0,
+              scrollCacheExtent: const ScrollCacheExtent.pixels(0),
               slivers: [
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),

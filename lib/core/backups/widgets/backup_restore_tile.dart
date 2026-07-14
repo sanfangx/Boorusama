@@ -121,7 +121,7 @@ class DefaultBackupTile extends ConsumerWidget {
                             color: Theme.of(context).colorScheme.hintColor,
                           ),
                     ),
-                  if (extra != null) ...extra!,
+                  ...?extra,
                 ],
               ),
             ),

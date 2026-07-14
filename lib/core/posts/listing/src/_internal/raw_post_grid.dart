@@ -1,5 +1,6 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 import 'package:flutter/services.dart';
 
 // Package imports:
@@ -649,7 +650,10 @@ class _CustomScrollViewState extends State<_CustomScrollView> {
                   parent: ClampingScrollPhysics(),
                 ),
                 controller: widget.controller,
-                cacheExtent: options.cacheExtent,
+                scrollCacheExtent: switch (options.cacheExtent) {
+                  final cacheExtent? => ScrollCacheExtent.pixels(cacheExtent),
+                  null => null,
+                },
                 slivers: widget.slivers,
               ),
             ),

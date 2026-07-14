@@ -78,6 +78,7 @@ void main() {
                 case DioExceptionType.connectionTimeout:
                 case DioExceptionType.receiveTimeout:
                 case DioExceptionType.sendTimeout:
+                case DioExceptionType.transformTimeout:
                 case DioExceptionType.badCertificate:
                 case DioExceptionType.badResponse:
                 case DioExceptionType.connectionError:

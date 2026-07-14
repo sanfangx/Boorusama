@@ -122,8 +122,14 @@ void main() {
 
     final decoded =
         jsonDecode(receipt.readAsStringSync()) as Map<String, Object?>;
-    final artifacts = decoded['artifacts'] as List<Object?>;
-    final artifact = artifacts.single as Map<String, Object?>;
+    final artifacts = switch (decoded['artifacts']) {
+      final List<Object?> artifacts => artifacts,
+      _ => fail('Expected artifacts to be a list'),
+    };
+    final artifact = switch (artifacts.single) {
+      final Map<String, Object?> artifact => artifact,
+      _ => fail('Expected the artifact to be a map'),
+    };
     expect(
       artifact['fileName'],
       'boorusama-4.5.0+184-windows-x64.zip',
