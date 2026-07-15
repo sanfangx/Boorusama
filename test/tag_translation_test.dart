@@ -16,7 +16,7 @@ void main() {
       print('Value for highres: ${TagTranslation.translate('highres')}');
 
       // Basic tags translation checks
-      expect(TagTranslation.translate('1girl'), '1女孩');
+      expect(TagTranslation.translate('1girl'), '1个女孩');
       expect(TagTranslation.translate('solo'), '单人');
       expect(TagTranslation.translate('highres'), '高分辨率');
     });
