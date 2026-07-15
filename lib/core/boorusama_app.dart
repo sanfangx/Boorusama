@@ -180,7 +180,7 @@ class _BoorusamaAppState extends State<BoorusamaApp> {
       await ensureI18nInitialized(settings.language);
 
       logger.debugBoot('Initialize tag translations');
-      await TagTranslation.init();
+      unawaited(TagTranslation.init());
 
       FlutterError.demangleStackTrace = (stack) {
         if (stack is Trace) return stack.vmTrace;

@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import '../../../foundation/html.dart';
 import '../../configs/config/types.dart';
 import '../../tags/autocompletes/types.dart';
+import '../../tags/autocompletes/translation.dart';
 import '../../tags/metatag/providers.dart';
 import '../../tags/metatag/types.dart';
 import '../../tags/tag/providers.dart';
@@ -73,11 +74,108 @@ class TagSuggestionItem extends StatelessWidget {
   }
 
   Widget _buildTitle() {
+    return AsynchronousTranslationHtml(
+      tag: tag,
+      currentQuery: currentQuery,
+      metatagExtractor: metatagExtractor,
+      textColor: textColor,
+    );
+  }
+}
+
+class AsynchronousTranslationHtml extends StatefulWidget {
+  final AutocompleteData tag;
+  final String currentQuery;
+  final MetatagExtractor? metatagExtractor;
+  final Color? textColor;
+
+  const AsynchronousTranslationHtml({
+    required this.tag,
+    required this.currentQuery,
+    required this.metatagExtractor,
+    required this.textColor,
+    super.key,
+  });
+
+  @override
+  State<AsynchronousTranslationHtml> createState() => _AsynchronousTranslationHtmlState();
+}
+
+class _AsynchronousTranslationHtmlState extends State<AsynchronousTranslationHtml> {
+  String? _translationLabel;
+  String? _translationAntecedent;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTranslations();
+  }
+
+  void _loadTranslations() {
+    Future.microtask(() {
+      if (!mounted) return;
+      final transLabel = TagTranslation.translate(widget.tag.label);
+      final transAntecedent = widget.tag.antecedent != null 
+          ? TagTranslation.translate(widget.tag.antecedent!) 
+          : null;
+      if (transLabel != null || transAntecedent != null) {
+        setState(() {
+          _translationLabel = transLabel;
+          _translationAntecedent = transAntecedent;
+        });
+      }
+    });
+  }
+
+  @override
+  void didUpdateWidget(AsynchronousTranslationHtml oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.tag != widget.tag || oldWidget.currentQuery != widget.currentQuery) {
+      _loadTranslations();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final label = widget.tag.label;
+    final antecedent = widget.tag.antecedent;
+    final query = widget.currentQuery;
+    final metatagExtractor = widget.metatagExtractor;
+
+    final noOperatorQuery = (query.startsWith('-') || query.startsWith('~'))
+        ? query.substring(1)
+        : query;
+    final rawQuery = noOperatorQuery.replaceAll('_', ' ').toLowerCase();
+    final metatag = metatagExtractor?.fromString(query);
+    final cleanQuery = metatag != null
+        ? rawQuery.replaceFirst('$metatag:', '')
+        : rawQuery;
+
+    String replaceAndHighlight(String text) {
+      return text.replaceAllMapped(
+        RegExp(
+          RegExp.escape(cleanQuery),
+          caseSensitive: false,
+        ),
+        (match) => '<b>${match.group(0)}</b>',
+      );
+    }
+
+    final displayLabel = _translationLabel != null ? '$label ($_translationLabel)' : label;
+
+    String htmlData;
+    if (widget.tag.hasAlias) {
+      final displayAntecedent = _translationAntecedent != null ? '$antecedent ($_translationAntecedent)' : antecedent!;
+      htmlData = '<p>${replaceAndHighlight(displayAntecedent.replaceAll('_', ' '))} ➞ ${replaceAndHighlight(displayLabel.replaceAll('_', ' '))}</p>';
+    } else {
+      htmlData = '<p>${replaceAndHighlight(displayLabel.replaceAll('_', ' '))}</p>';
+    }
+
     return AppHtml(
       style: {
         'p': Style(
           fontSize: FontSize.medium,
-          color: textColor,
+          color: widget.textColor,
           margin: Margins.zero,
         ),
         'b': Style(
@@ -85,7 +183,7 @@ class TagSuggestionItem extends StatelessWidget {
         ),
       },
       selectable: false,
-      data: tag.toDisplayHtml(currentQuery, metatagExtractor),
+      data: htmlData,
     );
   }
 }

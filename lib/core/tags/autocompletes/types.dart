@@ -229,15 +229,8 @@ extension AutocompleteDataDisplayX on AutocompleteData {
       );
     }
 
-    final labelTranslation = TagTranslation.translate(label);
-    final displayLabel = labelTranslation != null ? '$label ($labelTranslation)' : label;
-
-    if (hasAlias) {
-      final antecedentTranslation = TagTranslation.translate(antecedent!);
-      final displayAntecedent = antecedentTranslation != null ? '$antecedent ($antecedentTranslation)' : antecedent!;
-      return '<p>${replaceAndHighlight(displayAntecedent.replaceAll('_', ' '))} ➞ ${replaceAndHighlight(displayLabel.replaceAll('_', ' '))}</p>';
-    }
-
-    return '<p>${replaceAndHighlight(displayLabel.replaceAll('_', ' '))}</p>';
+    return hasAlias
+        ? '<p>${replaceAndHighlight(antecedent!.replaceAll('_', ' '))} ➞ ${replaceAndHighlight(label)}</p>'
+        : '<p>${replaceAndHighlight(label.replaceAll('_', ' '))}</p>';
   }
 }
