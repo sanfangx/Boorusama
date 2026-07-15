@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 import '../../../../configs/config/providers.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../tags/categories/providers.dart';
+import '../../../../tags/autocompletes/translation.dart';
 import '../../../../themes/colors/providers.dart';
 import '../../../../themes/colors/types.dart';
 import 'raw_tag_chip.dart';
@@ -76,14 +77,22 @@ class TagChip extends ConsumerWidget {
   }
 
   String? _buildSubtitle(BooruLoginDetails loginDetails) {
-    if (!showPostCount ||
-        loginDetails.hasStrictSFW ||
-        postCount == null ||
-        postCount! <= 0) {
-      return null;
+    final translation = TagTranslation.translate(text);
+    
+    final displayCount = showPostCount &&
+        !loginDetails.hasStrictSFW &&
+        postCount != null &&
+        postCount! > 0;
+        
+    final countStr = displayCount ? NumberFormat.compact().format(postCount) : null;
+    
+    if (translation != null && countStr != null) {
+      return '$translation · $countStr';
+    } else if (translation != null) {
+      return translation;
+    } else {
+      return countStr;
     }
-
-    return NumberFormat.compact().format(postCount);
   }
 }
 
