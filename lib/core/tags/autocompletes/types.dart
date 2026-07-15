@@ -6,6 +6,7 @@ import 'package:foundation/foundation.dart';
 import '../local/types.dart';
 import '../metatag/types.dart';
 import '../tag/types.dart';
+import 'translation.dart';
 
 export 'autocomplete_repository.dart';
 export 'autocomplete_query.dart';
@@ -228,8 +229,15 @@ extension AutocompleteDataDisplayX on AutocompleteData {
       );
     }
 
-    return hasAlias
-        ? '<p>${replaceAndHighlight(antecedent!.replaceAll('_', ' '))} ➞ ${replaceAndHighlight(label)}</p>'
-        : '<p>${replaceAndHighlight(label.replaceAll('_', ' '))}</p>';
+    final labelTranslation = TagTranslation.translate(label);
+    final displayLabel = labelTranslation != null ? '$label ($labelTranslation)' : label;
+
+    if (hasAlias) {
+      final antecedentTranslation = TagTranslation.translate(antecedent!);
+      final displayAntecedent = antecedentTranslation != null ? '$antecedent ($antecedentTranslation)' : antecedent!;
+      return '<p>${replaceAndHighlight(displayAntecedent.replaceAll('_', ' '))} ➞ ${replaceAndHighlight(displayLabel.replaceAll('_', ' '))}</p>';
+    }
+
+    return '<p>${replaceAndHighlight(displayLabel.replaceAll('_', ' '))}</p>';
   }
 }

@@ -34,8 +34,8 @@ final class Codegen {
   }
 
   Future<void> _runI18n(Project project) async {
-    await tools.dart(
-      ['run', 'slang'],
+    await tools.flutter(
+      ['pub', 'run', 'slang'],
       cwd: Directory('${project.root.path}/packages/i18n'),
     );
     await tools.dart(

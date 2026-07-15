@@ -176,4 +176,5 @@ flutter:
     - assets/information.json
     - assets/tagdef.json
     - assets/ca/isrgrootx1.pem
+    - assets/danbooru-10w-zh_cn.csv
     - CHANGELOG.md

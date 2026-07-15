@@ -47,6 +47,7 @@ import 'settings/providers.dart';
 import 'settings/src/types/settings_repository.dart';
 import 'settings/types.dart';
 import 'tags/configs/providers.dart';
+import 'tags/autocompletes/translation.dart';
 import 'widgets/widgets.dart';
 import 'window/providers.dart' as window;
 
@@ -177,6 +178,9 @@ class _BoorusamaAppState extends State<BoorusamaApp> {
 
       logger.debugBoot('Initialize i18n');
       await ensureI18nInitialized(settings.language);
+
+      logger.debugBoot('Initialize tag translations');
+      await TagTranslation.init();
 
       FlutterError.demangleStackTrace = (stack) {
         if (stack is Trace) return stack.vmTrace;
