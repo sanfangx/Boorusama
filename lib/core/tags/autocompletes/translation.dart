@@ -4,8 +4,18 @@ import 'dart:io';
 // Flutter imports:
 import 'package:flutter/services.dart' show rootBundle;
 
+// Project imports:
+import 'types.dart';
+
+class TranslationEntry {
+  final String en;
+  final String zh;
+  TranslationEntry(this.en, this.zh);
+}
+
 class TagTranslation {
   static final Map<String, String> _translations = {};
+  static final List<TranslationEntry> _originalList = [];
   static bool _initialized = false;
 
   static Map<String, String> get translations => _translations;
@@ -33,6 +43,7 @@ class TagTranslation {
             _translations[en] = zh;
             _translations[en.replaceAll('_', ' ').toLowerCase()] = zh;
             _translations[en.replaceAll(' ', '_').toLowerCase()] = zh;
+            _originalList.add(TranslationEntry(en, zh));
             parsedCount++;
           }
         }
@@ -56,5 +67,31 @@ class TagTranslation {
     final normalizedUnderscore = query.replaceAll(' ', '_');
     translation = _translations[normalizedUnderscore];
     return translation;
+  }
+
+  static List<AutocompleteData> searchChinese(String queryText, {int skip = 0, int limit = 20}) {
+    final cleanQuery = queryText.trim().toLowerCase();
+    if (cleanQuery.isEmpty) return [];
+
+    final List<AutocompleteData> results = [];
+    int matchCount = 0;
+    for (final entry in _originalList) {
+      if (entry.zh.toLowerCase().contains(cleanQuery) || entry.en.toLowerCase().contains(cleanQuery)) {
+        if (matchCount >= skip) {
+          results.add(
+            AutocompleteData(
+              label: entry.en,
+              value: entry.en,
+              category: 'general',
+            ),
+          );
+          if (results.length >= limit) {
+            break;
+          }
+        }
+        matchCount++;
+      }
+    }
+    return results;
   }
 }

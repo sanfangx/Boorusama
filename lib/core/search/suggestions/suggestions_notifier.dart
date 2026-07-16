@@ -8,6 +8,7 @@ import '../../../foundation/debounce_mixin.dart';
 import '../../configs/config/providers.dart';
 import '../../configs/config/types.dart';
 import '../../tags/autocompletes/providers.dart';
+import '../../tags/autocompletes/translation.dart';
 import '../../tags/autocompletes/types.dart';
 import '../../tags/configs/providers.dart';
 import '../../tags/local/providers.dart';
@@ -96,6 +97,28 @@ class SuggestionsNotifier
         }
       },
     );
+  }
+
+  void loadMoreSuggestions(String query) {
+    final sanitized = sanitizeQuery(query);
+    final currentList = state.getSuggestionsFor(sanitized);
+    if (currentList == null) return;
+
+    final actualList = currentList.where((item) => item.label != '__more__').toList();
+    final skip = actualList.length;
+    final newMatches = TagTranslation.searchChinese(sanitized, skip: skip, limit: 20);
+
+    final newList = [...actualList, ...newMatches];
+    if (newMatches.length >= 20) {
+      newList.add(const AutocompleteData(label: '__more__', value: '__more__'));
+    }
+
+    state = state.addSuggestions(sanitized, newList.lock);
+
+    final fallback = ref.read(fallbackSuggestionsProvider.notifier);
+    if (fallback.mounted && fallback.hasListeners) {
+      fallback.state = newList.lock;
+    }
   }
 }
 

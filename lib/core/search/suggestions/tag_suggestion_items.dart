@@ -9,6 +9,7 @@ import 'package:foundation/foundation.dart';
 import '../../boorus/engine/providers.dart';
 import '../../configs/config/types.dart';
 import '../../tags/autocompletes/types.dart';
+import 'suggestions_notifier.dart';
 import 'tag_suggestion_item.dart';
 
 class TagSuggestionItems extends ConsumerWidget {
@@ -60,6 +61,47 @@ class TagSuggestionItems extends ConsumerWidget {
               itemCount: _tags.length,
               itemBuilder: (context, index) {
                 final tag = _tags[index];
+
+                if (tag.label == '__more__') {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: InkWell(
+                      onTap: () {
+                        ref
+                            .read(suggestionsNotifierProvider(config).notifier)
+                            .loadMoreSuggestions(currentQuery);
+                      },
+                      borderRadius: BorderRadius.circular(8),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Theme.of(context).colorScheme.outline.withOpacity(0.3),
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '点击加载更多本地翻译建议',
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Icon(
+                              Icons.arrow_drop_down,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }
 
                 return tagSuggestionItemBuilder?.call(
                       config,
