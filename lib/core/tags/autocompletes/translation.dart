@@ -69,29 +69,71 @@ class TagTranslation {
     return translation;
   }
 
-  static List<AutocompleteData> searchChinese(String queryText, {int skip = 0, int limit = 20}) {
+  static List<AutocompleteData> searchLocal(String queryText, {int skip = 0, int limit = 20}) {
     final cleanQuery = queryText.trim().toLowerCase();
     if (cleanQuery.isEmpty) return [];
 
-    final List<AutocompleteData> results = [];
-    int matchCount = 0;
-    for (final entry in _originalList) {
-      if (entry.zh.toLowerCase().contains(cleanQuery) || entry.en.toLowerCase().contains(cleanQuery)) {
-        if (matchCount >= skip) {
-          results.add(
+    final hasChinese = RegExp(r'[\u4e00-\u9fa5]').hasMatch(cleanQuery);
+
+    if (hasChinese) {
+      final List<AutocompleteData> results = [];
+      int matchCount = 0;
+      for (final entry in _originalList) {
+        if (entry.zh.toLowerCase().contains(cleanQuery)) {
+          if (matchCount >= skip) {
+            results.add(
+              AutocompleteData(
+                label: entry.en,
+                value: entry.en,
+                category: 'general',
+              ),
+            );
+            if (results.length >= limit) {
+              break;
+            }
+          }
+          matchCount++;
+        }
+      }
+      return results;
+    } else {
+      final List<AutocompleteData> bucketA = [];
+      final List<AutocompleteData> bucketB = [];
+      final List<AutocompleteData> bucketC = [];
+
+      for (final entry in _originalList) {
+        final en = entry.en.toLowerCase();
+        if (en.startsWith(cleanQuery)) {
+          bucketA.add(
             AutocompleteData(
               label: entry.en,
               value: entry.en,
               category: 'general',
             ),
           );
-          if (results.length >= limit) {
-            break;
-          }
+        } else if (en.contains('_${cleanQuery}') || en.contains(' ${cleanQuery}')) {
+          bucketB.add(
+            AutocompleteData(
+              label: entry.en,
+              value: entry.en,
+              category: 'general',
+            ),
+          );
+        } else if (cleanQuery.length > 2 && en.contains(cleanQuery)) {
+          bucketC.add(
+            AutocompleteData(
+              label: entry.en,
+              value: entry.en,
+              category: 'general',
+            ),
+          );
         }
-        matchCount++;
       }
+
+      final combined = [...bucketA, ...bucketB, ...bucketC];
+      if (skip >= combined.length) return [];
+      final end = (skip + limit) < combined.length ? (skip + limit) : combined.length;
+      return combined.sublist(skip, end);
     }
-    return results;
   }
 }

@@ -106,7 +106,7 @@ class SuggestionsNotifier
 
     final actualList = currentList.where((item) => item.label != '__more__').toList();
     final skip = actualList.length;
-    final newMatches = TagTranslation.searchChinese(sanitized, skip: skip, limit: 20);
+    final newMatches = TagTranslation.searchLocal(sanitized, skip: skip, limit: 20);
 
     final newList = [...actualList, ...newMatches];
     if (newMatches.length >= 20) {

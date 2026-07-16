@@ -29,19 +29,11 @@ class AutocompleteRepositoryBuilder
       return Future.value([]);
     }
 
-    // Check if query text contains Chinese characters
-    final hasChinese = RegExp(r'[\u4e00-\u9fa5]').hasMatch(query.text);
-    if (hasChinese) {
-      final matches = TagTranslation.searchChinese(query.text);
-      if (matches.length >= 20) {
-        return matches + [const AutocompleteData(label: '__more__', value: '__more__')];
-      }
-      return matches;
+    final matches = TagTranslation.searchLocal(query.text);
+    if (matches.length >= 20) {
+      return matches + [const AutocompleteData(label: '__more__', value: '__more__')];
     }
-
-    final fresh = await autocomplete(query);
-
-    return fresh;
+    return matches;
   }
 
   @override
