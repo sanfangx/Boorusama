@@ -28,12 +28,53 @@ class GeneralTagContextMenu extends ConsumerWidget
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final globalNotifier = ref.watch(globalBlacklistedTagsProvider.notifier);
+    final lastParams = ref.watch(lastSearchParamsProvider);
+    final currentTagsStr = lastParams?.tags?.toString() ?? lastParams?.query ?? '';
+
+    final isZh = context.t.tags.actions.search_single == '搜索';
+    final addToSearchLabel = isZh ? '添加到搜索' : 'Add to search';
+    final excludeFromSearchLabel = isZh ? '从搜索中排除' : 'Exclude from search';
 
     return ContextMenuRegion(
       contextMenu: GenericContextMenu(
         buttonConfigs: [
           copyButton(context, tag),
           searchButton(ref, tag),
+          ContextMenuButtonConfig(
+            addToSearchLabel,
+            onPressed: () {
+              final String newQuery;
+              if (currentTagsStr.isEmpty) {
+                newQuery = tag;
+              } else {
+                final tagsList = currentTagsStr.split(' ');
+                if (tagsList.contains(tag)) {
+                  newQuery = currentTagsStr;
+                } else {
+                  newQuery = '$currentTagsStr $tag';
+                }
+              }
+              goToSearchPage(ref, tag: newQuery);
+            },
+          ),
+          ContextMenuButtonConfig(
+            excludeFromSearchLabel,
+            onPressed: () {
+              final excludeTag = '-$tag';
+              final String newQuery;
+              if (currentTagsStr.isEmpty) {
+                newQuery = excludeTag;
+              } else {
+                final tagsList = currentTagsStr.split(' ');
+                if (tagsList.contains(excludeTag)) {
+                  newQuery = currentTagsStr;
+                } else {
+                  newQuery = '$currentTagsStr $excludeTag';
+                }
+              }
+              goToSearchPage(ref, tag: newQuery);
+            },
+          ),
           ContextMenuButtonConfig(
             context.t.post.detail.add_to_favorites,
             onPressed: () {
