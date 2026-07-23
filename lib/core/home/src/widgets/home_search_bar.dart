@@ -158,7 +158,15 @@ class _SliverHomeSearchBarState
     ref
         .read(searchHistoryProvider.notifier)
         .addHistoryFromController(selectedTagController);
-    selectedTagString.value = selectedTagController.rawTagsString;
-    widget.onSearch();
+    
+    goToSearchPage(
+      ref,
+      tag: selectedTagController.rawTagsString,
+      fromSearchBar: true,
+    );
+
+    // Clear the home page search bar so it remains a clean entry point
+    selectedTagController.clear();
+    selectedTagString.value = '';
   }
 }
