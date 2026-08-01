@@ -55,6 +55,19 @@ void main() {
       expect(set.toString(), equals('["new_tag"]'));
     });
 
+    test('editing a raw query preserves its type and spaces', () {
+      const original = TagSearchItem.raw(tag: '(thighhighs ~ pantyhose)');
+      const editedQuery = '(thighhighs ~ pantyhose ~ socks)';
+      final set = SearchTagSet()..addTag(original);
+
+      set.updateTag(original, original.withQuery(editedQuery));
+
+      expect(
+        (isRaw: set.tags.single.isRaw, query: set.rawTagsString),
+        (isRaw: true, query: editedQuery),
+      );
+    });
+
     test('handle duplicate tags', () {
       final tag1 = TagSearchItem.fromString('tag1');
       final tag2 = TagSearchItem.fromString('tag2');

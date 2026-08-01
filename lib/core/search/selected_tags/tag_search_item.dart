@@ -60,6 +60,17 @@ class TagSearchItem extends Equatable {
   final bool isRaw;
   final String? category;
 
+  TagSearchItem withQuery(
+    String query, {
+    MetatagExtractor? extractor,
+  }) => isRaw
+      ? TagSearchItem.raw(tag: query)
+      : TagSearchItem.fromString(
+          query,
+          extractor: extractor,
+          category: category,
+        );
+
   // This assume no whitespace in the tag, which is true for most boorus
   String get rawTag => tag.replaceAll(' ', '_');
 
