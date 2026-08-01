@@ -295,6 +295,28 @@ void main() {
     expect(filename, equals('bar_foo foobar drawn by foo_(123)'));
   });
 
+  test('tag option order does not change nomod output', () {
+    // Regression test for applying `nomod` after an option that changes the
+    // space-separated tag representation. All formats describe the same
+    // operations and should therefore produce the same filename.
+    final metadata = {
+      'character': 'alpha_(a_very_long_series_name) beta gamma_(artist)',
+    };
+    const expected = 'alpha,beta,gamma';
+    const formats = [
+      '{character:nomod,sort[name]=asc,limit=99,delimiter=comma,maxlength=16}',
+      '{character:delimiter=comma,nomod,sort[name]=asc,limit=99,maxlength=16}',
+      '{character:maxlength=16,nomod,sort[name]=asc,limit=99,delimiter=comma}',
+      '{character:limit=99,maxlength=16,sort[name]=asc,delimiter=comma,nomod}',
+    ];
+
+    final filenames = formats
+        .map((format) => generateFileName(metadata, format))
+        .toList();
+
+    expect(filenames, everyElement(expected));
+  });
+
   // test limit option
   test('generateFileName with limit option', () {
     // Arrange

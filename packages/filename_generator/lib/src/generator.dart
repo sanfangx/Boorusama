@@ -51,21 +51,31 @@ String applyTokenOptions(
   TokenContext context, {
   Clock? clock,
   required Uuid uuid,
-}) => context.options
-    .where(
-      (o) =>
-          context.config.tokenDefinitions.containsKey(context.token.name) &&
-          context.config.tokenDefinitions[context.token.name]!.contains(o.name),
-    )
-    .fold(
+}) {
+  final supportedOptions = context.options.where(
+    (o) =>
+        context.config.tokenDefinitions.containsKey(context.token.name) &&
+        context.config.tokenDefinitions[context.token.name]!.contains(o.name),
+  );
+
+  // `nomod` operates on the original space-separated tag list. Applying it
+  // after options such as `delimiter` or `maxlength` can collapse the entire
+  // list at the first modifier or measure the uncleaned value, respectively.
+  final orderedOptions = [
+    ...supportedOptions.whereType<NoModifiersOption>(),
+    ...supportedOptions.where((option) => option is! NoModifiersOption),
+  ];
+
+  return orderedOptions.fold(
+    data,
+    (data, option) => getTokenOptionHandler(
       data,
-      (data, option) => getTokenOptionHandler(
-        data,
-        option,
-        clock: clock,
-        uuid: uuid,
-      )(context),
-    );
+      option,
+      clock: clock,
+      uuid: uuid,
+    )(context),
+  );
+}
 
 List<TokenOption> filterDuplicatedOptions(List<TokenOption> options) {
   final m = <String, List<int>>{};
