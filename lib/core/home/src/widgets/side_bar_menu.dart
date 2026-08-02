@@ -146,7 +146,7 @@ class SideBarMenu extends ConsumerWidget {
                         ),
                         SideMenuTile(
                           icon: const Icon(Symbols.tag),
-                          title: Text(context.t.favorite_tags.favorite_tags),
+                          title: Text(context.t.favorite_tags.title),
                           onTap: () {
                             goToFavoriteTagsPage(ref);
                           },

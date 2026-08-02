@@ -37,6 +37,7 @@ class SimpleTagSearchView extends ConsumerStatefulWidget {
     super.key,
     this.ensureValidTag = true,
     this.closeOnSelected = true,
+    this.showInputSelector = true,
     this.floatingActionButton,
     this.backButton,
     this.onSubmitted,
@@ -49,6 +50,7 @@ class SimpleTagSearchView extends ConsumerStatefulWidget {
   final void Function(String tag, bool isRaw) onSelected;
   final bool ensureValidTag;
   final bool closeOnSelected;
+  final bool showInputSelector;
   final Widget Function(String currentText)? floatingActionButton;
   final Widget? backButton;
   final void Function(BuildContext context, String text, bool isRaw)?
@@ -85,7 +87,10 @@ class _SimpleTagSearchViewState extends ConsumerState<SimpleTagSearchView> {
       suggestionsNotifierProvider(config).notifier,
     );
 
-    final inputType = ref.watch(selectedInputTypeSelectorProvider);
+    final selectedInputType = ref.watch(selectedInputTypeSelectorProvider);
+    final inputType = widget.showInputSelector
+        ? selectedInputType
+        : InputType.single;
     final isRaw = inputType == InputType.raw;
 
     return ValueListenableBuilder(
@@ -143,7 +148,7 @@ class _SimpleTagSearchViewState extends ConsumerState<SimpleTagSearchView> {
                         },
                       ),
                     ),
-                    const InputSelectorButton(),
+                    if (widget.showInputSelector) const InputSelectorButton(),
                   ],
                 ),
               ),

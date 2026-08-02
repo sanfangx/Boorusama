@@ -47,6 +47,7 @@ void goToQuickSearchPage(
   required WidgetRef ref,
   required void Function(String tag, bool isRaw) onSelected,
   bool ensureValidTag = false,
+  bool showInputSelector = true,
   BooruConfigAuth? initialConfig,
   Widget Function(String text)? floatingActionButton,
   void Function(BuildContext context, String text, bool isRaw)? onSubmitted,
@@ -62,6 +63,7 @@ void goToQuickSearchPage(
     builder: (_, isMobile) => isMobile
         ? SimpleTagSearchView(
             initialConfig: initialConfig,
+            showInputSelector: showInputSelector,
             onSubmitted: onSubmitted,
             ensureValidTag: ensureValidTag,
             floatingActionButton: floatingActionButton != null
@@ -72,6 +74,7 @@ void goToQuickSearchPage(
           )
         : SimpleTagSearchView(
             initialConfig: initialConfig,
+            showInputSelector: showInputSelector,
             onSubmitted: onSubmitted,
             backButton: IconButton(
               splashRadius: 16,

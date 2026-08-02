@@ -84,7 +84,7 @@ class _TagEditFavoriteViewState extends ConsumerState<TagEditFavoriteView> {
                               ? widget.onAdded(tag.name)
                               : widget.onRemoved(tag.name),
                           label: Text(
-                            tag.name.replaceAll('_', ' '),
+                            tag.name,
                             style: TextStyle(
                               color: selected
                                   ? Theme.of(context).colorScheme.onPrimary

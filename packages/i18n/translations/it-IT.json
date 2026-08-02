@@ -389,7 +389,7 @@
   "favorite_tags": {
     "import_hint": "Inserisci qui la tua stringa di tag. Delimitata da spazi.",
     "export_notification": "Stringa di tag copiata",
-    "favorite_tags": "Tag preferiti"
+    "title": "Tag preferiti"
   },
   "rating": {
     "rate_request": "Valuta questa App",

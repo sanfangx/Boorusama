@@ -765,7 +765,7 @@
     "favorites": "Favoritos",
     "import_hint": "Preencha sua linha de tag aqui. Espaço delimitado.",
     "export_notification": "Linha de tag copiada para a área de transferência",
-    "favorite_tags": "Tags favoritas"
+    "title": "Tags favoritas"
   },
   "rating": {
     "rate_request": "Avalie este aplicativo",

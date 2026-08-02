@@ -764,7 +764,7 @@
     "favorites": "喜爱",
     "import_hint": "在此输入标签。使用空格分隔。",
     "export_notification": "标签已复制到剪切板",
-    "favorite_tags": "喜爱tag"
+    "title": "喜爱tag"
   },
   "rating": {
     "rate_request": "评价此应用",

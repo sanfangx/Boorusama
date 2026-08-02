@@ -1,5 +1,6 @@
 export 'booru_animated_cross_fade.dart';
 export 'booru_bottom_sheet.dart';
+export 'bottom_sheet_header.dart';
 export 'booru_chip.dart';
 export 'booru_dialog.dart';
 export 'booru_hero.dart';
@@ -44,6 +45,7 @@ export 'scroll_to_top.dart';
 export 'shadow_gradient_overlay.dart';
 export 'sliver_divider.dart';
 export 'square_chip.dart';
+export 'tag_chip_input.dart';
 export 'time_pulse.dart';
 export 'website_logo.dart';
 export 'multi_select_button.dart';

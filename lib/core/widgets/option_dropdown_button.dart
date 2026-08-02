@@ -26,6 +26,16 @@ class OptionDropDownButton<T> extends ConsumerStatefulWidget {
     this.backgroundColor,
     this.padding,
     this.selectedItemBuilder,
+    this.showArrow = true,
+    this.isItemSelected,
+    this.showSelectedCheckmark = false,
+    this.borderSide,
+    this.elevation,
+    this.margin,
+    this.onPressed,
+    this.arrowSize = 20,
+    this.arrowSpacing = 4,
+    this.selectedItemFlexible = true,
   });
 
   final T value;
@@ -35,6 +45,16 @@ class OptionDropDownButton<T> extends ConsumerStatefulWidget {
   final Color? backgroundColor;
   final EdgeInsetsGeometry? padding;
   final Widget Function(T value)? selectedItemBuilder;
+  final bool showArrow;
+  final bool Function(T value)? isItemSelected;
+  final bool showSelectedCheckmark;
+  final BorderSide? borderSide;
+  final double? elevation;
+  final EdgeInsetsGeometry? margin;
+  final VoidCallback? onPressed;
+  final double arrowSize;
+  final double arrowSpacing;
+  final bool selectedItemFlexible;
 
   @override
   ConsumerState<OptionDropDownButton<T>> createState() =>
@@ -88,6 +108,16 @@ class _OptionDropDownButtonState<T>
     final backgroundColor =
         widget.backgroundColor ?? colorScheme.surfaceContainerHighest;
     final isDesktop = isDesktopPlatform();
+    final selectedMenuItem = widget.items.firstWhereOrNull(
+      (item) => item.value == widget.value,
+    );
+    final selectedItem = selectedMenuItem == null
+        ? const SizedBox(
+            width: 50,
+            child: Text('', overflow: TextOverflow.ellipsis),
+          )
+        : widget.selectedItemBuilder?.call(widget.value) ??
+              selectedMenuItem.child;
 
     return BooruAnchor(
       controller: _controller,
@@ -116,22 +146,30 @@ class _OptionDropDownButtonState<T>
               controller: _scrollController,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: widget.items
-                    .asMap()
-                    .entries
-                    .map(
-                      (entry) => _OptionDropDownItem<T>(
-                        key: entry.key == 0 ? _itemKey : null,
-                        value: entry.value.value as T,
-                        isSelected: entry.value.value == widget.value,
-                        onTap: () {
-                          _controller.hide();
-                          widget.onChanged(entry.value.value);
-                        },
-                        child: entry.value.child,
-                      ),
-                    )
-                    .toList(),
+                children: widget.items.asMap().entries.map((entry) {
+                  final item = entry.value;
+                  if (!item.enabled) {
+                    return Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+                      child: item.child,
+                    );
+                  }
+
+                  final value = item.value as T;
+                  return _OptionDropDownItem<T>(
+                    key: entry.key == 0 ? _itemKey : null,
+                    value: value,
+                    isSelected:
+                        widget.isItemSelected?.call(value) ??
+                        item.value == widget.value,
+                    showSelectedCheckmark: widget.showSelectedCheckmark,
+                    onTap: () {
+                      _controller.hide();
+                      widget.onChanged(item.value);
+                    },
+                    child: item.child,
+                  );
+                }).toList(),
               ),
             ),
           ),
@@ -139,10 +177,22 @@ class _OptionDropDownButtonState<T>
       },
       child: Card(
         color: backgroundColor,
+        elevation: widget.elevation,
+        margin: widget.margin,
+        shape: widget.borderSide == null
+            ? null
+            : RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+                side: widget.borderSide!,
+              ),
         child: InkWell(
           onTap: () {
             if (hapticLevel.isFull) {
               HapticFeedback.selectionClick();
+            }
+            if (widget.onPressed case final onPressed?) {
+              onPressed();
+              return;
             }
             _controller.toggle();
             if (_controller.isShowing) {
@@ -161,35 +211,41 @@ class _OptionDropDownButtonState<T>
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                if (widget.items.firstWhereOrNull(
-                      (item) => item.value == widget.value,
-                    )
-                    case final item?)
-                  Flexible(
-                    child:
-                        widget.selectedItemBuilder?.call(widget.value) ??
-                        item.child,
-                  )
+                if (widget.selectedItemFlexible)
+                  Flexible(child: selectedItem)
                 else
-                  const SizedBox(
-                    width: 50,
-                    child: Text(
-                      '',
-                      overflow: TextOverflow.ellipsis,
+                  selectedItem,
+                if (widget.showArrow)
+                  Padding(
+                    padding: EdgeInsets.only(left: widget.arrowSpacing),
+                    child: Icon(
+                      Symbols.keyboard_arrow_down,
+                      size: widget.arrowSize,
+                      color: Theme.of(context).iconTheme.color,
                     ),
                   ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 4),
-                  child: Icon(
-                    Symbols.keyboard_arrow_down,
-                    size: 20,
-                    color: Theme.of(context).iconTheme.color,
-                  ),
-                ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class OptionDropDownMenuHeader extends StatelessWidget {
+  const OptionDropDownMenuHeader({required this.label, super.key});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      label.toUpperCase(),
+      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+        color: Theme.of(context).colorScheme.onSurfaceVariant,
+        fontWeight: FontWeight.w700,
+        letterSpacing: 0.5,
       ),
     );
   }
@@ -200,12 +256,14 @@ class _OptionDropDownItem<T> extends StatelessWidget {
     super.key,
     required this.value,
     required this.isSelected,
+    required this.showSelectedCheckmark,
     required this.onTap,
     required this.child,
   });
 
   final T value;
   final bool isSelected;
+  final bool showSelectedCheckmark;
   final VoidCallback onTap;
   final Widget child;
 
@@ -227,7 +285,7 @@ class _OptionDropDownItem<T> extends StatelessWidget {
             horizontal: 12,
             vertical: isDesktop ? 4 : 12,
           ),
-          decoration: isSelected
+          decoration: isSelected && !showSelectedCheckmark
               ? BoxDecoration(
                   color: colorScheme.primaryContainer.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(8),
@@ -235,9 +293,22 @@ class _OptionDropDownItem<T> extends StatelessWidget {
               : null,
           child: Row(
             children: [
-              Flexible(
+              Expanded(
                 child: child,
               ),
+              if (showSelectedCheckmark) ...[
+                const SizedBox(width: 12),
+                SizedBox.square(
+                  dimension: 20,
+                  child: isSelected
+                      ? Icon(
+                          Symbols.check,
+                          size: 20,
+                          color: colorScheme.primary,
+                        )
+                      : null,
+                ),
+              ],
             ],
           ),
         ),

@@ -310,7 +310,7 @@ List<Widget> coreDesktopTabBuilder(
       constraints: constraints,
       selectedIcon: Symbols.tag,
       icon: Symbols.tag,
-      title: context.t.favorite_tags.favorite_tags,
+      title: context.t.favorite_tags.title,
     ),
     HomeNavigationTile(
       value: _v(5),

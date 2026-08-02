@@ -4,151 +4,265 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:rich_text_controller/rich_text_controller.dart';
 
 // Project imports:
+import '../../../../../core/widgets/settings_card.dart';
 import '../../../../../core/widgets/widgets.dart';
-import '../../../../../foundation/utils/stream/text_editing_controller_utils.dart';
-import '../../../../themes/theme/types.dart';
+import '../../../../configs/config/providers.dart';
+import '../../../../search/search/widgets.dart';
+import '../../../../search/selected_tags/types.dart';
+import '../../../../search/syntax/providers.dart';
 import '../types/favorite_tag.dart';
+
+enum _FavoriteEntryType {
+  tag,
+  rawQuery,
+}
 
 class EditFavoriteTagSheet extends ConsumerStatefulWidget {
   const EditFavoriteTagSheet({
     required this.onSubmit,
     required this.initialValue,
+    required this.availableLabels,
     super.key,
-    this.title,
   });
 
-  final String? title;
   final FavoriteTag initialValue;
-  final void Function(FavoriteTag tag) onSubmit;
+  final List<String> availableLabels;
+  final Future<String?> Function(FavoriteTag tag) onSubmit;
 
   @override
   ConsumerState<EditFavoriteTagSheet> createState() =>
-      _EditSavedSearchSheetState();
+      _EditFavoriteTagSheetState();
 }
 
-class _EditSavedSearchSheetState extends ConsumerState<EditFavoriteTagSheet> {
-  final labelTextController = TextEditingController();
+class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
+  late final RichTextController valueController;
+  final labelController = TextEditingController();
+  late final Set<String> selectedLabels;
+  late _FavoriteEntryType entryType;
 
-  final queryHasText = ValueNotifier(false);
-  final labelsHasText = ValueNotifier(false);
-
-  final compositeSubscription = CompositeSubscription();
+  String? errorText;
+  var isSubmitting = false;
+  late var showAdvancedOptions =
+      widget.initialValue.labels?.isNotEmpty ?? false;
 
   @override
   void initState() {
     super.initState();
-    labelTextController
-        .textAsStream()
-        .distinct()
-        .listen((event) => labelsHasText.value = event.isNotEmpty)
-        .addTo(compositeSubscription);
-
-    labelTextController.text = widget.initialValue.labels?.join(' ') ?? '';
+    final matcher = ref.read(queryMatcherProvider(ref.readConfigAuth));
+    valueController = RichTextController(
+      text: widget.initialValue.name,
+      matchers: matcher != null ? [matcher] : [],
+    );
+    selectedLabels = {...?widget.initialValue.labels};
+    entryType = widget.initialValue.queryType == QueryType.simple
+        ? _FavoriteEntryType.rawQuery
+        : _FavoriteEntryType.tag;
   }
 
   @override
   void dispose() {
-    labelTextController.dispose();
-    compositeSubscription.dispose();
+    valueController.dispose();
+    labelController.dispose();
     super.dispose();
   }
 
-  void _onSubmit() {
-    final newValue = widget.initialValue.copyWith(
-      labels: () => labelTextController.text.isEmpty
-          ? null
-          : labelTextController.text.split(' '),
-    );
+  Future<void> _submit() async {
+    if (isSubmitting) return;
 
-    widget.onSubmit(newValue);
-    Navigator.of(context).pop();
+    final value = valueController.text;
+    if (value.isEmpty) {
+      setState(
+        () => errorText = context.t.favorite_tags.editor.enter_value,
+      );
+      return;
+    }
+
+    setState(() {
+      errorText = null;
+      isSubmitting = true;
+    });
+
+    final updated = widget.initialValue.copyWith(
+      name: value,
+      labels: () => selectedLabels.isEmpty ? null : selectedLabels.toList(),
+      queryType: () =>
+          entryType == _FavoriteEntryType.rawQuery ? QueryType.simple : null,
+    );
+    final error = await widget.onSubmit(updated);
+
+    if (!mounted) return;
+    if (error == null) {
+      Navigator.of(context).pop();
+      return;
+    }
+
+    setState(() {
+      errorText = error;
+      isSubmitting = false;
+    });
+  }
+
+  void _addLabel([String? value]) {
+    final label = (value ?? labelController.text).trim();
+    if (label.isEmpty) return;
+
+    setState(() {
+      selectedLabels.add(label);
+      labelController.clear();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    final colorScheme = theme.colorScheme;
+    final colorScheme = Theme.of(context).colorScheme;
+    final isEditing = widget.initialValue.name.isNotEmpty;
+    final suggestions = widget.availableLabels
+        .where((label) => !selectedLabels.contains(label))
+        .toList();
 
-    return Container(
-      margin: const EdgeInsets.only(
-        left: 12,
-        right: 12,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 8, bottom: 8),
-            child: Text(
-              widget.title ?? context.t.generic.action.edit,
-              style: textTheme.titleLarge,
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          BooruTextField(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        BottomSheetHeader(
+          title: isEditing
+              ? context.t.favorite_tags.editor.edit_title
+              : context.t.favorite_tags.add_favorite,
+          closeTooltip: context.t.generic.action.cancel,
+          confirmTooltip: context.t.generic.action.save,
+          onClose: isSubmitting ? null : () => Navigator.of(context).pop(),
+          onConfirm: isSubmitting || valueController.text.isEmpty
+              ? null
+              : _submit,
+          isConfirming: isSubmitting,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: QuickSearchTextField(
+            controller: valueController,
             autofocus: true,
-            controller: labelTextController,
-            minLines: 1,
-            maxLines: 5,
-            onSubmitted: (_) {
-              _onSubmit();
-            },
+            maxLength: 255,
             textInputAction: TextInputAction.done,
-            decoration: const InputDecoration(
-              label: Text('Labels'),
+            showInputSelector: false,
+            layout: QuickSearchTextFieldLayout.composer,
+            quickSearchInsertMode: entryType == _FavoriteEntryType.tag
+                ? QuickSearchInsertMode.replace
+                : QuickSearchInsertMode.insertAtCursor,
+            composerTrailing: OptionDropDownButton<_FavoriteEntryType>(
+              backgroundColor: Colors.transparent,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              value: entryType,
+              items: [
+                DropdownMenuItem(
+                  value: _FavoriteEntryType.tag,
+                  child: Text(context.t.favorite_tags.editor.tag),
+                ),
+                DropdownMenuItem(
+                  value: _FavoriteEntryType.rawQuery,
+                  child: Text(context.t.search.raw_query),
+                ),
+              ],
+              onChanged: (value) {
+                if (value == null) return;
+                setState(() {
+                  entryType = value;
+                  errorText = null;
+                });
+              },
+            ),
+            onChanged: (_) => setState(() => errorText = null),
+            decoration: InputDecoration(
+              hintText: entryType == _FavoriteEntryType.tag
+                  ? context.t.favorite_tags.editor.tag
+                  : context.t.search.raw_query,
+              errorText: errorText,
+              counterText: '',
             ),
           ),
-          Container(
-            margin: const EdgeInsets.all(8),
-            child: Text(
-              '*A list of label to help categorize this tag. Space delimited.',
-              style: textTheme.titleSmall?.copyWith(
-                color: colorScheme.hintColor,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.italic,
-              ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 8, bottom: 8),
-            child: OverflowBar(
-              alignment: MainAxisAlignment.spaceAround,
+        ),
+        BooruSwitchListTile(
+          title: Text(context.t.favorite_tags.editor.advanced_options),
+          value: showAdvancedOptions,
+          onChanged: (value) => setState(() => showAdvancedOptions = value),
+        ),
+        if (showAdvancedOptions) ...[
+          const Divider(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                FilledButton(
-                  style: FilledButton.styleFrom(
-                    foregroundColor: colorScheme.onSurface,
-                    backgroundColor: colorScheme.surfaceContainerHighest,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                SettingsCardTitle(
+                  title: context.t.favorite_tags.labels.title,
+                ),
+                if (selectedLabels.isNotEmpty) ...[
+                  Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: [
+                      for (final label in selectedLabels)
+                        Chip(
+                          backgroundColor: colorScheme.surfaceContainerHighest,
+                          label: Text(label),
+                          deleteIcon: Icon(
+                            Symbols.close,
+                            size: 16,
+                            color: colorScheme.error,
+                          ),
+                          onDeleted: () => setState(
+                            () => selectedLabels.remove(label),
+                          ),
+                        ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                ],
+                BooruTextField(
+                  controller: labelController,
+                  textInputAction: TextInputAction.done,
+                  onSubmitted: _addLabel,
+                  decoration: InputDecoration(
+                    hintText: context.t.favorite_tags.editor.add_label,
+                    suffixIcon: IconButton(
+                      tooltip: context.t.favorite_tags.editor.add_label,
+                      onPressed: _addLabel,
+                      icon: const Icon(Symbols.add),
                     ),
                   ),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text(context.t.generic.action.cancel),
                 ),
-                FilledButton(
-                  style: FilledButton.styleFrom(
-                    foregroundColor: colorScheme.onPrimary,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                if (suggestions.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    context.t.favorite_tags.editor.suggestions,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: colorScheme.onSurfaceVariant,
+                      fontSize: 13,
                     ),
                   ),
-                  onPressed: _onSubmit,
-                  child: Text(context.t.generic.action.ok),
-                ),
+                  const SizedBox(height: 6),
+                  Wrap(
+                    spacing: 5,
+                    runSpacing: 5,
+                    children: [
+                      for (final label in suggestions.take(6))
+                        ActionChip(
+                          label: Text(label),
+                          backgroundColor: colorScheme.surfaceContainerHighest,
+                          onPressed: () => _addLabel(label),
+                        ),
+                    ],
+                  ),
+                ],
               ],
             ),
           ),
+          const SizedBox(height: 8),
         ],
-      ),
+      ],
     );
   }
 }

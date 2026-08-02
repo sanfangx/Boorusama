@@ -765,7 +765,7 @@
     "favorites": "Favoritos",
     "import_hint": "Introduzca su etiqueta aqui. Espacio delimitado.",
     "export_notification": "Etiquetas copiadas a tu portapapeles",
-    "favorite_tags": "Etiquetas favoritas"
+    "title": "Etiquetas favoritas"
   },
   "rating": {
     "rate_request": "Calificanos",

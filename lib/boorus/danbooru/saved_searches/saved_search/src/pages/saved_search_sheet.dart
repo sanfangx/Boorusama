@@ -1,19 +1,15 @@
-// Dart imports:
-import 'dart:math';
-
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 import 'package:rxdart/rxdart.dart';
 
 // Project imports:
-import '../../../../../../core/search/search/routes.dart';
+import '../../../../../../core/search/search/widgets.dart';
 import '../../../../../../core/themes/theme/types.dart';
 import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../../foundation/utils/stream/text_editing_controller_utils.dart';
@@ -107,49 +103,12 @@ class _SavedSearchSheetState extends ConsumerState<SavedSearchSheet> {
           const SizedBox(
             height: 16,
           ),
-          BooruTextField(
+          QuickSearchTextField(
             autofocus: true,
             controller: queryTextController,
-            minLines: 1,
-            maxLines: 5,
             textInputAction: TextInputAction.done,
             decoration: InputDecoration(
               hintText: context.t.saved_search.saved_search_query,
-              suffixIcon: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  customBorder: const CircleBorder(),
-                  onTap: () {
-                    goToQuickSearchPage(
-                      context,
-                      ref: ref,
-                      onSelected: (tag, _) {
-                        final baseOffset = max(
-                          0,
-                          queryTextController.selection.baseOffset,
-                        );
-                        queryTextController
-                          ..text = queryTextController.text.addCharAtPosition(
-                            tag,
-                            baseOffset,
-                          )
-                          ..selection = TextSelection.fromPosition(
-                            TextPosition(
-                              offset: baseOffset + tag.length,
-                            ),
-                          );
-                      },
-                      onSubmitted: (context, text, _) {
-                        navigator.pop();
-
-                        queryTextController.text =
-                            '${queryTextController.text} $text';
-                      },
-                    );
-                  },
-                  child: const Icon(Symbols.add),
-                ),
-              ),
             ),
           ),
           const SizedBox(

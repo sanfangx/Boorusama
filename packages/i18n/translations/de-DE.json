@@ -749,7 +749,7 @@
     "favorites": "Favoriten",
     "import_hint": "Tag-String hier eingeben. Durch Leerzeichen getrennt.",
     "export_notification": "Tag-String in die Zwischenablage kopiert",
-    "favorite_tags": "Gespeicherte Tags"
+    "title": "Gespeicherte Tags"
   },
   "rating": {
     "rate_request": "Diese App Bewerten",

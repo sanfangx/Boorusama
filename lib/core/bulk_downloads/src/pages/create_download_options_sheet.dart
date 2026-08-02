@@ -21,6 +21,8 @@ import '../../../search/selected_tags/types.dart' hide queryAsList;
 import '../../../settings/providers.dart';
 import '../../../settings/widgets.dart';
 import '../../../themes/theme/types.dart';
+import '../../../widgets/bottom_sheet_action_buttons.dart';
+import '../../../widgets/settings_card.dart';
 import '../../../widgets/widgets.dart';
 import '../providers/bulk_download_notifier.dart';
 import '../providers/create_download_options_notifier.dart';
@@ -81,80 +83,49 @@ class CreateDownloadOptionsSheet extends ConsumerWidget {
 
     return CreateDownloadOptionsRawSheet(
       initial: initial,
-      actions: Row(
-        spacing: 16,
-        children: [
-          Expanded(
-            flex: 3,
-            child: ElevatedButton(
-              style: FilledButton.styleFrom(
-                disabledBackgroundColor: Colors.transparent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(
-                    color: colorScheme.outline,
-                  ),
-                ),
-              ),
-              onPressed: validOptions
-                  ? () {
-                      notifier.queueDownloadLater(
-                        options,
-                        onOptionsError: (e) {
-                          showErrorToast(context, e.message);
-                        },
-                      );
+      actions: BottomSheetActionButtons(
+        secondaryChild: Text(
+          context.t.bulk_downloads.actions.add_to_queue,
+        ),
+        primaryChild: Text(context.t.download.download),
+        onSecondaryPressed: validOptions
+            ? () {
+                notifier.queueDownloadLater(
+                  options,
+                  onOptionsError: (e) {
+                    showErrorToast(context, e.message);
+                  },
+                );
 
-                      if (navigatorContext != null &&
-                          navigatorContext.mounted) {
-                        showSnackBar(navigatorContext, 'Created');
+                if (navigatorContext != null && navigatorContext.mounted) {
+                  showSnackBar(navigatorContext, 'Created');
+                }
+
+                navigator.pop();
+              }
+            : null,
+        onPrimaryPressed: validOptions
+            ? () {
+                notifier.downloadFromOptions(
+                  options,
+                  downloadConfigs: DownloadConfigs(
+                    onDownloadStart: () {
+                      if (navigatorContext != null) {
+                        showSnackBar(
+                          navigatorContext,
+                          startedMessage,
+                        );
                       }
+                    },
+                  ),
+                  onOptionsError: (e) {
+                    showErrorToast(context, e.message);
+                  },
+                );
 
-                      navigator.pop();
-                    }
-                  : null,
-              child: Text(
-                context.t.bulk_downloads.actions.add_to_queue,
-              ),
-            ),
-          ),
-          Expanded(
-            flex: 5,
-            child: FilledButton(
-              style: FilledButton.styleFrom(
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                ),
-              ),
-              onPressed: validOptions
-                  ? () {
-                      notifier.downloadFromOptions(
-                        options,
-                        downloadConfigs: DownloadConfigs(
-                          onDownloadStart: () {
-                            if (navigatorContext != null) {
-                              showSnackBar(
-                                navigatorContext,
-                                startedMessage,
-                              );
-                            }
-                          },
-                        ),
-                        onOptionsError: (e) {
-                          showErrorToast(context, e.message);
-                        },
-                      );
-
-                      navigator.pop();
-                    }
-                  : null,
-              child: Text(
-                context.t.download.download,
-              ),
-            ),
-          ),
-        ],
+                navigator.pop();
+              }
+            : null,
       ),
     );
   }
@@ -259,6 +230,7 @@ class _CreateDownloadOptionsRawSheetState
           ),
           SettingsCard(
             title: context.t.bulk_downloads.options.other_options,
+            surface: SettingsCardSurface.high,
             child: Column(
               children: [
                 BooruSwitchListTile(
@@ -344,6 +316,7 @@ class _ExcludedTagsSection extends ConsumerWidget {
         .when(
           data: (tags) => SettingsCard(
             title: context.t.bulk_downloads.options.excluded_tags,
+            surface: SettingsCardSurface.high,
             trailing: Tooltip(
               message: _buildTitle(context, tags),
               triggerMode: TooltipTriggerMode.tap,
@@ -463,87 +436,5 @@ class _ExcludedTagsSection extends ConsumerWidget {
     }
 
     return sb.toString().trim();
-  }
-}
-
-class SettingsCard extends StatelessWidget {
-  const SettingsCard({
-    required this.child,
-    super.key,
-    this.onTap,
-    this.margin,
-    this.padding,
-    this.title,
-    this.trailing,
-  });
-
-  final Widget child;
-  final void Function()? onTap;
-  final EdgeInsetsGeometry? margin;
-  final EdgeInsetsGeometry? padding;
-  final String? title;
-  final Widget? trailing;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    final textTheme = theme.textTheme;
-    final title = this.title;
-
-    return Container(
-      margin:
-          margin ??
-          const EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 16,
-          ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (title != null)
-            Padding(
-              padding: const EdgeInsets.only(
-                bottom: 8,
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    title.toUpperCase(),
-                    style: textTheme.titleSmall?.copyWith(
-                      color: colorScheme.hintColor,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  if (trailing != null) ...[
-                    trailing!,
-                  ],
-                ],
-              ),
-            ),
-          Material(
-            color: colorScheme.surfaceContainerHigh,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: InkWell(
-              customBorder: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              onTap: onTap,
-              child: Container(
-                padding:
-                    padding ??
-                    const EdgeInsets.symmetric(
-                      horizontal: 8,
-                    ),
-                child: child,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

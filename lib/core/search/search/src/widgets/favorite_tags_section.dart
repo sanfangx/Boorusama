@@ -11,6 +11,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../../../../foundation/platform.dart';
 import '../../../../cache/providers.dart';
 import '../../../../router.dart';
+import '../../../selected_tags/types.dart';
 import '../../../../tags/favorites/types.dart';
 import '../../../../tags/favorites/widgets.dart';
 import '../../../../themes/colors/providers.dart';
@@ -69,8 +70,15 @@ class FavoriteTagsSection extends ConsumerWidget {
         return RawChip(
           visualDensity: VisualDensity.compact,
           onPressed: () => onTagTap?.call(tag),
+          avatar: tag.queryType == QueryType.simple
+              ? Icon(
+                  Symbols.code,
+                  size: 16,
+                  color: colors?.foregroundColor,
+                )
+              : null,
           label: Text(
-            tag.name.replaceAll('_', ' '),
+            tag.name,
             style: TextStyle(
               color: colors?.foregroundColor,
             ),

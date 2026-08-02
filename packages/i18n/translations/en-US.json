@@ -779,7 +779,58 @@
     "favorites": "Favorites",
     "import_hint": "Enter your tag string here. Space delimited.",
     "export_notification": "Tag string copied to clipboard",
-    "favorite_tags": "Favorite tags"
+    "title": "Favorite tags",
+    "manage_labels": "Manage labels",
+    "add_favorite": "Add favorite",
+    "duplicate_error": "This favorite already exists",
+    "search_hint": "Find saved tags",
+    "unlabelled": "Unlabelled",
+    "copy_exact_value": "Copy exact value",
+    "deleted": "Favorite deleted",
+    "undo": "Undo",
+    "raw_badge": "RAW",
+    "filtered_empty": "No saved tags match these filters",
+    "empty": "Save tags and raw queries to reuse them here",
+    "filter": {
+      "all_types": "All types",
+      "raw": "Raw",
+      "any_label": "Any label",
+      "no_group": "No group",
+      "by_label": "By label",
+      "label_picker_title": "Filter by label"
+    },
+    "labels": {
+      "title": "Labels",
+      "all": "All labels",
+      "search_hint": "Find labels",
+      "empty": "Labels appear after you assign them to a favorite",
+      "no_match": "No labels match this search",
+      "rename": "Rename",
+      "merge_into": "Merge into…",
+      "remove_from_all": "Remove from all favorites",
+      "favorite_count": {
+        "one": "$n favorite",
+        "other": "$n favorites"
+      },
+      "remove_title": "Remove label",
+      "remove_description": {
+        "one": "This removes “$label” from $n favorite. The favorite will not be deleted.",
+        "other": "This removes “$label” from $n favorites. The favorites will not be deleted."
+      },
+      "rename_title": "Rename label",
+      "label_hint": "Label",
+      "merge_title": "Merge label",
+      "merge": "Merge",
+      "merge_source_into": "Merge “$label” into"
+    },
+    "editor": {
+      "enter_value": "Enter a value",
+      "edit_title": "Edit favorite",
+      "tag": "Tag",
+      "advanced_options": "Show advanced options",
+      "add_label": "Add label",
+      "suggestions": "Suggestions"
+    }
   },
   "rating": {
     "rate_request": "Rate this app",

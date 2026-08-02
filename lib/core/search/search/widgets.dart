@@ -10,3 +10,4 @@ export 'src/views/search_landing_view.dart';
 export 'src/widgets/selected_tag_list_with_data.dart';
 export 'src/widgets/raw_search_region.dart';
 export 'src/widgets/raw_search_page_scaffold.dart';
+export 'src/widgets/quick_search_text_field.dart';

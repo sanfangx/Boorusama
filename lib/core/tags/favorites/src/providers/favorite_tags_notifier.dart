@@ -40,42 +40,52 @@ class FavoriteTagsNotifier extends Notifier<List<FavoriteTag>> {
     state = tags..sort((a, b) => a.name.compareTo(b.name));
   }
 
-  Future<void> add(
+  Future<bool> add(
     String tag, {
     List<String>? labels,
     void Function(String tag)? onDuplicate,
     bool? isRaw,
   }) async {
-    if (tag.isEmpty) return;
+    if (tag.isEmpty) return false;
 
     // If a tag length is larger than 255 characters, we will not add it.
     // This is a limitation of Hive.
-    if (tag.length > 255) return;
+    if (tag.length > 255) return false;
 
     // check for existing tag
     final existing = state.firstWhereOrNull((e) => e.name == tag);
 
     if (existing != null) {
       onDuplicate?.call(existing.name);
-      return;
+      return false;
     }
 
     final repo = await this.repo;
     await repo.create(
       name: tag,
       labels: labels != null && labels.isNotEmpty
-          ? labels.where((e) => e.isNotEmpty).toList()
+          ? labels
+                .map((e) => e.trim())
+                .where((e) => e.isNotEmpty)
+                .toSet()
+                .toList()
           : null,
       queryType: (isRaw ?? false) ? QueryType.simple : null,
     );
 
-    final tags = await repo.getAll();
-
-    state = tags..sort((a, b) => a.name.compareTo(b.name));
+    await _refresh(repo);
+    return true;
   }
 
-  Future<void> update(String tag, FavoriteTag newTag) async {
-    if (tag.isEmpty) return;
+  Future<bool> update(String tag, FavoriteTag newTag) async {
+    if (tag.isEmpty || newTag.name.isEmpty || newTag.name.length > 255) {
+      return false;
+    }
+
+    final duplicate = state.firstWhereOrNull(
+      (e) => e.name == newTag.name && e.name != tag,
+    );
+    if (duplicate != null) return false;
 
     final repo = await this.repo;
     final targetTag = await repo.getFirst(tag);
@@ -86,14 +96,15 @@ class FavoriteTagsNotifier extends Notifier<List<FavoriteTag>> {
         newTag.ensureValid(),
       );
 
-      final tags = await repo.getAll();
-
-      state = tags..sort((a, b) => a.name.compareTo(b.name));
+      await _refresh(repo);
+      return true;
     }
+
+    return false;
   }
 
-  Future<void> remove(String name) async {
-    if (name.isEmpty) return;
+  Future<FavoriteTag?> remove(String name) async {
+    if (name.isEmpty) return null;
 
     final repo = await this.repo;
     final tag = await repo.getFirst(name);
@@ -102,11 +113,77 @@ class FavoriteTagsNotifier extends Notifier<List<FavoriteTag>> {
       final deleted = await repo.deleteFirst(tag.name);
 
       if (deleted != null) {
-        final tags = await repo.getAll();
-
-        state = tags..sort((a, b) => a.name.compareTo(b.name));
+        await _refresh(repo);
+        return deleted;
       }
     }
+
+    return null;
+  }
+
+  Future<bool> restore(FavoriteTag tag) async {
+    final repo = await this.repo;
+    final restored = await repo.restore(tag);
+    await _refresh(repo);
+    return restored != null;
+  }
+
+  Future<void> renameLabel(String oldLabel, String newLabel) async {
+    final normalized = newLabel.trim();
+    if (oldLabel.isEmpty || normalized.isEmpty || oldLabel == normalized) {
+      return;
+    }
+
+    await _replaceLabel(oldLabel, normalized);
+  }
+
+  Future<void> mergeLabel(String sourceLabel, String targetLabel) async {
+    final normalized = targetLabel.trim();
+    if (sourceLabel.isEmpty ||
+        normalized.isEmpty ||
+        sourceLabel == normalized) {
+      return;
+    }
+
+    await _replaceLabel(sourceLabel, normalized);
+  }
+
+  Future<void> removeLabelFromAll(String label) async {
+    if (label.isEmpty) return;
+
+    final repo = await this.repo;
+    final affected = state.where((tag) => tag.labels?.contains(label) ?? false);
+
+    for (final tag in affected) {
+      final labels = [...?tag.labels]..removeWhere((e) => e == label);
+      await repo.updateFirst(
+        tag.name,
+        tag.copyWith(labels: () => labels.isEmpty ? null : labels),
+      );
+    }
+
+    await _refresh(repo);
+  }
+
+  Future<void> _replaceLabel(String oldLabel, String newLabel) async {
+    final repo = await this.repo;
+    final affected = state.where(
+      (tag) => tag.labels?.contains(oldLabel) ?? false,
+    );
+
+    for (final tag in affected) {
+      final labels = {
+        for (final label in tag.labels ?? const <String>[])
+          if (label == oldLabel) newLabel else label,
+      }.toList();
+
+      await repo.updateFirst(
+        tag.name,
+        tag.copyWith(labels: () => labels),
+      );
+    }
+
+    await _refresh(repo);
   }
 
   Future<void> import(String tagString) async {
@@ -118,9 +195,7 @@ class FavoriteTagsNotifier extends Notifier<List<FavoriteTag>> {
       await repo.create(name: t);
     }
 
-    final newTags = await repo.getAll();
-
-    state = newTags;
+    await _refresh(repo);
   }
 
   Future<void> export({
@@ -131,5 +206,10 @@ class FavoriteTagsNotifier extends Notifier<List<FavoriteTag>> {
     final tagString = tags.map((e) => e.name).join(' ');
 
     onDone(tagString);
+  }
+
+  Future<void> _refresh(FavoriteTagRepository repo) async {
+    final tags = await repo.getAll();
+    state = tags..sort((a, b) => a.name.compareTo(b.name));
   }
 }

@@ -1,0 +1,4 @@
+enum FavoriteTagGroupType {
+  none,
+  label,
+}

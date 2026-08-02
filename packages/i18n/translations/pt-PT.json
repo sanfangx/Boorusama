@@ -819,7 +819,7 @@
     "favorites": "Favoritos",
     "import_hint": "Insira a string de etiqueta aqui. Delimitada por espaço.",
     "export_notification": "String de etiqueta copiada para a área de transferência",
-    "favorite_tags": "Etiquetas favoritas"
+    "title": "Etiquetas favoritas"
   },
   "rating": {
     "rate_request": "Avalie esta aplicação",

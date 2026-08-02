@@ -11,10 +11,12 @@ class BooruBottomSheet extends StatelessWidget {
     required this.child,
     super.key,
     this.backgroundColor,
+    this.showDragHandle = true,
   });
 
   final Widget child;
   final Color? backgroundColor;
+  final bool showDragHandle;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +35,16 @@ class BooruBottomSheet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  DragLine(),
-                ],
+            if (showDragHandle)
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    DragLine(),
+                  ],
+                ),
               ),
-            ),
             Flexible(
               child: SingleChildScrollView(
                 child: child,
@@ -94,6 +97,7 @@ Future<T?> showBooruModalBottomSheet<T>({
   required Widget Function(BuildContext context) builder,
   RouteSettings? routeSettings,
   bool enableDrag = true,
+  bool showDragHandle = true,
   bool resizeToAvoidBottomInset = false,
   Color? backgroundColor,
 }) {
@@ -107,6 +111,7 @@ Future<T?> showBooruModalBottomSheet<T>({
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       child: BooruBottomSheet(
         backgroundColor: backgroundColor,
+        showDragHandle: showDragHandle,
         child: builder(context),
       ),
     ),

@@ -361,7 +361,7 @@
     "favorites": "Favorite",
     "import_hint": "Introduceți seria de etichete aici. Spațiu delimitat.",
     "export_notification": "Seria de etichete copiată în clipboard",
-    "favorite_tags": "Etichete favorite"
+    "title": "Etichete favorite"
   },
   "rating": {
     "rate_request": "Dați o notă acestei aplicații",

@@ -52,6 +52,7 @@ class SettingsSelector<T> extends StatelessWidget {
             horizontal: 8,
           ),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(itemBuilder(value)),
               Icon(

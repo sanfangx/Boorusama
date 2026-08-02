@@ -116,6 +116,9 @@ abstract class FavoriteTagRepository {
     QueryType? queryType,
   });
 
+  /// Restores an exact record only when its name is not already present.
+  Future<FavoriteTag?> restore(FavoriteTag tag);
+
   Future<List<FavoriteTag>> createFrom(List<FavoriteTag> tags);
 
   Future<FavoriteTag?> updateFirst(String name, FavoriteTag tag);

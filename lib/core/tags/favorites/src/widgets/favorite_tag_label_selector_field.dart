@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:i18n/i18n.dart';
+
 // Project imports:
 import '../../../../../core/widgets/widgets.dart';
 
@@ -28,11 +31,16 @@ class FavoriteTagLabelSelectorField extends StatelessWidget {
             maxWidth: 160,
           ),
           child: OptionSingleSearchableField(
-            backgroundColor: Theme.of(context).colorScheme.surface,
-            sheetTitle: 'Select',
-            optionValueBuilder: (option) =>
-                option == kSpecialLabelKeyForAll ? '<All>' : option,
-            value: selected == '' ? '<All>' : selected,
+            backgroundColor: Theme.of(
+              context,
+            ).colorScheme.surfaceContainerHigh,
+            sheetTitle: context.t.favorite_tags.labels.title,
+            optionValueBuilder: (option) => option == kSpecialLabelKeyForAll
+                ? context.t.favorite_tags.labels.all
+                : option,
+            value: selected == ''
+                ? context.t.favorite_tags.labels.all
+                : selected,
             items: [
               kSpecialLabelKeyForAll,
               ...labels,

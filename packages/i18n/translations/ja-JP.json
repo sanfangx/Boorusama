@@ -551,7 +551,7 @@
     "favorites": "お気に入り",
     "import_hint": "タグをスペースで区切って入力",
     "export_notification": "タグをクリップボードにコピーしました",
-    "favorite_tags": "お気に入りタグ"
+    "title": "お気に入りタグ"
   },
   "rating": {
     "rate_request": "このアプリを評価",

@@ -380,7 +380,7 @@
     "favorites": "Favories",
     "import_hint": "Entrez votre série de tags ici. Espace limité.",
     "export_notification": "Série de tags copiée dans le presse-papiers",
-    "favorite_tags": "Tags favoris"
+    "title": "Tags favoris"
   },
   "rating": {
     "rate_request": "Noter cette application",

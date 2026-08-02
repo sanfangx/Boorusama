@@ -777,7 +777,7 @@
     "favorites": "Yêu thích",
     "import_hint": "Nhập thẻ vào đây. Mỗi thẻ cách nhau bằng khoảng trắng.",
     "export_notification": "Thẻ đã được sao chép vào bảng nhớ tạm",
-    "favorite_tags": "Thẻ yêu thích"
+    "title": "Thẻ yêu thích"
   },
   "rating": {
     "rate_request": "Đánh giá ứng dụng",
