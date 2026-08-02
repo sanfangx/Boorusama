@@ -120,6 +120,44 @@ input_directory: translations
       expect(result.warnings, contains(contains('missing placeholder')));
     });
 
+    test('warns about keys missing from the base locale', () {
+      File(p.join(translationsDir.path, 'vi-VN.json')).writeAsStringSync('''
+{
+  "generic": {
+    "done": "Xong",
+    "legacy": "Cu"
+  }
+}
+''');
+
+      expect(
+        store.validate(),
+        contains('vi-VN:generic.legacy does not exist in the base locale'),
+      );
+    });
+
+    test('allows locale-specific plural categories', () {
+      File(p.join(translationsDir.path, 'en-US.json')).writeAsStringSync(r'''
+{
+  "counter": {
+    "one": "$n item",
+    "other": "$n items"
+  }
+}
+''');
+      File(p.join(translationsDir.path, 'vi-VN.json')).writeAsStringSync(r'''
+{
+  "counter": {
+    "one": "$n muc",
+    "few": "$n muc",
+    "other": "$n muc"
+  }
+}
+''');
+
+      expect(store.validate(), isEmpty);
+    });
+
     test('prints translation tree', () {
       final tree = store.tree(maxDepth: 1);
 

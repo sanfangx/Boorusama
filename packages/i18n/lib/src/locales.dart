@@ -6,6 +6,7 @@ import 'package:timeago/timeago.dart';
 
 LookupMessages getMessagesForLocale(Locale locale) =>
     switch (locale.toLanguageTag()) {
+      'ar-AA' => ArMessages(),
       'en-US' => EnMessages(),
       'vi-VN' => ViMessages(),
       'ru-RU' => RuMessages(),
@@ -25,6 +26,7 @@ LookupMessages getMessagesForLocale(Locale locale) =>
       'ro-RO' => RoMessages(),
       'ta-IN' => TaMessages(),
       'ko-KR' => KoMessages(),
+      'id-ID' => IdMessages(),
       'it-IT' => ItMessages(),
       _ => throw Exception('Unsupported locale $locale'),
     };

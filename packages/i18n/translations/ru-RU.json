@@ -195,11 +195,6 @@
         "disclaimer": "Показаны только те, которые понравились публике."
       }
     },
-    "counter": {
-      "one": "$n пост",
-      "other": "$n постов"
-    },
-    "hidden_count": "$hidden из $total",
     "votes": {
       "user_list": {
         "title": "Избиратели",
@@ -999,10 +994,12 @@
   },
   "posts": {
     "counter": {
-      "other": "$n постов"
+      "other": "$n постов",
+      "one": "$n пост"
     },
     "actions": {
       "stats": "Статистика"
-    }
+    },
+    "hidden_count": "$hidden из $total"
   }
 }

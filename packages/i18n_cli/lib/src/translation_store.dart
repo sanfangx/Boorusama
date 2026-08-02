@@ -524,8 +524,18 @@ final class TranslationStore {
       final flattened = _flatten(json);
 
       for (final entry in flattened.entries) {
+        if (!baseFlattened.containsKey(entry.key)) {
+          if (_isLocaleSpecificPluralVariant(baseJson, entry.key)) {
+            continue;
+          }
+
+          warnings.add(
+            '$locale:${entry.key} does not exist in the base locale',
+          );
+          continue;
+        }
+
         final baseValue = baseFlattened[entry.key];
-        if (baseValue == null) continue;
 
         warnings.addAll(
           _placeholderValidator.validate(
@@ -549,6 +559,28 @@ final class TranslationStore {
     }
 
     return warnings;
+  }
+
+  bool _isLocaleSpecificPluralVariant(
+    Object? baseJson,
+    String key,
+  ) {
+    const pluralKeys = {'zero', 'one', 'two', 'few', 'many', 'other'};
+    final path = KeyPath.parse(key);
+    if (path.segments.length < 2 || !pluralKeys.contains(path.segments.last)) {
+      return false;
+    }
+
+    final parent = _valueAt(
+      baseJson,
+      KeyPath.fromSegments(
+        path.segments.sublist(0, path.segments.length - 1),
+      ),
+    );
+
+    return parent is Map &&
+        parent.isNotEmpty &&
+        parent.keys.every(pluralKeys.contains);
   }
 
   Map<String, Object?> _flatten(Object? value, [String prefix = '']) {

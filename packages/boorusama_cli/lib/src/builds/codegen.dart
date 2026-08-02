@@ -35,6 +35,10 @@ final class Codegen {
 
   Future<void> _runI18n(Project project) async {
     await tools.dart(
+      ['run', 'i18n_cli:booru_i18n', 'validate'],
+      cwd: project.root,
+    );
+    await tools.dart(
       ['run', 'slang'],
       cwd: Directory('${project.root.path}/packages/i18n'),
     );

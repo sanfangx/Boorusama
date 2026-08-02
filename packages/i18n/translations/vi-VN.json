@@ -822,7 +822,6 @@
     "invalid_selected_profile_selection_request": "Chọn một hồ sơ từ danh sách bên dưới để tiếp tục",
     "unknown_engine_selection_request": "Chọn một booru engine để tiếp tục",
     "new_profile_leave_as_empty_tips": "Không biết sửa gì? Cứ để nguyên, bạn có thể thay đổi sau.",
-    "select_a_profile": "Chọn hồ sơ",
     "using_status": "dùng ${booru}",
     "paste_from_clipboard": "Dán từ clipboard",
     "booru_engine_input_label": "Nền tảng Booru (*)",

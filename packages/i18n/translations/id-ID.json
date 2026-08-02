@@ -514,7 +514,7 @@
       "loading": "Memuat...",
       "storage": "Penyimpanan",
       "disk_space": {
-        "status_title": "$freeRuang bebas dari $totalRuang",
+        "status_title": "$freeSpace kosong dari $totalSpace",
         "groups": {
           "system": "Sistem",
           "images": "Gambar",
@@ -779,7 +779,7 @@
     "favorites": "Favorit",
     "import_hint": "Masukkan string tagar anda di sini. Dipisahkan oleh spasi.",
     "export_notification": "String tagar tersalin ke papan tombol",
-    "favorite_tags": "Tagar favorit"
+    "title": "Tagar favorit"
   },
   "rating": {
     "rate_request": "Beri nilai aplikasi ini",
@@ -1131,8 +1131,8 @@
       }
     },
     "errors": {
-      "non_premium_template_limit": "Hanya satu templat yang diperbolehkan. Tingkatkan ke $ merek untuk membuat lebih banyak templat.",
-      "non_premium_session_limit": "Hanya satu sesi unduh aktif diperbolehkan. Tingkatkan ke $ merek untuk sesi tambahan.",
+      "non_premium_template_limit": "Hanya satu templat yang diperbolehkan. Tingkatkan ke $brand untuk membuat lebih banyak templat.",
+      "non_premium_session_limit": "Hanya satu sesi unduh aktif yang diperbolehkan. Tingkatkan ke $brand untuk sesi tambahan.",
       "non_premium_resume": "Melanjutkan sesi unduhan yang disimpan hanya tersedia di $brand.",
       "non_premium_suspend": "Sesi unduhan tersimpan hanya tersedia di $brand.",
       "running_session_deletion": "Tidak dapat menghapus sesi berjalan"
@@ -1285,7 +1285,7 @@
       "sample": "Sampel",
       "original": "Asli"
     },
-    "current_video_quality_disclaimer": "Bagian ini hanya berlaku untuk video saat ini. Untuk semua video, pergi ke <a href=\"booru-profiles\">$ video_profile_path</a>.",
+    "current_video_quality_disclaimer": "Bagian ini hanya berlaku untuk video saat ini. Untuk semua video, buka <a href=\"booru-profiles\">$video_profile_path</a>.",
     "speed": {
       "normal": "Normal"
     }
@@ -1293,7 +1293,7 @@
   "cache": {
     "image": {
       "reminder": {
-        "description": "Aplikasi ini telah disimpan <b> $ ukuran</b> bernilai gambar. Apakah anda ingin membersihkannya untuk membebaskan beberapa ruang?",
+        "description": "Aplikasi telah menyimpan gambar sebesar <b>$size</b>. Apakah Anda ingin menghapusnya untuk mengosongkan ruang?",
         "cleared": "Cache dibersihkan",
         "failed": "Gagal membersihkan cache"
       }

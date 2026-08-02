@@ -54,8 +54,12 @@ final class PlaceholderValidator {
   }
 
   Set<String> _extractFromString(String value) {
-    final matches = RegExp(r'\$[A-Za-z_][A-Za-z0-9_]*').allMatches(value);
+    final matches = RegExp(
+      r'\$(?:\{([A-Za-z_][A-Za-z0-9_]*)\}|([A-Za-z_][A-Za-z0-9_]*))',
+    ).allMatches(value);
 
-    return matches.map((match) => match.group(0)!).toSet();
+    return matches
+        .map((match) => '\$${match.group(1) ?? match.group(2)}')
+        .toSet();
   }
 }

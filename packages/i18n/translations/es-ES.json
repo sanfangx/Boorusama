@@ -43,7 +43,7 @@
       "title": "Mensajes",
       "empty": "No tienes mensajes",
       "unread_message_notice": {
-        "one": "Tienes un mensaje sin leer",
+        "one": "Tienes $n mensaje sin leer",
         "other": "Tienes $n mensajes sin leer"
       },
       "categories": {
@@ -1299,7 +1299,7 @@
   "uploads": {
     "counter": {
       "one": "$n subida",
-      "other": "%n subidas"
+      "other": "$n subidas"
     }
   },
   "infinite_scroll": {

@@ -32,7 +32,7 @@
     "default": "الافتراضي",
     "copied": "تم النسخ",
     "no_content": "لا يوجد محتوى",
-    "version": "الإصدار",
+    "version": "الإصدار $version",
     "app_restart_request": "يرجى إعادة تشغيل التطبيق"
   },
   "reminder": {
@@ -61,7 +61,7 @@
       "changes": "التعديلات"
     },
     "uploads": {
-      "top_n_copyright": "أهم حقوق الطبع والنشر"
+      "top_n_copyright": "أهم $n من حقوق الطبع والنشر"
     },
     "activity": {
       "title": "النشاط",
@@ -83,8 +83,8 @@
       "title": "الرسائل",
       "empty": "لا توجد رسائل",
       "unread_message_notice": {
-        "one": "رسالة واحدة غير مقروءة",
-        "other": "%d رسائل غير مقروءة"
+        "one": "لديك $n رسالة غير مقروءة",
+        "other": "لديك $n رسائل غير مقروءة"
       },
       "categories": {
         "all": "الكل",
@@ -129,7 +129,7 @@
       },
       "show_original": "عرض الأصلي",
       "show_translated": "عرض المترجم",
-      "show_n_more": "عرض %d أخرى",
+      "show_n_more": "عرض $n أخرى",
       "show_less": "عرض أقل",
       "login_required_notice": "يرجى تسجيل الدخول للمتابعة",
       "open_wiki": "فتح الويكي",
@@ -214,7 +214,7 @@
       "copy_post_id": "نسخ معرف المنشور",
       "failed_to_get_image_url": "فشل الحصول على رابط الصورة",
       "failed_to_get_image_bytes": "فشل الحصول على بيانات الصورة",
-      "failed_to_copy_image": "فشل نسخ الصورة"
+      "failed_to_copy_image": "فشل نسخ الصورة: $e"
     }
   },
   "comment": {
@@ -278,8 +278,8 @@
     "trending": "الشائعة الآن",
     "remove_all_selected": "إزالة التحديد عن الكل",
     "result_counter": {
-      "one": "نتيجة واحدة",
-      "other": "نتائج"
+      "one": "$n نتيجة",
+      "other": "$n نتائج"
     },
     "no_result_notice": "لم يتم العثور على نتائج",
     "search_in_progress_notice": "جاري البحث، يرجى الانتظار...",
@@ -516,7 +516,7 @@
       "loading": "جاري التحميل...",
       "storage": "التخزين",
       "disk_space": {
-        "status_title": "مساحة القرص",
+        "status_title": "$freeSpace متاح من أصل $totalSpace",
         "groups": {
           "system": "النظام",
           "images": "الصور",
@@ -610,11 +610,11 @@
         "weekly": "أسبوعيًا"
       },
       "backup_count": {
-        "one": "نسخة احتياطية واحدة",
-        "other": "نسخ احتياطية"
+        "one": "$n نسخة احتياطية",
+        "other": "$n نسخ احتياطية"
       },
       "change": "تغيير",
-      "last_backup": "آخر نسخة احتياطية",
+      "last_backup": "آخر نسخة احتياطية: $lastBackup",
       "backup_needed": "بحاجة لنسخ احتياطي",
       "up_to_date": "محدّث ومؤمّن",
       "backing_up": "جاري النسخ الاحتياطي...",
@@ -713,8 +713,8 @@
   "saved_search": {
     "saved_search": "البحث المحفوظ",
     "saved_search_counter": {
-      "one": "بحث محفوظ واحد",
-      "other": "عمليات بحث محفوظة"
+      "one": "$n بحث محفوظ",
+      "other": "$n عمليات بحث محفوظة"
     },
     "add_saved_search": "إضافة بحث محفوظ",
     "saved_search_added": "تم حفظ عملية البحث",
@@ -761,17 +761,17 @@
     "detete_confirmation": "هل أنت متأكد من رغبتك في حذف هذه المجموعة؟",
     "drag_hint": "اسحب لإعادة ترتيب العناصر",
     "group_item_counter": {
-      "one": "عنصر واحد",
-      "other": "عناصر"
+      "one": "$n عنصر",
+      "other": "$n عناصر"
     },
     "confirm_edit_title": "تأكيد التعديلات",
     "confirm_edit_adding": {
-      "one": "سيتم إضافة عنصر واحد",
-      "other": "سيتم إضافة العناصر المحددة"
+      "one": "سيتم إضافة $n عنصر جديد",
+      "other": "سيتم إضافة $n عناصر جديدة"
     },
     "confirm_edit_removing": {
-      "one": "سيتم إزالة عنصر واحد",
-      "other": "سيتم إزالة العناصر المحددة"
+      "one": "سيتم إزالة $n عنصر",
+      "other": "سيتم إزالة $n عناصر"
     },
     "invalid_post_ids": "معرفات منشورات غير صالحة"
   },
@@ -779,7 +779,7 @@
     "favorites": "الوسوم المفضلة",
     "import_hint": "الصق وسومك هنا مفصولة بسطور جديدة أو بمسافات لاستيرادها دفعة واحدة.",
     "export_notification": "تم تصدير الوسوم المفضلة إلى الحافظة بنجاح",
-    "favorite_tags": "الوسوم المفضلة"
+    "title": "الوسوم المفضلة"
   },
   "rating": {
     "rate_request": "قيم التطبيق",
@@ -816,7 +816,7 @@
       }
     },
     "deletion": {
-      "title": "حذف ملف تهيئة البورو",
+      "title": "حذف «$profileName»",
       "confirmation": "هل أنت متأكد من رغبتك في حذف موقع البورو هذا؟ ستفقد جميع الإعدادات المحلية والمحفوظات الخاصة به."
     },
     "invalid_booru_warning": "تعذر التحقق من موقع البورو المدخل، يرجى التأكد من الرابط والمحاولة مجددًا.",
@@ -824,7 +824,7 @@
     "invalid_selected_profile_selection_request": "اختر ملفاً شخصياً من القائمة أدناه للمتابعة",
     "unknown_engine_selection_request": "اختر محرك البورو للمتابعة",
     "new_profile_leave_as_empty_tips": "تلميح: يمكنك ترك حقول اسم المستخدم وكلمة المرور فارغة لتصفح الموقع كمجهول (دون تسجيل).",
-    "using_status": "قيد الاستخدام حاليًا",
+    "using_status": "يستخدم ${booru}",
     "paste_from_clipboard": "لصق من الحافظة",
     "booru_engine_input_label": "محرك البورو (Booru Engine)",
     "config_name_label": "اسم التهيئة (اسم الموقع)",
@@ -983,8 +983,8 @@
         "rearrange_tip": "إعادة ترتيب العناصر أو إخفاء المحتوى",
         "preview": {
           "title": "وضع معاينة التخطيط",
-          "description": "يسمح لك بمعاينة وتجربة التخطيط الجديد مؤقتًا قبل تطبيقه وحفظه نهائيًا.",
-          "start_limited_preview": "بدء معاينة مؤقتة بالتخطيط الجديد",
+          "description": "عاين تخطيطك المخصص لمدة $previewMinutes دقيقة. بعد ذلك، يمكنك الترقية إلى $brand للاستمرار في استخدامه أو إعادة المحاولة بقدر ما تريد.",
+          "start_limited_preview": "بدء معاينة لمدة $previewMinutes دقيقة",
           "continue_preview_and_apply": "استمرار المعاينة وتطبيق هذا التخطيط نهائيًا",
           "currently_in_preview": "أنت الآن في وضع المعاينة المؤقتة للتخطيط الجديد.",
           "time_left": "الوقت المتبقي للمعاينة:",
@@ -1014,8 +1014,8 @@
     "failed_to_remove": "فشلت الإزالة من الإشارات المرجعية",
     "shuffle_tooltip": "تفعيل الخلط العشوائي للعناصر المحفوظة",
     "counter": {
-      "one": "إشارة مرجعية واحدة",
-      "other": "إشارات مرجعية"
+      "one": "$n إشارة مرجعية",
+      "other": "$n إشارات مرجعية"
     }
   },
   "app_update": {
@@ -1036,8 +1036,8 @@
   "time": {
     "counters": {
       "second": {
-        "one": "ثانية واحدة",
-        "other": "ثوانٍ"
+        "one": "$n ثانية",
+        "other": "$n ثوانٍ"
       }
     },
     "timeago": {
@@ -1078,14 +1078,14 @@
     "completed_with_no_new_files": "اكتملت العملية بدون العثور على ملفات جديدة",
     "scanning_page": {
       "preparing": "جاري تحضير قائمة التنزيل وفحص الملفات...",
-      "preparing_with_page": "جاري تحضير وتجهيز الصفحة %s...",
-      "with_page": "جاري مسح وقراءة الصفحة %s...",
+      "preparing_with_page": "جاري التحضير، الصفحة $page...",
+      "with_page": "جاري فحص الصفحة $page...",
       "null_page": "جاري جلب الصفحة واستخراج العناصر...",
-      "with_page_and_index": "جاري فحص الصفحة %1$s (العنصر %2$s)..."
+      "with_page_and_index": "جاري فحص الصفحة $page، العنصر $index..."
     },
     "file_counter": {
-      "one": "ملف واحد",
-      "other": "%d ملفات"
+      "one": "$n ملف",
+      "other": "$n ملفات"
     },
     "status": {
       "suspended": "موقوف"
@@ -1126,8 +1126,8 @@
       "excluded_tags_description": "الوسوم التي سيتم استبعادها من التحميل",
       "default_excluded_tags_from_source_list": "وسوم القائمة السوداء الافتراضية من المصادر التالية:",
       "source_list": {
-        "one": "مصدر واحد",
-        "other": "%d مصادر"
+        "one": "• $count وسم من $source",
+        "other": "• $count وسوم من $source"
       }
     },
     "errors": {
@@ -1154,8 +1154,8 @@
   "select": {
     "selected_items": "العناصر المحددة",
     "items_selected": {
-      "one": "تم اختيار عنصر واحد",
-      "other": "تم اختيار %d عناصر"
+      "one": "تم اختيار $n عنصر",
+      "other": "تم اختيار $n عناصر"
     },
     "select_all": "تحديد الكل",
     "deselect_all": "إلغاء تحديد الكل"
@@ -1163,7 +1163,7 @@
   "tags": {
     "title": "الوسوم",
     "filter_hint": "تصفية...",
-    "loading_tags_error": "خطأ في تحميل الوسوم",
+    "loading_tags_error": "خطأ في تحميل الوسوم: $error",
     "added": "تم إضافة الوسم",
     "actions": {
       "search": "البحث عن وسم",
@@ -1176,12 +1176,12 @@
       "add_to_blacklist_global": "إضافة للقائمة السوداء العامة"
     },
     "counter": {
-      "one": "وسم واحد",
-      "other": "%d وسوم"
+      "one": "$n وسم",
+      "other": "$n وسوم"
     },
     "other_counter": {
-      "one": "وسم إضافي واحد",
-      "other": "%d وسوم إضافية"
+      "one": "$n وسم إضافي",
+      "other": "$n وسوم إضافية"
     }
   },
   "posts": {
@@ -1193,17 +1193,17 @@
       "edit_profile_blacklist": "تعديل قائمة الملف الشخصي السوداء",
       "stats": "الإحصائيات"
     },
-    "hidden_count": "%d عنصر مخفي",
+    "hidden_count": "$hidden من $total",
     "counter": {
-      "one": "صورة واحدة",
-      "other": "%d صور"
+      "one": "$n صورة",
+      "other": "$n صور"
     }
   },
   "premium": {
-    "get_premium": "احصل على النسخة المميزة",
+    "get_premium": "احصل على $brand",
     "upgrade": "ترقية",
     "subscribe": "الاشتراك",
-    "unlock_more_theme_with_premium": "افتح المزيد من المواضيع بالاشتراك المميز",
+    "unlock_more_theme_with_premium": "افتح المزيد من السمات باستخدام $brand",
     "restore_subscription": "استعادة الاشتراك",
     "subscription_restored": "تم استعادة الاشتراك!",
     "restore_failed": "فشل استعادة الاشتراك، حاول مره أخرى لاحقاً.",
@@ -1252,8 +1252,8 @@
   },
   "uploads": {
     "counter": {
-      "one": "تحميل واحد",
-      "other": "%d تحميلات"
+      "one": "$n تحميل",
+      "other": "$n تحميلات"
     }
   },
   "infinite_scroll": {
@@ -1262,7 +1262,7 @@
     },
     "load_more": "تحميل المزيد",
     "nore_more_data": "لا توجد بيانات إضافية",
-    "page_label": "الصفحة",
+    "page_label": "الصفحة $page",
     "next_page": "الصفحة التالية",
     "previous_page": "الصفحة السابقة"
   },

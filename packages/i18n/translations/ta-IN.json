@@ -33,7 +33,7 @@
     "warning": "எச்சரிக்கை",
     "default": "இயல்புநிலை",
     "no_content": "உள்ளடக்கம் இல்லை",
-    "version": "பதிப்பு $பதிப்பு"
+    "version": "பதிப்பு $version"
   },
   "profile": {
     "favorites": "பிடித்தவை",
@@ -745,7 +745,7 @@
     "duplicate_items_warning_notification": "நுழைந்த இடுகைகள் ஏற்கனவே குழுவில் உள்ளன",
     "detete_confirmation": "இந்தப் பிடித்த குழுவை நீக்க விரும்புகிறீர்களா",
     "group_item_counter": {
-      "one": "}} இடுகை",
+      "one": "$n இடுகை",
       "other": "$n இடுகைகள்"
     },
     "drag_hint": "மறுவரிசைப்படுத்த நீண்ட நேரம் அழுத்தி இழுக்கவும்",
@@ -1097,10 +1097,10 @@
     "completed_with_no_new_files": "புதிய கோப்புகள் இல்லாமல் முடிக்கப்பட்டது",
     "scanning_page": {
       "preparing": "தயாராகிறது...",
-      "preparing_with_page": "தயாராகிறது, பக்கம் $பக்கம்...",
-      "with_page": "$பக்கம் பக்கத்தை வருடு செய்கிறது...",
+      "preparing_with_page": "தயாராகிறது, பக்கம் $page...",
+      "with_page": "பக்கம் $page ஐ வருடுகிறது...",
       "null_page": "துவக்குகிறது...",
-      "with_page_and_index": "$பக்கம், $index உருப்படியை வருடு செய்கிறது..."
+      "with_page_and_index": "பக்கம் $page, உருப்படி $index ஐ வருடுகிறது..."
     },
     "file_counter": {
       "one": "$n கோப்பு",
@@ -1192,14 +1192,14 @@
       "edit_profile_blacklist": "சுயவிவர தடுப்புப்பட்டியலைத் திருத்து",
       "stats": "புள்ளிவிவரங்கள்"
     },
-    "hidden_count": "$மொத்தத்தில் $மறைக்கப்பட்டது",
+    "hidden_count": "$total இல் $hidden",
     "counter": {
       "one": "$n இடுகை",
       "other": "$n இடுகைகள்"
     }
   },
   "premium": {
-    "get_premium": "$பிராண்டைப் பெறுங்கள்",
+    "get_premium": "$brand ஐப் பெறுங்கள்",
     "upgrade": "மேம்படுத்தல்",
     "subscribe": "குழுசேர்",
     "unlock_more_theme_with_premium": "$brand மூலம் மேலும் தீம்களைத் திறக்கவும்",
@@ -1261,7 +1261,7 @@
     },
     "load_more": "மேலும் ஏற்றவும்",
     "nore_more_data": "இப்போதைக்கு அவ்வளவுதான்",
-    "page_label": "பக்கம் $பக்கம்",
+    "page_label": "பக்கம் $page",
     "next_page": "அடுத்த பக்கம்",
     "previous_page": "முந்தைய பக்கம்"
   },
