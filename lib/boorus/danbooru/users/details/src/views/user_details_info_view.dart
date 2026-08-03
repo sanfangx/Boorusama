@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../feedbacks/routes.dart';
 import '../../../user/types.dart';
 import '../widgets/user_details_section_card.dart';
@@ -99,7 +99,8 @@ class UserDetailsInfoView extends ConsumerWidget {
             child: Wrap(
               children: previousNames
                   .map(
-                    (e) => Chip(
+                    (e) => KurumiSelectableChip(
+                      tapEnabled: false,
                       label: Text(e.replaceAll('_', ' ')),
                       visualDensity: VisualDensity.compact,
                     ),

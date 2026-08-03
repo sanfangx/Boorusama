@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../posts/details/types.dart';
@@ -14,9 +15,6 @@ import '../../../../videos/player/types.dart';
 import '../../../../widgets/widgets.dart';
 import '../../../routes.dart';
 import '../../types/settings.dart';
-import '../../widgets/settings_header.dart';
-import '../../widgets/settings_radio_card.dart';
-import '../../widgets/settings_tile.dart';
 
 class ImageViewerSettingsSection extends ConsumerWidget {
   const ImageViewerSettingsSection({
@@ -33,8 +31,8 @@ class ImageViewerSettingsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SettingsHeader(label: context.t.settings.general),
-        SettingsTile(
+        KurumiSettingsHeader(label: context.t.settings.general),
+        KurumiSettingsTile(
           title: Text(
             context.t.settings.image_details.ui_overlay.ui_overlay,
           ),
@@ -45,11 +43,11 @@ class ImageViewerSettingsSection extends ConsumerWidget {
           ),
           optionBuilder: (value) => Text(value.localize(context)),
         ),
-        SettingsRadioCard(
+        KurumiSettingsRadioCard(
           title: context.t.settings.image_viewer.swipe_mode,
           subtitle: context.t.settings.image_viewer.swipe_mode_disclaimer,
           entries: [
-            SettingsRadioCardEntry(
+            KurumiSettingsRadioCardEntry(
               title: context.t.settings.image_viewer.swipe_modes.horizontal,
               value: PostDetailsSwipeMode.horizontal.name,
               groupValue: viewer.swipeMode.name,
@@ -65,7 +63,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
                 );
               },
             ),
-            SettingsRadioCardEntry(
+            KurumiSettingsRadioCardEntry(
               title: context.t.settings.image_viewer.swipe_modes.vertical,
               value: PostDetailsSwipeMode.vertical.name,
               groupValue: viewer.swipeMode.name,
@@ -84,8 +82,8 @@ class ImageViewerSettingsSection extends ConsumerWidget {
           ],
         ),
         const Divider(thickness: 1),
-        SettingsHeader(label: context.t.settings.image_viewer.slideshow),
-        SettingsTile(
+        KurumiSettingsHeader(label: context.t.settings.image_viewer.slideshow),
+        KurumiSettingsTile(
           title: Text(context.t.settings.image_viewer.slideshow_mode),
           selectedOption: viewer.slideshowDirection,
           items: SlideshowDirection.values,
@@ -94,7 +92,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
           ),
           optionBuilder: (value) => Text(value.localize(context)),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.image_viewer.slideshow_interval),
           subtitle: Text(
             context.t.settings.image_viewer.slideshow_interval_explanation,
@@ -110,7 +108,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
             ),
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.image_viewer.slideshow_skip),
           value: viewer.slideshowTransitionType.isSkip,
           onChanged: (value) => onUpdate(
@@ -121,7 +119,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
             ),
           ),
         ),
-        SettingsRadioCard(
+        KurumiSettingsRadioCard(
           title: context.t.settings.image_viewer.slideshow_video_behavior,
           subtitle: context
               .t
@@ -129,7 +127,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
               .image_viewer
               .slideshow_video_behavior_explanation,
           entries: [
-            SettingsRadioCardEntry(
+            KurumiSettingsRadioCardEntry(
               title: context
                   .t
                   .settings
@@ -153,7 +151,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
                 );
               },
             ),
-            SettingsRadioCardEntry(
+            KurumiSettingsRadioCardEntry(
               title: context
                   .t
                   .settings
@@ -180,7 +178,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
           ],
         ),
         const Divider(thickness: 1),
-        SettingsHeader(
+        KurumiSettingsHeader(
           label: context.t.settings.image_viewer.video_section_title,
         ),
         SettingsNavigationTile(
@@ -192,7 +190,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
             context: context,
           ),
           onTap: () {
-            showBooruModalBottomSheet(
+            Kurumi.showModalBottomSheet(
               context: context,
               builder: (context) => _VideoEngineSelectorSheet(
                 currentEngine: viewer.videoPlayerEngine,
@@ -203,7 +201,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
             );
           },
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.image_viewer.mute_video),
           value: viewer.videoAudioDefaultState.muteByDefault,
           onChanged: (value) => onUpdate(
@@ -214,7 +212,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
             ),
           ),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.image_viewer.double_tap_seek),
           selectedOption: viewer.doubleTapSeekDuration,
           items: getDoubleTapSeekDurationPossibleValues(),
@@ -225,7 +223,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
             context.t.time.counters.second(n: value),
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.image_viewer.enable_video_cache),
           subtitle: Text(
             context.t.settings.image_viewer.enable_video_cache_description,
@@ -264,7 +262,7 @@ class _VideoEngineSelectorSheet extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final platform = Theme.of(context).platform;
 
-    return SettingsSelectionSheet(
+    return SettingsSheet(
       title: context.t.settings.image_viewer.video.video_player_engine,
       value: currentEngine,
       items: VideoPlayerEngine.getSupportedEnginesForPlatform(platform),

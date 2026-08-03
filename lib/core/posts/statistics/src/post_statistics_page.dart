@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:collection/collection.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../foundation/display.dart';
 import '../../../../foundation/utils/statistics.dart';
 import 'post_stats.dart';
 import 'post_stats_display.dart';
@@ -53,7 +53,7 @@ class PostStatisticsPage extends StatelessWidget {
               PostStatsSectionTitle(
                 title: 'Score'.hc,
                 onMore: () {
-                  showAppModalBarBottomSheet(
+                  Kurumi.showAppModalBarBottomSheet(
                     context: context,
                     settings: const RouteSettings(name: 'posts_score_stats'),
                     builder: (context) => StatisticalSummaryDetailsPage(
@@ -100,7 +100,7 @@ class PostStatisticsPage extends StatelessWidget {
               PostStatsSectionTitle(
                 title: context.t.post.detail.source_label,
                 onMore: () {
-                  showAppModalBarBottomSheet(
+                  Kurumi.showAppModalBarBottomSheet(
                     context: context,
                     settings: const RouteSettings(name: 'posts_source_stats'),
                     builder: (context) => StatisticsFromMapPage(
@@ -140,7 +140,7 @@ class PostStatisticsPage extends StatelessWidget {
               PostStatsSectionTitle(
                 title: 'Tags'.hc,
                 onMore: () {
-                  showAppModalBarBottomSheet(
+                  Kurumi.showAppModalBarBottomSheet(
                     context: context,
                     settings: const RouteSettings(name: 'posts_tags_stats'),
                     builder: (context) => StatisticalSummaryDetailsPage(

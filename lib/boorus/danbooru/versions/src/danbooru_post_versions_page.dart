@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 
@@ -91,7 +92,7 @@ class _DanbooruPostVersionsPageState
       appBar: AppBar(
         leading: Container(
           margin: const EdgeInsets.all(8),
-          child: CircularIconButton(
+          child: KurumiCircularIconButton(
             icon: const Padding(
               padding: EdgeInsets.only(left: 4),
               child: Icon(Symbols.arrow_back_ios),

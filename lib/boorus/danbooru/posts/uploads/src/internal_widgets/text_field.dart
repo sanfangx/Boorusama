@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:anchor_ui/anchor_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/search/suggestions/providers.dart';
 import '../../../../../../core/search/suggestions/widgets.dart';
 import '../../../../../../core/tags/autocompletes/types.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../pages/tag_edit_upload_text_controller.dart';
 
 class TagEditUploadTextField extends ConsumerStatefulWidget {
@@ -82,7 +82,7 @@ class _TagEditUploadTextFieldState
           },
         ),
       ),
-      child: BooruTextFormField(
+      child: KurumiTextFormField(
         focusNode: _focusNode,
         controller: widget.textEditingController,
         autocorrect: false,

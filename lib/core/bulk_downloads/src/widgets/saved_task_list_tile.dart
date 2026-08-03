@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
 import '../../../premiums/routes.dart';
-import '../../../widgets/widgets.dart';
 import '../pages/bulk_download_edit_saved_task_page.dart';
 import '../providers/saved_download_task_provider.dart';
 import '../providers/saved_task_lock_notifier.dart';
@@ -37,7 +36,7 @@ class SavedTaskListTile extends ConsumerWidget {
     final downloadConfigs = currentRouteName != kBulkdownload
         ? DownloadConfigs(
             onDownloadStart: () {
-              showSimpleSnackBar(
+              Kurumi.showSimpleSnackBar(
                 context: context,
                 content: Text(
                   'Downloading ${savedTask.name}...',
@@ -47,7 +46,7 @@ class SavedTaskListTile extends ConsumerWidget {
           )
         : null;
 
-    return GrayedOut(
+    return KurumiGrayedOut(
       opacity: 0.2,
       grayedOut: isLocked,
       onTap: () {
@@ -80,7 +79,7 @@ class SavedTaskListTile extends ConsumerWidget {
             borderRadius: BorderRadius.circular(8),
             onTap: enableTap
                 ? () async {
-                    await showBooruModalBottomSheet(
+                    await Kurumi.showModalBottomSheet(
                       context: context,
                       routeSettings: const RouteSettings(
                         name: 'bulk_download_create',
@@ -94,7 +93,7 @@ class SavedTaskListTile extends ConsumerWidget {
                 : null,
             onLongPress: enableTap
                 ? () {
-                    showModalBottomSheet(
+                    Kurumi.showModalBottomSheet(
                       context: context,
                       builder: (context) => _ModalOptions(
                         savedTask: savedTask,
@@ -176,7 +175,7 @@ class _ModalOptions extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 8),
-          const DragLine(),
+          const KurumiDragLine(),
           const SizedBox(height: 8),
           ListTile(
             title: Text(context.t.bulk_downloads.templates.run),
@@ -223,7 +222,7 @@ class _ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return CircularIconButton(
+    return KurumiCircularIconButton(
       padding: const EdgeInsets.all(8),
       backgroundColor: colorScheme.surfaceContainer,
       icon: Theme(

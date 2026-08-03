@@ -20,10 +20,16 @@ class DateTooltip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      waitDuration: const Duration(milliseconds: 500),
-      message: DateFormat(format ?? _kDefaultFormat).format(date),
-      child: child,
+    final message = DateFormat(format ?? _kDefaultFormat).format(date);
+
+    return Semantics(
+      label: message,
+      child: Tooltip(
+        waitDuration: const Duration(milliseconds: 500),
+        message: message,
+        excludeFromSemantics: true,
+        child: child,
+      ),
     );
   }
 }

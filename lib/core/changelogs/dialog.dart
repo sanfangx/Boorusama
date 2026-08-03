@@ -9,14 +9,13 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../core/widgets/widgets.dart';
 import '../premiums/providers.dart';
 import '../premiums/routes.dart';
 import '../premiums/types.dart';
-import '../themes/theme/types.dart';
 import 'providers.dart';
 import 'types.dart';
 
@@ -275,7 +274,7 @@ class _Header extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  CompactChip(
+                  KurumiCompactChip(
                     backgroundColor: colorScheme.primary,
                     textColor: colorScheme.onPrimary,
                     label: version.toString(),

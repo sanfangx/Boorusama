@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 // Project imports:
@@ -254,7 +255,7 @@ class _DesktopPlaybackSpeedSelector extends StatelessWidget {
   }
 }
 
-class DesktopVideoSelectionTile extends StatefulWidget {
+class DesktopVideoSelectionTile extends StatelessWidget {
   const DesktopVideoSelectionTile({
     required this.speed,
     required this.isSelected,
@@ -269,74 +270,12 @@ class DesktopVideoSelectionTile extends StatefulWidget {
   final String? subtitle;
 
   @override
-  State<DesktopVideoSelectionTile> createState() =>
-      _DesktopVideoSelectionTileState();
-}
-
-class _DesktopVideoSelectionTileState extends State<DesktopVideoSelectionTile> {
-  var _isHovered = false;
-
-  @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: Material(
-        color: _isHovered
-            ? colorScheme.onSurface.withValues(alpha: 0.08)
-            : Colors.transparent,
-        child: InkWell(
-          onTap: widget.onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                  child: widget.isSelected
-                      ? Icon(
-                          Symbols.check,
-                          size: 20,
-                          color: colorScheme.onSurface,
-                        )
-                      : null,
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        buildSpeedText(widget.speed, context),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      if (widget.subtitle != null) ...[
-                        const SizedBox(height: 2),
-                        Text(
-                          widget.subtitle!,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: colorScheme.onSurface.withValues(alpha: 0.6),
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    return KurumiDesktopSelectionTile(
+      title: buildSpeedText(speed, context),
+      subtitle: subtitle,
+      isSelected: isSelected,
+      onTap: onTap,
     );
   }
 }

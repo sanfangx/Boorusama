@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/booru_dialog.dart';
 
 class UnsavedAlertDialog extends StatelessWidget {
   const UnsavedAlertDialog({
@@ -22,7 +22,7 @@ class UnsavedAlertDialog extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
 
-    return BooruDialog(
+    return KurumiDialog(
       color: colorScheme.surfaceContainer,
       child: Padding(
         padding: const EdgeInsets.symmetric(

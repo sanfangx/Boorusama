@@ -6,6 +6,7 @@ import 'package:background_downloader/background_downloader.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:share_plus/share_plus.dart';
@@ -24,7 +25,6 @@ import '../../../downloads/filename/types.dart';
 import '../../../downloads/urls/providers.dart';
 import '../../../http/client/providers.dart';
 import '../../../settings/providers.dart';
-import '../../../widgets/booru_dialog.dart';
 import '../../post/types.dart';
 
 final _downloadTaskDetailsProvider = Provider.autoDispose
@@ -157,7 +157,7 @@ class DownloadAndShareDialogInternal extends ConsumerWidget {
       }
     });
 
-    return BooruDialog(
+    return KurumiDialog(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
         vertical: 4,
@@ -259,7 +259,7 @@ class _CancelDownloadConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BooruDialog(
+    return KurumiDialog(
       color: Theme.of(context).colorScheme.surfaceContainer,
       child: Padding(
         padding: const EdgeInsets.symmetric(

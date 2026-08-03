@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/tags/tag/types.dart';
-import '../../../../../../core/themes/colors/types.dart';
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../../../core/widgets/booru_chip.dart';
 import '../../../../../../foundation/platform.dart';
 import '../../../../tags/tag/widgets.dart';
@@ -68,7 +67,7 @@ class TrendingTagsPlaceholder extends StatelessWidget {
       runSpacing: isMobilePlatform() ? -2 : 8,
       children: tags.map((e) {
         return BooruChip(
-          chipColors: ChipColors(
+          chipColors: KurumiChipColors(
             backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
             borderColor: Colors.transparent,
             foregroundColor: Colors.transparent,

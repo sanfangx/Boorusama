@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/router.dart';
-import '../../../../../../foundation/animations/constants.dart';
-import '../../../../../../foundation/toast.dart';
 import '../providers/saved_searches_notifier.dart';
 import '../types/saved_search.dart';
 import 'saved_search_sheet.dart';
@@ -37,9 +36,9 @@ class CreateSavedSearchSheet extends ConsumerWidget {
         query: query,
         label: label,
         onCreated: navigatorContext != null
-            ? (data) => showSimpleSnackBar(
+            ? (data) => Kurumi.showSimpleSnackBar(
                 context: navigatorContext,
-                duration: AppDurations.shortToast,
+                duration: KurumiDurations.shortToast,
                 content: Text(context.t.saved_search.saved_search_added),
               )
             : null,
@@ -71,9 +70,9 @@ class EditSavedSearchSheet extends ConsumerWidget {
         label: label,
         query: query,
         onUpdated: navigatorContext != null
-            ? (data) => showSimpleSnackBar(
+            ? (data) => Kurumi.showSimpleSnackBar(
                 context: navigatorContext,
-                duration: AppDurations.shortToast,
+                duration: KurumiDurations.shortToast,
                 content: Text(
                   context.t.saved_search.saved_search_updated,
                 ),

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/toast.dart';
 import '../../../../proxy/types.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
@@ -43,7 +43,7 @@ class TestProxyButton extends ConsumerWidget {
                   );
 
                   if (context.mounted) {
-                    showSimpleSnackBar(
+                    Kurumi.showSimpleSnackBar(
                       context: context,
                       duration: const Duration(seconds: 3),
                       content: Text(

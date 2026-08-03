@@ -6,6 +6,7 @@ import 'package:booru_clients/danbooru.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -64,7 +65,7 @@ class _DanbooruDmailPageState extends ConsumerState<DanbooruDmailPage> {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-            child: OptionDropDownButton(
+            child: KurumiOptionDropDownButton(
               alignment: AlignmentDirectional.centerStart,
               value: selectedFolder,
               onChanged: (value) => ref
@@ -98,7 +99,7 @@ class _DanbooruDmailPageState extends ConsumerState<DanbooruDmailPage> {
                     ? Expanded(
                         child: _buildList(dmails, ref, config),
                       )
-                    : GenericNoDataBox(text: context.t.profile.messages.empty),
+                    : KurumiGenericNoDataBox(text: context.t.profile.messages.empty),
                 loading: () => const Center(child: CircularProgressIndicator()),
                 error: (error, stackTrace) => Center(
                   child: Text(error.toString()),

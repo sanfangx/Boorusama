@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/info/device_info.dart';
 import '../../../foundation/picker.dart';
-import '../../../foundation/toast.dart';
-import '../../themes/theme/types.dart';
-import '../../widgets/widgets.dart';
 import '../preparation/preparation_pipeline.dart';
 import '../types/backup_data_source.dart';
 import '../types/types.dart';
@@ -126,10 +124,10 @@ class DefaultBackupTile extends ConsumerWidget {
               ),
             ),
             if (!isSelectionMode)
-              BooruPopupMenuButton(
+              KurumiPopupMenuButton(
                 items: [
                   for (final action in actions.entries)
-                    BooruPopupMenuItem(
+                    KurumiPopupMenuItem(
                       title: action.value,
                       onTap: () => _handleAction(context, ref, action.key),
                     ),
@@ -166,7 +164,7 @@ class DefaultBackupTile extends ConsumerWidget {
         try {
           await fileCapability.export(path);
           if (context.mounted) {
-            showSuccessToast(
+            Kurumi.showSuccessToast(
               context,
               context.t.settings.backup_and_restore.export_success.replaceAll(
                 '{source}',
@@ -176,7 +174,7 @@ class DefaultBackupTile extends ConsumerWidget {
           }
         } catch (error) {
           if (context.mounted) {
-            showErrorToast(
+            Kurumi.showErrorToast(
               context,
               context.t.settings.backup_and_restore.export_failed
                   .replaceAll('{source}', source.displayName.toLowerCase())
@@ -202,7 +200,7 @@ class DefaultBackupTile extends ConsumerWidget {
           final preparation = await fileCapability.prepareImport(path, context);
           await preparation.executeImport();
           if (context.mounted) {
-            showSuccessToast(
+            Kurumi.showSuccessToast(
               context,
               context.t.settings.backup_and_restore.import_success.replaceAll(
                 '{source}',
@@ -214,7 +212,7 @@ class DefaultBackupTile extends ConsumerWidget {
           // User cancelled, no error message needed
         } catch (error) {
           if (context.mounted) {
-            showErrorToast(
+            Kurumi.showErrorToast(
               context,
               context.t.settings.backup_and_restore.import_failed
                   .replaceAll('{source}', source.displayName.toLowerCase())
@@ -233,7 +231,7 @@ class DefaultBackupTile extends ConsumerWidget {
     try {
       await clipboardCapability.export();
       if (context.mounted) {
-        showSuccessToast(
+        Kurumi.showSuccessToast(
           context,
           context.t.settings.backup_and_restore.export_success.replaceAll(
             '{source}',
@@ -243,7 +241,7 @@ class DefaultBackupTile extends ConsumerWidget {
       }
     } catch (error) {
       if (context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           context.t.settings.backup_and_restore.export_failed
               .replaceAll('{source}', source.displayName.toLowerCase())
@@ -261,7 +259,7 @@ class DefaultBackupTile extends ConsumerWidget {
       final preparation = await clipboardCapability.prepareImport(context);
       await preparation.executeImport();
       if (context.mounted) {
-        showSuccessToast(
+        Kurumi.showSuccessToast(
           context,
           context.t.settings.backup_and_restore.import_success.replaceAll(
             '{source}',
@@ -273,7 +271,7 @@ class DefaultBackupTile extends ConsumerWidget {
       // User cancelled, no error message needed
     } catch (error) {
       if (context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           context.t.settings.backup_and_restore.import_failed
               .replaceAll('{source}', source.displayName.toLowerCase())

@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/caching/types.dart';
@@ -13,13 +15,10 @@ import '../../../cache/cache_notifier.dart';
 import '../../../cache/providers.dart';
 import '../../../videos/cache/types.dart';
 import '../../../videos/cache/widgets.dart';
-import '../../../widgets/settings_card.dart';
-import '../../../widgets/widgets.dart';
 import '../providers/settings_notifier.dart';
 import '../providers/settings_provider.dart';
 import '../types/settings.dart';
 import '../widgets/settings_page_scaffold.dart';
-import '../widgets/settings_tile.dart';
 import '../widgets/storage_segment_bar.dart';
 
 final diskSpaceProvider = Provider.autoDispose<(CacheSizeInfo, int)>((
@@ -83,7 +82,7 @@ class _DataAndStoragePageState extends ConsumerState<DataAndStoragePage> {
     final hasDiskData = diskInfo.totalSpace > 0;
 
     if (!hasDiskData) {
-      return SettingsCard(
+      return KurumiSettingsCard(
         title: context.t.settings.data_and_storage.storage,
         child: Padding(
           padding: const EdgeInsets.all(8),
@@ -109,7 +108,7 @@ class _DataAndStoragePageState extends ConsumerState<DataAndStoragePage> {
       colorScheme,
     );
 
-    return SettingsCard(
+    return KurumiSettingsCard(
       title: context.t.settings.data_and_storage.storage,
       child: Padding(
         padding: const EdgeInsets.all(8),
@@ -218,7 +217,7 @@ class _DataAndStoragePageState extends ConsumerState<DataAndStoragePage> {
     Settings settings,
     SettingsNotifier notifier,
   ) {
-    return SettingsCard(
+    return KurumiSettingsCard(
       title: context.t.settings.data_and_storage.cache,
       child: Column(
         children: [
@@ -230,7 +229,7 @@ class _DataAndStoragePageState extends ConsumerState<DataAndStoragePage> {
           const Divider(height: 1),
           _buildAllCacheItem(),
           const Divider(height: 1),
-          BooruSwitchListTile(
+          KurumiSwitchListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 4),
             value: settings.clearImageCacheOnStartup,
             title: Text(
@@ -248,7 +247,7 @@ class _DataAndStoragePageState extends ConsumerState<DataAndStoragePage> {
   }
 
   Widget _buildDataSection() {
-    return SettingsCard(
+    return KurumiSettingsCard(
       title: context.t.settings.data_and_storage.data,
       child: _buildBookmarkImageDataItem(),
     );
@@ -391,7 +390,7 @@ class _DataAndStoragePageState extends ConsumerState<DataAndStoragePage> {
     final optionItems = VideoCacheLimitOptions.dropdownOptions();
     final selectedOption = VideoCacheLimitOptions.selectedOption(currentValue);
 
-    return SettingsTile<VideoCacheLimitOption>(
+    return KurumiSettingsTile<VideoCacheLimitOption>(
       title: Text(context.t.settings.data_and_storage.video_cache_limit),
       subtitle: Text(
         context.t.settings.data_and_storage.video_cache_limit_description,

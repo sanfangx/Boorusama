@@ -29,66 +29,70 @@ class _DesktopVideoOptionTileState extends State<DesktopVideoOptionTile> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: Padding(
-          padding: _isHovered
-              ? const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 4,
-                )
-              : const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 12,
-                ),
-          child: Container(
+    return Semantics(
+      button: true,
+      onTap: widget.onTap,
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: Padding(
             padding: _isHovered
                 ? const EdgeInsets.symmetric(
-                    vertical: 8,
                     horizontal: 8,
+                    vertical: 4,
                   )
-                : null,
-            decoration: BoxDecoration(
-              color: _isHovered
-                  ? colorScheme.onSurface.withValues(alpha: 0.08)
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(6),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  widget.icon,
-                  size: 20,
-                  color: colorScheme.onSurface,
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Text(
-                    widget.title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w400,
+                : const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+            child: Container(
+              padding: _isHovered
+                  ? const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 8,
+                    )
+                  : null,
+              decoration: BoxDecoration(
+                color: _isHovered
+                    ? colorScheme.onSurface.withValues(alpha: 0.08)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    widget.icon,
+                    size: 20,
+                    color: colorScheme.onSurface,
+                  ),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Text(
+                      widget.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
-                ),
-                if (widget.value case final value?) ...[
-                  const SizedBox(width: 16),
-                  Text(
-                    value,
-                    style: TextStyle(
+                  if (widget.value case final value?) ...[
+                    const SizedBox(width: 16),
+                    Text(
+                      value,
+                      style: TextStyle(
+                        color: colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Icon(
+                      Symbols.chevron_right,
+                      size: 20,
                       color: colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
-                  ),
-                  const SizedBox(width: 4),
-                  Icon(
-                    Symbols.chevron_right,
-                    size: 20,
-                    color: colorScheme.onSurface.withValues(alpha: 0.6),
-                  ),
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),

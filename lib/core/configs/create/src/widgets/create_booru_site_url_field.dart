@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/booru_text_form_field.dart';
 
 class CreateBooruSiteUrlField extends StatefulWidget {
   const CreateBooruSiteUrlField({
@@ -34,7 +34,7 @@ class _CreateBooruSiteUrlFieldState extends State<CreateBooruSiteUrlField> {
   @override
   Widget build(BuildContext context) {
     return AutofillGroup(
-      child: BooruTextFormField(
+      child: KurumiTextFormField(
         readOnly: widget.onChanged == null,
         autocorrect: false,
         keyboardType: TextInputType.url,

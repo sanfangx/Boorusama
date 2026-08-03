@@ -1,11 +1,16 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../tags/tag/colors.dart';
 import '../../colors/types.dart';
 import '../../theme/types.dart';
 import 'color_settings.dart';
+
+// Package imports:
 
 final preDefinedColorSettings = [
   ColorSettings.fromPredefinedScheme(
@@ -196,8 +201,8 @@ const staticDanbooruDarkScheme = ColorScheme(
   onError: kOnErrorDarkColor,
   surface: Color(0xff1f1e2d),
   onSurface: Colors.white,
-  outline: GreyscaleShades.gray160,
-  outlineVariant: GreyscaleShades.gray60,
+  outline: KurumiGreyscaleShades.gray160,
+  outlineVariant: KurumiGreyscaleShades.gray60,
 );
 
 const staticDanbooruLightScheme = ColorScheme(
@@ -218,8 +223,8 @@ const staticDanbooruLightScheme = ColorScheme(
   onError: Colors.black,
   surface: Color(0xfffefeff),
   onSurface: Colors.black,
-  outline: GreyscaleShades.gray110,
-  outlineVariant: GreyscaleShades.gray60,
+  outline: KurumiGreyscaleShades.gray110,
+  outlineVariant: KurumiGreyscaleShades.gray60,
 );
 
 const staticGreenScheme = ColorScheme(
@@ -240,8 +245,8 @@ const staticGreenScheme = ColorScheme(
   onError: kOnErrorDarkColor,
   surface: Color(0xffa9e4a4),
   onSurface: Colors.black,
-  outline: GreyscaleShades.gray110,
-  outlineVariant: GreyscaleShades.gray60,
+  outline: KurumiGreyscaleShades.gray110,
+  outlineVariant: KurumiGreyscaleShades.gray60,
 );
 
 const staticDarkGreenScheme = ColorScheme(
@@ -274,18 +279,18 @@ const staticCoralPinkScheme = ColorScheme(
   onSecondary: Colors.white,
   secondaryContainer: Color(0xff2c1f1e),
   onSecondaryContainer: Colors.white,
-  surfaceContainerLowest: GreyscaleShades.gray12,
-  surfaceContainerLow: GreyscaleShades.gray32,
-  surfaceContainer: GreyscaleShades.gray46,
-  surfaceContainerHigh: GreyscaleShades.gray50,
-  surfaceContainerHighest: GreyscaleShades.gray54,
+  surfaceContainerLowest: KurumiGreyscaleShades.gray12,
+  surfaceContainerLow: KurumiGreyscaleShades.gray32,
+  surfaceContainer: KurumiGreyscaleShades.gray46,
+  surfaceContainerHigh: KurumiGreyscaleShades.gray50,
+  surfaceContainerHighest: KurumiGreyscaleShades.gray54,
   onTertiaryContainer: Colors.white,
   error: Color(0xffc10105),
   onError: kOnErrorDarkColor,
   surface: Color(0xff232322),
   onSurface: Colors.white,
-  outline: GreyscaleShades.gray160,
-  outlineVariant: GreyscaleShades.gray60,
+  outline: KurumiGreyscaleShades.gray160,
+  outlineVariant: KurumiGreyscaleShades.gray60,
 );
 
 const kHackerPrimaryColor = Color(0xff00ff00);
@@ -327,11 +332,11 @@ const staticCyberpunkScheme = ColorScheme(
   onSecondary: Colors.black,
   secondaryContainer: Color(0xff141824),
   onSecondaryContainer: kCyberpunkOnSurfaceColor,
-  surfaceContainerLowest: Color(0xff151a27), // Darkest
-  surfaceContainerLow: Color(0xff161b29), // Slightly darker
-  surfaceContainer: Color(0xff141824), // Middle
-  surfaceContainerHigh: Color(0xff121623), // Slightly lighter
-  surfaceContainerHighest: Color(0xff0f1320), // Lightest
+  surfaceContainerLowest: Color(0xff151a27),
+  surfaceContainerLow: Color(0xff161b29),
+  surfaceContainer: Color(0xff141824),
+  surfaceContainerHigh: Color(0xff121623),
+  surfaceContainerHighest: Color(0xff0f1320),
   outline: kCyberpunkOutlineColor,
   outlineVariant: kCyberpunkOutlineColor,
   error: kCyberpunkErrorColor,

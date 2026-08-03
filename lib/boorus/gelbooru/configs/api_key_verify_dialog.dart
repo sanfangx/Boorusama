@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/config/types.dart';
-import '../../../core/themes/theme/types.dart';
-import '../../../foundation/toast.dart';
 import '../../../foundation/url_launcher.dart';
 import '../client_provider.dart';
 
@@ -59,7 +58,7 @@ class ApiKeyVerifyDialog extends ConsumerWidget {
 
               Navigator.of(context).pop();
             } else {
-              showErrorToast(
+              Kurumi.showErrorToast(
                 context,
                 'Invalid URL: ${config.url}',
               );

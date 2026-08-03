@@ -1,0 +1,9 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  errors:
+    missing_return: error
+    parameter_assignments: error
+
+formatter:
+  trailing_commas: preserve

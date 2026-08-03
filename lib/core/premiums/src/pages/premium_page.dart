@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/iap/iap.dart';
-import '../../../../foundation/toast.dart';
 import '../../../router.dart';
-import '../../../widgets/widgets.dart';
 import '../internal_widgets/benefit_card.dart';
 import '../types/premium.dart';
 import '../types/strings.dart';
@@ -124,7 +123,7 @@ class PremiumPage extends ConsumerWidget {
   }
 
   void _showFailedPurchase(BuildContext context) {
-    return showSimpleSnackBar(
+    return Kurumi.showSimpleSnackBar(
       context: context,
       content: Text(
         'There was a problem purchasing your subscription. Please try again later.'
@@ -177,7 +176,7 @@ class _GetPremiumButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return PrimaryButton(
+    return KurumiButton(
       onPressed: ref
           .watch(packagePurchaseProvider)
           .when(
@@ -207,7 +206,7 @@ class _GetPremiumButton extends ConsumerWidget {
   }
 
   Future<dynamic> _showPlans(BuildContext context, WidgetRef ref) {
-    return showBooruModalBottomSheet(
+    return Kurumi.showModalBottomSheet(
       enableDrag: false,
       context: context,
       routeSettings: const RouteSettings(name: 'select_subscription_plan'),
@@ -257,7 +256,7 @@ class _RestorePremiumButton extends ConsumerWidget {
                 navigator.pop();
 
                 if (navigatorContext != null) {
-                  showSimpleSnackBar(
+                  Kurumi.showSimpleSnackBar(
                     context: navigatorContext,
                     content: Text(
                       context.t.premium.subscription_restored,
@@ -281,7 +280,7 @@ class _RestorePremiumButton extends ConsumerWidget {
   }
 
   void _showFailedRestore(BuildContext context) {
-    showSimpleSnackBar(
+    Kurumi.showSimpleSnackBar(
       context: context,
       content: Text(
         context.t.premium.restore_failed,

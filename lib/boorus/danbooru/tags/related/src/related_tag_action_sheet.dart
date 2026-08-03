@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../../core/configs/config/providers.dart';
 import '../../../../../core/tags/tag/providers.dart';
-import '../../../../../core/widgets/widgets.dart';
 import '../../../wikis/routes.dart';
 import 'danbooru_related_tag.dart';
 
@@ -63,23 +63,23 @@ class _RelatedTagActionSheetState extends ConsumerState<RelatedTagActionSheet> {
               ),
             ),
           ),
-          trailing: BooruPopupMenuButton(
+          trailing: KurumiPopupMenuButton(
             items: [
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(context.t.tag.related.add_to_current_search),
                 onTap: () {
                   Navigator.of(context).pop();
                   widget.onAdded(tags[index]);
                 },
               ),
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(context.t.tag.related.negate_from_current_search),
                 onTap: () {
                   Navigator.of(context).pop();
                   widget.onNegated(tags[index]);
                 },
               ),
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(context.t.tag.related.open_wiki),
                 onTap: () {
                   Navigator.of(context).pop();

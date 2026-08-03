@@ -1,9 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../../themes/theme/types.dart';
-import '../../../../widgets/compact_chip.dart';
 
 class RawTagChip extends StatelessWidget {
   const RawTagChip({
@@ -42,7 +43,7 @@ class RawTagChip extends StatelessWidget {
     );
     final labelFontSize = labelStyle.fontSize ?? 14;
 
-    return RawCompactChip(
+    return KurumiRawCompactChip(
       onTap: onTap,
       padding: padding,
       foregroundColor: foregroundColor,

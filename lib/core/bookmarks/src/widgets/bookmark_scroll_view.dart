@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:selection_mode/selection_mode.dart';
@@ -22,8 +23,6 @@ import '../../../configs/config/types.dart';
 import '../../../posts/listing/providers.dart';
 import '../../../posts/listing/widgets.dart';
 import '../../../posts/post/types.dart';
-import '../../../widgets/booru_context_menu.dart';
-import '../../../widgets/context_menu_tile.dart';
 import '../../../widgets/widgets.dart';
 import '../../types.dart';
 import '../data/bookmark_convert.dart';
@@ -303,7 +302,7 @@ class _BookmarkScrollViewState extends ConsumerState<BookmarkScrollView> {
               Positioned(
                 top: 5,
                 right: 5,
-                child: CircularIconButton(
+                child: KurumiCircularIconButton(
                   padding: const EdgeInsets.all(4),
                   icon: const Icon(Symbols.close),
                   onPressed: () => ref.bookmarks.removeBookmark(
@@ -342,9 +341,9 @@ class BookmarkContextMenu extends ConsumerWidget {
     final loginDetails = ref.watch(booruLoginDetailsProvider(auth));
     final download = ref.watchConfigDownload;
 
-    return BooruContextMenu(
+    return KurumiContextMenu(
       menuItemsBuilder: (context) => [
-        ContextMenuTile(
+        KurumiContextMenuTile(
           title: context.t.download.download,
           onTap: () => ref.bookmarks.downloadBookmarks(
             auth,
@@ -352,7 +351,7 @@ class BookmarkContextMenu extends ConsumerWidget {
             [post.bookmark],
           ),
         ),
-        ContextMenuTile(
+        KurumiContextMenuTile(
           title: context.t.post.detail.remove_from_bookmark,
           onTap: () => ref.bookmarks.removeBookmark(
             post.bookmark,
@@ -362,7 +361,7 @@ class BookmarkContextMenu extends ConsumerWidget {
           ),
         ),
         if (!loginDetails.hasStrictSFW)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: 'Open source in browser',
             onTap: () => launchExternalUrlString(post.bookmark.sourceUrl),
           ),
@@ -371,7 +370,7 @@ class BookmarkContextMenu extends ConsumerWidget {
             if (ref.watch(booruBuilderProvider(auth))?.sessionRestoreBuilder
                 case final builder?)
               if (post.toPaginationSnapshot() case final snapshot?)
-                ContextMenuTile(
+                KurumiContextMenuTile(
                   title: "Restore this bookmark's session",
                   onTap: () {
                     showDialog(

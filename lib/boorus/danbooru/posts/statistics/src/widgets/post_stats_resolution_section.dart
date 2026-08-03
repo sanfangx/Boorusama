@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/posts/statistics/widgets.dart';
-import '../../../../../../foundation/display.dart';
 import '../../../../../../foundation/utils/statistics.dart';
 import '../post_stats.dart';
 
@@ -29,7 +29,7 @@ class PostStatsResolutionSection extends ConsumerWidget {
         PostStatsSectionTitle(
           title: 'Resolution',
           onMore: () {
-            showAppModalBarBottomSheet(
+            Kurumi.showAppModalBarBottomSheet(
               context: context,
               settings: const RouteSettings(name: 'posts_resolution_stats'),
               builder: (context) => StatisticsFromMapPage(

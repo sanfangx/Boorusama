@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../core/configs/config/types.dart';
 import '../../../../core/configs/create/providers.dart';
 import '../../../../core/configs/search/widgets.dart';
 import '../../../../core/configs/viewer/widgets.dart';
-import '../../../../core/widgets/widgets.dart';
 import '../../posts/post/types.dart';
 
 class DanbooruHideDeletedSwitch extends ConsumerWidget {
@@ -54,7 +54,7 @@ class DanbooruHideBannedSwitch extends ConsumerWidget {
       ),
     );
 
-    return BooruSwitchListTile(
+    return KurumiSwitchListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(context.t.booru.hide_banned_label),
       value: bannedVis.isHidden,

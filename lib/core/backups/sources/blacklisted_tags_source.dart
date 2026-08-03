@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../foundation/clipboard.dart';
 import '../../../foundation/display.dart';
 import '../../../foundation/info/package_info.dart';
-import '../../../foundation/toast.dart';
 import '../../blacklists/providers.dart';
 import '../../blacklists/types.dart';
 import '../../widgets/widgets.dart';
@@ -73,14 +73,14 @@ class BlacklistedTagsBackupSource
 
       await AppClipboard.copy(tagString);
       if (context.mounted) {
-        showSuccessToast(
+        Kurumi.showSuccessToast(
           context,
           'Blacklisted tags copied to clipboard',
         );
       }
     } catch (e) {
       if (context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           'Failed to export blacklisted tags: $e',
         );

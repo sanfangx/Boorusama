@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../boorus/engine/providers.dart';
 import '../../../../home/types.dart';
 import '../../../../premiums/widgets.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 
@@ -37,7 +37,7 @@ class HomeScreenSection extends ConsumerWidget {
         subtitle: Text(
           context.t.booru.appearance.home_screen_description,
         ),
-        trailing: OptionDropDownButton(
+        trailing: KurumiOptionDropDownButton(
           alignment: AlignmentDirectional.centerStart,
           value: layout.home,
           onChanged: (value) => ref.editNotifier.updateLayout(

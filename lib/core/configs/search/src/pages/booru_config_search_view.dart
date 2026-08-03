@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -177,7 +178,8 @@ class BooruConfigSearchView extends ConsumerWidget {
       runSpacing: 5,
       children: [
         ...tags.map(
-          (e) => Chip(
+          (e) => KurumiSelectableChip(
+            tapEnabled: false,
             backgroundColor: colorScheme.secondaryContainer,
             label: Text(e.replaceAll('_', ' ')),
             deleteIcon: Icon(

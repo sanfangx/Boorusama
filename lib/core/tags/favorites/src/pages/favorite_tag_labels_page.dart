@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../../core/widgets/settings_card.dart';
-import '../../../../../core/widgets/widgets.dart';
 import '../../../../search/search/widgets.dart';
 import '../providers/favorite_tags_notifier.dart';
 
@@ -113,20 +112,20 @@ class _LabelTile extends ConsumerWidget {
       subtitle: Text(
         context.t.favorite_tags.labels.favorite_count(n: count),
       ),
-      trailing: BooruPopupMenuButton(
+      trailing: KurumiPopupMenuButton(
         items: [
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.favorite_tags.labels.rename),
             icon: const Icon(Symbols.edit),
             onTap: () => _rename(context, ref),
           ),
           if (allLabels.length > 1)
-            BooruPopupMenuItem(
+            KurumiPopupMenuItem(
               title: Text(context.t.favorite_tags.labels.merge_into),
               icon: const Icon(Symbols.merge),
               onTap: () => _merge(context, ref),
             ),
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.favorite_tags.labels.remove_from_all),
             icon: const Icon(Symbols.label_off),
             onTap: () => _remove(context, ref),
@@ -137,7 +136,7 @@ class _LabelTile extends ConsumerWidget {
   }
 
   Future<void> _rename(BuildContext context, WidgetRef ref) async {
-    final newLabel = await showBooruModalBottomSheet<String>(
+    final newLabel = await Kurumi.showModalBottomSheet<String>(
       context: context,
       routeSettings: const RouteSettings(name: 'rename_favorite_tag_label'),
       resizeToAvoidBottomInset: true,
@@ -152,7 +151,7 @@ class _LabelTile extends ConsumerWidget {
   }
 
   Future<void> _merge(BuildContext context, WidgetRef ref) async {
-    final target = await showBooruModalBottomSheet<String>(
+    final target = await Kurumi.showModalBottomSheet<String>(
       context: context,
       routeSettings: const RouteSettings(name: 'merge_favorite_tag_label'),
       showDragHandle: false,
@@ -194,7 +193,7 @@ class _RemoveLabelDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return BooruDialog(
+    return KurumiDialog(
       color: colorScheme.surfaceContainer,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -292,7 +291,7 @@ class _RenameLabelSheetState extends State<_RenameLabelSheet> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        BottomSheetHeader(
+        KurumiBottomSheetHeader(
           title: context.t.favorite_tags.labels.rename_title,
           closeTooltip: context.t.generic.action.cancel,
           confirmTooltip: context.t.favorite_tags.labels.rename,
@@ -301,7 +300,7 @@ class _RenameLabelSheetState extends State<_RenameLabelSheet> {
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-          child: BooruTextField(
+          child: KurumiTextField(
             controller: controller,
             autofocus: true,
             textInputAction: TextInputAction.done,
@@ -339,7 +338,7 @@ class _MergeLabelSheetState extends State<_MergeLabelSheet> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        BottomSheetHeader(
+        KurumiBottomSheetHeader(
           title: context.t.favorite_tags.labels.merge_title,
           closeTooltip: context.t.generic.action.cancel,
           confirmTooltip: context.t.favorite_tags.labels.merge,
@@ -359,10 +358,10 @@ class _MergeLabelSheetState extends State<_MergeLabelSheet> {
             ),
           ),
         ),
-        SettingsCard(
+        KurumiSettingsCard(
           margin: const EdgeInsets.fromLTRB(16, 12, 16, 16),
           padding: EdgeInsets.zero,
-          surface: SettingsCardSurface.high,
+          surface: KurumiSettingsCardSurface.high,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

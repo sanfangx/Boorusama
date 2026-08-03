@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/info/device_info.dart';
@@ -46,7 +47,7 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
           ),
         ),
         const SizedBox(height: 12),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.download.quality),
           selectedOption: settings.downloadQuality,
           items: DownloadQuality.values,
@@ -65,23 +66,21 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
           },
         ),
         const SizedBox(height: 4),
-        ListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.download.skip_existing_files),
           subtitle: Text(
             context.t.settings.download.skip_existing_files_explanation,
           ),
-          trailing: Switch(
-            value: settings.downloadFileExistedBehavior.skipDownloadIfExists,
-            onChanged: (value) async {
-              await notifer.updateSettings(
-                settings.copyWith(
-                  downloadFileExistedBehavior: value
-                      ? DownloadFileExistedBehavior.skip
-                      : DownloadFileExistedBehavior.appDecide,
-                ),
-              );
-            },
-          ),
+          value: settings.downloadFileExistedBehavior.skipDownloadIfExists,
+          onChanged: (value) async {
+            await notifer.updateSettings(
+              settings.copyWith(
+                downloadFileExistedBehavior: value
+                    ? DownloadFileExistedBehavior.skip
+                    : DownloadFileExistedBehavior.appDecide,
+              ),
+            );
+          },
         ),
         const BooruConfigMoreSettingsRedirectCard.download(),
       ],

@@ -4,8 +4,8 @@ import 'dart:math';
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
-import 'booru_image.dart';
+// Package imports:
+import 'package:kurumi/kurumi.dart';
 
 final _aspectRatio = [
   ...List<double>.generate(20, (_) => 0.71),
@@ -72,7 +72,7 @@ Widget createRandomPlaceholderContainer(
   return AspectRatio(
     aspectRatio:
         aspectRatio ?? _aspectRatio[Random().nextInt(_aspectRatio.length - 1)],
-    child: ImagePlaceHolder(
+    child: KurumiImagePlaceholder(
       borderRadius: borderRadius,
     ),
   );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../configs/config/types.dart';
@@ -49,7 +50,7 @@ final booruChipColorsProvider = Provider<BooruChipColors>(
 );
 
 final chipColorsFromTagStringProvider =
-    Provider.family<ChipColors?, (BooruConfigAuth, String?)>(
+    Provider.family<KurumiChipColors?, (BooruConfigAuth, String?)>(
       (ref, params) {
         final (config, tag) = params;
         final color = tag != null

@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/themes/colors/providers.dart';
-import '../../../../../../core/themes/theme/types.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../../foundation/platform.dart';
 import '../../../ai/providers.dart';
 
@@ -39,7 +38,7 @@ class _TagEditAITagViewState extends ConsumerState<TagEditAITagView> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          WarningContainer(
+          KurumiWarningContainer(
             title: 'Warning',
             contentBuilder: (context) {
               return Text(
@@ -68,7 +67,7 @@ class _TagEditAITagViewState extends ConsumerState<TagEditAITagView> {
                   );
                   final selected = widget.isSelected(tag.name);
 
-                  return RawChip(
+                  return KurumiSelectableChip(
                     selected: selected,
                     showCheckmark: false,
                     checkmarkColor: colors?.foregroundColor,

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/tags/tag/providers.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../../foundation/url_launcher.dart';
 import '../../../../artists/urls/widgets.dart';
 import '../../../../sources/providers.dart';
@@ -174,7 +174,7 @@ class TagEditUploadSource extends ConsumerWidget {
         const SliverSizedBox(height: 16),
         SliverToBoxAdapter(
           child: AutofillGroup(
-            child: BooruTextFormField(
+            child: KurumiTextFormField(
               initialValue: post.pageUrl,
               readOnly: true,
               autocorrect: false,
@@ -193,7 +193,7 @@ class TagEditUploadSource extends ConsumerWidget {
         switch (ref.watch(danbooruSourceProvider(post.pageUrl))) {
           AsyncData(:final value) => SliverToBoxAdapter(
             child: AutofillGroup(
-              child: BooruTextFormField(
+              child: KurumiTextFormField(
                 initialValue:
                     ref.watch(
                       danbooruUploadNotifierProvider(
@@ -217,7 +217,7 @@ class TagEditUploadSource extends ConsumerWidget {
         switch (ref.watch(danbooruSourceProvider(post.pageUrl))) {
           AsyncData(:final value) => SliverToBoxAdapter(
             child: AutofillGroup(
-              child: BooruTextFormField(
+              child: KurumiTextFormField(
                 initialValue:
                     ref.watch(
                       danbooruUploadNotifierProvider(
@@ -242,7 +242,7 @@ class TagEditUploadSource extends ConsumerWidget {
         const SliverSizedBox(height: 16),
         SliverToBoxAdapter(
           child: AutofillGroup(
-            child: BooruTextFormField(
+            child: KurumiTextFormField(
               initialValue: ref.watch(
                 danbooruUploadNotifierProvider(
                   config,
@@ -260,7 +260,7 @@ class TagEditUploadSource extends ConsumerWidget {
         const SliverSizedBox(height: 16),
         SliverToBoxAdapter(
           child: AutofillGroup(
-            child: BooruTextFormField(
+            child: KurumiTextFormField(
               initialValue: ref.watch(
                 danbooruUploadNotifierProvider(
                   config,

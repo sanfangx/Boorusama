@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/html.dart';
@@ -11,9 +12,6 @@ import '../../../foundation/info/device_info.dart';
 import '../../../foundation/picker.dart';
 import '../../downloads/path/types.dart';
 import '../../settings/providers.dart';
-import '../../settings/widgets.dart';
-import '../../themes/theme/types.dart';
-import '../../widgets/widgets.dart';
 import '../zip/providers.dart';
 import 'providers.dart';
 import 'types.dart';
@@ -49,7 +47,7 @@ class AutoBackupSection extends ConsumerWidget {
         ),
         child: Column(
           children: [
-            BooruSwitchListTile(
+            KurumiSwitchListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               title: Text(context.t.settings.auto_backup.enable_auto_backup),
               value: settings.enabled && hasValidPath,
@@ -112,7 +110,7 @@ class AutoBackupSection extends ConsumerWidget {
               storagePath: storagePath,
             ),
             if (settings.enabled && hasValidPath) ...[
-              SettingsTile(
+              KurumiSettingsTile(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 title: Text(context.t.settings.auto_backup.backup_frequency),
                 selectedOption: settings.frequency,
@@ -130,7 +128,7 @@ class AutoBackupSection extends ConsumerWidget {
                   },
                 ),
               ),
-              SettingsTile(
+              KurumiSettingsTile(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 title: Text(context.t.settings.auto_backup.maximum_backups),
                 selectedOption: settings.maxBackups,
@@ -324,7 +322,7 @@ class _DownloadPathWarning extends ConsumerWidget {
     final releaseName =
         deviceInfo.androidDeviceInfo?.version.release ?? 'Unknown';
 
-    return WarningContainer(
+    return KurumiWarningContainer(
       margin: padding,
       contentBuilder: (context) => AppHtml(
         data: context.t.download.folder_select_warning

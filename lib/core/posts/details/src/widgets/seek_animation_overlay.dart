@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -18,7 +19,7 @@ class SeekAnimationOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VideoActionAnimationOverlay(
+    return KurumiActionAnimationOverlay(
       duration: kSeekAnimationDuration,
       triggerNotifier: controller.seekDirection,
       iconBuilder: (direction, progress) {
@@ -64,41 +65,9 @@ class _PositionedSeekIcon extends StatelessWidget {
       top: 0,
       bottom: 0,
       child: Center(
-        child: _SeekIcon(
+        child: VideoActionIcon(
           icon: icon,
           progress: progress,
-        ),
-      ),
-    );
-  }
-}
-
-class _SeekIcon extends StatelessWidget {
-  const _SeekIcon({
-    required this.icon,
-    required this.progress,
-  });
-
-  final IconData icon;
-  final double progress;
-
-  @override
-  Widget build(BuildContext context) {
-    final scale = 0.8 + (progress * 0.4); // 0.8 to 1.2
-
-    return Transform.scale(
-      scale: scale,
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.6 * progress),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Icon(
-          icon,
-          color: Colors.white.withValues(alpha: progress),
-          size: 32,
-          fill: 1,
         ),
       ),
     );

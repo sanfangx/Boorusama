@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/config/types.dart';
@@ -12,7 +13,6 @@ import '../../../../images/booru_image.dart';
 import '../../../../notes/note/providers.dart';
 import '../../../../notes/note/types.dart';
 import '../../../../notes/note/widgets.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../listing/providers.dart';
 import '../../../listing/types.dart';
 import '../../../post/types.dart';
@@ -141,7 +141,7 @@ class RawPostDetailsImage<T extends Post> extends ConsumerWidget {
     if (imageUrl.isEmpty) {
       return NullableAspectRatio(
         aspectRatio: aspectRatio,
-        child: const ImagePlaceHolder(
+        child: const KurumiImagePlaceholder(
           borderRadius: BorderRadius.zero,
         ),
       );
@@ -185,7 +185,7 @@ class RawPostDetailsImage<T extends Post> extends ConsumerWidget {
       imageCacheManager: imageCacheManager,
     );
 
-    return BooruHero(
+    return KurumiHero(
       tag: heroTag,
       child: aspectRatio != null
           ? AspectRatio(

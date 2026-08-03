@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../widgets/widgets.dart';
 import 'post_details_page_view_controller.dart';
 import 'sheet_dragline.dart';
 
@@ -181,9 +181,9 @@ class _DragSheetState extends State<DragSheet> {
       valueListenable: widget.pageViewController.sheetState,
       builder: (_, state, _) {
         return state.isExpanded
-            ? ScrollToTop(
+            ? KurumiScrollToTop(
                 scrollController: _contentScrollController,
-                child: BooruScrollToTopButton(
+                child: KurumiScrollToTopButton(
                   onPressed: () async {
                     await widget.pageViewController.resetSheet();
 

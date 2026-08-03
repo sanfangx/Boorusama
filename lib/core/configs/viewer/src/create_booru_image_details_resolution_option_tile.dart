@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../posts/post/types.dart';
-import '../../../widgets/widgets.dart';
 
 class CreateBooruGeneralPostDetailsResolutionOptionTile
     extends StatelessWidget {
@@ -54,7 +54,7 @@ class CreateBooruImageDetailsResolutionOptionTile<T> extends StatelessWidget {
       subtitle: Text(
         context.t.settings.image_grid.image_quality.high_quality_notice,
       ),
-      trailing: OptionDropDownButton(
+      trailing: KurumiOptionDropDownButton(
         alignment: AlignmentDirectional.centerStart,
         value: item,
         onChanged: (value) => onChanged(value),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../settings/providers.dart';
@@ -61,7 +62,7 @@ class _ExplicitContentBlockOverlayState
                 valueListenable: _block,
                 builder: (_, block, _) => block
                     ? Positioned.fill(
-                        child: ActionChip(
+                        child: KurumiSelectableChip(
                           side: BorderSide(
                             color: Theme.of(
                               context,

@@ -1,7 +1,9 @@
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../foundation/display.dart';
 import '../../../router.dart';
-import '../../../widgets/widgets.dart';
 import '../pages/settings_page.dart';
 
 final settingsRoutes = GoRoute(
@@ -27,7 +29,7 @@ final settingsDesktopRoutes = GoRoute(
   pageBuilder: (context, state) => DialogPage(
     key: state.pageKey,
     name: state.name,
-    builder: (context) => BooruDialog(
+    builder: (context) => KurumiDialog(
       width: 800,
       height: 600,
       child: SettingsPage(

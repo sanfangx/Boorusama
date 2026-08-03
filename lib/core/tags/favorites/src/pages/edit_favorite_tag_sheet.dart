@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 
 // Project imports:
-import '../../../../../core/widgets/settings_card.dart';
-import '../../../../../core/widgets/widgets.dart';
 import '../../../../configs/config/providers.dart';
 import '../../../../search/search/widgets.dart';
 import '../../../../search/selected_tags/types.dart';
@@ -128,7 +127,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        BottomSheetHeader(
+        KurumiBottomSheetHeader(
           title: isEditing
               ? context.t.favorite_tags.editor.edit_title
               : context.t.favorite_tags.add_favorite,
@@ -152,7 +151,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
             quickSearchInsertMode: entryType == _FavoriteEntryType.tag
                 ? QuickSearchInsertMode.replace
                 : QuickSearchInsertMode.insertAtCursor,
-            composerTrailing: OptionDropDownButton<_FavoriteEntryType>(
+            composerTrailing: KurumiOptionDropDownButton<_FavoriteEntryType>(
               backgroundColor: Colors.transparent,
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
               value: entryType,
@@ -184,7 +183,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
             ),
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.favorite_tags.editor.advanced_options),
           value: showAdvancedOptions,
           onChanged: (value) => setState(() => showAdvancedOptions = value),
@@ -196,7 +195,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SettingsCardTitle(
+                KurumiSettingsCardTitle(
                   title: context.t.favorite_tags.labels.title,
                 ),
                 if (selectedLabels.isNotEmpty) ...[
@@ -205,7 +204,8 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
                     runSpacing: 5,
                     children: [
                       for (final label in selectedLabels)
-                        Chip(
+                        KurumiSelectableChip(
+                          tapEnabled: false,
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           label: Text(label),
                           deleteIcon: Icon(
@@ -221,7 +221,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
                   ),
                   const SizedBox(height: 8),
                 ],
-                BooruTextField(
+                KurumiTextField(
                   controller: labelController,
                   textInputAction: TextInputAction.done,
                   onSubmitted: _addLabel,
@@ -249,7 +249,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
                     runSpacing: 5,
                     children: [
                       for (final label in suggestions.take(6))
-                        ActionChip(
+                        KurumiSelectableChip(
                           label: Text(label),
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           onPressed: () => _addLabel(label),

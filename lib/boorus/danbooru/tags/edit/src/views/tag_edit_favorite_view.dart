@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/cache/providers.dart';
@@ -72,7 +73,7 @@ class _TagEditFavoriteViewState extends ConsumerState<TagEditFavoriteView> {
                       children: tags.map((tag) {
                         final selected = widget.isSelected(tag.name);
 
-                        return FilterChip(
+                        return KurumiSelectableChip(
                           selected: selected,
                           showCheckmark: false,
                           visualDensity: VisualDensity.compact,

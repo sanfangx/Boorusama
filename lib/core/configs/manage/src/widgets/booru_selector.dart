@@ -6,11 +6,11 @@ import 'package:context_menus/context_menus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:reorderables/reorderables.dart';
 
 // Project imports:
-import '../../../../../foundation/toast.dart';
 import '../../../../router.dart';
 import '../../../../settings/providers.dart';
 import '../../../config/providers.dart';
@@ -257,7 +257,7 @@ mixin BooruSelectorActionMixin<T extends ConsumerStatefulWidget>
                   description: context.t.booru.deletion.confirmation,
                   onConfirm: () => notifier.delete(
                     config,
-                    onFailure: (message) => showErrorToast(context, message),
+                    onFailure: (message) => Kurumi.showErrorToast(context, message),
                   ),
                 ),
               );

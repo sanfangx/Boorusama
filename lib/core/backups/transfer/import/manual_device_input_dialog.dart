@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
-import '../../../widgets/widgets.dart';
 
 class ManualDeviceInputDialog extends StatefulWidget {
   const ManualDeviceInputDialog({
@@ -29,13 +28,13 @@ class _ManualDeviceInputDialogState extends State<ManualDeviceInputDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return BooruDialog(
+    return KurumiDialog(
       color: Theme.of(context).colorScheme.surfaceContainerLow,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 12),
-          BooruTextField(
+          KurumiTextField(
             autofocus: true,
             keyboardType: TextInputType.url,
             controller: _ipController,
@@ -50,7 +49,7 @@ class _ManualDeviceInputDialogState extends State<ManualDeviceInputDialog> {
               final ip = _ipController.text;
 
               if (ip.isEmpty) {
-                showErrorToast(
+                Kurumi.showErrorToast(
                   context,
                   context
                       .t
@@ -65,7 +64,7 @@ class _ManualDeviceInputDialogState extends State<ManualDeviceInputDialog> {
 
               // check for port
               if (!ip.contains(RegExp(r':\d{1,5}'))) {
-                showErrorToast(
+                Kurumi.showErrorToast(
                   context,
                   context
                       .t
@@ -83,7 +82,7 @@ class _ManualDeviceInputDialogState extends State<ManualDeviceInputDialog> {
               final uri = Uri.tryParse(address);
 
               if (uri == null) {
-                showErrorToast(
+                Kurumi.showErrorToast(
                   context,
                   context
                       .t

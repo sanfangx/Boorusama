@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/posts/statistics/widgets.dart';
-import '../../../../../../foundation/display.dart';
 import '../../../../../../foundation/utils/statistics.dart';
 import '../../../../users/creator/providers.dart';
 import '../../../../users/user/providers.dart';
@@ -56,7 +56,7 @@ class PostStatsUploaderSection extends ConsumerWidget {
   }
 
   void _onMore(WidgetRef ref, BuildContext context) {
-    showAppModalBarBottomSheet(
+    Kurumi.showAppModalBarBottomSheet(
       context: context,
       settings: const RouteSettings(name: 'posts_uploader_stats'),
       builder: (context) => CreatorStatisticSheet(

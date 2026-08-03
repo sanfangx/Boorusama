@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -12,7 +13,6 @@ import '../../../configs/config/types.dart';
 import '../../../downloads/filename/providers.dart';
 import '../../../downloads/filename/types.dart';
 import '../../../images/providers.dart';
-import '../../../widgets/booru_tooltip.dart';
 import '../../post/types.dart';
 import 'providers.dart';
 
@@ -45,7 +45,7 @@ class SharePostButton extends ConsumerWidget {
           downloadFilenameBuilderProvider(auth),
         );
 
-    return BooruTooltip(
+    return KurumiTooltip(
       message: context.t.post.action.share,
       child: IconButton(
         splashRadius: 16,

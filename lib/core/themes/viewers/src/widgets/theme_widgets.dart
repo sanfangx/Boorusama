@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../widgets/widgets.dart';
@@ -100,7 +101,7 @@ class ThemeCategoryToggleSwitch extends ConsumerWidget {
     );
 
     return Center(
-      child: BooruSegmentedButton(
+      child: KurumiSegmentedButton(
         initialValue: initialCategory,
         segments: {
           ThemeCategory.basic: context.t.settings.theme.viewer.groups.basic,

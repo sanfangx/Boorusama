@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gal/gal.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/media_scanner.dart';
 import '../../../foundation/path.dart' as path;
 import '../../../foundation/platform.dart';
-import '../../../foundation/toast.dart';
 import '../../configs/config/providers.dart';
 import '../../ddos/handler/providers.dart';
 import '../../download_manager/providers.dart';
@@ -184,7 +184,7 @@ class _BackgroundDownloaderScopeState
   void _showDownloadFailedToast(TaskStatusUpdate update) {
     if (!mounted) return;
 
-    showErrorToast(
+    Kurumi.showErrorToast(
       context,
       'Download failed: ${update.task.filename}',
       duration: const Duration(seconds: 5),

@@ -7,9 +7,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
 import '../data/providers.dart';
 import '../types/blacklisted_tag.dart';
 import '../types/blacklisted_tag_repository.dart';
@@ -124,8 +124,8 @@ extension GlobalBlacklistedTagsNotifierX on GlobalBlacklistedTagsNotifier {
   Future<void> addTagWithToast(BuildContext context, String tag) async {
     await addTag(
       tag,
-      onSuccess: () => showSuccessToast(context, 'Tag added'),
-      onError: () => showErrorToast(context, 'Failed to add tag'),
+      onSuccess: () => Kurumi.showSuccessToast(context, 'Tag added'),
+      onError: () => Kurumi.showErrorToast(context, 'Failed to add tag'),
     );
   }
 
@@ -136,8 +136,8 @@ extension GlobalBlacklistedTagsNotifierX on GlobalBlacklistedTagsNotifier {
     await addTagString(
       tagString,
       onSuccess: (tags) =>
-          showSuccessToast(context, '${tags.length} tags added'),
-      onError: () => showErrorToast(context, 'Failed to add tags'),
+          Kurumi.showSuccessToast(context, '${tags.length} tags added'),
+      onError: () => Kurumi.showErrorToast(context, 'Failed to add tags'),
     );
   }
 
@@ -147,8 +147,8 @@ extension GlobalBlacklistedTagsNotifierX on GlobalBlacklistedTagsNotifier {
   ) async {
     await removeTag(
       tag,
-      onSuccess: () => showSuccessToast(context, 'Tag removed'),
-      onError: () => showErrorToast(context, 'Failed to remove tag'),
+      onSuccess: () => Kurumi.showSuccessToast(context, 'Tag removed'),
+      onError: () => Kurumi.showErrorToast(context, 'Failed to remove tag'),
     );
   }
 }

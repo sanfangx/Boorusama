@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:selection_mode/selection_mode.dart';
 
@@ -92,7 +93,7 @@ Future<bool?> goToMassEditRatingSheet(
   WidgetRef ref,
   List<DanbooruPost> posts,
 ) {
-  return showBooruModalBottomSheet<bool?>(
+  return Kurumi.showModalBottomSheet<bool?>(
     context: context,
     builder: (context) {
       return MassEditRatingSheet(

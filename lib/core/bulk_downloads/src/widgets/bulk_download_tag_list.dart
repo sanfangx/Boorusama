@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 // Project imports:
 import '../../../search/histories/providers.dart';
 import '../../../search/histories/types.dart';

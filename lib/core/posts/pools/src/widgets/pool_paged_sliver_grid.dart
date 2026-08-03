@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 // Project imports:
-import '../../../listing/types.dart';
 import '../../../../settings/providers.dart';
+import '../../../listing/types.dart';
 import '../../pool_grid_item.dart';
 
 class PoolPagedSliverGridView<T> extends ConsumerStatefulWidget {

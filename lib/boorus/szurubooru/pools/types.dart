@@ -1,7 +1,9 @@
+// Flutter imports:
+import 'package:flutter/widgets.dart';
+
 // Package imports:
 import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/widgets.dart';
 import 'package:i18n/i18n.dart';
 
 enum SzurubooruPoolOrder {

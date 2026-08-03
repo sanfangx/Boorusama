@@ -2,14 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:animated_list_plus/animated_list_plus.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // Project imports:
-import '../../foundation/display.dart';
-import '../../foundation/platform.dart';
 
 Future<T?> showOptionSearchableSheet<T extends Object>(
   BuildContext context, {
@@ -18,7 +15,7 @@ Future<T?> showOptionSearchableSheet<T extends Object>(
   String Function(T option)? optionSheetValueBuilder,
   String? title,
 }) {
-  return showAdaptiveBottomSheet<T>(
+  return Kurumi.showAdaptiveBottomSheet<T>(
     context,
     builder: (context) => OptionSearchableSheet<T>(
       title: title,
@@ -42,7 +39,7 @@ Future<T?> showOptionSearchableSheet<T extends Object>(
   );
 }
 
-class OptionSearchableSheet<T extends Object> extends StatefulWidget {
+class OptionSearchableSheet<T extends Object> extends StatelessWidget {
   const OptionSearchableSheet({
     required this.items,
     required this.onFilter,
@@ -61,74 +58,15 @@ class OptionSearchableSheet<T extends Object> extends StatefulWidget {
   final ScrollController? scrollController;
 
   @override
-  State<OptionSearchableSheet<T>> createState() =>
-      _OptionSearchableSheetState();
-}
-
-class _OptionSearchableSheetState<T extends Object>
-    extends State<OptionSearchableSheet<T>> {
-  late var items = widget.items;
-  late final scrollController = widget.scrollController ?? ScrollController();
-  @override
-  void dispose() {
-    super.dispose();
-    if (widget.scrollController == null) {
-      scrollController.dispose();
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (widget.title != null) ...[
-              const SizedBox(height: 24),
-              Text(
-                widget.title!,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-            const SizedBox(height: 12),
-            TextField(
-              onChanged: (value) => setState(() {
-                items = widget.onFilter(value);
-              }),
-              decoration: InputDecoration(
-                hintText: context.t.search.hint,
-                suffixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Expanded(
-                    child: ImplicitlyAnimatedList<T>(
-                      items: items,
-                      itemBuilder: (context, animation, item, i) =>
-                          widget.itemBuilder(context, item),
-                      areItemsTheSame:
-                          widget.areItemsTheSame ??
-                          (oldItem, newItem) => oldItem == newItem,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+    return KurumiOptionSearchableSheet<T>(
+      title: title,
+      searchHint: context.t.search.hint,
+      items: items,
+      onFilter: onFilter,
+      itemBuilder: itemBuilder,
+      areItemsTheSame: areItemsTheSame,
+      scrollController: scrollController,
     );
   }
 }
@@ -159,49 +97,22 @@ class OptionSingleSearchableField<T extends Object> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shadowColor: Colors.transparent,
-      color: Colors.transparent,
-      child: InkWell(
-        onTap:
-            onTap ??
-            () async {
-              final option = await showOptionSearchableSheet<T>(
-                context,
-                title: sheetTitle,
-                items: items,
-                optionValueBuilder: optionValueBuilder,
-                optionSheetValueBuilder: optionSheetValueBuilder,
-              );
-              if (option != null) onSelect(option);
-            },
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: 8,
-            vertical: isDesktopPlatform() ? 4 : 8,
-          ),
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                optionValueBuilder(value!),
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(width: 8),
-              const FaIcon(
-                FontAwesomeIcons.caretDown,
-                size: 18,
-              ),
-            ],
-          ),
-        ),
-      ),
+    return KurumiOptionSingleSearchableField<T>(
+      value: value!,
+      optionValueBuilder: optionValueBuilder,
+      backgroundColor: backgroundColor,
+      onTap:
+          onTap ??
+          () async {
+            final option = await showOptionSearchableSheet<T>(
+              context,
+              title: sheetTitle,
+              items: items,
+              optionValueBuilder: optionValueBuilder,
+              optionSheetValueBuilder: optionSheetValueBuilder,
+            );
+            if (option != null) onSelect(option);
+          },
     );
   }
 }

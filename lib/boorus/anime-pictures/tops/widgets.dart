@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/config/providers.dart';
 import '../../../core/posts/explores/widgets.dart';
 import '../../../core/posts/listing/widgets.dart';
 import '../../../core/posts/post/types.dart';
-import '../../../core/widgets/booru_segmented_button.dart';
 import 'providers.dart';
 
 class AnimePicturesTopPage extends ConsumerWidget {
@@ -109,7 +109,7 @@ class EroticsToggleSwitch extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Center(
-      child: BooruSegmentedButton(
+      child: KurumiSegmentedButton(
         initialValue: ref.watch(eroticOnProvider),
         fixedWidth: 120,
         segments: const {

@@ -1,8 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../core/widgets/settings_card.dart';
 import 'types.dart';
 
 class ExtensionCategorySection extends StatelessWidget {
@@ -19,7 +21,7 @@ class ExtensionCategorySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: SettingsCard(
+      child: KurumiSettingsCard(
         title: category,
         child: ListView.separated(
           shrinkWrap: true,

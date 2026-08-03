@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:coreutils/coreutils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/info/package_info.dart';
-import '../../../../foundation/toast.dart';
 import '../../../../foundation/version.dart';
-import '../../../themes/theme/types.dart';
 import '../../preparation/version_mismatch_alert_dialog.dart';
 import '../../servers/discovery_client.dart';
 import '../../types.dart';
@@ -31,7 +30,7 @@ class _ImportDataPageState extends ConsumerState<ImportDataPage> {
     onServiceLost: _handleServiceLost,
     onError: (message) {
       if (!mounted) return;
-      showErrorToast(context, message);
+      Kurumi.showErrorToast(context, message);
     },
   );
 
@@ -156,7 +155,7 @@ class _ImportDataPageState extends ConsumerState<ImportDataPage> {
                           final version = appVersion;
 
                           if (version == null) {
-                            showErrorToast(
+                            Kurumi.showErrorToast(
                               context,
                               "Couldn't determine this device's version, aborting."
                                   .hc,
@@ -165,7 +164,7 @@ class _ImportDataPageState extends ConsumerState<ImportDataPage> {
                           }
 
                           if (currentVersion == null) {
-                            showErrorToast(
+                            Kurumi.showErrorToast(
                               context,
                               "Couldn't determine the current version, aborting."
                                   .hc,

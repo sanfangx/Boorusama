@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../widgets/widgets.dart';
 import '../widgets/comment_composer.dart';
 
 enum CommentThreadScrollTarget {
@@ -199,7 +199,7 @@ class _CommentThreadPageScaffoldState<T>
       child: Column(
         children: [
           Expanded(
-            child: BooruRefreshIndicator(
+            child: KurumiRefreshIndicator(
               onRefresh: widget.onRefresh ?? () async {},
               child: widget.commentListBuilder(
                 context,

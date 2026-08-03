@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/circular_icon_button.dart';
 import '../../pages/auth_config_changed_dialog.dart';
 import '../../providers/bulk_download_notifier.dart';
 import '../../types/bulk_download_session.dart';
@@ -115,7 +115,7 @@ class _ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return CircularIconButton(
+    return KurumiCircularIconButton(
       padding: const EdgeInsets.all(8),
       constraints: const BoxConstraints(
         minWidth: 32,

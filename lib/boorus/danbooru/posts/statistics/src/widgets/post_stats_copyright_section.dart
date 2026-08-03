@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/posts/statistics/widgets.dart';
 import '../../../../../../core/tags/tag/providers.dart';
-import '../../../../../../foundation/display.dart';
 import '../../../../../../foundation/utils/statistics.dart';
 import '../post_stats.dart';
 
@@ -51,7 +51,7 @@ class PostStatsCopyrightSection extends ConsumerWidget {
   }
 
   void _onMore(WidgetRef ref, BuildContext context, Color? copyrightColor) {
-    showAppModalBarBottomSheet(
+    Kurumi.showAppModalBarBottomSheet(
       context: context,
       settings: const RouteSettings(name: 'posts_copyright_stats'),
       builder: (context) => StatisticsFromMapPage(

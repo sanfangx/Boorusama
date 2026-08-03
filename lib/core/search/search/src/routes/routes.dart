@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/platform.dart';
 import '../../../../home/types.dart';
 import '../../../../router.dart';
-import '../../../../widgets/widgets.dart';
 import '../pages/search_page.dart';
 import 'params.dart';
 
@@ -29,7 +29,7 @@ GoRoute searchRoutes(Ref ref) => GoRoute(
         key: state.pageKey,
         name: state.name,
         child: page,
-        transitionsBuilder: fadeTransitionBuilder(),
+        transitionsBuilder: Kurumi.fadeTransitionBuilder(),
       ),
       false => switch ((
         isAlt: customHomeViewKey?.isAlt ?? false,
@@ -49,7 +49,7 @@ GoRoute searchRoutes(Ref ref) => GoRoute(
           key: state.pageKey,
           name: state.name,
           child: page,
-          transitionsBuilder: fadeTransitionBuilder(),
+          transitionsBuilder: Kurumi.fadeTransitionBuilder(),
         ),
       },
     };

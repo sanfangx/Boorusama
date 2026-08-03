@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:selection_mode/selection_mode.dart';
 
@@ -18,7 +19,6 @@ import '../../../../../core/posts/listing/widgets.dart';
 import '../../../../../core/posts/post/widgets.dart';
 import '../../../../../core/posts/sources/types.dart';
 import '../../../../../core/settings/providers.dart';
-import '../../../../../core/widgets/widgets.dart';
 import '../../../../../foundation/clipboard.dart';
 import '../../../../../foundation/url_launcher.dart';
 import '../../post/types.dart';
@@ -62,7 +62,7 @@ class DefaultDanbooruImageGridItem extends StatelessWidget {
 
           return HeroMode(
             enabled: useHero,
-            child: BooruHero(
+            child: KurumiHero(
               tag: '${post.id}_hero',
               child: ExplicitContentBlockOverlay(
                 rating: post.rating,
@@ -204,7 +204,7 @@ class DefaultDanbooruImageGridItem extends StatelessWidget {
                   runSpacing: 4,
                   children: [
                     for (final tag in artistTags)
-                      RawCompactChip(
+                      KurumiRawCompactChip(
                         label: Text(
                           tag.replaceAll('_', ' '),
                           maxLines: 1,

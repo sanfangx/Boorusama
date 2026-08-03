@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -14,9 +15,6 @@ import '../../../../../../core/settings/providers.dart';
 import '../../../../../../core/tags/categories/providers.dart';
 import '../../../../../../core/tags/tag/providers.dart';
 import '../../../../../../core/themes/colors/providers.dart';
-import '../../../../../../core/themes/colors/types.dart';
-import '../../../../../../core/themes/theme/types.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../providers/tag_edit_notifier.dart';
 import 'tag_edit_tag_tile.dart';
 
@@ -30,9 +28,9 @@ final tagEditFilteredListProvider = Provider.autoDispose
     });
 
 class DanbooruTagEditColorNotifier
-    extends FamilyNotifier<Map<String, ChipColors?>, BooruConfigAuth> {
+    extends FamilyNotifier<Map<String, KurumiChipColors?>, BooruConfigAuth> {
   @override
-  Map<String, ChipColors> build(BooruConfigAuth arg) {
+  Map<String, KurumiChipColors> build(BooruConfigAuth arg) {
     return {};
   }
 
@@ -59,7 +57,7 @@ class DanbooruTagEditColorNotifier
   }
 
   Future<void> _load(List<String> tags) async {
-    final colors = <String, ChipColors?>{};
+    final colors = <String, KurumiChipColors?>{};
     final tagTypeStore = await ref.read(booruTagTypeStoreProvider.future);
     final booruChipColors = ref.read(booruChipColorsProvider);
 
@@ -92,7 +90,7 @@ class DanbooruTagEditColorNotifier
 final danbooruTagEditColorsProvider =
     NotifierProvider.family<
       DanbooruTagEditColorNotifier,
-      Map<String, ChipColors?>,
+      Map<String, KurumiChipColors?>,
       BooruConfigAuth
     >(
       DanbooruTagEditColorNotifier.new,
@@ -107,7 +105,7 @@ final danbooruTagEditColorsProvider =
       name: 'danbooruTagEditColorsProvider',
     );
 
-final _tagColorProvider = Provider.autoDispose.family<ChipColors?, String>(
+final _tagColorProvider = Provider.autoDispose.family<KurumiChipColors?, String>(
   (ref, tag) {
     final config = ref.watchConfigAuth;
     final colors = ref.watch(danbooruTagEditColorsProvider(config));
@@ -142,7 +140,7 @@ class SliverTagEditTagListSection extends ConsumerWidget {
       ],
       child: MultiSliver(
         children: const [
-          SliverDivider(
+          KurumiSliverDivider(
             thickness: 1,
           ),
           SliverToBoxAdapter(
@@ -304,9 +302,9 @@ class TagEditFilterHeader extends ConsumerWidget {
             ),
           if (!filterOn) const Spacer(),
           if (!filterOn)
-            BooruPopupMenuButton(
+            KurumiPopupMenuButton(
               items: [
-                BooruPopupMenuItem(
+                KurumiPopupMenuItem(
                   title: const Text('Fetch tag category'),
                   onTap: () => _fetch(ref),
                 ),

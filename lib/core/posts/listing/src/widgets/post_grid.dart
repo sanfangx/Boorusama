@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:selection_mode/selection_mode.dart';
 
@@ -19,7 +20,6 @@ import '../../../../configs/create/routes.dart';
 import '../../../../configs/search/types.dart';
 import '../../../../errors/providers.dart';
 import '../../../../settings/providers.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../post/types.dart';
 import '../../widgets.dart';
 import '../_internal/raw_post_grid.dart';
@@ -266,9 +266,9 @@ class PostGridScrollToTopButton extends StatelessWidget {
                   controller.fetchMore();
                 }
               },
-              child: ScrollToTop(
+              child: KurumiScrollToTop(
                 scrollController: autoScrollController,
-                child: BooruScrollToTopButton(
+                child: KurumiScrollToTopButton(
                   onPressed: () {
                     autoScrollController.jumpTo(0);
                   },
@@ -636,7 +636,7 @@ class _DisableGridItemHeroOnPop extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (!kEnableHeroTransition) {
+    if (!Kurumi.enableHeroTransition) {
       return const SliverSizedBox.shrink();
     }
 

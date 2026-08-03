@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/booru_text_form_field.dart';
 
 class CreateBooruApiKeyField extends StatefulWidget {
   const CreateBooruApiKeyField({
@@ -48,7 +48,7 @@ class _CreateBooruApiKeyFieldState extends State<CreateBooruApiKeyField> {
   @override
   Widget build(BuildContext context) {
     return AutofillGroup(
-      child: BooruTextFormField(
+      child: KurumiTextFormField(
         controller: controller,
         validator: widget.validator,
         autovalidateMode: widget.autovalidateMode,

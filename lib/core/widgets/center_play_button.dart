@@ -13,6 +13,7 @@ class CenterPlayButton extends StatelessWidget {
     super.key,
     this.iconColor,
     this.onPressed,
+    this.semanticLabel,
   });
 
   final Color backgroundColor;
@@ -21,33 +22,39 @@ class CenterPlayButton extends StatelessWidget {
   final bool isPlaying;
   final bool isFinished;
   final VoidCallback? onPressed;
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
-      color: Colors.transparent,
-      child: Center(
-        child: UnconstrainedBox(
-          child: AnimatedOpacity(
-            opacity: show ? 1.0 : 0.0,
-            duration: const Duration(milliseconds: 300),
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: backgroundColor,
-                shape: BoxShape.circle,
-              ),
-              // Always set the iconSize on the IconButton, not on the Icon itself:
-              // https://github.com/flutter/flutter/issues/52980
-              child: IconButton(
-                iconSize: 32,
-                padding: const EdgeInsets.all(12),
-                icon: isFinished
-                    ? Icon(Symbols.replay, color: iconColor)
-                    : AnimatedPlayPause(
-                        color: iconColor,
-                        playing: isPlaying,
-                      ),
-                onPressed: onPressed,
+    return Semantics(
+      button: true,
+      enabled: show && onPressed != null,
+      hidden: !show,
+      label: semanticLabel,
+      onTap: show ? onPressed : null,
+      child: ColoredBox(
+        color: Colors.transparent,
+        child: Center(
+          child: UnconstrainedBox(
+            child: AnimatedOpacity(
+              opacity: show ? 1.0 : 0.0,
+              duration: const Duration(milliseconds: 300),
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: backgroundColor,
+                  shape: BoxShape.circle,
+                ),
+                child: IconButton(
+                  iconSize: 32,
+                  padding: const EdgeInsets.all(12),
+                  icon: isFinished
+                      ? Icon(Symbols.replay, color: iconColor)
+                      : AnimatedPlayPause(
+                          color: iconColor,
+                          playing: isPlaying,
+                        ),
+                  onPressed: onPressed,
+                ),
               ),
             ),
           ),
@@ -57,7 +64,6 @@ class CenterPlayButton extends StatelessWidget {
   }
 }
 
-/// A widget that animates implicitly between a play and a pause icon.
 class AnimatedPlayPause extends StatefulWidget {
   const AnimatedPlayPause({
     required this.playing,

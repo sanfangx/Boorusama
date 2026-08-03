@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/config/providers.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../tags/categories/providers.dart';
 import '../../../../themes/colors/providers.dart';
-import '../../../../themes/colors/types.dart';
 import 'raw_tag_chip.dart';
 
 class TagChip extends ConsumerWidget {
@@ -60,7 +60,7 @@ class TagChip extends ConsumerWidget {
     );
   }
 
-  ChipColors? _resolveColors(WidgetRef ref) {
+  KurumiChipColors? _resolveColors(WidgetRef ref) {
     // Priority: colorOverride → category → fallbackColor
     if (colorOverride != null) {
       return ref.watch(booruChipColorsProvider).fromColor(colorOverride);

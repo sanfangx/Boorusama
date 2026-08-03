@@ -1,8 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../../../../core/widgets/widgets.dart';
 import '../../types.dart';
 
 class PeriodToggleSwitch extends StatelessWidget {
@@ -16,7 +18,7 @@ class PeriodToggleSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: BooruSegmentedButton(
+      child: KurumiSegmentedButton(
         segments: {
           for (final entry in MoebooruTimePeriod.values) entry: entry.name,
         },

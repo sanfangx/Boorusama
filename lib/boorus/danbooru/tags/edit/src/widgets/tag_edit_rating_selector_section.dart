@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/posts/rating/types.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../../../../configs/providers.dart';
 import 'tag_how_to_rate_button.dart';
 
@@ -44,7 +44,7 @@ class TagEditRatingSelectorSection extends ConsumerWidget {
             ),
           ),
           Center(
-            child: BooruSegmentedButton(
+            child: KurumiSegmentedButton(
               segments: {
                 for (final rating in Rating.values.where(
                   (e) => e != Rating.unknown,

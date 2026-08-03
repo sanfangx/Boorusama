@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/display.dart';
 import '../../../../../foundation/platform.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../../downloads/filename/types.dart';
 import 'token_option_help_modal.dart';
 
@@ -34,7 +33,7 @@ class AvailableTokens extends ConsumerWidget {
           context.t.booru.downloads.filename.available_tokens,
         ),
         for (final token in availableTokens)
-          RawChip(
+          KurumiSelectableChip(
             backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
             visualDensity: VisualDensity.compact,
             label: Text(token.name),
@@ -49,7 +48,7 @@ class AvailableTokens extends ConsumerWidget {
               );
 
               if (tokenOptions == null) {
-                showErrorToast(
+                Kurumi.showErrorToast(
                   context,
                   context.t.booru.downloads.filename.no_token_error(
                     token: token.name,
@@ -58,7 +57,7 @@ class AvailableTokens extends ConsumerWidget {
                 return;
               }
 
-              showAdaptiveBottomSheet(
+              Kurumi.showAdaptiveBottomSheet(
                 context,
                 settings: const RouteSettings(name: 'download_token_options'),
                 builder: (context) => TokenOptionHelpModal(

@@ -10,6 +10,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
@@ -20,7 +21,6 @@ import 'package:sliver_tools/sliver_tools.dart';
 import '../../../../../foundation/display.dart';
 import '../../../../../foundation/keyboard.dart';
 import '../../../../haptics/types.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../../widgets/animated_footer.dart';
 import '../../../../widgets/default_selection_bar.dart';
 import '../../../../widgets/widgets.dart';
@@ -211,7 +211,7 @@ class _RawPostGridState<T extends Post> extends State<RawPostGrid<T>>
           child: _Scaffold(
             body: ConditionalParentWidget(
               condition: kPreferredLayout.isMobile,
-              conditionalBuilder: (child) => BooruRefreshIndicator(
+              conditionalBuilder: (child) => KurumiRefreshIndicator(
                 edgeOffset: 60,
                 displacement: 50,
                 notificationPredicate: widget.enablePullToRefresh
@@ -444,7 +444,8 @@ class _SwipeTo extends StatelessWidget {
       swipeLeftEnabled: controller.hasNextPage(),
       hapticFeedbackEnabled:
           options.hapticFeedbackLevel?.isBalanceAndAbove ?? false,
-      rightSwipeWidget: Chip(
+      rightSwipeWidget: KurumiSelectableChip(
+        tapEnabled: false,
         visualDensity: VisualDensity.compact,
         side: BorderSide(
           color: colorScheme.hintColor,
@@ -467,7 +468,8 @@ class _SwipeTo extends StatelessWidget {
           ],
         ),
       ),
-      leftSwipeWidget: Chip(
+      leftSwipeWidget: KurumiSelectableChip(
+        tapEnabled: false,
         visualDensity: VisualDensity.compact,
         side: BorderSide(
           color: colorScheme.hintColor,

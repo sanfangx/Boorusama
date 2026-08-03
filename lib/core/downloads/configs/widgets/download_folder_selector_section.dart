@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../foundation/html.dart';
 import '../../../../foundation/info/device_info.dart';
 import '../../../../foundation/picker.dart';
-import '../../../themes/theme/types.dart';
-import '../../../widgets/widgets.dart';
 import '../../path/types.dart';
 
 class DownloadFolderSelectorSection extends StatefulWidget {
@@ -160,7 +159,7 @@ class DownloadPathWarning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WarningContainer(
+    return KurumiWarningContainer(
       margin: padding,
       contentBuilder: (context) => AppHtml(
         data: context.t.download.folder_select_warning

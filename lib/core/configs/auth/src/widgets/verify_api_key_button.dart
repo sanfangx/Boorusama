@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../widgets/widgets.dart';
@@ -29,24 +30,27 @@ class VerifyApiKeyButton extends StatelessWidget {
       builder: (context, login, apiKey) {
         final isEnabled = login.text.isNotEmpty && apiKey.text.isNotEmpty;
 
-        return GestureDetector(
-          onTap: isEnabled ? onVerify : null,
-          child: Container(
-            margin: const EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: 2,
-            ),
+        return Container(
+          margin: const EdgeInsets.symmetric(
+            horizontal: 8,
+            vertical: 2,
+          ),
+          child: KurumiRawCompactChip(
+            onTap: isEnabled ? onVerify : null,
             padding: const EdgeInsets.symmetric(
               horizontal: 6,
               vertical: 2,
             ),
-            decoration: BoxDecoration(
+            backgroundColor: isEnabled
+                ? colorScheme.primaryContainer
+                : colorScheme.surfaceContainerLow,
+            foregroundColor: isEnabled
+                ? colorScheme.onPrimaryContainer
+                : colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
+            shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
-              color: isEnabled
-                  ? colorScheme.primaryContainer
-                  : colorScheme.surfaceContainerLow,
             ),
-            child: Text(
+            label: Text(
               context.t.generic.action.verify,
               style: TextStyle(
                 fontWeight: isEnabled ? FontWeight.w600 : FontWeight.w500,

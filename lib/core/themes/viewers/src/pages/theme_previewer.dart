@@ -4,10 +4,10 @@ import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/appearance/types.dart';
-import '../../../colors/widgets.dart';
 import '../../../configs/types.dart';
 import '../../../theme/types.dart';
 import '../providers/theme_previewer_notifier.dart';
@@ -31,7 +31,7 @@ class ThemePreviewer extends ConsumerWidget {
     final systemDarkMode =
         MediaQuery.platformBrightnessOf(context) == Brightness.dark;
 
-    return AppDynamicColorBuilder(
+    return KurumiDynamicColorBuilder(
       builder: (light, dark) => ProviderScope(
         key: ValueKey((light, dark, systemDarkMode)),
         overrides: [

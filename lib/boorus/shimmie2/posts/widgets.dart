@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:selection_mode/selection_mode.dart';
 
 // Project imports:
@@ -17,7 +18,6 @@ import '../../../core/posts/listing/widgets.dart';
 import '../../../core/posts/post/types.dart';
 import '../../../core/search/search/routes.dart';
 import '../../../core/widgets/widgets.dart';
-import '../../../foundation/toast.dart';
 import '../extensions/providers.dart';
 import '../extensions/types.dart';
 import 'bulk_provider.dart';
@@ -161,12 +161,12 @@ class Shimmie2MultiSelectionActions extends ConsumerWidget {
 
   void _showToast(BuildContext context, bool success) {
     if (success) {
-      showSuccessToast(
+      Kurumi.showSuccessToast(
         context,
         context.t.favorites.update.success,
       );
     } else {
-      showErrorToast(
+      Kurumi.showErrorToast(
         context,
         context.t.favorites.update.failure,
       );

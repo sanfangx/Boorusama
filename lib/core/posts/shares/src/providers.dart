@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/display.dart';
@@ -40,7 +41,7 @@ class ShareService {
     const routeSettings = RouteSettings(name: 'post_share');
 
     Screen.of(context).size == ScreenSize.small
-        ? showModalBottomSheet(
+        ? Kurumi.showModalBottomSheet(
             context: context,
             routeSettings: routeSettings,
             builder: (context) => modal,

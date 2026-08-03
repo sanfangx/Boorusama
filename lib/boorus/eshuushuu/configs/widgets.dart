@@ -6,13 +6,12 @@ import 'package:booru_clients/eshuushuu.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/auth/widgets.dart';
 import '../../../core/configs/create/providers.dart';
 import '../../../core/configs/create/widgets.dart';
-import '../../../core/themes/theme/types.dart';
-import '../../../core/widgets/info_container.dart';
 import 'extra_data.dart';
 
 final _eshuushuuLoginClientProvider = Provider.autoDispose
@@ -56,7 +55,7 @@ class EshuushuuAuthView extends ConsumerWidget {
       children: [
         if (isLoggedIn && isExpired) ...[
           const SizedBox(height: 16),
-          WarningContainer(
+          KurumiWarningContainer(
             margin: const EdgeInsets.symmetric(horizontal: 12),
             title: context.t.generic.warning,
             contentBuilder: (context) => Text(context.t.auth.session_expired),
@@ -102,7 +101,7 @@ class EshuushuuAuthView extends ConsumerWidget {
               ),
               Row(
                 children: [
-                  RawChip(
+                  KurumiSelectableChip(
                     backgroundColor: Theme.of(
                       context,
                     ).colorScheme.secondaryContainer,
@@ -110,7 +109,7 @@ class EshuushuuAuthView extends ConsumerWidget {
                     label: Text(context.t.auth.relogin),
                   ),
                   const SizedBox(width: 8),
-                  RawChip(
+                  KurumiSelectableChip(
                     backgroundColor: Theme.of(
                       context,
                     ).colorScheme.secondaryContainer,
@@ -145,9 +144,8 @@ class EshuushuuAuthView extends ConsumerWidget {
     final configId = ref.read(editBooruConfigIdProvider);
     final configData = ref.read(editBooruConfigProvider(configId));
 
-    showModalBottomSheet(
+    Kurumi.showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
       builder: (sheetContext) => Padding(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(sheetContext).viewInsets.bottom,

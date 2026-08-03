@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../widgets/booru_tooltip.dart';
 
 class CommentPostButton extends StatelessWidget {
   const CommentPostButton({
@@ -18,7 +18,7 @@ class CommentPostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BooruTooltip(
+    return KurumiTooltip(
       message: context.t.comment.comments,
       child: IconButton(
         splashRadius: 16,

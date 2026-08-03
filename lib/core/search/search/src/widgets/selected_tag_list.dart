@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:context_menus/context_menus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../tags/favorites/providers.dart';
 import '../../../../tags/tag/widgets.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../selected_tags/tag_search_item.dart';
 import 'selected_tag_chip.dart';
 
@@ -44,18 +44,18 @@ class SelectedTagList extends StatelessWidget {
         ),
     ];
 
-    return BooruAnimatedCrossFade(
+    return KurumiAnimatedCrossFade(
       firstChild: Row(
         children: [
-          BooruPopupMenuButton(
+          KurumiPopupMenuButton(
             maxWidth: 250,
             items: [
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(context.t.search.remove_all_selected),
                 icon: const Icon(Symbols.clear_all),
                 onTap: onClear,
               ),
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(context.t.sideMenu.bulk_download),
                 icon: const Icon(Symbols.download),
                 onTap: () => onBulkDownload(tags),

@@ -6,6 +6,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -149,7 +150,7 @@ class _MobileE621VideoQualitySelector extends StatelessWidget {
       title: context.t.video_player.video_quality,
       onTap: () {
         Navigator.of(context).pop();
-        showModalBottomSheet(
+        Kurumi.showModalBottomSheet(
           context: context,
           builder: (_) => E621VideoQualitySheet(
             qualities: post.videoVariants.values.toList(),
@@ -199,7 +200,7 @@ class _DesktopE621VideoQualitySheet extends StatelessWidget {
   }
 }
 
-class _DesktopE621QualityOptionTile extends StatefulWidget {
+class _DesktopE621QualityOptionTile extends StatelessWidget {
   const _DesktopE621QualityOptionTile({
     required this.variant,
     required this.isSelected,
@@ -211,73 +212,12 @@ class _DesktopE621QualityOptionTile extends StatefulWidget {
   final void Function() onTap;
 
   @override
-  State<_DesktopE621QualityOptionTile> createState() =>
-      _DesktopE621QualityOptionTileState();
-}
-
-class _DesktopE621QualityOptionTileState
-    extends State<_DesktopE621QualityOptionTile> {
-  var _isHovered = false;
-
-  @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: Material(
-        color: _isHovered
-            ? colorScheme.onSurface.withValues(alpha: 0.08)
-            : Colors.transparent,
-        child: InkWell(
-          onTap: widget.onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ),
-            child: Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                  child: widget.isSelected
-                      ? Icon(
-                          Symbols.check,
-                          size: 20,
-                          color: colorScheme.onSurface,
-                        )
-                      : null,
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        widget.variant.type.getLabel(context),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      const SizedBox(height: 2),
-                      Text(
-                        _buildSubtitle(widget.variant),
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: colorScheme.onSurface.withValues(alpha: 0.6),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    return KurumiDesktopSelectionTile(
+      title: variant.type.getLabel(context),
+      subtitle: _buildSubtitle(variant),
+      isSelected: isSelected,
+      onTap: onTap,
     );
   }
 

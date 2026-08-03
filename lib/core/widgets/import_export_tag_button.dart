@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../foundation/clipboard.dart';
 import '../../foundation/display.dart';
-import 'booru_popup_menu_button.dart';
 import 'import_tag_dialog.dart';
 
 const _kHint =
@@ -26,9 +26,9 @@ class ImportExportTagButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return BooruPopupMenuButton(
+    return KurumiPopupMenuButton(
       items: [
-        BooruPopupMenuItem(
+        KurumiPopupMenuItem(
           title: Text(context.t.settings.backup_and_restore.import),
           icon: const Icon(Icons.file_upload),
           onTap: () {
@@ -45,7 +45,7 @@ class ImportExportTagButton extends ConsumerWidget {
           },
         ),
         if (tags.isNotEmpty)
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.settings.backup_and_restore.export),
             icon: const Icon(Icons.file_download),
             onTap: () {

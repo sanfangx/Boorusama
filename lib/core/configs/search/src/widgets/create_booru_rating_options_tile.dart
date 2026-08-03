@@ -1,16 +1,14 @@
 // Flutter imports:
-
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../boorus/engine/providers.dart';
 import '../../../../posts/rating/types.dart';
-import '../../../../widgets/option_dropdown_button.dart';
 import '../../../config/types.dart';
 
 class CreateBooruRatingOptionsTile extends StatelessWidget {
@@ -44,7 +42,7 @@ class CreateBooruRatingOptionsTile extends StatelessWidget {
           contentPadding: EdgeInsets.zero,
           visualDensity: VisualDensity.compact,
           title: Text(context.t.booru.content_filtering_label),
-          trailing: OptionDropDownButton(
+          trailing: KurumiOptionDropDownButton(
             alignment: AlignmentDirectional.centerStart,
             value: value ?? BooruConfigRatingFilter.none,
             onChanged: (value) {
@@ -133,7 +131,7 @@ class _CreateBooruConfigGranularRatingOptionsState
           (e) {
             return Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: FilterChip(
+              child: KurumiSelectableChip(
                 visualDensity: VisualDensity.compact,
                 showCheckmark: false,
                 label: Text(e.toFullString()),

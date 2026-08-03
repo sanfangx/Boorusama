@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:selection_mode/selection_mode.dart';
 
 // Project imports:
@@ -15,8 +16,6 @@ import '../../../../configs/config/providers.dart';
 import '../../../../downloads/downloader/providers.dart';
 import '../../../../router.dart';
 import '../../../../tags/show/routes.dart';
-import '../../../../widgets/booru_context_menu.dart';
-import '../../../../widgets/context_menu_tile.dart';
 import '../../../favorites/widgets.dart';
 import '../../../post/providers.dart';
 import '../../../post/types.dart';
@@ -70,16 +69,16 @@ class GeneralPostContextMenu extends ConsumerWidget {
             ) ??
             false;
 
-        return BooruContextMenu(
+        return KurumiContextMenu(
           menuItemsBuilder: (context) => [
-            ContextMenuTile(
+            KurumiContextMenuTile(
               title: context.t.download.download,
               onTap: () {
                 downloadNotifier.download(post);
               },
             ),
             if (!isBookmarked)
-              ContextMenuTile(
+              KurumiContextMenuTile(
                 title: context.t.post.detail.add_to_bookmark,
                 enabled: !isBookmarkLoading,
                 onTap: isBookmarkLoading
@@ -92,7 +91,7 @@ class GeneralPostContextMenu extends ConsumerWidget {
                       },
               )
             else
-              ContextMenuTile(
+              KurumiContextMenuTile(
                 title: context.t.post.detail.remove_from_bookmark,
                 enabled: !isBookmarkLoading,
                 onTap: isBookmarkLoading
@@ -110,22 +109,22 @@ class GeneralPostContextMenu extends ConsumerWidget {
               post: post,
               feedbackContext: feedbackContext,
             ),
-            const BooruContextMenuDivider(),
+            const KurumiContextMenuDivider(),
             if (commentPageBuilder != null && post.hasComment)
-              ContextMenuTile(
+              KurumiContextMenuTile(
                 title: context.t.post.action.view_comments,
                 onTap: () {
                   goToCommentPage(context, ref, post);
                 },
               ),
             if (!loginDetails.hasStrictSFW)
-              ContextMenuTile(
+              KurumiContextMenuTile(
                 title: context.t.post.action.view_in_browser,
                 onTap: () {
                   launchExternalUrlString(postLinkGenerator.getLink(post));
                 },
               ),
-            ContextMenuTile(
+            KurumiContextMenuTile(
               title: context.t.post.action.view_tags,
               onTap: () {
                 goToShowTaglistPage(
@@ -135,9 +134,9 @@ class GeneralPostContextMenu extends ConsumerWidget {
                 );
               },
             ),
-            const BooruContextMenuDivider(),
+            const KurumiContextMenuDivider(),
             if (selectionModeController case final controller?)
-              ContextMenuTile(
+              KurumiContextMenuTile(
                 title: context.t.generic.action.select,
                 onTap: () {
                   controller.enable(

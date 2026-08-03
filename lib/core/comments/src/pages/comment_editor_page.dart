@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../widgets/widgets.dart';
 
 class CommentEditorPage extends StatefulWidget {
   const CommentEditorPage({
@@ -76,7 +76,7 @@ class _CommentEditorPageState extends State<CommentEditorPage> {
                     const SizedBox(height: 8),
                     Padding(
                       padding: const EdgeInsets.all(12),
-                      child: BooruTextField(
+                      child: KurumiTextField(
                         controller: textEditingController,
                         decoration: InputDecoration(
                           hintText: '${context.t.comment.create.hint}...',

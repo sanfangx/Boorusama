@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/auth/widgets.dart';
@@ -11,7 +12,6 @@ import '../../../core/configs/create/providers.dart';
 import '../../../core/configs/create/widgets.dart';
 import '../../../core/configs/search/widgets.dart';
 import '../../../core/configs/viewer/widgets.dart';
-import '../../../core/widgets/widgets.dart';
 import '../posts/types.dart';
 
 class CreateE621ConfigPage extends StatelessWidget {
@@ -58,7 +58,7 @@ class E621VideoQualityOptionTile extends ConsumerWidget {
       contentPadding: EdgeInsets.zero,
       visualDensity: VisualDensity.compact,
       title: Text(context.t.video_player.video_quality),
-      trailing: OptionDropDownButton(
+      trailing: KurumiOptionDropDownButton(
         alignment: AlignmentDirectional.centerStart,
         value: E621VideoVariantType.tryParse(quality),
         onChanged: (value) => ref.editNotifier.updateVideoQuality(

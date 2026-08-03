@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 
 // Project imports:
 import '../../../../configs/config/providers.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../queries/query_utils.dart';
 import '../../../selected_tags/tag_search_item.dart';
 import '../../../suggestions/suggestions_notifier.dart';
@@ -70,7 +70,7 @@ class _SelectedTagEditDialogState extends ConsumerState<SelectedTagEditDialog> {
         Material(
           child: Padding(
             padding: const EdgeInsets.all(12),
-            child: BooruTextField(
+            child: KurumiTextField(
               focusNode: focusNode,
               autocorrect: false,
               autofocus: true,

@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 // Project imports:
@@ -102,9 +103,9 @@ class _DanbooruMyUploadsPageState
             ref
                 .watch(danbooruUploadHideProvider(config))
                 .maybeWhen(
-                  data: (state) => BooruPopupMenuButton(
+                  data: (state) => KurumiPopupMenuButton(
                     items: [
-                      BooruPopupMenuItem(
+                      KurumiPopupMenuItem(
                         title: Text(
                           state.showHiddenUploads
                               ? 'Hide hidden'.hc

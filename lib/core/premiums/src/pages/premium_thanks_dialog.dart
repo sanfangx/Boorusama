@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../themes/theme/types.dart';
-import '../../../widgets/widgets.dart';
 
 class PremiumThanksDialog extends StatelessWidget {
   const PremiumThanksDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BooruDialog(
+    return KurumiDialog(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisSize: MainAxisSize.min,

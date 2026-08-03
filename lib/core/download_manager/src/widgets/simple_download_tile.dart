@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:readmore/readmore.dart';
@@ -16,8 +17,6 @@ import '../../../../foundation/url_launcher.dart';
 import '../../../downloads/background/types.dart';
 import '../../../downloads/configs/widgets.dart';
 import '../../../downloads/downloader/types.dart';
-import '../../../themes/theme/types.dart';
-import '../../../widgets/drag_line.dart';
 import '../providers/task_update_ex.dart';
 
 final _checkResumableProvider = FutureProvider.autoDispose.family<bool, Task>((
@@ -67,7 +66,7 @@ class SimpleDownloadTile extends ConsumerWidget {
           p.hasTimeRemaining ? p.timeRemaining : null,
       },
       onLongPress: () {
-        showModalBottomSheet(
+        Kurumi.showModalBottomSheet(
           context: context,
           builder: (_) => _ModalOptions(task: task),
         );
@@ -246,7 +245,7 @@ class _ModalOptions extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(height: 8),
-            const DragLine(),
+            const KurumiDragLine(),
             const SizedBox(height: 8),
             ListTile(
               shape: RoundedRectangleBorder(

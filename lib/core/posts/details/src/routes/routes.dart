@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/config/types.dart';
 import '../../../../router.dart';
 import '../../../../settings/providers.dart';
 import '../../../../settings/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../post/types.dart';
 import '../providers/providers.dart';
 import '../widgets/post_details_page.dart';
@@ -91,7 +91,7 @@ Page<dynamic> _detailsPageBuilder(
   GoRouterState state,
   Widget widget,
 ) {
-  final hero = kEnableHeroTransition && useHero;
+  final hero = Kurumi.enableHeroTransition && useHero;
 
   // must use the value from the payload for orientation
   // Using MediaQuery.orientationOf(context) will cause the page to be rebuilt

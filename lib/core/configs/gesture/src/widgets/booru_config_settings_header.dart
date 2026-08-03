@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class BooruConfigSettingsHeader extends StatelessWidget {
   const BooruConfigSettingsHeader({
     required this.label,
@@ -10,16 +13,8 @@ class BooruConfigSettingsHeader extends StatelessWidget {
   final String label;
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-      child: Text(
-        label,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.primary,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => KurumiSettingsHeader(
+    label: label,
+    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+  );
 }

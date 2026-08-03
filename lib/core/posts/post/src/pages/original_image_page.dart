@@ -8,10 +8,10 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../../foundation/display.dart';
 import '../../../../../foundation/mobile.dart';
 import '../../../../../foundation/platform.dart';
 import '../../../../configs/config/providers.dart';
@@ -184,7 +184,7 @@ class _OriginalImagePageState extends ConsumerState<OriginalImagePage> {
                 duration: Durations.extralong1,
                 reverseDuration: const Duration(milliseconds: 10),
                 child: overlay
-                    ? ShadowGradientOverlay(
+                    ? KurumiShadowGradientOverlay(
                         alignment: Alignment.topCenter,
                         colors: <Color>[
                           const Color.fromARGB(60, 0, 0, 0),

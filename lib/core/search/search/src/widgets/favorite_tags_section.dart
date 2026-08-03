@@ -5,16 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../../foundation/platform.dart';
 import '../../../../cache/providers.dart';
 import '../../../../router.dart';
-import '../../../selected_tags/types.dart';
 import '../../../../tags/favorites/types.dart';
 import '../../../../tags/favorites/widgets.dart';
 import '../../../../themes/colors/providers.dart';
+import '../../../selected_tags/types.dart';
 import 'constants.dart';
 
 class FavoriteTagsSection extends ConsumerWidget {
@@ -67,7 +68,7 @@ class FavoriteTagsSection extends ConsumerWidget {
               Theme.of(ref.context).colorScheme.onSurface,
             );
 
-        return RawChip(
+        return KurumiSelectableChip(
           visualDensity: VisualDensity.compact,
           onPressed: () => onTagTap?.call(tag),
           avatar: tag.queryType == QueryType.simple

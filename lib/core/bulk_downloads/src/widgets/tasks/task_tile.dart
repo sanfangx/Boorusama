@@ -6,12 +6,12 @@ import 'package:context_menus/context_menus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:readmore/readmore.dart';
 
 // Project imports:
 import '../../../../../foundation/clipboard.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../../config_widgets/website_logo.dart';
 import '../../../../configs/config/providers.dart';
 import '../../../../download_manager/providers.dart';
@@ -19,8 +19,6 @@ import '../../../../download_manager/types.dart';
 import '../../../../images/booru_image.dart';
 import '../../../../premiums/providers.dart';
 import '../../../../router.dart';
-import '../../../../themes/theme/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../providers/bulk_download_notifier.dart';
 import '../../providers/dry_run.dart';
 import '../../providers/dry_run_state.dart';
@@ -147,7 +145,7 @@ class _SuspendTaskChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return CompactChip(
+    return KurumiCompactChip(
       label: context.t.bulk_downloads.status.suspended,
       textStyle: TextStyle(
         fontWeight: FontWeight.w600,
@@ -250,7 +248,7 @@ class _DetailsInkWell extends ConsumerWidget {
                   '/download_manager?group=$id',
                 );
               } else {
-                showSimpleSnackBar(
+                Kurumi.showSimpleSnackBar(
                   context: context,
                   duration: const Duration(seconds: 3),
                   content: Text(

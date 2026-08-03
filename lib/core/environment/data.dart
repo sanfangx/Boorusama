@@ -1,6 +1,8 @@
+// Flutter imports:
+import 'package:flutter/foundation.dart';
+
 // Package imports:
 import 'package:coreutils/coreutils.dart';
-import 'package:flutter/foundation.dart';
 
 // Project imports:
 import '../../foundation/info/device_info.dart';

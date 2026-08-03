@@ -1,8 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../../widgets/booru_text_form_field.dart';
 
 class CreateBooruLoginField extends StatefulWidget {
   const CreateBooruLoginField({
@@ -44,7 +46,7 @@ class _CreateBooruLoginFieldState extends State<CreateBooruLoginField> {
   @override
   Widget build(BuildContext context) {
     return AutofillGroup(
-      child: BooruTextFormField(
+      child: KurumiTextFormField(
         controller: controller,
         autocorrect: false,
         autofillHints: const [

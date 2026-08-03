@@ -1,10 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../constants.dart';
 import '../controllers/home_page_controller.dart';
-import 'navigation_tile.dart';
 
 class HomeNavigationTile extends StatelessWidget {
   const HomeNavigationTile({
@@ -40,7 +42,7 @@ class HomeNavigationTile extends StatelessWidget {
       builder: (context, index, child) {
         final selected = value == index;
 
-        return NavigationTile(
+        return KurumiNavigationTile(
           value: value,
           index: index,
           showIcon:

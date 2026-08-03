@@ -7,9 +7,9 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../animations/constants.dart';
 import '../error_monitor.dart';
 import '../filesystem.dart';
 import '../info/device_info.dart';
@@ -179,7 +179,7 @@ class AppFailedToInitialize extends ConsumerWidget {
         const SnackBar(
           behavior: SnackBarBehavior.floating,
           content: Text('Copied'),
-          duration: AppDurations.shortToast,
+          duration: KurumiDurations.shortToast,
         ),
       );
     },

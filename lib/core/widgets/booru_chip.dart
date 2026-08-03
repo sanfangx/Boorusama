@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../themes/colors/providers.dart';
-import '../themes/colors/types.dart';
 
 class BooruChip extends ConsumerWidget {
   const BooruChip({
@@ -34,7 +34,7 @@ class BooruChip extends ConsumerWidget {
   final bool showBackground;
   final bool showBorder;
   final bool disabled;
-  final ChipColors? chipColors;
+  final KurumiChipColors? chipColors;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -44,60 +44,23 @@ class BooruChip extends ConsumerWidget {
             ? ref.watch(booruChipColorsProvider).fromColor(color)
             : null);
 
-    return trailing != null
-        ? FilledButton.icon(
-            style: FilledButton.styleFrom(
-              visualDensity: visualDensity,
-              foregroundColor: colors?.foregroundColor,
-              padding: const EdgeInsets.only(left: 6, right: 2),
-              backgroundColor: showBackground
-                  ? !disabled
-                        ? colors?.backgroundColor
-                        : Colors.transparent
-                  : Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    borderRadius ?? const BorderRadius.all(Radius.circular(8)),
-              ),
-              side: showBorder
-                  ? BorderSide(
-                      color: !disabled
-                          ? colors?.borderColor ?? Colors.transparent
-                          : colors?.borderColor.withAlpha(127) ??
-                                Colors.transparent,
-                    )
-                  : null,
+    return KurumiChip(
+      colors: colors == null
+          ? null
+          : KurumiChipColors(
+              foregroundColor: colors.foregroundColor,
+              backgroundColor: colors.backgroundColor,
+              borderColor: colors.borderColor,
             ),
-            onPressed: onPressed,
-            icon: trailing,
-            label: label,
-          )
-        : FilledButton(
-            style: FilledButton.styleFrom(
-              visualDensity: visualDensity,
-              foregroundColor: colors?.foregroundColor,
-              padding:
-                  contentPadding ?? const EdgeInsets.symmetric(horizontal: 8),
-              backgroundColor: showBackground
-                  ? !disabled
-                        ? colors?.backgroundColor
-                        : Colors.transparent
-                  : Colors.transparent,
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                    borderRadius ?? const BorderRadius.all(Radius.circular(16)),
-              ),
-              side: showBorder
-                  ? BorderSide(
-                      color: !disabled
-                          ? colors?.borderColor ?? Colors.transparent
-                          : colors?.borderColor.withAlpha(127) ??
-                                Colors.transparent,
-                    )
-                  : null,
-            ),
-            onPressed: onPressed,
-            child: label,
-          );
+      onPressed: onPressed,
+      label: label,
+      trailing: trailing,
+      contentPadding: contentPadding,
+      visualDensity: visualDensity,
+      borderRadius: borderRadius,
+      showBackground: showBackground,
+      showBorder: showBorder,
+      disabled: disabled,
+    );
   }
 }

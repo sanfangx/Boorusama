@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:file_picker/file_picker.dart';
-
-// Project imports:
-import 'toast.dart';
+import 'package:kurumi/kurumi.dart';
 
 export 'package:file_picker/file_picker.dart' show FileType;
 
@@ -18,7 +16,7 @@ Future<void> pickDirectoryPathToastOnError({
   onPick: onPick,
   onCanceled: onCanceled,
   onError: (e) {
-    showErrorToast(
+    Kurumi.showErrorToast(
       context,
       e.toString(),
     );
@@ -36,7 +34,7 @@ Future<void> pickSingleFilePathToastOnError({
   allowedExtensions: allowedExtensions,
   onPick: onPick,
   onError: (e) {
-    showErrorToast(
+    Kurumi.showErrorToast(
       context,
       e.toString(),
     );

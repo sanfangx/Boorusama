@@ -2,8 +2,8 @@
 import 'package:booru_clients/boorusama.dart';
 
 // Project imports:
-import '../environment/types.dart';
 import '../../foundation/platform.dart';
+import '../environment/types.dart';
 import 'types.dart';
 
 class AnnouncementMatcher {

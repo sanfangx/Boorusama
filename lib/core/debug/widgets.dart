@@ -4,18 +4,15 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:readmore/readmore.dart';
 
 // Project imports:
 import '../../../../foundation/clipboard.dart';
 import '../../../../foundation/loggers.dart';
-import '../../../../foundation/scrolling.dart';
-import '../../foundation/animations/constants.dart';
 import '../../foundation/filesystem.dart';
-import '../../foundation/toast.dart';
 import '../settings/providers.dart';
-import '../themes/theme/types.dart';
 import '../widgets/widgets.dart';
 import 'providers.dart';
 import 'types.dart';
@@ -69,9 +66,9 @@ class _DebugLogsPageState extends ConsumerState<DebugLogsPage> {
           ),
         ],
       ),
-      floatingActionButton: ScrollToBottom(
+      floatingActionButton: KurumiScrollToBottom(
         scrollController: scrollController,
-        child: BooruScrollToBottomButton(
+        child: KurumiScrollToBottomButton(
           onPressed: () {
             scrollController.animateToWithAccessibility(
               scrollController.position.maxScrollExtent,
@@ -108,17 +105,17 @@ Future<void> writeLogsToFile(
   switch (result) {
     case WriteLogFailure(:final message):
       if (context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           message,
         );
       }
     case WriteLogSuccess(:final filePath):
       if (context.mounted) {
-        showSuccessToast(
+        Kurumi.showSuccessToast(
           context,
           'Logs written to $filePath',
-          duration: AppDurations.longToast,
+          duration: KurumiDurations.longToast,
         );
       }
   }

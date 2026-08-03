@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../configs/config/types.dart';
-import '../../../widgets/booru_popup_menu_button.dart';
 import '../../post/types.dart';
 import 'common_post_buttons.dart';
 
@@ -35,10 +35,10 @@ class CommonPostPopupMenu extends ConsumerWidget {
       configViewer: configViewer,
       copy: copy,
       builder: (context, buttons) {
-        return BooruPopupMenuButton(
+        return KurumiPopupMenuButton(
           items: [
             for (final button in buttons)
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(button.title),
                 onTap: () => button.onTap?.call(),
               ),

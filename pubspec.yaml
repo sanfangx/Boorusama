@@ -9,6 +9,7 @@ environment:
   flutter: ^3.44.0
 
 workspace:
+  - packages/kurumi
   - packages/foundation
   - packages/booru_clients
   - packages/filename_generator
@@ -26,6 +27,8 @@ workspace:
 
 dependencies:
   # local packages
+  kurumi:
+    path: packages/kurumi
   foundation:
     path: packages/foundation
   i18n:

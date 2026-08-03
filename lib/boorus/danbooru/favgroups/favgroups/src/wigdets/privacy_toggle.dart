@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../../../../users/user/providers.dart';
 
 class PrivacyToggle extends ConsumerWidget {
@@ -25,9 +25,9 @@ class PrivacyToggle extends ConsumerWidget {
     final config = ref.watchConfigAuth;
     final currentUser = ref.watch(danbooruCurrentUserProvider(config));
 
-    return BooruAnimatedCrossFade(
+    return KurumiAnimatedCrossFade(
       firstChild: const SizedBox.shrink(),
-      secondChild: BooruSwitchListTile(
+      secondChild: KurumiSwitchListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 4),
         title: Text(context.t.favorite_groups.is_private_group_option),
         value: isPrivate,

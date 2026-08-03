@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/applock/types.dart';
 import '../../../tracking/providers.dart';
-import '../../../widgets/widgets.dart';
 import '../providers/settings_notifier.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/settings_page_scaffold.dart';
@@ -28,7 +28,7 @@ class PrivacyPage extends ConsumerWidget {
       title: Text(context.t.settings.privacy.privacy),
       children: [
         tracker.maybeWhen(
-          data: (_) => BooruSwitchListTile(
+          data: (_) => KurumiSwitchListTile(
             title: Text(context.t.settings.privacy.enable_incognito_keyboard),
             subtitle: Text(
               context.t.settings.privacy.enable_incognito_keyboard_notice,
@@ -44,7 +44,7 @@ class PrivacyPage extends ConsumerWidget {
           ),
           orElse: () => const SizedBox.shrink(),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.privacy.enable_biometric_lock),
           subtitle: Text(
             context.t.settings.privacy.enable_biometric_lock_notice,

@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../core/widgets/widgets.dart';
 import '../providers/bookmark_shuffle_provider.dart';
 import '../providers/local_providers.dart';
 
@@ -19,7 +19,7 @@ class BookmarkSortButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final shuffleProvider = ref.watch(bookmarkShuffleProvider.notifier);
 
-    return OptionDropDownButton(
+    return KurumiOptionDropDownButton(
       alignment: AlignmentDirectional.centerStart,
       value: ref.watch(selectedBookmarkSortTypeProvider),
       onChanged: (value) {

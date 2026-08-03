@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:oktoast/oktoast.dart';
 
 // Project imports:
 import '../../../../../foundation/loggers.dart';
 import '../../../../../foundation/permissions.dart';
 import '../../../../../foundation/platform.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../ddos/handler/providers.dart';
 import '../../../../http/client/types.dart';
@@ -173,7 +173,7 @@ Future<DownloadTaskInfo?> _download(
   if (fileNameBuilder == null) {
     logger.error('Single Download', 'No file name builder found, aborting...');
     // if (ref.context.mounted) {
-    //   showErrorToast(ref.context, 'Download aborted, cannot create file name');
+    //   Kurumi.showErrorToast(ref.context, 'Download aborted, cannot create file name');
     // }
     return null;
   }
@@ -181,7 +181,7 @@ Future<DownloadTaskInfo?> _download(
   if (urlData == null || urlData.url.isEmpty) {
     logger.error('Single Download', 'No download url found, aborting...');
     // if (ref.context.mounted) {
-    //   showErrorToast(ref.context, 'Download aborted, no download url found');
+    //   Kurumi.showErrorToast(ref.context, 'Download aborted, no download url found');
     // }
     return null;
   }
@@ -291,7 +291,7 @@ void showDownloadErrorToast(
   if (context == null) return;
   if (!context.mounted) return;
 
-  showErrorToast(
+  Kurumi.showErrorToast(
     context,
     duration: const Duration(seconds: 5),
     message,
@@ -314,7 +314,7 @@ void showDownloadStartToast(BuildContext context, {String? message}) {
 void showBulkDownloadUnsupportErrorToast(BuildContext? context) {
   if (context == null) return;
 
-  showErrorToast(
+  Kurumi.showErrorToast(
     context,
     duration: const Duration(seconds: 3),
     'This booru does not support downloading multiple files',

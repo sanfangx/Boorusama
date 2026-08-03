@@ -7,14 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
 import '../../../../core/widgets/widgets.dart';
 import '../../../../foundation/info/app_info.dart';
 import '../../../../foundation/info/package_info.dart';
-import '../../../../foundation/scrolling.dart';
-import '../../../../foundation/toast.dart';
 import '../../../../foundation/url_launcher.dart';
 import '../../../analytics/providers.dart';
 import '../../../boorus/engine/providers.dart';
@@ -26,7 +25,6 @@ import '../../../debug/routes.dart';
 import '../../../premiums/providers.dart';
 import '../../../premiums/routes.dart';
 import '../../../premiums/types.dart';
-import '../../../themes/theme/types.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/settings_page_scaffold.dart';
 import 'about_page.dart';
@@ -455,7 +453,7 @@ class SettingsPageOtherSection extends ConsumerWidget {
                           Uri.parse(url),
                           mode: LaunchMode.externalApplication,
                         )
-                      : showErrorToast(
+                      : Kurumi.showErrorToast(
                           context,
                           'Failed to open subscription management',
                         ),
@@ -466,7 +464,7 @@ class SettingsPageOtherSection extends ConsumerWidget {
                     FontAwesomeIcons.solidStar,
                   ),
                   onTap: () {
-                    showErrorToast(
+                    Kurumi.showErrorToast(
                       context,
                       'Failed to open subscription management',
                     );
@@ -607,75 +605,14 @@ class SettingTile extends StatelessWidget {
     final showIcon = showLeading ?? options.showIcon;
     final dense = options.dense;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 2,
-      ),
-      child: Material(
-        color: (selected ?? false)
-            ? Theme.of(context).colorScheme.primaryContainer
-            : Colors.transparent,
-        borderRadius: BorderRadius.circular(8),
-        child: InkWell(
-          hoverColor: Theme.of(context).hoverColor.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(8),
-          onTap: onTap,
-          child: Container(
-            margin: EdgeInsets.symmetric(
-              vertical: dense
-                  ? 4
-                  : subtitle != null
-                  ? 6
-                  : 10,
-            ),
-            padding: EdgeInsets.symmetric(
-              horizontal: 8,
-              vertical: showIcon ? 4 : 6,
-            ),
-            child: Row(
-              children: [
-                if (showIcon)
-                  Container(
-                    constraints: const BoxConstraints(
-                      minWidth: 32,
-                    ),
-                    margin: const EdgeInsets.only(
-                      left: 4,
-                    ),
-                    child: leading,
-                  ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
-                          color: (selected ?? false)
-                              ? Theme.of(context).colorScheme.onPrimaryContainer
-                              : null,
-                        ),
-                      ),
-                      if (subtitle != null) ...[
-                        Text(
-                          subtitle!,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).colorScheme.hintColor,
-                          ),
-                        ),
-                      ],
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
+    return KurumiSettingsEntryTile(
+      title: title,
+      leading: leading,
+      onTap: onTap,
+      showLeading: showIcon,
+      subtitle: subtitle,
+      selected: selected ?? false,
+      dense: dense,
     );
   }
 }

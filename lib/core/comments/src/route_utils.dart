@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../foundation/display.dart';
-import '../../../foundation/widgets/side_sheet.dart';
 import 'widgets/comment_side_sheet_container.dart';
 
 Future<T?> showCommentPage<T>(
@@ -16,7 +18,7 @@ Future<T?> showCommentPage<T>(
           builder: (context) => builder(context, true),
         ),
       )
-    : showSideSheetFromRight(
+    : Kurumi.showSideSheetFromRight(
         settings: settings,
         width: MediaQuery.widthOf(context) * 0.41,
         body: CommentSideSheetContainer(

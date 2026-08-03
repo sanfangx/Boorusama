@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 // Project imports:
-import '../../../../../foundation/display.dart';
 import '../../../../../foundation/platform.dart';
 import '../../../../analytics/providers.dart';
 import '../../../../boorus/engine/types.dart';
@@ -20,7 +20,6 @@ import '../../../../configs/gesture/types.dart';
 import '../../../../premiums/providers.dart';
 import '../../../../router.dart';
 import '../../../../settings/providers.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../../videos/lock/widgets.dart';
 import '../../../../widgets/widgets.dart';
 import '../../../details_pageview/widgets.dart';
@@ -318,7 +317,7 @@ class _PostDetailPageScaffoldState<T extends Post>
         },
         itemCount: posts.length,
         leftActions: [
-          CircularIconButton(
+          KurumiCircularIconButton(
             icon: const Icon(
               Symbols.home,
               fill: 1,
@@ -327,12 +326,12 @@ class _PostDetailPageScaffoldState<T extends Post>
           ),
           const SizedBox(width: 8),
           if (widget.controller.dislclaimer != null)
-            CircularIconButton(
+            KurumiCircularIconButton(
               icon: const Icon(
                 Symbols.warning,
                 fill: 1,
               ),
-              onPressed: () => showAppModalBarBottomSheet(
+              onPressed: () => Kurumi.showAppModalBarBottomSheet(
                 context: context,
                 builder: (_) => DisclaimerDialog(
                   disclaimer: widget.controller.dislclaimer!,

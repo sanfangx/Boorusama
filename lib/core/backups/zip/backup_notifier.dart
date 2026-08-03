@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/info/device_info.dart';
 import '../../../foundation/loggers.dart';
 import '../../../foundation/picker.dart';
-import '../../../foundation/toast.dart';
 import '../../settings/providers.dart';
 import '../auto/providers.dart';
 import '../auto/types.dart';
@@ -99,7 +99,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
         'Backup.UI',
         'Export requested but backup already in progress',
       );
-      showErrorToast(
+      Kurumi.showErrorToast(
         context,
         context.t.settings.backup_and_restore.backup_in_progress,
       );
@@ -173,7 +173,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
       );
 
       if (context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           context.t.settings.backup_and_restore.export_operation_failed
               .replaceAll('{error}', errorMessage),
@@ -193,7 +193,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
         'Backup.UI',
         'Import requested but backup already in progress',
       );
-      showErrorToast(
+      Kurumi.showErrorToast(
         context,
         context.t.settings.backup_and_restore.backup_in_progress,
       );
@@ -218,7 +218,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
       logger.error('Backup.UI', 'Import failed: $e');
 
       if (context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           context.t.settings.backup_and_restore.import_operation_failed
               .replaceAll('{error}', e.toString()),
@@ -270,7 +270,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
       if (finalSourceIds.isEmpty) {
         logger.verbose('Backup.UI', 'No matching sources selected for import');
         if (context.mounted) {
-          showErrorToast(
+          Kurumi.showErrorToast(
             context,
             'No selected sources match the requested filter',
           );
@@ -320,7 +320,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
       );
 
       if (context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           context.t.settings.backup_and_restore.import_operation_failed
               .replaceAll('{error}', e.toString()),
@@ -469,9 +469,9 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
           : context.t.settings.backup_and_restore.export_complete_success
                 .replaceAll('{exported}', result.exported.length.toString());
 
-      showSuccessToast(context, message);
+      Kurumi.showSuccessToast(context, message);
     } else {
-      showErrorToast(
+      Kurumi.showErrorToast(
         context,
         context.t.settings.backup_and_restore.export_no_items,
       );
@@ -506,7 +506,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
         );
       }
 
-      showSuccessToast(
+      Kurumi.showSuccessToast(
         context,
         context.t.settings.backup_and_restore.import_results.replaceAll(
           '{results}',
@@ -514,7 +514,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
         ),
       );
     } else {
-      showErrorToast(
+      Kurumi.showErrorToast(
         context,
         context.t.settings.backup_and_restore.import_no_items,
       );

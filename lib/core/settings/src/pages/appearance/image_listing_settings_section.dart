@@ -4,21 +4,17 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../home/types.dart';
 import '../../../../images/types.dart';
 import '../../../../posts/listing/types.dart';
 import '../../../../posts/post/types.dart';
-import '../../../../themes/theme/types.dart';
-import '../../../../widgets/widgets.dart';
-import '../../../widgets.dart';
 import '../../providers/settings_notifier.dart';
 import '../../providers/settings_provider.dart';
 import '../../types/settings.dart';
 import '../../types/utils.dart';
-import '../../widgets/settings_header.dart';
-import '../../widgets/settings_slider_tile.dart';
 
 class ImageListingSettingsSection extends ConsumerStatefulWidget {
   const ImageListingSettingsSection({
@@ -77,14 +73,14 @@ class _ImageListingSettingsSectionState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.image_grid.grid_size.grid_size),
           selectedOption: settings.gridSize,
           items: GridSize.sortedValues,
           onChanged: (value) => _onUpdate(settings.copyWith(gridSize: value)),
           optionBuilder: (value) => Text(value.localize(context)),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.image_list.image_list),
           selectedOption: settings.imageListType,
           items: ImageListType.values,
@@ -92,7 +88,7 @@ class _ImageListingSettingsSectionState
               _onUpdate(settings.copyWith(imageListType: value)),
           optionBuilder: (value) => Text(value.localize(context)),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(
             context.t.settings.image_grid.image_quality.image_quality,
           ),
@@ -115,7 +111,7 @@ class _ImageListingSettingsSectionState
               _onUpdate(settings.copyWith(imageQuality: value)),
           optionBuilder: (value) => Text(value.localize(context)),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.result_layout.result_layout),
           selectedOption: settings.pageMode,
           subtitle: settings.pageMode == PageMode.infinite
@@ -126,7 +122,7 @@ class _ImageListingSettingsSectionState
           optionBuilder: (value) => Text(value.localize(context)),
         ),
         if (settings.pageMode == PageMode.paginated)
-          SettingsTile(
+          KurumiSettingsTile(
             title: Text(context.t.settings.page_indicator.page_indicator),
             selectedOption: settings.pageIndicatorPosition,
             items: const [...PageIndicatorPosition.values],
@@ -134,7 +130,7 @@ class _ImageListingSettingsSectionState
                 _onUpdate(settings.copyWith(pageIndicatorPosition: value)),
             optionBuilder: (value) => Text(value.localize(context)),
           ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.performance.posts_per_page),
           subtitle: Text(
             context.t.settings.performance.posts_per_page_explain,
@@ -155,13 +151,13 @@ class _ImageListingSettingsSectionState
             value.toString(),
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.appearance.show_scores),
           value: settings.showScoresInGrid,
           onChanged: (value) =>
               _onUpdate(settings.copyWith(showScoresInGrid: value)),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(
             context.t.settings.appearance.show_post_list_config_header,
           ),
@@ -172,7 +168,7 @@ class _ImageListingSettingsSectionState
             ),
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(
             context.t.settings.appearance.blur_explicit_media,
           ),
@@ -185,7 +181,7 @@ class _ImageListingSettingsSectionState
             ),
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(
             context.t.settings.appearance.auto_play_gif,
           ),
@@ -218,7 +214,7 @@ class _ImageListingSettingsSectionState
     return ValueListenableBuilder(
       valueListenable: _borderRadiusSliderValue,
       builder: (context, value, child) {
-        return SettingsSliderTile(
+        return KurumiSettingsSliderTile(
           title: context.t.settings.image_grid.corner_radius,
           divisions: 20,
           max: 20,
@@ -236,7 +232,7 @@ class _ImageListingSettingsSectionState
     return ValueListenableBuilder(
       valueListenable: _spacingSliderValue,
       builder: (context, value, child) {
-        return SettingsSliderTile(
+        return KurumiSettingsSliderTile(
           title: context.t.settings.image_grid.spacing,
           divisions: 10,
           max: 10,
@@ -254,7 +250,7 @@ class _ImageListingSettingsSectionState
     return ValueListenableBuilder(
       valueListenable: _paddingSliderValue,
       builder: (context, value, child) {
-        return SettingsSliderTile(
+        return KurumiSettingsSliderTile(
           title: context.t.settings.image_grid.padding,
           divisions: 8,
           max: 32,
@@ -272,7 +268,7 @@ class _ImageListingSettingsSectionState
     return ValueListenableBuilder(
       valueListenable: _aspectRatioSliderValue,
       builder: (context, value, child) {
-        return SettingsSliderTile(
+        return KurumiSettingsSliderTile(
           title: context.t.settings.image_grid.aspect_ratio,
           divisions: 10,
           max: 1.5,
@@ -302,10 +298,10 @@ class LayoutSection extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SettingsHeader(
+        KurumiSettingsHeader(
           label: context.t.settings.appearance.booru_config,
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.appearance.booru_config_placement),
           selectedOption: settings.booruConfigSelectorPosition,
           items: const [...BooruConfigSelectorPosition.values],
@@ -314,7 +310,7 @@ class LayoutSection extends ConsumerWidget {
           ),
           optionBuilder: (value) => Text(value.localize(context)),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.appearance.booru_config_label),
           selectedOption: settings.booruConfigLabelVisibility,
           items: const [...BooruConfigLabelVisibility.values],

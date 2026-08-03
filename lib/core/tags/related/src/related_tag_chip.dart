@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -94,14 +95,12 @@ class SimpleIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: backgroundColor ?? Colors.transparent,
-      shape: const CircleBorder(),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        onTap: onPressed,
-        child: icon,
-      ),
+    return KurumiCircularIconButton(
+      constraints: const BoxConstraints(),
+      padding: EdgeInsets.zero,
+      backgroundColor: backgroundColor ?? Colors.transparent,
+      onPressed: onPressed,
+      icon: icon,
     );
   }
 }

@@ -5,12 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/display.dart';
 import '../../../../boorus/engine/providers.dart';
 import '../../../../router.dart';
-import '../../../../widgets/booru_dialog.dart';
 import '../../../config/types.dart';
 import '../../../manage/providers.dart';
 import '../pages/add_booru_page.dart';
@@ -37,7 +36,7 @@ GoRoute addBooruConfigRoutes(Ref ref) => GoRoute(
       );
 
       return landscape
-          ? BooruDialog(
+          ? KurumiDialog(
               color: colorScheme.surfaceContainerLow,
               child: page,
             )
@@ -88,7 +87,7 @@ GoRoute updateBooruConfigRoutes(Ref ref) => GoRoute(
           );
 
       return landscape
-          ? BooruDialog(
+          ? KurumiDialog(
               color: colorScheme.surfaceContainerLow,
               child: page,
             )

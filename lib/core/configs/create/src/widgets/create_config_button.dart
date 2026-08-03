@@ -11,6 +11,7 @@ import '../../../manage/providers.dart';
 import '../providers/providers.dart';
 import '../types/utils.dart';
 import 'booru_config_data_provider.dart';
+import 'create_booru_submit_button.dart';
 
 class CreateOrUpdateBooruConfigButton extends ConsumerWidget {
   const CreateOrUpdateBooruConfigButton({
@@ -46,8 +47,8 @@ class CreateNewBooruConfigButton extends ConsumerWidget {
     final config = ref.watch(initialBooruConfigProvider);
 
     return BooruConfigDataProvider(
-      builder: (data) => TextButton(
-        onPressed: canSubmit(data) && data.name.isNotEmpty
+      builder: (data) => CreateBooruSubmitButton(
+        onSubmit: canSubmit(data) && data.name.isNotEmpty
             ? () {
                 ref
                     .read(booruConfigProvider.notifier)
@@ -79,8 +80,8 @@ class UpdateBooruConfigButton extends ConsumerWidget {
     final editId = ref.watch(editBooruConfigIdProvider);
 
     return BooruConfigDataProvider(
-      builder: (data) => TextButton(
-        onPressed: canSubmit(data)
+      builder: (data) => CreateBooruSubmitButton(
+        onSubmit: canSubmit(data)
             ? () {
                 ref
                     .read(booruConfigProvider.notifier)

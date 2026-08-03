@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:expandable/expandable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
@@ -77,7 +78,8 @@ class _ArtistCardState extends ConsumerState<ArtistSearchInfoCard> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                Chip(
+                KurumiSelectableChip(
+                  tapEnabled: false,
                   padding: const EdgeInsets.all(2),
                   backgroundColor: Theme.of(
                     context,
@@ -142,7 +144,8 @@ class _TagOtherNames extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: Chip(
+            child: KurumiSelectableChip(
+              tapEnabled: false,
               backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
               padding: const EdgeInsets.all(4),
               labelPadding: const EdgeInsets.all(2),

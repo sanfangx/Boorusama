@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/images/booru_image.dart';
-import '../../../../../../core/themes/theme/types.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../../../post/providers.dart';
 import '../../../post/types.dart';
 import '../providers/providers.dart';
@@ -36,7 +35,7 @@ class TagEditUploadSimilar extends ConsumerWidget {
       slivers: [
         const SliverSizedBox(height: 16),
         SliverToBoxAdapter(
-          child: BooruTextFormField(
+          child: KurumiTextFormField(
             autocorrect: false,
             onChanged: (value) {
               uploadNotifier.updateParentId(value);

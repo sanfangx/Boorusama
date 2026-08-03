@@ -1,10 +1,11 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../../../core/router.dart';
-import '../../../../../../core/widgets/widgets.dart';
-import '../../../../../../foundation/display.dart';
 import '../pages/user_feedback_page.dart';
 
 final danbooruUserFeedbackRoutes = GoRoute(
@@ -20,7 +21,7 @@ final danbooruUserFeedbackRoutes = GoRoute(
       final landscape = context.orientation.isLandscape;
 
       if (userId == null) {
-        return const BooruDialog(
+        return const KurumiDialog(
           padding: EdgeInsets.all(8),
           child: InvalidPage(
             message: 'Invalid user ID',
@@ -31,7 +32,7 @@ final danbooruUserFeedbackRoutes = GoRoute(
       final page = UserFeedbackPage(userId: userId);
 
       return landscape
-          ? BooruDialog(
+          ? KurumiDialog(
               padding: const EdgeInsets.all(8),
               child: page,
             )

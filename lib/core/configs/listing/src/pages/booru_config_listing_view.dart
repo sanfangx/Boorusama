@@ -1,20 +1,23 @@
 // Flutter imports:
-
-// Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../settings/types.dart';
 import '../../../../settings/widgets.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 import '../../../gesture/types.dart';
 import '../widgets/tooltip_toggle.dart';
+
+// Flutter imports:
+
+
+
 
 const kDefaultPreviewImageButtonAction = {
   '',
@@ -84,7 +87,7 @@ class BooruConfigListingView extends ConsumerWidget {
               subtitle: Text(
                 context.t.booru.listing.thumbnail_button_description,
               ),
-              trailing: OptionDropDownButton(
+              trailing: KurumiOptionDropDownButton(
                 backgroundColor: Colors.transparent,
                 alignment: AlignmentDirectional.centerStart,
                 value: ref.watch(
@@ -109,7 +112,7 @@ class BooruConfigListingView extends ConsumerWidget {
               ),
             ),
             const Divider(),
-            BooruSwitchListTile(
+            KurumiSwitchListTile(
               title: Text(
                 context.t.booru.listing.enable_profile_specific_settings,
               ),
@@ -125,7 +128,7 @@ class BooruConfigListingView extends ConsumerWidget {
                 listing.copyWith(enable: value),
               ),
             ),
-            GrayedOut(
+            KurumiGrayedOut(
               grayedOut: !enable,
               child: ImageListingSettingsSection(
                 listing: settings,

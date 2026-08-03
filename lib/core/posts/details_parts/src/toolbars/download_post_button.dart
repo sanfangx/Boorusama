@@ -5,9 +5,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:anchor_ui/anchor_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -15,9 +15,6 @@ import '../../../../configs/config/providers.dart';
 import '../../../../downloads/downloader/providers.dart';
 import '../../../../downloads/urls/providers.dart';
 import '../../../../downloads/urls/types.dart';
-import '../../../../widgets/booru_anchor.dart';
-import '../../../../widgets/booru_tooltip.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../post/types.dart';
 
 class DownloadPostButton extends ConsumerStatefulWidget {
@@ -69,7 +66,7 @@ class _DownloadPostButtonState extends ConsumerState<DownloadPostButton> {
       controller: _controller,
       items: [
         ...?sources?.map(
-          (e) => BooruPopupMenuItem(
+          (e) => KurumiPopupMenuItem(
             title: Text(e.name),
             onTap: () {
               notifier.download(
@@ -80,7 +77,7 @@ class _DownloadPostButtonState extends ConsumerState<DownloadPostButton> {
           ),
         ),
       ],
-      child: BooruTooltip(
+      child: KurumiTooltip(
         message: context.t.download.download,
         child: !widget.small
             ? IconButton(
@@ -239,7 +236,7 @@ class _PopupMenuButton extends ConsumerWidget {
       return child;
     }
 
-    return BooruAnchor(
+    return KurumiAnchor(
       controller: controller,
       overlayBuilder: (context) => Container(
         padding: const EdgeInsets.symmetric(

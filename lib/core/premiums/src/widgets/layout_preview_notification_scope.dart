@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
 import '../providers/preview_providers.dart';
 import '../routes/routes.dart';
 
@@ -26,7 +26,7 @@ class LayoutPreviewNotificationScope extends ConsumerWidget {
         if (previous == LayoutPreviewStatus.on &&
             next == LayoutPreviewStatus.off) {
           // Notify user that the preview has ended
-          showSimpleSnackBar(
+          Kurumi.showSimpleSnackBar(
             context: context,
             duration: const Duration(seconds: 10),
             content: Text(

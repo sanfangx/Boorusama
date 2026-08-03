@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:anchor_ui/anchor_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../../foundation/platform.dart';
 import '../../../../posts/post/types.dart';
 import '../../../../settings/routes.dart';
-import '../../../../widgets/hover_aware_container.dart';
 import '../../../lock/providers.dart';
 import 'desktop_video_option_sheet.dart';
 import 'mobile_video_option_sheet.dart';
@@ -155,7 +155,7 @@ class MobileVideoOptionsButton extends ConsumerWidget {
         color: Colors.transparent,
         child: InkWell(
           customBorder: const CircleBorder(),
-          onTap: () => showModalBottomSheet(
+          onTap: () => Kurumi.showModalBottomSheet(
             context: context,
             builder: (_) => VideoOptionContainer(
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -166,7 +166,7 @@ class MobileVideoOptionsButton extends ConsumerWidget {
                 value: speed,
                 onSpeedChanged: () {
                   Navigator.of(context).pop();
-                  showModalBottomSheet(
+                  Kurumi.showModalBottomSheet(
                     context: context,
                     builder: (_) => PlaybackSpeedActionSheet(
                       onChanged: onSpeedChanged,
@@ -185,7 +185,7 @@ class MobileVideoOptionsButton extends ConsumerWidget {
               ),
             ),
           ),
-          child: const HoverAwareContainer(
+          child: const KurumiHoverAwareContainer(
             child: Icon(
               Symbols.settings,
               fill: 1,

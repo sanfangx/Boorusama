@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:coreutils/coreutils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/toast.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 import '../pages/cookie_access_webview_page.dart';
@@ -94,7 +93,7 @@ class DefaultCookieAuthConfigSection extends ConsumerWidget {
           ),
           Row(
             children: [
-              RawChip(
+              KurumiSelectableChip(
                 backgroundColor: Theme.of(
                   context,
                 ).colorScheme.secondaryContainer,
@@ -104,7 +103,7 @@ class DefaultCookieAuthConfigSection extends ConsumerWidget {
                 label: Text(context.t.auth.relogin),
               ),
               const SizedBox(width: 8),
-              RawChip(
+              KurumiSelectableChip(
                 backgroundColor: Theme.of(
                   context,
                 ).colorScheme.secondaryContainer,
@@ -122,7 +121,10 @@ class DefaultCookieAuthConfigSection extends ConsumerWidget {
 
   void _openBrowser(WidgetRef ref, BuildContext context, BooruConfig config) {
     if (loginUrl == null) {
-      showErrorToast(context, 'Login URL for this booru is not available');
+      Kurumi.showErrorToast(
+        context,
+        'Login URL for this booru is not available',
+      );
       return;
     }
 

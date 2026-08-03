@@ -22,11 +22,8 @@ class MultiSelectionActionBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final reduceAnimation = ref.watch(
-      settingsProvider.select(
-        (value) => value.reduceAnimations,
-      ),
+      settingsProvider.select((value) => value.reduceAnimations),
     );
-
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: AdaptiveButtonRow.menu(

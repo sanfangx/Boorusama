@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/booru_text_form_field.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 
@@ -23,7 +23,7 @@ class ProxyPortInput extends ConsumerWidget {
 
     final initialValue = proxySettings?.port.toString() ?? '';
 
-    return BooruTextFormField(
+    return KurumiTextFormField(
       initialValue: initialValue == '0' ? '' : initialValue,
       onChanged: (value) {
         final port = int.tryParse(value);

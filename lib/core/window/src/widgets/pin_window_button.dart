@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:oktoast/oktoast.dart';
 
 // Project imports:
-import '../../../../foundation/animations/constants.dart';
-import '../../../themes/theme/types.dart';
-import '../../../widgets/hover_aware_container.dart';
 import '../providers/always_on_top_provider.dart';
 
 class PinWindowButton extends ConsumerWidget {
@@ -38,29 +36,55 @@ class PinWindowButton extends ConsumerWidget {
             message,
             position: ToastPosition.top,
             textPadding: const EdgeInsets.all(8),
-            duration: AppDurations.shortToast,
+            duration: KurumiDurations.shortToast,
           );
         });
       },
     );
 
     return alwaysOnTop.maybeWhen(
-      data: (isPinned) => GestureDetector(
-        onTap: () {
+      data: (isPinned) => _PinButton(
+        isPinned: isPinned,
+        iconSize: iconSize,
+        onPressed: () {
           ref.read(alwaysOnTopProvider.notifier).toggle();
         },
-        child: HoverAwareContainer(
+      ),
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _PinButton extends StatelessWidget {
+  const _PinButton({
+    required this.isPinned,
+    required this.onPressed,
+    this.iconSize = 16,
+  });
+
+  final bool isPinned;
+  final VoidCallback onPressed;
+  final double iconSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      toggled: isPinned,
+      onTap: onPressed,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: KurumiHoverAwareContainer(
           child: Padding(
             padding: const EdgeInsets.all(4),
             child: Icon(
               isPinned ? Icons.push_pin : Icons.push_pin_outlined,
               size: iconSize,
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Theme.of(context).colorScheme.outline,
             ),
           ),
         ),
       ),
-      orElse: () => const SizedBox.shrink(),
     );
   }
 }

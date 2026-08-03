@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/toast.dart';
 import '../../../../blacklists/providers.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../posts/post/types.dart';
@@ -70,7 +70,7 @@ class _ShowTagListPageState extends ConsumerState<ShowTagListPage> {
 
       if (!context.mounted) return;
 
-      showSuccessToast(
+      Kurumi.showSuccessToast(
         context,
         context.t.tags.added,
         backgroundColor: colorScheme.onSurface,

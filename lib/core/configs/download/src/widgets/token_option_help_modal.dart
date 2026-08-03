@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:filename_generator/filename_generator.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../../foundation/clipboard.dart';
 import '../../../../downloads/filename/types.dart';
 import '../../../../posts/post/types.dart';
-import '../../../../widgets/compact_chip.dart';
-import '../../../../widgets/info_container.dart';
 
 class TokenOptionHelpModal extends StatelessWidget {
   const TokenOptionHelpModal({
@@ -46,7 +45,7 @@ class TokenOptionHelpModal extends StatelessWidget {
               slivers: [
                 if (token.type == TokenType.async)
                   SliverToBoxAdapter(
-                    child: WarningContainer(
+                    child: KurumiWarningContainer(
                       title: context.t.generic.warning,
                       contentBuilder: (_) => Text(
                         context.t.booru.downloads.filename.slow_token_warning,
@@ -125,7 +124,7 @@ class TokenOptionHelpModal extends StatelessWidget {
   }
 
   Widget _buildOptionChip(BuildContext context, String label) {
-    return CompactChip(
+    return KurumiCompactChip(
       label: label,
       borderRadius: BorderRadius.circular(12),
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,

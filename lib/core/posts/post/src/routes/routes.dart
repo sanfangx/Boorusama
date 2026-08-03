@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:flutter/cupertino.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../router.dart';
-import '../../../../widgets/route_transition_builder.dart';
 import '../pages/original_image_page.dart';
 import '../types/post.dart';
 
@@ -22,7 +24,7 @@ final originalImageRoutes = GoRoute(
     return CustomTransitionPage(
       key: state.pageKey,
       name: state.name,
-      transitionsBuilder: fadeTransitionBuilder(),
+      transitionsBuilder: Kurumi.fadeTransitionBuilder(),
       child: OriginalImagePage.post(post),
     );
   },

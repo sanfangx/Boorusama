@@ -1,10 +1,12 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../../foundation/display.dart';
 import '../../../../config_widgets/website_logo.dart';
-import '../../../../widgets/booru_tooltip.dart';
 import '../../../config/types.dart';
 import 'drag_state_controller.dart';
 
@@ -209,7 +211,7 @@ class _PopoverTooltip extends StatelessWidget {
       return child;
     }
 
-    return BooruTooltip(
+    return KurumiTooltip(
       message: config.name,
       placement: switch (direction) {
         Axis.horizontal => Placement.top,

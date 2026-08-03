@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../config_widgets/website_logo.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 
@@ -93,7 +93,7 @@ class _ProfileIconUrlFieldState extends ConsumerState<ProfileIconUrlField> {
             ],
           ),
           const SizedBox(height: 12),
-          BooruTextFormField(
+          KurumiTextFormField(
             controller: _controller,
             onChanged: (value) {
               final url = value.trim();

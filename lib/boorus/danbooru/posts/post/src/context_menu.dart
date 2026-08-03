@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:selection_mode/selection_mode.dart';
 
 // Project imports:
@@ -15,8 +16,6 @@ import '../../../../../core/posts/favorites/widgets.dart';
 import '../../../../../core/posts/post/providers.dart';
 import '../../../../../core/router.dart';
 import '../../../../../core/tags/show/routes.dart';
-import '../../../../../core/widgets/booru_context_menu.dart';
-import '../../../../../core/widgets/context_menu_tile.dart';
 import '../../../../../foundation/url_launcher.dart';
 import '../../../configs/providers.dart';
 import '../../../favgroups/favgroups/routes.dart';
@@ -53,9 +52,9 @@ class DanbooruPostContextMenu extends ConsumerWidget {
     final selectionModeController = SelectionMode.maybeOf(context);
     final feedbackContext = context;
 
-    return BooruContextMenu(
+    return KurumiContextMenu(
       menuItemsBuilder: (context) => [
-        ContextMenuTile(
+        KurumiContextMenuTile(
           title: context.t.download.download,
           onTap: () {
             ref
@@ -73,7 +72,7 @@ class DanbooruPostContextMenu extends ConsumerWidget {
           },
         ),
         if (!isBookmarked)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.post.detail.add_to_bookmark,
             enabled: !isBookmarkLoading,
             onTap: isBookmarkLoading
@@ -86,7 +85,7 @@ class DanbooruPostContextMenu extends ConsumerWidget {
                   },
           )
         else
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.post.detail.remove_from_bookmark,
             enabled: !isBookmarkLoading,
             onTap: isBookmarkLoading
@@ -106,7 +105,7 @@ class DanbooruPostContextMenu extends ConsumerWidget {
             feedbackContext: feedbackContext,
           ),
         if (hasAccount)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.post.action.add_to_favorite_group,
             onTap: () {
               goToAddToFavoriteGroupSelectionPage(
@@ -115,16 +114,16 @@ class DanbooruPostContextMenu extends ConsumerWidget {
               );
             },
           ),
-        const BooruContextMenuDivider(),
+        const KurumiContextMenuDivider(),
         if (post.hasComment)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.post.action.view_comments,
             onTap: () {
               goToCommentPage(context, ref, post);
             },
           ),
         if (!loginDetails.hasStrictSFW)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.post.action.view_in_browser,
             onTap: () {
               launchExternalUrlString(
@@ -133,7 +132,7 @@ class DanbooruPostContextMenu extends ConsumerWidget {
             },
           ),
         if (post.tags.isNotEmpty)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.post.action.view_tags,
             onTap: () {
               goToShowTaglistPage(
@@ -143,22 +142,22 @@ class DanbooruPostContextMenu extends ConsumerWidget {
               );
             },
           ),
-        ContextMenuTile(
+        KurumiContextMenuTile(
           title: context.t.post.action.view_tag_history,
           onTap: () {
             goToPostVersionPage(ref, post);
           },
         ),
-        const BooruContextMenuDivider(),
+        const KurumiContextMenuDivider(),
         if (hasAccount)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.generic.action.edit,
             onTap: () {
               ref.danbooruEdit(post);
             },
           ),
         if (selectionModeController case final controller?)
-          ContextMenuTile(
+          KurumiContextMenuTile(
             title: context.t.generic.action.select,
             onTap: () {
               controller.enable(

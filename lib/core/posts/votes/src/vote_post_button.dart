@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../themes/theme/types.dart';
-import '../../../widgets/booru_tooltip.dart';
 import 'post_vote.dart';
 
 class UpvotePostButton extends StatelessWidget {
@@ -24,7 +24,7 @@ class UpvotePostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BooruTooltip(
+    return KurumiTooltip(
       message: context.t.post.action.upvote,
       child: IconButton(
         icon: Icon(
@@ -55,7 +55,7 @@ class DownvotePostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BooruTooltip(
+    return KurumiTooltip(
       message: context.t.post.action.downvote,
       child: IconButton(
         icon: Icon(

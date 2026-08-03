@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/toast.dart';
-import '../../../../themes/theme/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 import '../pages/cookie_access_webview_page.dart';
@@ -77,7 +75,7 @@ class AdvancedAuthSection extends ConsumerWidget {
                   warningTitle != null &&
                   warningDescription != null) ...[
                 const SizedBox(height: 8),
-                WarningContainer(
+                KurumiWarningContainer(
                   margin: EdgeInsets.zero,
                   title: warningTitle,
                   contentBuilder: (context) => Text(warningDescription!),
@@ -117,7 +115,7 @@ class AdvancedAuthSection extends ConsumerWidget {
           ),
           Row(
             children: [
-              RawChip(
+              KurumiSelectableChip(
                 backgroundColor: Theme.of(
                   context,
                 ).colorScheme.secondaryContainer,
@@ -129,7 +127,7 @@ class AdvancedAuthSection extends ConsumerWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              RawChip(
+              KurumiSelectableChip(
                 backgroundColor: Theme.of(
                   context,
                 ).colorScheme.secondaryContainer,
@@ -155,7 +153,10 @@ class AdvancedAuthSection extends ConsumerWidget {
     final loginUrl = getLoginUrl();
 
     if (loginUrl == null || loginUrl.isEmpty) {
-      showErrorToast(context, 'Login URL for this booru is not available');
+      Kurumi.showErrorToast(
+        context,
+        'Login URL for this booru is not available',
+      );
       return;
     }
 
@@ -187,7 +188,7 @@ class AdvancedAuthSection extends ConsumerWidget {
                 }
                 onCookiesReceived?.call(cookies);
               } else {
-                showErrorToast(context, 'No hashed password found');
+                Kurumi.showErrorToast(context, 'No hashed password found');
               }
 
               Navigator.of(context).pop();

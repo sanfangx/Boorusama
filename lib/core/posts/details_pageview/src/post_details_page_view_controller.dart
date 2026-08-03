@@ -1,18 +1,23 @@
 // Dart imports:
-// ignore_for_file: prefer_int_literals
-
-// Dart imports:
 import 'dart:async';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../foundation/mobile.dart';
-import '../../../widgets/widgets.dart';
 import '../../slideshow/types.dart';
 import 'constants.dart';
 import 'post_details_page_view.dart';
+
+// Dart imports:
+// ignore_for_file: prefer_int_literals
+
+
+
 
 class PostDetailsPageViewController extends ChangeNotifier {
   PostDetailsPageViewController({
@@ -105,7 +110,7 @@ class PostDetailsPageViewController extends ChangeNotifier {
   void attachOverlayAnimController(AnimationController? controller) {
     _overlayAnimController = controller;
 
-    if (kEnableHeroTransition) {
+    if (Kurumi.enableHeroTransition) {
       if (!initialHideOverlay) {
         _showOverlayAnim(
           animationDelay: const Duration(milliseconds: 150),
@@ -125,7 +130,7 @@ class PostDetailsPageViewController extends ChangeNotifier {
   void attachBottomSheetAnimController(AnimationController? controller) {
     _bottomSheetAnimController = controller;
 
-    if (kEnableHeroTransition) {
+    if (Kurumi.enableHeroTransition) {
       if (!initialHideOverlay) {
         _showBottomSheetAnim(
           animationDelay: const Duration(milliseconds: 150),
@@ -510,7 +515,7 @@ class PostDetailsPageViewController extends ChangeNotifier {
     setSheetState();
   }
 
-  void onTransformationChanged(TransformationDetails details) {
+  void onTransformationChanged(KurumiTransformationDetails details) {
     final isZoomed = details.isZoomed;
     // ignore same value
     if (zoom.value == isZoomed) return;

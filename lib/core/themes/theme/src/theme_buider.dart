@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../configs/config/providers.dart';
 import '../../../premiums/providers.dart';
 import '../../../settings/providers.dart';
 import '../../colors/providers.dart';
-import '../../colors/widgets.dart';
 import '../../configs/types.dart';
 import 'app_theme.dart';
 
@@ -35,7 +35,7 @@ class ThemeBuilder extends ConsumerWidget {
     final systemDarkMode =
         MediaQuery.platformBrightnessOf(context) == Brightness.dark;
 
-    return AppDynamicColorBuilder(
+    return KurumiDynamicColorBuilder(
       builder: (lightOrigin, darkOrigin) {
         final (light, dark) = enableDynamicColor
             ? (lightOrigin, darkOrigin)

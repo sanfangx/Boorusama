@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:material_symbols_icons/symbols.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../foundation/html.dart';
 import '../themes/colors/providers.dart';
 
-class DismissableInfoContainer extends StatefulWidget {
+class DismissableInfoContainer extends ConsumerWidget {
   const DismissableInfoContainer({
     required this.content,
     super.key,
@@ -31,138 +31,38 @@ class DismissableInfoContainer extends StatefulWidget {
   final OnTap? onLinkTap;
 
   @override
-  State<DismissableInfoContainer> createState() =>
-      _DismissableInfoContainerState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final colors = ref
+        .watch(booruChipColorsProvider)
+        .fromColor(mainColor ?? Colors.grey);
+    final kurumiColors = colors == null
+        ? null
+        : KurumiChipColors(
+            foregroundColor: colors.foregroundColor,
+            backgroundColor: colors.backgroundColor,
+            borderColor: colors.borderColor,
+          );
 
-class _DismissableInfoContainerState extends State<DismissableInfoContainer> {
-  var _isDismissed = false;
-
-  @override
-  Widget build(BuildContext context) {
-    if (_isDismissed) {
-      return const SizedBox.shrink();
-    }
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final small = constraints.maxWidth < 700;
-
-        final content = Container(
-          constraints: small
-              ? null
-              : const BoxConstraints(
-                  maxWidth: 700,
-                ),
-          child: Stack(
-            children: [
-              _buildContent(),
-              if (!widget.forceShow) _buildCloseButton(),
-            ],
+    return KurumiDismissibleInfoContainer(
+      forceShow: forceShow,
+      colors: kurumiColors,
+      padding: padding,
+      buttonsPadding: buttonsPadding,
+      actions: actions,
+      content: AppHtml(
+        style: {
+          'body': Style(
+            color: colors?.foregroundColor,
           ),
-        );
-
-        return small
-            ? content
-            : Row(
-                children: [
-                  content,
-                ],
-              );
-      },
-    );
-  }
-
-  Widget _buildContent() {
-    return Consumer(
-      builder: (_, ref, _) {
-        final colors = ref
-            .watch(booruChipColorsProvider)
-            .fromColor(widget.mainColor ?? Colors.grey);
-
-        return Container(
-          margin:
-              widget.padding ??
-              const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 4,
-              ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 4,
+          'a': Style(
+            color: colors?.foregroundColor,
+            fontWeight: FontWeight.w600,
+            textDecoration: TextDecoration.underline,
+            textDecorationColor: colors?.foregroundColor,
           ),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(4)),
-            color: colors?.backgroundColor,
-            border: colors != null
-                ? Border.all(
-                    color: colors.borderColor,
-                  )
-                : null,
-          ),
-          width: MediaQuery.widthOf(context),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: AppHtml(
-                        style: {
-                          'body': Style(
-                            color: colors?.foregroundColor,
-                          ),
-                          'a': Style(
-                            color: colors?.foregroundColor,
-                            fontWeight: FontWeight.w600,
-                            textDecoration: TextDecoration.underline,
-                            textDecorationColor: colors?.foregroundColor,
-                          ),
-                        },
-                        data: widget.content,
-                        onLinkTap: widget.onLinkTap,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 20,
-                  ),
-                ],
-              ),
-              Container(
-                padding: widget.actions.isNotEmpty
-                    ? widget.buttonsPadding ??
-                          const EdgeInsets.only(
-                            left: 4,
-                            bottom: 8,
-                          )
-                    : null,
-                child: OverflowBar(
-                  children: widget.actions,
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildCloseButton() {
-    return Positioned(
-      top: 8,
-      right: 12,
-      child: IconButton(
-        icon: Icon(
-          Symbols.close,
-          color: Theme.of(context).colorScheme.onError,
-        ),
-        onPressed: () {
-          setState(() {
-            _isDismissed = true;
-          });
         },
+        data: content,
+        onLinkTap: onLinkTap,
       ),
     );
   }

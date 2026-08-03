@@ -4,16 +4,15 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../configs/config/widgets.dart';
 import '../../../posts/listing/types.dart';
 import '../../../search/search/types.dart';
-import '../../../widgets/widgets.dart';
 import '../providers/settings_notifier.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/settings_page_scaffold.dart';
-import '../widgets/settings_tile.dart';
 
 class SearchSettingsPage extends ConsumerStatefulWidget {
   const SearchSettingsPage({
@@ -33,7 +32,7 @@ class _SearchSettingsPageState extends ConsumerState<SearchSettingsPage> {
     return SettingsPageScaffold(
       title: Text(context.t.settings.search.search),
       children: [
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.search.auto_focus_search_bar),
           value: settings.autoFocusSearchBar,
           onChanged: (value) {
@@ -44,7 +43,7 @@ class _SearchSettingsPageState extends ConsumerState<SearchSettingsPage> {
             );
           },
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(
             context.t.settings.search.search_bar.scroll_behavior.persistent,
           ),
@@ -68,7 +67,7 @@ class _SearchSettingsPageState extends ConsumerState<SearchSettingsPage> {
             );
           },
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(
             context.t.settings.search.search_bar.position.search_bar_position,
           ),
@@ -82,7 +81,7 @@ class _SearchSettingsPageState extends ConsumerState<SearchSettingsPage> {
           },
           optionBuilder: (value) => Text(value.localize(context)),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(
             context.t.settings.search.hide_bookmarked_posts_from_search_results,
           ),

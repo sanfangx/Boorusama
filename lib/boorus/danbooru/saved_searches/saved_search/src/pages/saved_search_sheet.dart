@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 import 'package:rxdart/rxdart.dart';
 
 // Project imports:
 import '../../../../../../core/search/search/widgets.dart';
-import '../../../../../../core/themes/theme/types.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../../foundation/utils/stream/text_editing_controller_utils.dart';
 import '../../../../syntax/providers.dart';
 import '../types/saved_search.dart';
@@ -114,7 +113,7 @@ class _SavedSearchSheetState extends ConsumerState<SavedSearchSheet> {
           const SizedBox(
             height: 16,
           ),
-          BooruTextField(
+          KurumiTextField(
             controller: labelTextController,
             minLines: 1,
             maxLines: 2,

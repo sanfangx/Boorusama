@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../widgets/widgets.dart';
 import '../../routes.dart';
 
 enum QuickSearchInsertMode {
@@ -70,7 +70,7 @@ class QuickSearchTextField extends ConsumerWidget {
     );
 
     Widget buildTextField(InputDecoration effectiveDecoration) =>
-        BooruTextField(
+        KurumiTextField(
           controller: controller,
           autofocus: autofocus,
           minLines: minLines,

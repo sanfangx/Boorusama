@@ -9,17 +9,17 @@ import 'package:anchor_ui/anchor_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/config/types.dart';
 import '../../../../configs/manage/providers.dart';
-import '../../../../images/providers.dart';
 import '../../../../http/client/providers.dart';
+import '../../../../images/providers.dart';
 import '../../../../search/search/routes.dart';
 import '../../../../tags/show/providers.dart';
 import '../../../../tags/tag/providers.dart';
 import '../../../../tags/tag/types.dart';
-import '../../../../widgets/hover_aware_container.dart';
 import '../../../../widgets/widgets.dart';
 import '../../../post/types.dart';
 import '../../../rating/types.dart';
@@ -388,7 +388,7 @@ class TagPreviewChip extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () => goToSearchPage(ref, tag: tag.name),
-      child: HoverAwareContainer(
+      child: KurumiHoverAwareContainer(
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 4,

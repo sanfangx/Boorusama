@@ -8,17 +8,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:readmore/readmore.dart';
 
 // Project imports:
 import '../../../../foundation/clipboard.dart';
-import '../../../../foundation/toast.dart';
 import '../../../config_widgets/website_logo.dart';
 import '../../../configs/config/providers.dart';
 import '../../../images/booru_image.dart';
-import '../../../themes/theme/types.dart';
-import '../../../widgets/widgets.dart';
 import '../pages/bulk_download_saved_task_page.dart';
 import '../providers/bulk_download_notifier.dart';
 import '../providers/saved_download_task_provider.dart';
@@ -151,7 +149,7 @@ class _CreateSavedTaskButton extends ConsumerWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final notifier = ref.watch(savedDownloadTasksProvider.notifier);
 
-    return CircularIconButton(
+    return KurumiCircularIconButton(
       backgroundColor: colorScheme.surfaceContainer,
       constraints: const BoxConstraints(
         minWidth: 32,
@@ -167,7 +165,7 @@ class _CreateSavedTaskButton extends ConsumerWidget {
 
         if (success) {
           if (context.mounted) {
-            showSimpleSnackBar(
+            Kurumi.showSimpleSnackBar(
               context: context,
               content: Text(context.t.bulk_downloads.templates.created),
               action: SnackBarAction(

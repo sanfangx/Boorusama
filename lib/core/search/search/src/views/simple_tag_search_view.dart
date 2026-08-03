@@ -4,11 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../../../../core/widgets/widgets.dart';
-import '../../../../../foundation/display.dart';
 import '../../../../configs/config/providers.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../tags/autocompletes/types.dart';
@@ -24,7 +23,7 @@ void showSimpleTagSearchView(
   Widget Function(String text)? floatingActionButton,
   RouteSettings? settings,
 }) {
-  showAppModalBarBottomSheet(
+  Kurumi.showAppModalBarBottomSheet(
     context: context,
     settings: settings,
     builder: (context) => builder(context, true),
@@ -215,7 +214,7 @@ class InputSelectorButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OptionDropDownButton(
+    return KurumiOptionDropDownButton(
       alignment: AlignmentDirectional.centerStart,
       value: ref.watch(selectedInputTypeSelectorProvider),
       onChanged: (value) =>

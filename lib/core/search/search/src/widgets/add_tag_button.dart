@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class AddTagButton extends StatelessWidget {
@@ -14,17 +15,16 @@ class AddTagButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Padding(
       padding: const EdgeInsets.only(top: 4, left: 4),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          customBorder: const CircleBorder(),
-          onTap: onPressed,
-          child: const Icon(
-            Symbols.add,
-            size: 28,
-          ),
+      child: KurumiCircularIconButton(
+        constraints: const BoxConstraints(),
+        padding: EdgeInsets.zero,
+        backgroundColor: Colors.transparent,
+        onPressed: onPressed,
+        icon: const Icon(
+          Symbols.add,
+          size: 28,
         ),
       ),
     );

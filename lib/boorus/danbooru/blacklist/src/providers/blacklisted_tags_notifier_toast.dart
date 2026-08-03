@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/blacklists/types.dart';
-import '../../../../../foundation/toast.dart';
 import 'blacklisted_tags_notifier.dart';
 
 extension BlacklistedTagsNotifierX on BlacklistedTagsNotifier {
@@ -17,7 +17,7 @@ extension BlacklistedTagsNotifierX on BlacklistedTagsNotifier {
     final tags = sanitizeBlacklistTagString(tagString);
 
     if (tags == null) {
-      showErrorToast(
+      Kurumi.showErrorToast(
         context,
         'Invalid tag format',
       );
@@ -27,8 +27,8 @@ extension BlacklistedTagsNotifierX on BlacklistedTagsNotifier {
     await add(
       tagSet: tags.toSet(),
       onSuccess: (tags) =>
-          showSuccessToast(context, context.t.blacklisted_tags.updated),
-      onFailure: (e) => showErrorToast(
+          Kurumi.showSuccessToast(context, context.t.blacklisted_tags.updated),
+      onFailure: (e) => Kurumi.showErrorToast(
         context,
         '${context.t.blacklisted_tags.failed_to_add}\n$e',
       ),
@@ -40,11 +40,11 @@ extension BlacklistedTagsNotifierX on BlacklistedTagsNotifier {
     required String tag,
   }) => add(
     tagSet: {tag},
-    onSuccess: (tags) => showSuccessToast(
+    onSuccess: (tags) => Kurumi.showSuccessToast(
       context,
       context.t.blacklisted_tags.updated,
     ),
-    onFailure: (e) => showErrorToast(
+    onFailure: (e) => Kurumi.showErrorToast(
       context,
       '${context.t.blacklisted_tags.failed_to_add}\n$e',
     ),
@@ -55,11 +55,11 @@ extension BlacklistedTagsNotifierX on BlacklistedTagsNotifier {
     required String tag,
   }) => remove(
     tag: tag,
-    onSuccess: (tags) => showSuccessToast(
+    onSuccess: (tags) => Kurumi.showSuccessToast(
       context,
       context.t.blacklisted_tags.updated,
     ),
-    onFailure: () => showErrorToast(
+    onFailure: () => Kurumi.showErrorToast(
       context,
       context.t.blacklisted_tags.failed_to_remove,
     ),

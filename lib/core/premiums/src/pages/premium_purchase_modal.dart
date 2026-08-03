@@ -6,13 +6,13 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/html.dart';
 import '../../../../foundation/iap/iap.dart';
 import '../../../../foundation/info/app_info.dart';
 import '../../../../foundation/url_launcher.dart';
-import '../../../widgets/widgets.dart';
 import '../internal_widgets/subscription_plan_tile.dart';
 import '../providers/premium_purchase_provider.dart';
 
@@ -175,7 +175,7 @@ class DiscountChip extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
 
     return IgnorePointer(
-      child: RawCompactChip(
+      child: KurumiRawCompactChip(
         label: Text(
           '-${(value * 100).toStringAsFixed(0)}%',
           style: TextStyle(

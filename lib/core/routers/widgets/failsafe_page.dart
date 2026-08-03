@@ -1,9 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../foundation/display.dart';
-import '../../widgets/widgets.dart';
 
 class UnimplementedPage extends StatelessWidget {
   const UnimplementedPage({super.key});
@@ -34,7 +35,7 @@ class LargeScreenAwareInvalidPage extends StatelessWidget {
     final isLarge = context.isLargeScreen;
     final page = InvalidPage(message: message);
 
-    return isLarge && useDialog ? BooruDialog(child: page) : page;
+    return isLarge && useDialog ? KurumiDialog(child: page) : page;
   }
 }
 

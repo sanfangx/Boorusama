@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:oktoast/oktoast.dart';
 
 // Project imports:
-import '../../../../../foundation/animations/constants.dart';
 import '../../../../../foundation/clipboard.dart';
-import '../../../../../foundation/display.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../images/providers.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../details/providers.dart';
 import '../../../post/providers.dart';
 import '../../../post/types.dart';
@@ -52,7 +49,7 @@ Future<void> showPostCopySheet(
   required BooruConfigAuth config,
   required BooruConfigViewer configViewer,
 }) {
-  return showAdaptiveBottomSheet<void>(
+  return Kurumi.showAdaptiveBottomSheet<void>(
     context,
     settings: const RouteSettings(name: 'post_copy'),
     builder: (context) => PostCopySheet(
@@ -116,7 +113,7 @@ class _PostCopySheetState extends ConsumerState<PostCopySheet> {
                 ),
               ),
               const SizedBox(height: 12),
-              BooruSegmentedButton<_CopySegment>(
+              KurumiSegmentedButton<_CopySegment>(
                 initialValue: _segment,
                 segments: {
                   _CopySegment.media: context.t.post.action.media,
@@ -410,15 +407,15 @@ void _showCopiedToast() {
     'Copied',
     position: ToastPosition.bottom,
     textPadding: const EdgeInsets.all(8),
-    duration: AppDurations.shortToast,
+    duration: KurumiDurations.shortToast,
   );
 }
 
 void _showError(BuildContext context, String message) {
-  showErrorToast(
+  Kurumi.showErrorToast(
     context,
     message,
-    duration: AppDurations.longToast,
+    duration: KurumiDurations.longToast,
   );
 }
 

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pasteboard/pasteboard.dart';
 
 // Project imports:
-import 'animations/constants.dart';
 
 abstract class AppClipboard {
   static Future<void> copy(String text) =>
@@ -31,7 +31,7 @@ abstract class AppClipboard {
       message,
       position: ToastPosition.bottom,
       textPadding: const EdgeInsets.all(8),
-      duration: AppDurations.shortToast,
+      duration: KurumiDurations.shortToast,
     );
   }
 

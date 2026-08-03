@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
@@ -12,7 +13,6 @@ import '../../../../../../core/search/search/routes.dart';
 import '../../../../../../core/tags/tag/providers.dart';
 import '../../../../../../core/tags/tag/types.dart';
 import '../../../../../../core/tags/tag/widgets.dart';
-import '../../../../../../core/widgets/booru_popup_menu_button.dart';
 import '../../../../configs/providers.dart';
 import '../../../../tags/_shared/tag_list_notifier.dart';
 import '../../../../tags/tag/widgets.dart';
@@ -104,7 +104,7 @@ class DanbooruTagsTileTitle extends ConsumerWidget {
       count: count,
       menuItems: loginDetails.hasLogin()
           ? [
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(context.t.generic.action.edit),
                 onTap: () => ref.danbooruEdit(post),
               ),

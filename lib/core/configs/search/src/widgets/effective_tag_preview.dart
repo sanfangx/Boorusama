@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../search/queries/providers.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/data.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
@@ -57,7 +57,7 @@ class EffectiveTagPreview extends ConsumerWidget {
         runSpacing: 5,
         children: [
           IgnorePointer(
-            child: RawCompactChip(
+            child: KurumiRawCompactChip(
               backgroundColor: Colors.transparent,
               label: Text(
                 context.t.booru.search.any_search_query,

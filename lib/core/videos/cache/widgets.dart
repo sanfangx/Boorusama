@@ -1,8 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
+// Project imports:
 import '../../../foundation/caching/types.dart';
-import '../../widgets/widgets.dart';
 import 'types.dart';
 
 Future<CacheSize?> showVideoCacheLimitDialog(
@@ -44,7 +47,7 @@ class _VideoCacheLimitDialogState extends State<VideoCacheLimitDialog> {
   Widget build(BuildContext context) {
     final selectedSize = _selectedSize;
 
-    return BooruDialog(
+    return KurumiDialog(
       width: 420,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -69,7 +72,7 @@ class _VideoCacheLimitDialogState extends State<VideoCacheLimitDialog> {
                 icon: const Icon(Icons.remove),
               ),
               Expanded(
-                child: Slider(
+                child: KurumiSlider(
                   min: VideoCacheLimitOptions.minCustomGigabytes.toDouble(),
                   max: VideoCacheLimitOptions.maxCustomGigabytes.toDouble(),
                   value: _sliderGigabytes,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../core/configs/config/providers.dart';
@@ -80,7 +81,7 @@ class _Chip extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: ChoiceChip(
+      child: KurumiSelectableChip(
         showCheckmark: false,
         disabledColor: Theme.of(context).chipTheme.disabledColor,
         backgroundColor:

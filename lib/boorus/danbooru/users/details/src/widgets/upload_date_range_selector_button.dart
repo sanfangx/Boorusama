@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../../core/widgets/widgets.dart';
 import '../providers/local_providers.dart';
 import '../types/upload_date_range.dart';
 
@@ -17,7 +17,7 @@ class UploadDateRangeSelectorButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return OptionDropDownButton(
+    return KurumiOptionDropDownButton(
       alignment: AlignmentDirectional.centerStart,
       value: ref.watch(selectedUploadDateRangeSelectorTypeProvider),
       onChanged: (value) =>

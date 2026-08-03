@@ -6,13 +6,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Project imports:
 import '../../../core/configs/config/providers.dart';
 import '../../../core/posts/listing/widgets.dart';
 import '../../../core/posts/post/types.dart';
-import '../../../core/themes/theme/types.dart';
 import '../../../core/users/widgets.dart';
 import '../../../core/widgets/widgets.dart';
 import '../../../foundation/clipboard.dart';
@@ -37,9 +37,9 @@ class EshuushuuUserDetailsPage extends ConsumerWidget {
 
     return UserDetailsPage(
       actions: [
-        BooruPopupMenuButton(
+        KurumiPopupMenuButton(
           items: [
-            BooruPopupMenuItem(
+            KurumiPopupMenuItem(
               title: Text(context.t.profile.copy_user_id),
               onTap: () => AppClipboard.copy(userId.toString()),
             ),
@@ -223,7 +223,8 @@ class _EshuushuuUserOverview extends StatelessWidget {
               _buildDatesRow(context, dateFormat),
               if (user.isAdmin) ...[
                 const SizedBox(height: 6),
-                Chip(
+                KurumiSelectableChip(
+                  tapEnabled: false,
                   label: Text(
                     'Admin',
                     style: TextStyle(

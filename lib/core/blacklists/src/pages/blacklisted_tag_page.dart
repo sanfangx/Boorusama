@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
 import '../providers/global_blacklisted_tag_notifier.dart';
 import '../providers/local_providers.dart';
 import '../types/utils.dart';
@@ -38,7 +38,7 @@ class BlacklistedTagPage extends ConsumerWidget {
               actions: [
                 IconButton(
                   onPressed: () {
-                    showModalBottomSheet(
+                    Kurumi.showModalBottomSheet(
                       context: context,
                       routeSettings: const RouteSettings(
                         name: 'blacklisted_tag_sort',
@@ -78,7 +78,7 @@ class BlacklistedTagPage extends ConsumerWidget {
                 );
 
                 if (oldBlacklistedTag == null) {
-                  showErrorToast(context, 'Cannot find tag $oldTag');
+                  Kurumi.showErrorToast(context, 'Cannot find tag $oldTag');
                   return;
                 }
 
@@ -95,7 +95,7 @@ class BlacklistedTagPage extends ConsumerWidget {
                 );
 
                 if (blacklistedTag == null) {
-                  showErrorToast(context, 'Cannot find tag $tag');
+                  Kurumi.showErrorToast(context, 'Cannot find tag $tag');
                   return;
                 }
 

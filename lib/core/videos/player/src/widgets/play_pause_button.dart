@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class PlayPauseButton extends StatelessWidget {
@@ -10,30 +11,32 @@ class PlayPauseButton extends StatelessWidget {
     required this.onPlayingChanged,
     super.key,
     this.padding,
+    this.semanticLabel,
   });
 
   final ValueNotifier<bool> isPlaying;
   final void Function(bool value) onPlayingChanged;
   final EdgeInsetsGeometry? padding;
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: isPlaying,
-      builder: (_, playing, _) => Material(
-        color: Colors.transparent,
-        child: InkWell(
-          customBorder: const CircleBorder(),
-          onTap: () => onPlayingChanged(playing),
-          child: Padding(
-            padding: padding ?? EdgeInsets.zero,
-            child: Icon(
-              switch (playing) {
-                true => Symbols.pause,
-                false => Symbols.play_arrow,
-              },
-              fill: 1,
-            ),
+      builder: (_, playing, _) => Semantics(
+        button: true,
+        enabled: true,
+        label: semanticLabel,
+        onTap: () => onPlayingChanged(playing),
+        child: KurumiCircularIconButton(
+          constraints: const BoxConstraints(),
+          padding: padding ?? EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          semanticLabel: semanticLabel,
+          onPressed: () => onPlayingChanged(playing),
+          icon: Icon(
+            playing ? Symbols.pause : Symbols.play_arrow,
+            fill: 1,
           ),
         ),
       ),

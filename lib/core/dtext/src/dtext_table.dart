@@ -6,9 +6,9 @@ import 'package:dtext/dtext.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 // Project imports:
+import '../../../foundation/html.dart';
 import '../../configs/config/types.dart';
 import '../../text_markup/types.dart';
-import '../../../foundation/html.dart';
 import 'dtext_emoji_renderer.dart';
 import 'dtext_html.dart';
 

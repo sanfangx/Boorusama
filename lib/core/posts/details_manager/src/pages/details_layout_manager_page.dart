@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:reorderables/reorderables.dart';
 
 // Project imports:
 import '../../../../premiums/providers.dart';
 import '../../../../premiums/widgets.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../details_parts/types.dart';
 import '../providers/details_layout_provider.dart';
 import '../routes/routes.dart';

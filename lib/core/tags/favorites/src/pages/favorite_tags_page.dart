@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../foundation/clipboard.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../../routers/utils.dart';
 import '../../../../search/search/routes.dart';
 import '../../../../search/search/widgets.dart';
@@ -45,15 +45,15 @@ class FavoriteTagsPage extends ConsumerWidget {
             onPressed: () => _goToLabelsPage(context),
             icon: const Icon(Symbols.label, fill: 1, size: 20),
           ),
-          BooruPopupMenuButton(
+          KurumiPopupMenuButton(
             items: [
-              BooruPopupMenuItem(
+              KurumiPopupMenuItem(
                 title: Text(context.t.settings.backup_and_restore.import),
                 icon: const Icon(Symbols.upload),
                 onTap: () => goToFavoriteTagImportPage(context),
               ),
               if (allTags.isNotEmpty)
-                BooruPopupMenuItem(
+                KurumiPopupMenuItem(
                   title: Text(context.t.settings.backup_and_restore.export),
                   icon: const Icon(Symbols.download),
                   onTap: () => favoritesNotifier.export(
@@ -161,7 +161,7 @@ class FavoriteTagsPage extends ConsumerWidget {
 
   void _showAddSheet(BuildContext context, WidgetRef ref) {
     final duplicateError = context.t.favorite_tags.duplicate_error;
-    showBooruModalBottomSheet(
+    Kurumi.showModalBottomSheet(
       context: context,
       routeSettings: const RouteSettings(name: 'add_favorite_tag'),
       resizeToAvoidBottomInset: true,
@@ -237,7 +237,7 @@ class _SearchAndFilterControls extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Row(
               children: [
-                OptionDropDownButton<FavoriteTagFilterType>(
+                KurumiOptionDropDownButton<FavoriteTagFilterType>(
                   value: selectedType,
                   backgroundColor: Colors.transparent,
                   borderSide: filterButtonBorder,
@@ -268,7 +268,7 @@ class _SearchAndFilterControls extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(width: 8),
-                OptionDropDownButton<String>(
+                KurumiOptionDropDownButton<String>(
                   value: selectedLabel,
                   backgroundColor: Colors.transparent,
                   borderSide: filterButtonBorder,
@@ -308,7 +308,7 @@ class _SearchAndFilterControls extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(width: 8),
-                OptionDropDownButton<FavoriteTagGroupType>(
+                KurumiOptionDropDownButton<FavoriteTagGroupType>(
                   value: groupType,
                   backgroundColor: Colors.transparent,
                   borderSide: filterButtonBorder,
@@ -339,7 +339,7 @@ class _SearchAndFilterControls extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(width: 8),
-                OptionDropDownButton<FavoriteTagsSortType>(
+                KurumiOptionDropDownButton<FavoriteTagsSortType>(
                   value: sortType,
                   backgroundColor: Colors.transparent,
                   borderSide: filterButtonBorder,
@@ -610,19 +610,19 @@ class _FavoriteTagTile extends ConsumerWidget {
               ),
             )
           : null,
-      trailing: BooruPopupMenuButton(
+      trailing: KurumiPopupMenuButton(
         items: [
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.generic.action.edit),
             icon: const Icon(Symbols.edit),
             onTap: () => _edit(context, ref),
           ),
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.favorite_tags.copy_exact_value),
             icon: const Icon(Symbols.content_copy),
             onTap: () => AppClipboard.copyWithDefaultToast(context, tag.name),
           ),
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.generic.action.delete),
             icon: const Icon(Symbols.delete),
             onTap: () => _delete(context, ref),
@@ -634,7 +634,7 @@ class _FavoriteTagTile extends ConsumerWidget {
 
   void _edit(BuildContext context, WidgetRef ref) {
     final duplicateError = context.t.favorite_tags.duplicate_error;
-    showBooruModalBottomSheet(
+    Kurumi.showModalBottomSheet(
       context: context,
       routeSettings: const RouteSettings(name: 'edit_favorite_tag'),
       resizeToAvoidBottomInset: true,
@@ -658,7 +658,7 @@ class _FavoriteTagTile extends ConsumerWidget {
         .remove(tag.name);
     if (!context.mounted || deleted == null) return;
 
-    showSimpleSnackBar(
+    Kurumi.showSimpleSnackBar(
       context: context,
       content: Text(context.t.favorite_tags.deleted),
       action: SnackBarAction(

@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../settings/providers.dart';
 import '../../../settings/types.dart';
-import '../../../themes/theme/types.dart';
 import '../../../widgets/widgets.dart';
 import 'import_data_notifier.dart';
 
@@ -25,7 +25,7 @@ class TransferDataDialog extends ConsumerWidget {
     final theme = Theme.of(context);
     final step = ref.watch(importDataProvider(url).select((s) => s.step));
 
-    return BooruDialog(
+    return KurumiDialog(
       color: theme.colorScheme.surfaceContainerLow,
       dismissible: false,
       child: Theme(

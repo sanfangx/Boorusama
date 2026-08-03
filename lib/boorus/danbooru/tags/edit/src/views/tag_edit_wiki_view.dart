@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/tags/tag/types.dart';
 import '../../../../../../core/themes/colors/providers.dart';
-import '../../../../../../core/themes/theme/types.dart';
-import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../../foundation/platform.dart';
 import '../../../related/providers.dart';
 
@@ -55,7 +54,7 @@ class _TagEditzwikiViewState extends ConsumerState<TagEditWikiView> {
           child: Column(
             children: [
               Center(
-                child: BooruSegmentedButton(
+                child: KurumiSegmentedButton(
                   segments: {
                     for (final entry in relatedTabs) entry: entry.sentenceCase,
                   },
@@ -142,7 +141,7 @@ class _RelatedTagChips extends ConsumerWidget {
           ),
         );
 
-        return RawChip(
+        return KurumiSelectableChip(
           selected: selected,
           showCheckmark: false,
           checkmarkColor: colors?.foregroundColor,

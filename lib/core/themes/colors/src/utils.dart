@@ -2,8 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:dynamic_color/dynamic_color.dart';
-import 'package:equatable/equatable.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import 'color_utils.dart';
@@ -16,7 +15,7 @@ class BooruChipColors {
     return BooruChipColors._(
       brightness: colorScheme.brightness,
       harmonizer: harmonizeWithPrimary != null && harmonizeWithPrimary
-          ? ColorHarmonizer(
+          ? KurumiColorHarmonizer(
               primaryColor: colorScheme.primary,
               harmonizeWithPrimary: harmonizeWithPrimary,
             )
@@ -30,9 +29,9 @@ class BooruChipColors {
   });
 
   final Brightness? brightness;
-  final ColorHarmonizer? harmonizer;
+  final KurumiColorHarmonizer? harmonizer;
 
-  ChipColors? fromColor(Color? color) {
+  KurumiChipColors? fromColor(Color? color) {
     if (color == null) return null;
 
     final legacyColor = LegacyColor(color);
@@ -40,7 +39,7 @@ class BooruChipColors {
     if (brightness == Brightness.light) {
       final backgroundColor = harmonizer?.harmonize(legacyColor) ?? legacyColor;
 
-      return ChipColors(
+      return KurumiChipColors(
         backgroundColor: backgroundColor,
         foregroundColor: backgroundColor.computeLuminance() > 0.7
             ? Colors.black
@@ -63,44 +62,10 @@ class BooruChipColors {
       1,
     );
 
-    return ChipColors(
+    return KurumiChipColors(
       foregroundColor: harmonizer?.harmonize(legacyColor) ?? legacyColor,
       backgroundColor: harmonizer?.harmonize(darkColor) ?? darkColor,
       borderColor: harmonizer?.harmonize(neutralDarkColor) ?? neutralDarkColor,
     );
   }
-}
-
-class ChipColors extends Equatable {
-  const ChipColors({
-    required this.foregroundColor,
-    required this.backgroundColor,
-    required this.borderColor,
-  });
-
-  final Color foregroundColor;
-  final Color backgroundColor;
-  final Color borderColor;
-
-  @override
-  List<Object?> get props => [foregroundColor, backgroundColor, borderColor];
-}
-
-class ColorHarmonizer extends Equatable {
-  const ColorHarmonizer({
-    required this.primaryColor,
-    required this.harmonizeWithPrimary,
-  });
-
-  final Color primaryColor;
-  final bool harmonizeWithPrimary;
-
-  Color harmonize(Color color) {
-    return harmonizeWithPrimary
-        ? color.harmonizeWith(primaryColor)
-        : primaryColor;
-  }
-
-  @override
-  List<Object?> get props => [primaryColor, harmonizeWithPrimary];
 }

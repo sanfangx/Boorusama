@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
@@ -12,7 +13,6 @@ import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 // Project imports:
 import '../../../../../foundation/platform.dart';
 import '../../../../themes/colors/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../lock/types.dart';
 import '../types/booru_player.dart';
 import '../types/video_source.dart';
@@ -435,7 +435,7 @@ class WebViewBooruPlayer implements BooruPlayer {
       return const SizedBox.shrink();
     }
 
-    return BooruHero(
+    return KurumiHero(
       tag: null,
       child: ColoredBox(
         color: _backgroundColor,

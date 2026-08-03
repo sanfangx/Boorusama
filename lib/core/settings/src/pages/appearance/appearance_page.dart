@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/platform.dart';
@@ -16,14 +17,11 @@ import '../../../../premiums/types.dart';
 import '../../../../themes/colors/providers.dart';
 import '../../../../themes/theme/types.dart';
 import '../../../../themes/viewers/widgets.dart';
-import '../../../../widgets/widgets.dart';
 import '../../providers/settings_notifier.dart';
 import '../../providers/settings_provider.dart';
 import '../../types/settings.dart';
-import '../../widgets/settings_header.dart';
 import '../../widgets/settings_interaction_blocker.dart';
 import '../../widgets/settings_page_scaffold.dart';
-import '../../widgets/settings_tile.dart';
 import 'image_listing_settings_section.dart';
 
 class AppearancePage extends ConsumerStatefulWidget {
@@ -45,7 +43,7 @@ class _AppearancePageState extends ConsumerState<AppearancePage> {
     return SettingsPageScaffold(
       title: Text(context.t.settings.appearance.appearance),
       children: [
-        SettingsHeader(label: context.t.settings.general),
+        KurumiSettingsHeader(label: context.t.settings.general),
         if (!hasPremium)
           _buildSimpleTheme(settings)
         else
@@ -68,7 +66,7 @@ class _AppearancePageState extends ConsumerState<AppearancePage> {
             ),
           ),
         const Divider(thickness: 1),
-        SettingsHeader(label: context.t.settings.image_grid.image_grid),
+        KurumiSettingsHeader(label: context.t.settings.image_grid.image_grid),
         ListingSettingsInteractionBlocker(
           child: ImageListingSettingsSection(
             listing: settings.listing,
@@ -92,7 +90,7 @@ class _AppearancePageState extends ConsumerState<AppearancePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.theme.theme),
           selectedOption: settings.themeMode,
           items: AppThemeMode.values,
@@ -102,7 +100,7 @@ class _AppearancePageState extends ConsumerState<AppearancePage> {
         ),
         Builder(
           builder: (context) {
-            return BooruSwitchListTile(
+            return KurumiSwitchListTile(
               title: Text(context.t.settings.theme.dynamic_color),
               subtitle: dynamicColorSupported
                   ? !isDesktopPlatform()

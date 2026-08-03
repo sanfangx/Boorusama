@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../core/boorus/defaults/widgets.dart';
@@ -16,7 +17,6 @@ import '../../core/posts/details_parts/types.dart';
 import '../../core/posts/post/providers.dart';
 import '../../core/search/search/routes.dart';
 import '../../core/search/search/widgets.dart';
-import '../../core/widgets/widgets.dart';
 import '../../foundation/html.dart';
 import 'configs/widgets.dart';
 
@@ -85,7 +85,7 @@ class GelbooruV1SearchPage extends ConsumerWidget {
 
     return SearchPageScaffold(
       landingViewBuilder: (controller) => DefaultMobileSearchLandingView(
-        notice: InfoContainer(
+        notice: KurumiInfoContainer(
           contentBuilder: (context) => const AppHtml(
             data: 'The app will use <b>Gelbooru</b> for tag completion.',
           ),

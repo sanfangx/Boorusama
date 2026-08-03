@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 // Project imports:
-import '../themes/theme/types.dart';
 import 'booru_chip.dart';
 import 'option_searchable_sheet.dart';
 
@@ -21,9 +21,7 @@ final class ButtonType extends OptionSelectorItem {
 }
 
 final class OptionType<T> extends OptionSelectorItem {
-  const OptionType({
-    required this.data,
-  });
+  const OptionType({required this.data});
 
   final T data;
 }
@@ -85,7 +83,7 @@ class _ChoiceOptionSelectorListState<T>
 
   @override
   Widget build(BuildContext context) {
-    final options = [
+    final options = <OptionSelectorItem?>[
       if (widget.searchable) const ButtonType(),
       if (widget.hasNullOption) null,
       ...widget.options.map((e) => OptionType(data: e)),
@@ -112,93 +110,21 @@ class _ChoiceOptionSelectorListState<T>
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: switch (value) {
-              null => AutoScrollTag(
-                controller: scrollController,
+              null => _buildOption(
+                value: null,
                 index: index,
-                key: ValueKey(index),
-                child: BooruChip(
-                  borderRadius: BorderRadius.circular(8),
-                  disabled: !selected,
-                  color: selected
-                      ? colorScheme.onSurface
-                      : colorScheme.hintColor,
-                  onPressed: () => _onSelect(
-                    null,
-                    index,
-                    options.length,
-                  ),
-                  label: Text(
-                    widget.optionLabelBuilder(null),
-                    style: TextStyle(
-                      color: selected ? null : colorScheme.onSurface,
-                    ),
-                  ),
-                ),
+                total: options.length,
+                selected: selected,
+                colorScheme: colorScheme,
               ),
-              final OptionType o => AutoScrollTag(
-                controller: scrollController,
+              final OptionType option => _buildOption(
+                value: option.data as T,
                 index: index,
-                key: ValueKey(index),
-                child: BooruChip(
-                  borderRadius: BorderRadius.circular(8),
-                  disabled: !selected,
-                  color: selected
-                      ? colorScheme.onSurface
-                      : colorScheme.hintColor,
-                  onPressed: () => _onSelect(
-                    o.data,
-                    index,
-                    options.length,
-                  ),
-                  label: Text(
-                    widget.optionLabelBuilder(o.data),
-                    style: TextStyle(
-                      color: selected ? null : colorScheme.onSurface,
-                    ),
-                  ),
-                ),
+                total: options.length,
+                selected: selected,
+                colorScheme: colorScheme,
               ),
-              ButtonType _ => IconButton(
-                iconSize: 20,
-                onPressed: () {
-                  final items = options.whereType<OptionType<T>>().toList();
-                  showBarModalBottomSheet(
-                    context: context,
-                    settings: const RouteSettings(
-                      name: 'choice_option_selector',
-                    ),
-                    duration: const Duration(milliseconds: 300),
-                    builder: (context) => OptionSearchableSheet(
-                      title: widget.sheetTitle,
-                      items: items,
-                      scrollController: ModalScrollController.of(context),
-                      onFilter: (query) => items.where((e) {
-                        final value = widget.optionLabelBuilder(e.data);
-
-                        return value.toLowerCase().contains(
-                          query.toLowerCase(),
-                        );
-                      }).toList(),
-                      itemBuilder: (context, option) => ListTile(
-                        minVerticalPadding: 4,
-                        title: Text(
-                          widget.optionLabelBuilder(option.data),
-                        ),
-                        onTap: () {
-                          Navigator.pop(context);
-                          final valueIndex = options.indexOf(option);
-                          _onSelect(
-                            option.data,
-                            valueIndex,
-                            options.length,
-                          );
-                        },
-                      ),
-                    ),
-                  );
-                },
-                icon: widget.icon ?? const Icon(Symbols.tune),
-              ),
+              ButtonType _ => _buildSearchButton(context, options),
             },
           );
         },
@@ -206,8 +132,100 @@ class _ChoiceOptionSelectorListState<T>
     );
   }
 
+  Widget _buildOption({
+    required T? value,
+    required int index,
+    required int total,
+    required bool selected,
+    required ColorScheme colorScheme,
+  }) {
+    final label = widget.optionLabelBuilder(value);
+
+    void select() => _onSelect(value, index, total);
+
+    return Semantics(
+      label: label,
+      selected: selected,
+      button: true,
+      enabled: true,
+      onTap: select,
+      excludeSemantics: true,
+      child: AutoScrollTag(
+        controller: scrollController,
+        index: index,
+        key: ValueKey(index),
+        child: BooruChip(
+          borderRadius: BorderRadius.circular(8),
+          disabled: !selected,
+          color: selected ? colorScheme.onSurface : colorScheme.hintColor,
+          onPressed: select,
+          label: Text(
+            label,
+            style: TextStyle(
+              color: selected ? null : colorScheme.onSurface,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSearchButton(
+    BuildContext context,
+    List<OptionSelectorItem?> options,
+  ) {
+    void showSearch() {
+      final items = options.whereType<OptionType<T>>().toList();
+      Kurumi.showAppModalBarBottomSheet(
+        context: context,
+        settings: const RouteSettings(
+          name: 'choice_option_selector',
+        ),
+        duration: const Duration(milliseconds: 300),
+        builder: (context) => OptionSearchableSheet(
+          title: widget.sheetTitle,
+          items: items,
+          scrollController: ModalScrollController.of(context),
+          onFilter: (query) => items.where((e) {
+            final value = widget.optionLabelBuilder(e.data);
+
+            return value.toLowerCase().contains(
+              query.toLowerCase(),
+            );
+          }).toList(),
+          itemBuilder: (context, option) => ListTile(
+            minVerticalPadding: 4,
+            title: Text(
+              widget.optionLabelBuilder(option.data),
+            ),
+            onTap: () {
+              Navigator.pop(context);
+              final valueIndex = options.indexOf(option);
+              _onSelect(
+                option.data,
+                valueIndex,
+                options.length,
+              );
+            },
+          ),
+        ),
+      );
+    }
+
+    return Semantics(
+      button: true,
+      onTap: showSearch,
+      child: IconButton(
+        iconSize: 20,
+        onPressed: showSearch,
+        icon: widget.icon ?? const Icon(Symbols.tune),
+      ),
+    );
+  }
+
   void _onSelect(T? value, int index, int total) {
-    // attempt tot scroll to adjecent index to make it obvious that there is still more options
+    // Attempt to scroll to an adjacent index to make it obvious that there
+    // are still more options.
     final targetIndex = index + 1;
     final effectiveIndex = targetIndex < total ? targetIndex : index;
 

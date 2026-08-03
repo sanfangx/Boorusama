@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/url_launcher.dart';
@@ -15,7 +16,6 @@ import '../../../router.dart';
 import '../../../tags/categories/types.dart';
 import '../../../tags/tag/widgets.dart';
 import '../../../themes/colors/providers.dart';
-import '../../../themes/theme/types.dart';
 import '../../../widgets/widgets.dart';
 import '../../details/types.dart';
 import '../../post/types.dart';
@@ -315,7 +315,7 @@ class ArtistNameInfoChip extends ConsumerWidget {
     return Flexible(
       child: GeneralTagContextMenu(
         tag: artist,
-        child: CompactChip(
+        child: KurumiCompactChip(
           textColor: colors?.foregroundColor,
           label: artist.replaceAll('_', ' '),
           onTap: () => onTap?.call(artist),

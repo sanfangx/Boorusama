@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:booru_clients/nozomi.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/config/providers.dart';
@@ -183,27 +184,13 @@ class NozomiSearchOrderControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SegmentedButton<NozomiPostOrder>(
-      showSelectedIcon: false,
-      style: SegmentedButton.styleFrom(
-        visualDensity: VisualDensity.compact,
-      ),
-      segments: const [
-        ButtonSegment(
-          value: NozomiPostOrder.date,
-          label: Text('Date'),
-        ),
-        ButtonSegment(
-          value: NozomiPostOrder.popular,
-          label: Text('Popular'),
-        ),
-      ],
-      selected: {order},
-      onSelectionChanged: (selection) {
-        if (selection.isEmpty) return;
-
-        onOrderChanged(selection.first);
+    return KurumiSegmentedButton<NozomiPostOrder>(
+      segments: const {
+        NozomiPostOrder.date: 'Date',
+        NozomiPostOrder.popular: 'Popular',
       },
+      initialValue: order,
+      onChanged: onOrderChanged,
     );
   }
 }

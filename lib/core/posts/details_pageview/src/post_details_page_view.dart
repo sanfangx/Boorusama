@@ -1,20 +1,16 @@
 // Dart imports:
-// ignore_for_file: prefer_int_literals
-
-// Dart imports:
 import 'dart:async';
 
 // Flutter imports:
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../foundation/display.dart';
 import '../../../../foundation/mobile.dart';
 import '../../../../foundation/platform.dart';
-import '../../../widgets/widgets.dart';
 import '../../slideshow/widgets.dart';
 import 'constants.dart';
 import 'drag_sheet.dart';
@@ -25,6 +21,13 @@ import 'post_details_page_view_controller.dart';
 import 'post_details_shortcuts.dart';
 import 'sheet_state_storage.dart';
 import 'side_sheet.dart';
+
+// Dart imports:
+// ignore_for_file: prefer_int_literals
+
+
+
+
 
 enum ViewMode {
   horizontal,
@@ -211,7 +214,7 @@ class _PostDetailsPageViewState extends State<PostDetailsPageView>
   }
 
   void _onPop() {
-    if (kEnableHeroTransition && !widget.disableAnimation) {
+    if (Kurumi.enableHeroTransition && !widget.disableAnimation) {
       _controller.forceHideOverlay.value = true;
       _controller.forceHideBottomSheet.value = true;
     }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -12,7 +13,6 @@ import '../../../../../core/posts/details/widgets.dart';
 import '../../../../../core/settings/providers.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../../../foundation/display.dart';
-import '../../../../../foundation/scrolling.dart';
 import 'providers/tag_edit_notifier.dart';
 import 'tag_edit_content.dart';
 import 'tag_edit_split_layout.dart';

@@ -1,15 +1,14 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 // Package imports:
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../settings/providers.dart';
 import 'adaptive_button_row.dart';
 
-class BooruMenuButtonRow extends ConsumerWidget {
+class BooruMenuButtonRow extends StatelessWidget {
   const BooruMenuButtonRow({
     required this.buttons,
     this.buttonWidth,
@@ -40,16 +39,12 @@ class BooruMenuButtonRow extends ConsumerWidget {
   final VoidCallback? onMenuTap;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final hapticLevel = ref.watch(hapticFeedbackLevelProvider);
-    final reduceAnimation = ref.watch(
-      settingsProvider.select(
-        (value) => value.reduceAnimations,
-      ),
-    );
+  Widget build(BuildContext context) {
+    final behavior = KurumiTheme.behaviorOf(context);
 
-    return AdaptiveButtonRow.menu(
-      buttons: buttons,
+    return KurumiAdaptiveButtonRow.menu(
+      buttons: buttons.cast<KurumiButtonData>(),
+      overflowLabel: context.t.generic.action.more,
       buttonWidth: buttonWidth,
       spacing: spacing,
       overflowIcon: overflowIcon,
@@ -57,25 +52,14 @@ class BooruMenuButtonRow extends ConsumerWidget {
       maxVisibleButtons: maxVisibleButtons,
       alignment: alignment,
       padding: padding,
-      reduceAnimation: reduceAnimation,
       onOpened: () {
-        if (hapticLevel.isFull) {
-          HapticFeedback.selectionClick();
-        }
-
-        if (onOpened case final callback?) {
-          callback();
-        }
+        behavior.adaptiveMenuFeedback?.call();
+        onOpened?.call();
       },
       onClosed: onClosed,
       onMenuTap: () {
-        if (hapticLevel.isFull) {
-          HapticFeedback.selectionClick();
-        }
-
-        if (onMenuTap case final callback?) {
-          callback();
-        }
+        behavior.adaptiveMenuFeedback?.call();
+        onMenuTap?.call();
       },
     );
   }

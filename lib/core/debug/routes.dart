@@ -3,11 +3,10 @@ import 'package:flutter/widgets.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../foundation/display.dart';
 import '../router.dart';
-import '../widgets/booru_dialog.dart';
 import 'widgets.dart';
 
 final debuglogRoutes = GoRoute(
@@ -21,7 +20,7 @@ final debuglogRoutes = GoRoute(
       const page = DebugLogsPage();
 
       return landscape
-          ? const BooruDialog(
+          ? const KurumiDialog(
               padding: EdgeInsets.all(8),
               child: page,
             )

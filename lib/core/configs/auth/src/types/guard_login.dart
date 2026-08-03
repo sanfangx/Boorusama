@@ -4,10 +4,9 @@ import 'package:flutter/widgets.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/animations/constants.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../config/providers.dart';
 
 void guardLogin(WidgetRef ref, void Function() action) {
@@ -15,12 +14,12 @@ void guardLogin(WidgetRef ref, void Function() action) {
   final loginDetails = ref.read(booruLoginDetailsProvider(auth));
 
   if (!loginDetails.hasLogin()) {
-    showSimpleSnackBar(
+    Kurumi.showSimpleSnackBar(
       context: ref.context,
       content: Text(
         ref.context.t.post.detail.login_required_notice,
       ),
-      duration: AppDurations.shortToast,
+      duration: KurumiDurations.shortToast,
     );
 
     return;
@@ -35,11 +34,11 @@ extension GuardLoginSnackBarX on WidgetRef {
     String message, {
     Color? backgroundColor,
   }) {
-    showSuccessToast(
+    Kurumi.showSuccessToast(
       context,
       message,
       backgroundColor: backgroundColor,
-      duration: AppDurations.shortToast,
+      duration: KurumiDurations.shortToast,
     );
   }
 }

@@ -23,45 +23,52 @@ class MultiSelectButton extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final iconTheme = IconTheme.of(context);
 
-    return InkWell(
-      hoverColor: Theme.of(context).hoverColor.withValues(alpha: 0.1),
-      customBorder: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
+    return Semantics(
+      label: name,
+      button: true,
+      enabled: onPressed != null,
       onTap: onPressed,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 4),
-          Theme(
-            data: ThemeData(
-              iconTheme: iconTheme.copyWith(
-                color: onPressed != null
-                    ? colorScheme.onSurface
-                    : colorScheme.hintColor,
+      excludeSemantics: true,
+      child: InkWell(
+        hoverColor: Theme.of(context).hoverColor.withValues(alpha: 0.1),
+        customBorder: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        onTap: onPressed,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(height: 4),
+            Theme(
+              data: ThemeData(
+                iconTheme: iconTheme.copyWith(
+                  color: onPressed != null
+                      ? colorScheme.onSurface
+                      : colorScheme.hintColor,
+                ),
+              ),
+              child: icon,
+            ),
+            const SizedBox(height: 4),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 4,
+                right: 4,
+                bottom: 4,
+              ),
+              child: Text(
+                name,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 10,
+                  letterSpacing: 0.5,
+                  color: onPressed != null ? null : colorScheme.hintColor,
+                ),
               ),
             ),
-            child: icon,
-          ),
-          const SizedBox(height: 4),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 4,
-              right: 4,
-              bottom: 4,
-            ),
-            child: Text(
-              name,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontSize: 10,
-                letterSpacing: 0.5,
-                color: onPressed != null ? null : colorScheme.hintColor,
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

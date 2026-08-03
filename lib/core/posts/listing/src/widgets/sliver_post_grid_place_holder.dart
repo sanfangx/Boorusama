@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:sliver_masonry_grid/sliver_masonry_grid.dart';
 
 // Project imports:
-import '../../../../images/booru_image.dart';
 import '../../../../images/utils.dart';
 import '../_internal/raw_post_grid.dart';
 import '../types/image_list_type.dart';
@@ -73,7 +73,7 @@ class SliverPostGridPlaceHolder extends ConsumerWidget {
                 crossAxisSpacing: imageGridSpacing,
               ),
               delegate: SliverChildBuilderDelegate(
-                (context, _) => ImagePlaceHolder(
+                (context, _) => KurumiImagePlaceholder(
                   borderRadius: imageBorderRadius,
                 ),
                 childCount: perPage,

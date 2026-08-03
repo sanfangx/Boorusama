@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../foundation/info/device_info.dart';
@@ -150,7 +151,7 @@ class BooruRawImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imagePlaceHolder = ImagePlaceHolder(
+    final imagePlaceHolder = KurumiImagePlaceholder(
       borderRadius: borderRadius ?? _defaultRadius,
     );
 
@@ -314,34 +315,6 @@ bool _hasAspectRatioMismatch(
       _placeholderAspectRatioMismatchThreshold;
 }
 
-class ImagePlaceHolder extends StatelessWidget {
-  const ImagePlaceHolder({
-    super.key,
-    this.borderRadius,
-    this.width,
-    this.height,
-  });
-
-  final BorderRadiusGeometry? borderRadius;
-  final double? width;
-  final double? height;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: Theme.of(
-          context,
-        ).colorScheme.surfaceContainerHigh.withValues(alpha: 0.5),
-        borderRadius: borderRadius ?? _defaultRadius,
-      ),
-      child: const SizedBox.shrink(),
-    );
-  }
-}
-
 class ErrorPlaceholder extends StatelessWidget {
   const ErrorPlaceholder({
     super.key,
@@ -351,26 +324,13 @@ class ErrorPlaceholder extends StatelessWidget {
   final BorderRadiusGeometry? borderRadius;
 
   @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerLow,
-        borderRadius: borderRadius ?? _defaultRadius,
-      ),
-      child: LayoutBuilder(
-        builder: (context, constraints) => Container(
-          margin: EdgeInsets.symmetric(
-            horizontal: constraints.maxWidth * 0.25,
-            vertical: constraints.maxHeight * 0.25,
-          ),
-          child: Image.asset(
-            'assets/images/error.png',
-            color: Theme.of(context).colorScheme.surface,
-          ),
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => KurumiImageErrorPlaceholder(
+    borderRadius: borderRadius,
+    child: Image.asset(
+      'assets/images/error.png',
+      color: Theme.of(context).colorScheme.surface,
+    ),
+  );
 }
 
 class NullableAspectRatio extends StatelessWidget {

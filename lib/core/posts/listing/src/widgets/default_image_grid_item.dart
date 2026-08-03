@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:selection_mode/selection_mode.dart';
 
@@ -12,7 +13,6 @@ import '../../../../configs/config/providers.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../images/booru_image.dart';
 import '../../../../settings/providers.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../details/routes.dart';
 import '../../../post/types.dart';
 import '../../../post/widgets.dart';
@@ -61,7 +61,7 @@ class DefaultImageGridItem<T extends Post> extends StatelessWidget {
           final post = posts[index];
           return HeroMode(
             enabled: useHero,
-            child: BooruHero(
+            child: KurumiHero(
               tag: '${post.id}_hero',
               child: ExplicitContentBlockOverlay(
                 rating: post.rating,

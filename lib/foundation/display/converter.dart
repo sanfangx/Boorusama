@@ -1,9 +1,8 @@
-// Project imports:
-import 'types.dart';
+// Package imports:
+import 'package:kurumi/kurumi.dart';
 
-ScreenSize screenWidthToDisplaySize(double width) => switch (width) {
-  <= 600 => ScreenSize.small,
-  <= 1100 => ScreenSize.medium,
-  <= 1500 => ScreenSize.large,
-  _ => ScreenSize.veryLarge,
-};
+// Project imports:
+import 'screen_size.dart';
+
+ScreenSize screenWidthToDisplaySize(double width) =>
+    KurumiScreen.sizeForWidth(width);

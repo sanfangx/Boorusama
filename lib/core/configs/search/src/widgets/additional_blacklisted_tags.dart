@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../../../create/create.dart';
 import '../../../create/providers.dart';
@@ -51,7 +51,7 @@ class AdditionalBlacklistedTags extends ConsumerWidget {
 
     final colorScheme = Theme.of(context).colorScheme;
 
-    return GrayedOut(
+    return KurumiGrayedOut(
       grayedOut: !enabled,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

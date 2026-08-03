@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -91,7 +92,8 @@ class _PostListConfigurationHeaderState
                         if (hiddenCount != null)
                           if (hiddenCount > 0)
                             if (constraints.maxWidth > 250)
-                              Chip(
+                              KurumiSelectableChip(
+                                tapEnabled: false,
                                 padding: EdgeInsets.zero,
                                 visualDensity: const ShrinkVisualDensity(),
                                 backgroundColor: colorScheme.primary,

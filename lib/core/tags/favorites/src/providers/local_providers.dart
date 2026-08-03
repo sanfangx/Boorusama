@@ -2,10 +2,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Project imports:
-import 'favorite_tags_notifier.dart';
-import '../types/favorite_tags_sort_type.dart';
 import '../types/favorite_tag_filter_type.dart';
 import '../types/favorite_tag_group_type.dart';
+import '../types/favorite_tags_sort_type.dart';
+import 'favorite_tags_notifier.dart';
 
 final selectedFavoriteTagQueryProvider = StateProvider.autoDispose<String>((
   ref,

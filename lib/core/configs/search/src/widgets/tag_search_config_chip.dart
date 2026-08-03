@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
-import '../../../../widgets/compact_chip.dart';
+// Package imports:
+import 'package:kurumi/kurumi.dart';
 
 class TagSearchConfigChip extends StatelessWidget {
   const TagSearchConfigChip({
@@ -18,7 +18,7 @@ class TagSearchConfigChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return RawCompactChip(
+    return KurumiRawCompactChip(
       padding: const EdgeInsets.symmetric(
         vertical: 4,
         horizontal: 8,

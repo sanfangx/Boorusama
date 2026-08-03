@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../themes/theme/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 import '../types/actions.dart';
@@ -155,7 +154,7 @@ class _GestureConfigTile extends StatelessWidget {
         constraints: const BoxConstraints(
           minWidth: 160,
         ),
-        child: OptionDropDownButton<String?>(
+        child: KurumiOptionDropDownButton<String?>(
           value: value,
           alignment: AlignmentDirectional.bottomStart,
           onChanged: onChanged,

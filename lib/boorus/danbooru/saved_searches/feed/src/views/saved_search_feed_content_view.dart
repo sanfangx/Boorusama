@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/posts/listing/widgets.dart';
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../posts/listing/widgets.dart';
 import '../../../../posts/post/providers.dart';
 import '../../../saved_search/routes.dart';
@@ -131,7 +131,7 @@ class _SavedSearchList extends ConsumerWidget {
       search: search,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: ChoiceChip(
+        child: KurumiSelectableChip(
           selected: isSelected,
           onSelected: (selected) {
             if (!isSelected) {

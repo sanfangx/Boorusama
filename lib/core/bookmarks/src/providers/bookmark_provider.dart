@@ -8,9 +8,9 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
 import '../../../boorus/booru/types.dart';
 import '../../../boorus/engine/providers.dart';
 import '../../../configs/config/types.dart';
@@ -295,7 +295,7 @@ class BookmarkNotifier extends AsyncNotifier<BookmarkState> {
           .join('\n');
 
       if (context != null && context.mounted) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           'Download failed:\n$uniqueErrors',
           duration: const Duration(seconds: 5),
@@ -319,8 +319,8 @@ extension BookmarkCubitToastX on BookmarkNotifier {
     await addBookmark(
       config,
       post,
-      onSuccess: () => showSuccessToast(context, context.t.bookmark.added),
-      onError: () => showErrorToast(context, context.t.bookmark.failed_to_add),
+      onSuccess: () => Kurumi.showSuccessToast(context, context.t.bookmark.added),
+      onError: () => Kurumi.showErrorToast(context, context.t.bookmark.failed_to_add),
     );
   }
 
@@ -338,12 +338,12 @@ extension BookmarkCubitToastX on BookmarkNotifier {
     await addBookmarks(
       config,
       posts,
-      onSuccess: (count) => showSuccessToast(
+      onSuccess: (count) => Kurumi.showSuccessToast(
         context,
         context.t.bookmark.many_added.replaceAll('{0}', '$count'),
       ),
       onError: () =>
-          showErrorToast(context, context.t.bookmark.failed_to_add_many),
+          Kurumi.showErrorToast(context, context.t.bookmark.failed_to_add_many),
     );
   }
 
@@ -360,11 +360,11 @@ extension BookmarkCubitToastX on BookmarkNotifier {
     await removeBookmarkFromId(
       bookmarkId,
       onSuccess: () {
-        showSuccessToast(context, context.t.bookmark.removed);
+        Kurumi.showSuccessToast(context, context.t.bookmark.removed);
         onSuccess?.call();
       },
       onError: () =>
-          showErrorToast(context, context.t.bookmark.failed_to_remove),
+          Kurumi.showErrorToast(context, context.t.bookmark.failed_to_remove),
     );
   }
 }

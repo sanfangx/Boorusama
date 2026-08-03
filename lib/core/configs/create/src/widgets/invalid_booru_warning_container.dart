@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/widgets.dart';
 import '../providers/internal_providers.dart';
 
 class InvalidBooruWarningContainer extends ConsumerWidget {
@@ -20,7 +20,7 @@ class InvalidBooruWarningContainer extends ConsumerWidget {
         .maybeWhen(
           orElse: () => const SizedBox(),
           data: (value) => value == false
-              ? WarningContainer(
+              ? KurumiWarningContainer(
                   title: 'Empty results',
                   contentBuilder: (context) => Text(
                     'The app cannot find any posts with this engine. Please try with another one.',
@@ -32,7 +32,7 @@ class InvalidBooruWarningContainer extends ConsumerWidget {
               : const SizedBox(),
           error: (error, st) => Stack(
             children: [
-              WarningContainer(
+              KurumiWarningContainer(
                 title: context.t.generic.errors.error,
                 contentBuilder: (context) => Text(
                   context.t.booru.invalid_booru_warning,

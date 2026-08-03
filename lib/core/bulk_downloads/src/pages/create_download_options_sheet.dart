@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../foundation/info/device_info.dart';
-import '../../../../foundation/toast.dart';
 import '../../../../foundation/utils/collection_utils.dart';
 import '../../../blacklists/providers.dart';
 import '../../../configs/config/providers.dart';
@@ -19,11 +19,6 @@ import '../../../router.dart';
 import '../../../search/search/routes.dart';
 import '../../../search/selected_tags/types.dart' hide queryAsList;
 import '../../../settings/providers.dart';
-import '../../../settings/widgets.dart';
-import '../../../themes/theme/types.dart';
-import '../../../widgets/bottom_sheet_action_buttons.dart';
-import '../../../widgets/settings_card.dart';
-import '../../../widgets/widgets.dart';
 import '../providers/bulk_download_notifier.dart';
 import '../providers/create_download_options_notifier.dart';
 import '../routes/route_utils.dart';
@@ -49,7 +44,7 @@ class CreateDownloadOptionsSheet extends ConsumerWidget {
 
     void showSnackBar(BuildContext context, String message) {
       if (showStartNotification) {
-        showSimpleSnackBar(
+        Kurumi.showSimpleSnackBar(
           context: context,
           content: Text(message),
           action: SnackBarAction(
@@ -83,7 +78,7 @@ class CreateDownloadOptionsSheet extends ConsumerWidget {
 
     return CreateDownloadOptionsRawSheet(
       initial: initial,
-      actions: BottomSheetActionButtons(
+      actions: KurumiBottomSheetActionButtons(
         secondaryChild: Text(
           context.t.bulk_downloads.actions.add_to_queue,
         ),
@@ -93,7 +88,7 @@ class CreateDownloadOptionsSheet extends ConsumerWidget {
                 notifier.queueDownloadLater(
                   options,
                   onOptionsError: (e) {
-                    showErrorToast(context, e.message);
+                    Kurumi.showErrorToast(context, e.message);
                   },
                 );
 
@@ -119,7 +114,7 @@ class CreateDownloadOptionsSheet extends ConsumerWidget {
                     },
                   ),
                   onOptionsError: (e) {
-                    showErrorToast(context, e.message);
+                    Kurumi.showErrorToast(context, e.message);
                   },
                 );
 
@@ -209,7 +204,7 @@ class _CreateDownloadOptionsRawSheetState
         if (widget.advancedToggle)
           Column(
             children: [
-              BooruSwitchListTile(
+              KurumiSwitchListTile(
                 title: Text(
                   context.t.bulk_downloads.options.show_advanced_options,
                 ),
@@ -228,12 +223,12 @@ class _CreateDownloadOptionsRawSheetState
             options: options,
             notifier: notifier,
           ),
-          SettingsCard(
+          KurumiSettingsCard(
             title: context.t.bulk_downloads.options.other_options,
-            surface: SettingsCardSurface.high,
+            surface: KurumiSettingsCardSurface.high,
             child: Column(
               children: [
-                BooruSwitchListTile(
+                KurumiSwitchListTile(
                   contentPadding: const EdgeInsets.symmetric(
                     horizontal: 4,
                   ),
@@ -245,7 +240,7 @@ class _CreateDownloadOptionsRawSheetState
                     notifier.setNotifications(value);
                   },
                 ),
-                BooruSwitchListTile(
+                KurumiSwitchListTile(
                   contentPadding: const EdgeInsets.symmetric(
                     horizontal: 4,
                   ),
@@ -257,7 +252,7 @@ class _CreateDownloadOptionsRawSheetState
                     notifier.setSkipIfExists(value);
                   },
                 ),
-                SettingsTile(
+                KurumiSettingsTile(
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   title: Text(context.t.settings.download.quality),
                   selectedOption:
@@ -314,9 +309,9 @@ class _ExcludedTagsSection extends ConsumerWidget {
     return ref
         .watch(blacklistTagEntriesProvider(ref.watchConfigFilter))
         .when(
-          data: (tags) => SettingsCard(
+          data: (tags) => KurumiSettingsCard(
             title: context.t.bulk_downloads.options.excluded_tags,
-            surface: SettingsCardSurface.high,
+            surface: KurumiSettingsCardSurface.high,
             trailing: Tooltip(
               message: _buildTitle(context, tags),
               triggerMode: TooltipTriggerMode.tap,
@@ -364,7 +359,8 @@ class _ExcludedTagsSection extends ConsumerWidget {
                         runSpacing: 5,
                         children: [
                           ...extraTags.map(
-                            (e) => Chip(
+                            (e) => KurumiSelectableChip(
+                              tapEnabled: false,
                               backgroundColor: colorScheme.surfaceContainer,
                               label: Text(e.replaceAll('_', ' ')),
                               deleteIcon: Icon(

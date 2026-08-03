@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../widgets/booru_text_form_field.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 
@@ -21,7 +21,7 @@ class ProxyUsernameInput extends ConsumerWidget {
       ).select((value) => value.proxySettingsTyped),
     );
 
-    return BooruTextFormField(
+    return KurumiTextFormField(
       initialValue: proxySettings?.username,
       onChanged: (value) {
         ref.editNotifier.updateProxySettings(

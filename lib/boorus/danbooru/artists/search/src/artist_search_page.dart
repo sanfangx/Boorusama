@@ -7,10 +7,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/configs/config/providers.dart';
-import '../../../../../core/widgets/widgets.dart';
 import '../../artist/providers.dart';
 import '../../artist/types.dart';
 import 'widgets/artist_search_info_card.dart';
@@ -144,7 +144,7 @@ class _DanbooruArtistSearchPageState
           ValueListenableBuilder(
             valueListenable: order,
             builder: (context, ord, child) {
-              return OptionDropDownButton(
+              return KurumiOptionDropDownButton(
                 alignment: AlignmentDirectional.centerStart,
                 value: ord,
                 onChanged: (value) {
@@ -191,7 +191,7 @@ class _DanbooruArtistSearchPageState
           ),
           const SizedBox(width: 8),
           Expanded(
-            child: BooruTextField(
+            child: KurumiTextField(
               controller: urlController,
               onSubmitted: (_) => pagingController.refresh(),
               textInputAction: TextInputAction.search,
@@ -222,7 +222,7 @@ class _DanbooruArtistSearchPageState
           ),
           const SizedBox(width: 8),
           Expanded(
-            child: BooruTextField(
+            child: KurumiTextField(
               controller: nameController,
               onSubmitted: (_) => pagingController.refresh(),
               textInputAction: TextInputAction.search,

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:selection_mode/selection_mode.dart';
 import 'package:share_plus/share_plus.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
 import '../../../configs/config/providers.dart';
 import '../../../configs/config/types.dart';
 import '../../../ddos/handler/providers.dart';
@@ -125,15 +125,15 @@ class _DownloadManagerPageState extends ConsumerState<DownloadManagerPage> {
                     openDownloadSettingsPage(ref);
                   },
                 ),
-              BooruPopupMenuButton(
+              KurumiPopupMenuButton(
                 items: [
-                  BooruPopupMenuItem(
+                  KurumiPopupMenuItem(
                     title: Text(context.t.generic.action.select),
                     onTap: () {
                       _selectionModeController.enable();
                     },
                   ),
-                  BooruPopupMenuItem(
+                  KurumiPopupMenuItem(
                     title: Text(context.t.generic.action.clear),
                     onTap: () {
                       // clear default group only
@@ -142,7 +142,7 @@ class _DownloadManagerPageState extends ConsumerState<DownloadManagerPage> {
                           .clear(
                             FileDownloader.defaultGroup,
                             onFailed: () {
-                              showSimpleSnackBar(
+                              Kurumi.showSimpleSnackBar(
                                 context: context,
                                 content: Text(
                                   context.t.download.nothing_to_clear,

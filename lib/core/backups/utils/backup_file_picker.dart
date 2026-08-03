@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:path/path.dart' as p;
 
 // Project imports:
 import '../../../../foundation/picker.dart';
 import '../../../../foundation/platform.dart';
-import '../../../../foundation/toast.dart';
 
 class BackupFilePicker {
   static Future<void> pickFile({
@@ -54,7 +54,7 @@ class BackupFilePicker {
       final ext = p.extension(path);
 
       if (!allowedExtensions.contains(ext.substring(1))) {
-        showErrorToast(
+        Kurumi.showErrorToast(
           context,
           'Invalid file type, only ${allowedExtensions.map((e) => '.$e').join(', ')} files are allowed',
         );

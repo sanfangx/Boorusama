@@ -1,0 +1,108 @@
+import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
+
+@immutable
+class KurumiChipColors extends Equatable {
+  const KurumiChipColors({
+    required this.foregroundColor,
+    required this.backgroundColor,
+    required this.borderColor,
+  });
+
+  final Color foregroundColor;
+  final Color backgroundColor;
+  final Color borderColor;
+
+  @override
+  List<Object?> get props => [
+    foregroundColor,
+    backgroundColor,
+    borderColor,
+  ];
+}
+
+class KurumiChip extends StatelessWidget {
+  const KurumiChip({
+    required this.label,
+    super.key,
+    this.colors,
+    this.onPressed,
+    this.trailing,
+    this.contentPadding,
+    this.visualDensity,
+    this.borderRadius,
+    this.showBackground = true,
+    this.showBorder = true,
+    this.disabled = false,
+  });
+
+  final KurumiChipColors? colors;
+  final VoidCallback? onPressed;
+  final Widget label;
+  final Widget? trailing;
+  final EdgeInsetsGeometry? contentPadding;
+  final VisualDensity? visualDensity;
+  final BorderRadiusGeometry? borderRadius;
+  final bool showBackground;
+  final bool showBorder;
+  final bool disabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return trailing != null
+        ? FilledButton.icon(
+            style: FilledButton.styleFrom(
+              visualDensity: visualDensity,
+              foregroundColor: colors?.foregroundColor,
+              padding: const EdgeInsets.only(left: 6, right: 2),
+              backgroundColor: showBackground
+                  ? !disabled
+                        ? colors?.backgroundColor
+                        : Colors.transparent
+                  : Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                    borderRadius ?? const BorderRadius.all(Radius.circular(8)),
+              ),
+              side: showBorder
+                  ? BorderSide(
+                      color: !disabled
+                          ? colors?.borderColor ?? Colors.transparent
+                          : colors?.borderColor.withAlpha(127) ??
+                                Colors.transparent,
+                    )
+                  : null,
+            ),
+            onPressed: onPressed,
+            icon: trailing,
+            label: label,
+          )
+        : FilledButton(
+            style: FilledButton.styleFrom(
+              visualDensity: visualDensity,
+              foregroundColor: colors?.foregroundColor,
+              padding:
+                  contentPadding ?? const EdgeInsets.symmetric(horizontal: 8),
+              backgroundColor: showBackground
+                  ? !disabled
+                        ? colors?.backgroundColor
+                        : Colors.transparent
+                  : Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                    borderRadius ?? const BorderRadius.all(Radius.circular(16)),
+              ),
+              side: showBorder
+                  ? BorderSide(
+                      color: !disabled
+                          ? colors?.borderColor ?? Colors.transparent
+                          : colors?.borderColor.withAlpha(127) ??
+                                Colors.transparent,
+                    )
+                  : null,
+            ),
+            onPressed: onPressed,
+            child: label,
+          );
+  }
+}

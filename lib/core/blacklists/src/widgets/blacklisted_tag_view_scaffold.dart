@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -145,7 +146,7 @@ class DefaultBlacklistTagsLimitation extends ConsumerWidget {
 
     return PersistentDismissalWrapper(
       storageKey: storageKey,
-      child: WarningContainer(
+      child: KurumiWarningContainer(
         title: 'Limitation'.hc,
         contentBuilder: (context) => AppHtml(
           data: context.t.blacklisted_tags.limitation_notice,

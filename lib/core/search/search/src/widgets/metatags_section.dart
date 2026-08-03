@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -91,7 +92,7 @@ class _MetatagsSectionState extends ConsumerState<MetatagsSection> {
           Theme.of(context).colorScheme.primary,
         );
 
-    return RawChip(
+    return KurumiSelectableChip(
       visualDensity: VisualDensity.compact,
       label: Text(tag, style: TextStyle(color: colors?.foregroundColor)),
       backgroundColor: colors?.backgroundColor,

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
-
-// Project imports:
-import '../../../widgets/widgets.dart';
+import 'package:kurumi/kurumi.dart';
 
 class BlacklistedTagTile extends StatelessWidget {
   const BlacklistedTagTile({
@@ -23,13 +21,13 @@ class BlacklistedTagTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(tag),
-      trailing: BooruPopupMenuButton(
+      trailing: KurumiPopupMenuButton(
         items: [
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.blacklisted_tags.remove),
             onTap: () => onRemoveTag.call(tag),
           ),
-          BooruPopupMenuItem(
+          KurumiPopupMenuItem(
             title: Text(context.t.blacklisted_tags.edit),
             onTap: () => onEditTap.call(),
           ),

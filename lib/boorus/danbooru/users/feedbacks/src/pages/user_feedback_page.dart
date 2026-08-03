@@ -6,11 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
 import '../../../../../../core/themes/colors/providers.dart';
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../../../core/widgets/widgets.dart';
 import '../../../creator/providers.dart';
 import '../../../user/providers.dart';
@@ -72,7 +72,7 @@ class _UserFeedbackPageState extends ConsumerState<UserFeedbackPage> {
           context.t.profile.feedback.user_feedbacks,
         ),
       ),
-      body: BooruRefreshIndicator(
+      body: KurumiRefreshIndicator(
         onRefresh: () async => _pagingController.refresh(),
         child: PagingListener(
           controller: _pagingController,
@@ -141,7 +141,7 @@ class _UserFeedbackItem extends ConsumerWidget {
           children: [
             Row(
               children: [
-                CompactChip(
+                KurumiCompactChip(
                   label:
                       creator?.name.replaceAll('_', ' ') ??
                       'User #${feedback.creatorId}',

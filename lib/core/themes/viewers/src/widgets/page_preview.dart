@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/config/providers.dart';
@@ -91,7 +92,7 @@ class PreviewHome extends StatelessWidget {
 
     return PreviewFrame(
       child: Scaffold(
-        floatingActionButton: BooruScrollToTopButton(
+        floatingActionButton: KurumiScrollToTopButton(
           onPressed: () {},
         ),
         extendBody: true,
@@ -200,7 +201,7 @@ class PreviewDetails extends StatelessWidget {
       ),
       child: Scaffold(
         extendBody: true,
-        floatingActionButton: BooruScrollToTopButton(
+        floatingActionButton: KurumiScrollToTopButton(
           onPressed: () {},
         ),
         body: CustomScrollView(

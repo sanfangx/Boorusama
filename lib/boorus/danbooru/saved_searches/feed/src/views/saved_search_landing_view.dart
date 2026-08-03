@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
-import '../../../../../../core/widgets/generic_no_data_box.dart';
 import '../../../../../../foundation/url_launcher.dart';
 import '../../../../configs/providers.dart';
 import '../../../saved_search/routes.dart';
@@ -36,7 +36,7 @@ class SavedSearchLandingView extends ConsumerWidget {
               ),
               child: Column(
                 children: [
-                  GenericNoDataBox(
+                  KurumiGenericNoDataBox(
                     text: context.t.saved_search.empty_saved_search,
                   ),
                   if (!loginDetails.hasStrictSFW)

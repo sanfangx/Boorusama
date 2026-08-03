@@ -1,10 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../../foundation/clipboard.dart';
-import '../../../../../foundation/display.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../tag/widgets.dart';
 
 class TagOtherNames extends StatelessWidget {
@@ -83,7 +84,7 @@ class OtherNameChip extends StatelessWidget {
             otherName,
           );
         },
-        child: RawChip(
+        child: KurumiSelectableChip(
           onPressed: () {},
           side: BorderSide(
             color: Theme.of(context).colorScheme.hintColor,

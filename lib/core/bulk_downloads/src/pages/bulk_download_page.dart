@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../boorus/booru/types.dart';
 import '../../../configs/config/providers.dart';
-import '../../../themes/theme/types.dart';
 import '../../../widgets/widgets.dart';
 import '../providers/bulk_download_notifier.dart';
 import '../providers/saved_download_task_provider.dart';
@@ -134,7 +134,7 @@ class BulkDownloadPageInternal extends StatelessWidget {
     WidgetRef ref, {
     bool dense = false,
   }) {
-    return PrimaryButton(
+    return KurumiButton(
       dense: dense,
       onPressed: () {
         goToNewBulkDownloadTaskPage(

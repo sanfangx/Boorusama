@@ -6,6 +6,7 @@ import 'package:booru_clients/core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/auth/widgets.dart';
@@ -15,7 +16,6 @@ import '../../../core/posts/favorites/providers.dart';
 import '../../../core/posts/favorites/widgets.dart';
 import '../../../core/posts/listing/widgets.dart';
 import '../../../core/posts/post/types.dart';
-import '../../../foundation/toast.dart';
 import '../gelbooru_v2_provider.dart';
 import '../posts/providers.dart';
 import 'providers.dart';
@@ -91,7 +91,7 @@ class GelbooruV2FavoritesPageHtml extends ConsumerWidget {
                   onTap: () {
                     final post = controller.items.elementAtOrNull(index);
                     if (post == null) {
-                      showErrorToast(context, 'Post not found'.hc);
+                      Kurumi.showErrorToast(context, 'Post not found'.hc);
                       return;
                     }
 

@@ -7,12 +7,10 @@ import 'package:flutter/widgets.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../foundation/animations/constants.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../../configs/config/providers.dart';
-import '../../../../widgets/context_menu_tile.dart';
 import '../../../post/types.dart';
 import '../providers/favorites_notifier.dart';
 import '../types/types.dart';
@@ -43,7 +41,7 @@ class FavoriteContextMenuTile extends ConsumerWidget {
     final isFavorited = isFaved ?? false;
     ref.watch(favoriteStatusLoaderProvider(params));
 
-    return ContextMenuTile(
+    return KurumiContextMenuTile(
       title: isFavorited
           ? context.t.post.action.unfavorite
           : context.t.post.action.favorite,
@@ -80,16 +78,16 @@ class FavoriteContextMenuTile extends ConsumerWidget {
     if (!context.mounted) return;
 
     if (success) {
-      showSuccessToast(
+      Kurumi.showSuccessToast(
         context,
         context.t.favorites.update.success,
-        duration: AppDurations.shortToast,
+        duration: KurumiDurations.shortToast,
       );
     } else {
-      showErrorToast(
+      Kurumi.showErrorToast(
         context,
         context.t.favorites.update.failure,
-        duration: AppDurations.shortToast,
+        duration: KurumiDurations.shortToast,
       );
     }
   }

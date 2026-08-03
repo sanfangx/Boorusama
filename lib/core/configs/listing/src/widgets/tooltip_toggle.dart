@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../posts/listing/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../create/providers.dart';
 
 class ListingTooltipToggle extends ConsumerWidget {
@@ -23,7 +23,7 @@ class ListingTooltipToggle extends ConsumerWidget {
       ),
     );
 
-    return BooruSwitchListTile(
+    return KurumiSwitchListTile(
       title: Text(
         context.t.booru.listing.tooltip_on_hover_title,
       ),

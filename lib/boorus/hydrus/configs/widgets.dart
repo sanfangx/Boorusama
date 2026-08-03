@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/auth/widgets.dart';
 import '../../../core/configs/create/create.dart';
 import '../../../core/configs/create/widgets.dart';
-import '../../../core/widgets/widgets.dart';
 
 class CreateHydrusConfigPage extends ConsumerWidget {
   const CreateHydrusConfigPage({
@@ -50,7 +50,7 @@ class HydrusAuthConfigView extends ConsumerWidget {
             labelText: 'API access key'.hc,
           ),
           const SizedBox(height: 8),
-          WarningContainer(
+          KurumiWarningContainer(
             title: 'Warning'.hc,
             contentBuilder: (context) => Text(
               "It is recommended to not make any changes to Hydrus's services while using the app, you might see unexpected behavior."

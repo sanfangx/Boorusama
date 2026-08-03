@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../boorus/engine/providers.dart';
-import '../../../../widgets/widgets.dart';
 import '../providers/internal_providers.dart';
 
 class UnknownConfigBooruSelector extends ConsumerWidget {
@@ -27,7 +27,7 @@ class UnknownConfigBooruSelector extends ConsumerWidget {
       ),
       child: ListTile(
         title: Text(context.t.booru.booru_engine_input_label),
-        trailing: OptionDropDownButton(
+        trailing: KurumiOptionDropDownButton(
           alignment: AlignmentDirectional.centerStart,
           value: engine,
           onChanged: (value) {

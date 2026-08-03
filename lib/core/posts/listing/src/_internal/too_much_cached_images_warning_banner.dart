@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/filesystem.dart';
-import '../../../../../foundation/toast.dart';
 import '../../../../../foundation/utils/file_utils.dart';
 import '../../../../images/providers.dart';
 import '../../../../router.dart';
@@ -55,12 +55,12 @@ class TooMuchCachedImagesWarningBanner extends ConsumerWidget {
 
                     if (c != null && c.mounted) {
                       if (success) {
-                        showSuccessToast(
+                        Kurumi.showSuccessToast(
                           context,
                           context.t.cache.image.reminder.cleared,
                         );
                       } else {
-                        showErrorToast(
+                        Kurumi.showErrorToast(
                           context,
                           context.t.cache.image.reminder.failed,
                         );

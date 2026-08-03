@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_html/flutter_html.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -11,7 +12,6 @@ import '../../../../foundation/html.dart';
 import '../../../../foundation/url_launcher.dart';
 import '../../../artists/types.dart';
 import '../../../comments/types.dart';
-import '../../../widgets/widgets.dart';
 import '../../sources/types.dart';
 import 'source_link.dart';
 
@@ -77,7 +77,7 @@ class _ArtistSectionState extends State<ArtistSection> {
             }
           else
             const SizedBox.shrink(),
-          BooruAnimatedCrossFade(
+          KurumiAnimatedCrossFade(
             firstChild: const SizedBox.shrink(),
             secondChild: commentary.isEmpty
                 ? const SizedBox.shrink()
@@ -153,19 +153,18 @@ class _Link extends StatelessWidget {
       title: Text(artistTags.join(' ')),
       url: url,
       actionBuilder: () => commentary.isTranslated
-          ? PopupMenuButton(
-              padding: EdgeInsets.zero,
+          ? KurumiPopupMenuButton(
               icon: const Icon(Symbols.keyboard_arrow_down),
-              onSelected: onChanged,
-              itemBuilder: (_) => [
+              iconPadding: EdgeInsets.zero,
+              items: [
                 switch (display) {
-                  TranlationState.original => PopupMenuItem(
-                    value: TranlationState.translated,
-                    child: Text(context.t.post.detail.show_translated),
+                  TranlationState.original => KurumiPopupMenuItem(
+                    title: Text(context.t.post.detail.show_translated),
+                    onTap: () => onChanged(TranlationState.translated),
                   ),
-                  TranlationState.translated => PopupMenuItem(
-                    value: TranlationState.original,
-                    child: Text(context.t.post.detail.show_original),
+                  TranlationState.translated => KurumiPopupMenuItem(
+                    title: Text(context.t.post.detail.show_original),
+                    onTap: () => onChanged(TranlationState.original),
                   ),
                 },
               ],

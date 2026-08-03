@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../http/configs/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../../../create/providers.dart';
 
@@ -30,7 +30,7 @@ class SkipCertificateVerificationTile extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SwitchListTile(
+        KurumiSwitchListTile(
           contentPadding: const EdgeInsets.only(left: 4),
           visualDensity: VisualDensity.compact,
           title: Text(context.t.booru.network.http.skip_cert_verification),
@@ -54,7 +54,7 @@ class SkipCertificateVerificationTile extends ConsumerWidget {
           },
         ),
         if (skipCertVerification)
-          WarningContainer(
+          KurumiWarningContainer(
             margin: const EdgeInsets.only(top: 8),
             title: context
                 .t

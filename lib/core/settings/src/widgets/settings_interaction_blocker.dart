@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/html.dart';
 import '../../../configs/config/providers.dart';
 import '../../../configs/create/routes.dart';
-import '../../../widgets/widgets.dart';
 import '../providers/listing_provider.dart';
 import '../providers/settings_provider.dart';
 import '../providers/viewer_providers.dart';
@@ -33,7 +33,7 @@ class SettingsInteractionBlocker extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        GrayedOut(
+        KurumiGrayedOut(
           grayedOut: block,
           child: child,
         ),

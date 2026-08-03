@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -18,14 +19,14 @@ class PlayPauseAnimationOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VideoActionAnimationOverlay(
+    return KurumiActionAnimationOverlay(
       duration: kPlayPauseAnimationDuration,
       triggerNotifier: controller.playPauseAction,
       showEnd: 0.1,
       hideStart: 0.8,
       iconBuilder: (action, progress) {
         return Center(
-          child: _PlayPauseIcon(
+          child: VideoActionIcon(
             icon: switch (action) {
               PlayPauseAction.play => Symbols.play_arrow,
               PlayPauseAction.pause => Symbols.pause,
@@ -34,38 +35,6 @@ class PlayPauseAnimationOverlay extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _PlayPauseIcon extends StatelessWidget {
-  const _PlayPauseIcon({
-    required this.icon,
-    required this.progress,
-  });
-
-  final IconData icon;
-  final double progress;
-
-  @override
-  Widget build(BuildContext context) {
-    final scale = 0.8 + (progress * 0.4); // 0.8 to 1.2
-
-    return Transform.scale(
-      scale: scale,
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.black.withValues(alpha: 0.6 * progress),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        child: Icon(
-          icon,
-          color: Colors.white.withValues(alpha: progress),
-          size: 32,
-          fill: 1,
-        ),
-      ),
     );
   }
 }

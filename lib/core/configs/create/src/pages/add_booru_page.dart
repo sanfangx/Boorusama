@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -13,7 +14,6 @@ import '../../../../analytics/providers.dart';
 import '../../../../boorus/booru/providers.dart';
 import '../../../../boorus/booru/types.dart';
 import '../../../../boorus/engine/providers.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../config/types.dart';
 import '../types/edit_booru_config_id.dart';
 import '../types/validator/booru_url_error.dart';
@@ -247,7 +247,7 @@ class _AddBooruPageInternalState extends ConsumerState<AddBooruPageInternal> {
           child: ValueListenableBuilder(
             valueListenable: booruUrlError,
             builder: (_, error, _) => AutofillGroup(
-              child: BooruTextFormField(
+              child: KurumiTextFormField(
                 validator: (p0) => null,
                 autocorrect: false,
                 autofillHints: const [

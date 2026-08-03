@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:coreutils/coreutils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../themes/theme/types.dart';
 
 Future<bool?> showVersionMismatchAlertDialog({
   required BuildContext context,
@@ -43,125 +43,116 @@ class VersionMismatchAlertDialog extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    return Dialog(
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 650),
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 20),
-            Text(
-              dataTypeName != null
-                  ? '${context.t.settings.backup_and_restore.version_mismatch.title}: $dataTypeName'
-                  : context
-                        .t
-                        .settings
-                        .backup_and_restore
-                        .version_mismatch
-                        .title,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-              ),
+    return KurumiDialogContent(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 20),
+          Text(
+            dataTypeName != null
+                ? '${context.t.settings.backup_and_restore.version_mismatch.title}: $dataTypeName'
+                : context.t.settings.backup_and_restore.version_mismatch.title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
             ),
-            const SizedBox(height: 4),
-            RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: colorScheme.hintColor,
-                ),
-                children: [
-                  TextSpan(
-                    text:
-                        '${context.t.settings.backup_and_restore.version_mismatch.current_version}: ',
-                  ),
-                  TextSpan(
-                    text: currentVersion.toString(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: colorScheme.hintColor,
-                ),
-                children: [
-                  TextSpan(
-                    text:
-                        '${context.t.settings.backup_and_restore.version_mismatch.imported_version}: ',
-                  ),
-                  TextSpan(
-                    text: importVersion.toString(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              context
-                  .t
-                  .settings
-                  .backup_and_restore
-                  .version_mismatch
-                  .confirmation_question,
-              style: const TextStyle(
-                fontWeight: FontWeight.w400,
+          ),
+          const SizedBox(height: 4),
+          RichText(
+            text: TextSpan(
+              style: TextStyle(
                 fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: colorScheme.hintColor,
               ),
-            ),
-            const SizedBox(height: 20),
-            FilledButton(
-              style: FilledButton.styleFrom(
-                backgroundColor: colorScheme.errorContainer,
-                shadowColor: Colors.transparent,
-                elevation: 0,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop(true);
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                child: Text(
-                  context.t.settings.backup_and_restore.import,
-                  style: TextStyle(
-                    color: colorScheme.onErrorContainer,
+              children: [
+                TextSpan(
+                  text:
+                      '${context.t.settings.backup_and_restore.version_mismatch.current_version}: ',
+                ),
+                TextSpan(
+                  text: currentVersion.toString(),
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-              ),
+              ],
             ),
-            const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(false);
-              },
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                child: Text(
-                  context.t.generic.action.cancel,
-                  style: TextStyle(
+          ),
+          RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: colorScheme.hintColor,
+              ),
+              children: [
+                TextSpan(
+                  text:
+                      '${context.t.settings.backup_and_restore.version_mismatch.imported_version}: ',
+                ),
+                TextSpan(
+                  text: importVersion.toString(),
+                  style: const TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: colorScheme.onSurface,
                   ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          Text(
+            context
+                .t
+                .settings
+                .backup_and_restore
+                .version_mismatch
+                .confirmation_question,
+            style: const TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+            ),
+          ),
+          const SizedBox(height: 20),
+          FilledButton(
+            style: FilledButton.styleFrom(
+              backgroundColor: colorScheme.errorContainer,
+              shadowColor: Colors.transparent,
+              elevation: 0,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop(true);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: Text(
+                context.t.settings.backup_and_restore.import,
+                style: TextStyle(
+                  color: colorScheme.onErrorContainer,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-          ],
-        ),
+          ),
+          const SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).pop(false);
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: Text(
+                context.t.generic.action.cancel,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.onSurface,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
       ),
     );
   }

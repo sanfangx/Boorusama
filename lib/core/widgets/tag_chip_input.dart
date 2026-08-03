@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -35,7 +37,7 @@ class TagChipInput extends StatelessWidget {
         runSpacing: isMobilePlatform() ? -4 : 8,
         children: [
           for (final value in values)
-            Chip(
+            KurumiSelectableChip(
               backgroundColor: colorScheme.surfaceContainerHighest,
               label: Text(
                 displayValue?.call(value) ?? value.replaceAll('_', ' '),
@@ -47,11 +49,17 @@ class TagChipInput extends StatelessWidget {
               ),
               onDeleted: () => onRemove(value),
             ),
-          IconButton(
-            iconSize: 28,
-            splashRadius: 20,
-            onPressed: onAdd,
-            icon: const Icon(Symbols.add),
+          Semantics(
+            label: context.t.generic.action.add,
+            button: true,
+            onTap: onAdd,
+            excludeSemantics: true,
+            child: IconButton(
+              iconSize: 28,
+              splashRadius: 20,
+              onPressed: onAdd,
+              icon: const Icon(Symbols.add),
+            ),
           ),
         ],
       ),

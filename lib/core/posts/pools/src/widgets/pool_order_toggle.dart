@@ -1,8 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../../widgets/widgets.dart';
 import '../types/pool_details_order.dart';
 
 class PoolOrderToggle extends StatelessWidget {
@@ -22,7 +24,7 @@ class PoolOrderToggle extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Center(
-        child: BooruSegmentedButton(
+        child: KurumiSegmentedButton(
           initialValue: value,
           fixedWidth: fixedWidth,
           segments: {

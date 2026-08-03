@@ -1,31 +1,34 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-const kLightWhiteColor = Color.fromARGB(255, 220, 220, 220);
-const kDimWhiteColor = Color.fromARGB(255, 130, 130, 130);
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
+const kLightWhiteColor = KurumiColorTokens.lightWhite;
+const kDimWhiteColor = KurumiColorTokens.dimWhite;
 
 // AMOLED Dark theme
-const kPrimaryAmoledDarkColor = Color.fromARGB(255, 86, 99, 233);
-const kOnPrimaryAmoledDarkColor = kLightWhiteColor;
-const kErrorAmoledDarkColor = Color(0xFFB00020);
-const kOnErrorAmoledDarkColor = kLightWhiteColor;
-const kHintAmoledDarkColor = kDimWhiteColor;
+const kPrimaryAmoledDarkColor = KurumiColorTokens.primaryAmoledDark;
+const kOnPrimaryAmoledDarkColor = KurumiColorTokens.onPrimaryAmoledDark;
+const kErrorAmoledDarkColor = KurumiColorTokens.errorAmoledDark;
+const kOnErrorAmoledDarkColor = KurumiColorTokens.onErrorAmoledDark;
+const kHintAmoledDarkColor = KurumiColorTokens.hintAmoledDark;
 
 // Dark theme
-const kPrimaryDarkColor = Color.fromARGB(255, 86, 99, 233);
-const kOnPrimaryDarkColor = kLightWhiteColor;
-const kErrorDarkColor = Color(0xFFB00020);
-const kOnErrorDarkColor = kLightWhiteColor;
-const kIconDarkColor = kLightWhiteColor;
+const kPrimaryDarkColor = KurumiColorTokens.primaryDark;
+const kOnPrimaryDarkColor = KurumiColorTokens.onPrimaryDark;
+const kErrorDarkColor = KurumiColorTokens.errorDark;
+const kOnErrorDarkColor = KurumiColorTokens.onErrorDark;
+const kIconDarkColor = KurumiColorTokens.iconDark;
 
 // Light theme
-const kPrimaryLightColor = Color.fromARGB(255, 114, 137, 218);
-const kOnPrimaryLightColor = Colors.white;
-const kOnBackgroundLightColor = Colors.black;
-const kOnSurfaceLightColor = Colors.black;
-const kErrorLightColor = Color.fromARGB(255, 211, 47, 47);
-const kOnErrorLightColor = Colors.white;
-const kHintLightColor = Color.fromARGB(255, 79, 86, 96);
+const kPrimaryLightColor = KurumiColorTokens.primaryLight;
+const kOnPrimaryLightColor = KurumiColorTokens.onPrimaryLight;
+const kOnBackgroundLightColor = KurumiColorTokens.onBackgroundLight;
+const kOnSurfaceLightColor = KurumiColorTokens.onSurfaceLight;
+const kErrorLightColor = KurumiColorTokens.errorLight;
+const kOnErrorLightColor = KurumiColorTokens.onErrorLight;
+const kHintLightColor = KurumiColorTokens.hintLight;
 
 class BoorusamaColors extends ThemeExtension<BoorusamaColors> {
   const BoorusamaColors({

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/config/types.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../details_parts/types.dart';
 import '../providers/details_layout_provider.dart';
 import '../routes/route_utils.dart';
@@ -125,7 +125,7 @@ class _WidgetList extends StatelessWidget {
       runSpacing: 8,
       children: parts
           .map(
-            (part) => CompactChip(
+            (part) => KurumiCompactChip(
               padding: const EdgeInsets.symmetric(
                 vertical: 8,
                 horizontal: 12,

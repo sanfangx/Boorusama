@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/display.dart';
 import '../../../../foundation/permissions.dart';
 import '../../../../foundation/platform.dart';
-import '../../../../foundation/toast.dart';
 import '../../../boorus/engine/providers.dart';
 import '../../../bulk_downloads/providers.dart';
 import '../../../changelogs/routes.dart';
@@ -20,7 +19,6 @@ import '../../../configs/manage/providers.dart';
 import '../../../configs/manage/widgets.dart';
 import '../../../premiums/widgets.dart';
 import '../../../settings/providers.dart';
-import '../../../themes/theme/types.dart';
 import 'empty_booru_config_home_page.dart';
 
 class EntryPage extends ConsumerStatefulWidget {
@@ -53,7 +51,7 @@ class _EntryPageState extends ConsumerState<EntryPage> {
           final isNotRead = !(value?.isNotificationRead ?? false);
 
           if (isPermenantlyDenied && isNotRead) {
-            showSimpleSnackBar(
+            Kurumi.showSimpleSnackBar(
               context: context,
               action: SnackBarAction(
                 label: context.t.settings.open_app_settings,

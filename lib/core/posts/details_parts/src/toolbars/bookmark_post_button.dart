@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:like_button/like_button.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -13,7 +14,6 @@ import '../../../../bookmarks/types.dart';
 import '../../../../configs/config/providers.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../themes/theme/types.dart';
-import '../../../../widgets/booru_tooltip.dart';
 import '../../../post/types.dart';
 
 class BookmarkPostButton extends ConsumerWidget {
@@ -37,7 +37,7 @@ class BookmarkPostButton extends ConsumerWidget {
         false;
     final isLoading = bookmarkStateAsync.isLoading;
 
-    return BooruTooltip(
+    return KurumiTooltip(
       message: isBookmarked
           ? context.t.post.detail.remove_from_bookmark
           : context.t.post.detail.add_to_bookmark,

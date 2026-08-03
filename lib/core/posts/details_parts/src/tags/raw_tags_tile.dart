@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/display/media_query_utils.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../tags/show/routes.dart';
-import '../../../../widgets/booru_popup_menu_button.dart';
 import '../../../post/types.dart';
 import '../_internal/details_widget_frame.dart';
 
@@ -75,17 +75,17 @@ class RawTagsTileTitle<T extends Post> extends ConsumerWidget {
   final BooruConfigAuth auth;
   final int? count;
   final T post;
-  final List<BooruPopupMenuItem>? menuItems;
+  final List<KurumiPopupMenuItem>? menuItems;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         Text(context.t.tags.counter(n: count ?? 0)),
-        BooruPopupMenuButton(
+        KurumiPopupMenuButton(
           iconColor: Theme.of(context).colorScheme.onSurface,
           items: [
-            BooruPopupMenuItem(
+            KurumiPopupMenuItem(
               title: Text(context.t.generic.action.select),
               onTap: () {
                 goToShowTaglistPage(

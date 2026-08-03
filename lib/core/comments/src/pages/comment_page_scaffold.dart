@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../configs/config/providers.dart';
@@ -85,7 +86,7 @@ class _CommentPageScaffoldState extends ConsumerState<CommentPageScaffold> {
           : null,
       body: Padding(
         padding: const EdgeInsetsDirectional.symmetric(horizontal: 12),
-        child: BooruRefreshIndicator(
+        child: KurumiRefreshIndicator(
           onRefresh: () async {
             _pagingController.refresh();
           },

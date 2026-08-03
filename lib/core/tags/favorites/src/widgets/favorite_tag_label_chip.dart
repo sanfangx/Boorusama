@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/display.dart';
@@ -27,7 +28,8 @@ class FavoriteTagLabelChip extends ConsumerWidget {
 
     return SizedBox(
       height: 28,
-      child: Chip(
+      child: KurumiSelectableChip(
+        tapEnabled: false,
         padding: kPreferredLayout.isMobile
             ? const EdgeInsets.all(4)
             : EdgeInsets.zero,

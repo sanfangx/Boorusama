@@ -8,13 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:cache_manager/cache_manager.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/loggers.dart';
 import '../../../../../foundation/platform.dart';
 import '../../../../configs/config/providers.dart';
 import '../../../../images/booru_image.dart';
-import '../../../../widgets/widgets.dart';
 import '../../../engines/providers.dart';
 import '../../../engines/types.dart';
 import '../types/video_player_state.dart';
@@ -478,7 +478,7 @@ class _BooruVideoState extends ConsumerState<BooruVideo> {
         ) =>
           AspectRatio(
             aspectRatio: aspectRatio,
-            child: BooruHero(
+            child: KurumiHero(
               tag: widget.heroTag,
               child: Stack(
                 children: [
@@ -519,7 +519,7 @@ class _BooruVideoState extends ConsumerState<BooruVideo> {
           :final thumbnailUrl,
           :final aspectRatio,
         ) =>
-          BooruHero(
+          KurumiHero(
             tag: widget.heroTag,
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -538,7 +538,7 @@ class _BooruVideoState extends ConsumerState<BooruVideo> {
               ],
             ),
           ),
-        VideoPlayerLoading() => const BooruHero(
+        VideoPlayerLoading() => const KurumiHero(
           tag: null,
           child: SizedBox(
             height: 24,

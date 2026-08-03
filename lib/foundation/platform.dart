@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 final _platform = defaultTargetPlatform;
 
 enum AppPlatform {
@@ -34,9 +37,8 @@ bool isWindows() => isNotWeb() && _platform == TargetPlatform.windows;
 bool isWeb() => kIsWeb;
 bool isNotWeb() => !kIsWeb;
 
-bool isDesktopPlatform() =>
-    isNotWeb() && (isMacOS() || isWindows() || isLinux());
-bool isMobilePlatform() => isAndroid() || isIOS();
+bool isDesktopPlatform() => Kurumi.isDesktopPlatform();
+bool isMobilePlatform() => Kurumi.isMobilePlatform();
 
 bool hasStatusBar() => isMobilePlatform();
 

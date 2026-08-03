@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../foundation/toast.dart';
 import '../../../premiums/routes.dart';
 import '../../../premiums/types.dart';
 import '../../providers.dart';
@@ -36,7 +36,7 @@ class BulkDownloadNotificationScope extends ConsumerWidget {
           if (cur != null && cur is BulkDownloadError) {
             final isPremiumError = cur.code.isPremiumError;
 
-            showSimpleSnackBar(
+            Kurumi.showSimpleSnackBar(
               context: context,
               content: Text(switch (cur.code) {
                 BulkDownloadErrorCode.nonPremiumSavedTaskLimit =>

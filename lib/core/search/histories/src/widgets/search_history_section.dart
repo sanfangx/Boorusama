@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -107,7 +108,7 @@ class SearchHistoryQueryWidget extends StatelessWidget {
             .queryAsList()
             .map(
               (e) => IgnorePointer(
-                child: CompactChip(
+                child: KurumiCompactChip(
                   label: e,
                   borderRadius: BorderRadius.circular(8),
                   padding: const EdgeInsets.symmetric(

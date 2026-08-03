@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../themes/theme/types.dart';
-import '../../widgets/widgets.dart';
 import '../types/backup_data_source.dart';
 import 'types.dart';
 
@@ -41,7 +40,7 @@ class _ZipPreviewDialogState extends ConsumerState<ZipPreviewDialog> {
     final availableSources = widget.previewResult.availableSources;
     final theme = Theme.of(context);
 
-    return BooruDialog(
+    return KurumiDialog(
       child: Container(
         constraints: const BoxConstraints(maxWidth: 500),
         child: Column(

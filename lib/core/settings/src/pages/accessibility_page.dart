@@ -4,16 +4,14 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../haptics/types.dart';
 import '../../../home/types.dart';
-import '../../../themes/theme/types.dart';
-import '../../../widgets/widgets.dart';
 import '../providers/settings_notifier.dart';
 import '../providers/settings_provider.dart';
 import '../widgets/settings_page_scaffold.dart';
-import '../widgets/settings_tile.dart';
 
 class AccessibilityPage extends ConsumerStatefulWidget {
   const AccessibilityPage({
@@ -33,7 +31,7 @@ class _AccessibilityPageState extends ConsumerState<AccessibilityPage> {
     return SettingsPageScaffold(
       title: Text(context.t.settings.accessibility.accessibility),
       children: [
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(
             context
                 .t
@@ -50,7 +48,7 @@ class _AccessibilityPageState extends ConsumerState<AccessibilityPage> {
             ),
           ),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(context.t.settings.accessibility.swipeAreaToOpenSidebar),
           subtitle: Text(
             context.t.settings.accessibility.swipeAreaToOpenSidebarDescription,
@@ -69,7 +67,7 @@ class _AccessibilityPageState extends ConsumerState<AccessibilityPage> {
             '$value%',
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.accessibility.reduce_animations),
           subtitle: Text(
             context.t.settings.accessibility.reduce_animations_description,
@@ -81,7 +79,7 @@ class _AccessibilityPageState extends ConsumerState<AccessibilityPage> {
             ),
           ),
         ),
-        BooruSwitchListTile(
+        KurumiSwitchListTile(
           title: Text(context.t.settings.accessibility.volume_navigation),
           subtitle: Text(
             context.t.settings.accessibility.volume_navigation_description,
@@ -93,7 +91,7 @@ class _AccessibilityPageState extends ConsumerState<AccessibilityPage> {
             ),
           ),
         ),
-        SettingsTile(
+        KurumiSettingsTile(
           title: Text(
             context.t.settings.accessibility.haptic_feedback.haptic_feedback,
           ),
