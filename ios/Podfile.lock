@@ -1,7 +1,5 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_avif_ios (0.0.1):
-    - Flutter
   - media_kit_libs_ios_video (1.0.4):
     - Flutter
   - media_kit_video (0.0.1):
@@ -20,7 +18,6 @@ PODS:
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_avif_ios (from `.symlinks/plugins/flutter_avif_ios/ios`)
   - media_kit_libs_ios_video (from `.symlinks/plugins/media_kit_libs_ios_video/ios`)
   - media_kit_video (from `.symlinks/plugins/media_kit_video/ios`)
   - share_handler_ios (from `.symlinks/plugins/share_handler_ios/ios`)
@@ -30,8 +27,6 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_avif_ios:
-    :path: ".symlinks/plugins/flutter_avif_ios/ios"
   media_kit_libs_ios_video:
     :path: ".symlinks/plugins/media_kit_libs_ios_video/ios"
   media_kit_video:
@@ -45,7 +40,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
-  flutter_avif_ios: 2553d2aafda56339cf924e943da89ad3f40af2dd
   media_kit_libs_ios_video: 5a18affdb97d1f5d466dc79988b13eff6c5e2854
   media_kit_video: 1746e198cb697d1ffb734b1d05ec429d1fcd1474
   share_handler_ios: e2244e990f826b2c8eaa291ac3831569438ba0fb

@@ -9,13 +9,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' hide Image;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/semantics.dart';
-import 'package:flutter_avif/flutter_avif.dart';
 import 'package:path/path.dart' as path;
 import 'package:retriable/retriable.dart';
-
-// ignore: depend_on_referenced_packages
-import 'package:flutter_avif_platform_interface/flutter_avif_platform_interface.dart'
-    as avif_platform;
 
 import 'cached_network_avif_image.dart';
 import 'dio_extended_image_provider.dart';
@@ -71,7 +66,6 @@ class ExtendedImage extends StatefulWidget {
     this.placeholderWidget,
     this.errorWidget,
   }) : assert(constraints == null || constraints.debugAssertIsValid()),
-       _avif = false,
        constraints = (width != null || height != null)
            ? constraints?.tighten(width: width, height: height) ??
                  BoxConstraints.tightFor(width: width, height: height)
@@ -114,11 +108,6 @@ class ExtendedImage extends StatefulWidget {
     ImageCacheManager? cacheManager,
   }) : assert(cacheWidth == null || cacheWidth > 0),
        assert(cacheHeight == null || cacheHeight > 0),
-       _avif = shouldUseAvif(
-         url,
-         platform: platform,
-         androidVersion: androidVersion,
-       ),
        image = ExtendedResizeImage.resizeIfNeeded(
          provider:
              shouldUseAvif(
@@ -126,18 +115,19 @@ class ExtendedImage extends StatefulWidget {
                platform: platform,
                androidVersion: androidVersion,
              )
-             ? CustomCachedNetworkAvifImage(
-                     url,
-                     scale: scale,
-                     headers: headers,
-                     cacheManager: cacheManager,
-                     dio: dio,
-                     cancelToken: cancelToken,
-                     fetchStrategy: fetchStrategy,
-                     cacheKey: cacheKey,
-                     cacheMaxAge: cacheMaxAge ?? kDefaultImageCacheDuration,
-                   ).image
-                   as CustomCachedNetworkAvifImageProvider
+             ? CustomCachedNetworkAvifImageProvider(
+                 url,
+                 scale: scale,
+                 headers: headers,
+                 cacheManager: cacheManager,
+                 dio: dio,
+                 cancelToken: cancelToken,
+                 fetchStrategy: fetchStrategy,
+                 cacheKey: cacheKey,
+                 cacheMaxAge: cacheMaxAge ?? kDefaultImageCacheDuration,
+                 cacheWidth: cacheWidth,
+                 cacheHeight: cacheHeight,
+               )
              : DioExtendedNetworkImageProvider(
                  url,
                  dio: dio,
@@ -167,8 +157,6 @@ class ExtendedImage extends StatefulWidget {
        assert(constraints == null || constraints.debugAssertIsValid()),
        assert(cacheWidth == null || cacheWidth > 0),
        assert(cacheHeight == null || cacheHeight > 0);
-
-  final bool _avif;
 
   /// when image is removed from the tree permanently, whether clear memory cache
   final bool clearMemoryCacheWhenDispose;
@@ -402,11 +390,6 @@ class _ExtendedImageState extends State<ExtendedImage>
       _imageStream!.removeListener(oldListener);
     }
     if (widget.image != oldWidget.image) {
-      if (widget._avif) {
-        final avifFfi = avif_platform.FlutterAvifPlatform.api;
-        avifFfi.disposeDecoder(key: oldWidget.image.hashCode.toString());
-      }
-
       _resolveImage();
     }
   }
@@ -571,15 +554,6 @@ class _ExtendedImageState extends State<ExtendedImage>
     }
     _imageStream!.removeListener(_getListener());
     _isListeningToStream = false;
-
-    if (_imageStream?.completer != null &&
-        (_imageStream!.completer! is AvifImageStreamCompleter) &&
-        !(_imageStream!.completer! as AvifImageStreamCompleter)
-            .getHasListeners() &&
-        !PaintingBinding.instance.imageCache.containsKey(widget.image)) {
-      final avifFfi = avif_platform.FlutterAvifPlatform.api;
-      avifFfi.disposeDecoder(key: widget.image.hashCode.toString());
-    }
   }
 
   void _updateSourceStream(ImageStream newStream, {bool rebuild = false}) {
