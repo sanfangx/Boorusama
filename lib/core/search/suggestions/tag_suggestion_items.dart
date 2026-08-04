@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../boorus/engine/providers.dart';
@@ -47,7 +48,8 @@ class TagSuggestionItems extends ConsumerWidget {
 
     return _tags.isNotEmpty
         ? Material(
-            color: backgroundColor ?? Theme.of(context).colorScheme.surface,
+            color:
+                backgroundColor ?? Kurumi.themeOf(context).colorScheme.surface,
             borderRadius:
                 borderRadius ?? const BorderRadius.all(Radius.circular(8)),
             child: ListView.builder(

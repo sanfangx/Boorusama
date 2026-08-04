@@ -89,7 +89,7 @@ class _MetatagsSectionState extends ConsumerState<MetatagsSection> {
     final colors = ref
         .watch(booruChipColorsProvider)
         .fromColor(
-          Theme.of(context).colorScheme.primary,
+          Kurumi.themeOf(context).colorScheme.primary,
         );
 
     return KurumiSelectableChip(

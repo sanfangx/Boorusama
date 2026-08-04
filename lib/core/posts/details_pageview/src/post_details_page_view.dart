@@ -25,10 +25,6 @@ import 'side_sheet.dart';
 // Dart imports:
 // ignore_for_file: prefer_int_literals
 
-
-
-
-
 enum ViewMode {
   horizontal,
   vertical,
@@ -469,7 +465,7 @@ class _PostDetailsPageViewState extends State<PostDetailsPageView>
                         end: Offset.zero,
                       ).animate(_bottomInfoAnimController),
                       child: ColoredBox(
-                        color: Theme.of(context).colorScheme.surface,
+                        color: Kurumi.themeOf(context).colorScheme.surface,
                         child: FadeTransition(
                           opacity:
                               Tween(

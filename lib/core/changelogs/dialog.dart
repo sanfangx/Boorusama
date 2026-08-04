@@ -116,7 +116,7 @@ class _ChanglogBox extends StatelessWidget {
     return Center(
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainer,
+          color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
           borderRadius: BorderRadius.circular(8),
         ),
         margin: const EdgeInsets.symmetric(
@@ -139,7 +139,7 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Padding(
       padding: const EdgeInsets.only(
@@ -211,7 +211,7 @@ class _HolidayBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Container(
       width: double.infinity,
@@ -252,7 +252,7 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -269,9 +269,10 @@ class _Header extends StatelessWidget {
                 children: [
                   Text(
                     context.t.app_update.whats_new,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Kurumi.themeOf(context).textTheme.titleMedium
+                        ?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(width: 8),
                   KurumiCompactChip(

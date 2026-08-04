@@ -60,7 +60,7 @@ class _FavoriteTagLabelsPageState extends ConsumerState<FavoriteTagLabelsPage> {
                                 : context.t.favorite_tags.labels.no_match,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Theme.of(
+                              color: Kurumi.themeOf(
                                 context,
                               ).colorScheme.onSurfaceVariant,
                             ),
@@ -191,7 +191,7 @@ class _RemoveLabelDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return KurumiDialog(
       color: colorScheme.surfaceContainer,
@@ -353,8 +353,8 @@ class _MergeLabelSheetState extends State<_MergeLabelSheet> {
             context.t.favorite_tags.labels.merge_source_into(
               label: widget.sourceLabel,
             ),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            style: Kurumi.themeOf(context).textTheme.bodyMedium?.copyWith(
+              color: Kurumi.themeOf(context).colorScheme.onSurfaceVariant,
             ),
           ),
         ),
@@ -376,7 +376,7 @@ class _MergeLabelSheetState extends State<_MergeLabelSheet> {
                   trailing: selectedLabel == widget.candidates[index]
                       ? Icon(
                           Icons.check_rounded,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Kurumi.themeOf(context).colorScheme.primary,
                         )
                       : null,
                   onTap: () => setState(

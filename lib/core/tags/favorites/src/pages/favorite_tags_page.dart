@@ -211,7 +211,7 @@ class _SearchAndFilterControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final filterButtonBorder = BorderSide(
       color: colorScheme.outlineVariant,
     );
@@ -254,7 +254,7 @@ class _SearchAndFilterControls extends StatelessWidget {
                   selectedItemBuilder: (type) => Text(
                     _typeLabel(type, context),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Kurumi.themeOf(context).textTheme.bodyMedium,
                   ),
                   onChanged: (value) {
                     if (value != null) onTypeSelected(value);
@@ -291,7 +291,7 @@ class _SearchAndFilterControls extends StatelessWidget {
                           : label,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      style: Kurumi.themeOf(context).textTheme.bodyMedium,
                     ),
                   ),
                   onPressed: () => _showLabelPicker(context),
@@ -325,7 +325,7 @@ class _SearchAndFilterControls extends StatelessWidget {
                   selectedItemBuilder: (type) => Text(
                     _groupLabel(type, context),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Kurumi.themeOf(context).textTheme.bodyMedium,
                   ),
                   onChanged: (value) {
                     if (value != null) onGroupSelected(value);
@@ -356,7 +356,7 @@ class _SearchAndFilterControls extends StatelessWidget {
                   selectedItemBuilder: (type) => Text(
                     _sortLabel(type, context),
                     maxLines: 1,
-                    style: Theme.of(context).textTheme.bodyMedium,
+                    style: Kurumi.themeOf(context).textTheme.bodyMedium,
                   ),
                   onChanged: (value) {
                     if (value != null) onSortSelected(value);
@@ -423,7 +423,7 @@ class _FavoriteTagsList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dividerColor = Theme.of(
+    final dividerColor = Kurumi.themeOf(
       context,
     ).colorScheme.outlineVariant.withValues(alpha: 0.4);
 
@@ -499,7 +499,7 @@ class _FavoriteTagGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final displayLabel = label.isEmpty
         ? context.t.favorite_tags.unlabelled
         : label;
@@ -516,18 +516,20 @@ class _FavoriteTagGroup extends StatelessWidget {
                 Expanded(
                   child: Text(
                     displayLabel.toUpperCase(),
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.4,
-                    ),
+                    style: Kurumi.themeOf(context).textTheme.labelMedium
+                        ?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.4,
+                        ),
                   ),
                 ),
                 Text(
                   '${tags.length}',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: colorScheme.onSurfaceVariant,
-                  ),
+                  style: Kurumi.themeOf(context).textTheme.labelMedium
+                      ?.copyWith(
+                        color: colorScheme.onSurfaceVariant,
+                      ),
                 ),
               ],
             ),
@@ -675,7 +677,7 @@ class _RawQueryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return Semantics(
       label: context.t.search.raw_query,
@@ -721,8 +723,8 @@ class _EmptyFavoriteTagsView extends StatelessWidget {
               ? context.t.favorite_tags.filtered_empty
               : context.t.favorite_tags.empty,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: Theme.of(context).colorScheme.onSurfaceVariant,
+          style: Kurumi.themeOf(context).textTheme.bodyLarge?.copyWith(
+            color: Kurumi.themeOf(context).colorScheme.onSurfaceVariant,
           ),
         ),
       ),

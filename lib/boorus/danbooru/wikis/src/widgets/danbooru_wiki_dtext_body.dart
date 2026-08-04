@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/configs/config/providers.dart';
@@ -33,7 +34,7 @@ class DanbooruWikiDTextSliverBody extends ConsumerWidget {
 }
 
 Map<String, Style> _wikiDTextStyle(BuildContext context) {
-  final colorScheme = Theme.of(context).colorScheme;
+  final colorScheme = Kurumi.themeOf(context).colorScheme;
   final codeBackground = colorScheme.surfaceContainerHighest.withValues(
     alpha: 0.75,
   );

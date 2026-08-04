@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:coreutils/coreutils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -116,7 +117,9 @@ class BooruConfigsBackupSource extends JsonBackupSource<List<BooruConfig>> {
                           '+${configs.length - first5Configs.length}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
+                            color: Kurumi.themeOf(
+                              context,
+                            ).colorScheme.onSurface,
                             fontWeight: FontWeight.w700,
                             fontSize: 18,
                           ),

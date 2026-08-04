@@ -50,7 +50,7 @@ class BooruConfigSearchView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final alwaysIncludeTags = ref.watch(
       editBooruConfigProvider(
         ref.watch(editBooruConfigIdProvider),
@@ -170,7 +170,7 @@ class BooruConfigSearchView extends ConsumerWidget {
     bool exclude = false,
   }) {
     final context = ref.context;
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Wrap(
       runAlignment: WrapAlignment.center,

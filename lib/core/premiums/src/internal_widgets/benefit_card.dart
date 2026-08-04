@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class BenefitCard extends StatelessWidget {
   const BenefitCard({
     required this.title,
@@ -34,15 +37,16 @@ class BenefitCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Kurumi.themeOf(context).textTheme.titleMedium
+                      ?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   description,
                   style: TextStyle(
-                    color: Theme.of(
+                    color: Kurumi.themeOf(
                       context,
                     ).colorScheme.onSurface.withValues(alpha: 0.6),
                   ),

@@ -25,7 +25,7 @@ GoRoute addBooruConfigRoutes(Ref ref) => GoRoute(
           state.uri.queryParameters['setAsCurrent']?.toBool() ?? false;
 
       final landscape = context.orientation.isLandscape;
-      final colorScheme = Theme.of(context).colorScheme;
+      final colorScheme = Kurumi.themeOf(context).colorScheme;
 
       final page = AddBooruPage(
         backgroundColor: landscape
@@ -58,7 +58,7 @@ GoRoute updateBooruConfigRoutes(Ref ref) => GoRoute(
           .firstWhereOrNull((element) => element.id == id);
 
       final landscape = context.orientation.isLandscape;
-      final colorScheme = Theme.of(context).colorScheme;
+      final colorScheme = Kurumi.themeOf(context).colorScheme;
 
       if (config == null) {
         return const LargeScreenAwareInvalidPage(

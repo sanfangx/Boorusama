@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../cache/persistent/providers.dart';
@@ -92,7 +93,7 @@ class PersistentDismissableInfoContainer extends ConsumerWidget {
           ...actions,
           TextButton(
             style: TextButton.styleFrom(
-              foregroundColor: Theme.of(context).colorScheme.onSurface,
+              foregroundColor: Kurumi.themeOf(context).colorScheme.onSurface,
             ),
             onPressed: () async {
               await dismissPersistently(ref, storageKey);

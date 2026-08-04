@@ -138,7 +138,7 @@ class _DanbooruArtistSearchPageState
             width: 54,
             child: Text(
               context.t.sort.sort_by,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Kurumi.themeOf(context).textTheme.titleMedium,
             ),
           ),
           ValueListenableBuilder(
@@ -186,7 +186,7 @@ class _DanbooruArtistSearchPageState
             width: 48,
             child: Text(
               'URL',
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Kurumi.themeOf(context).textTheme.titleMedium,
             ),
           ),
           const SizedBox(width: 8),
@@ -217,7 +217,7 @@ class _DanbooruArtistSearchPageState
             width: 48,
             child: Text(
               context.t.artists.search.name,
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Kurumi.themeOf(context).textTheme.titleMedium,
             ),
           ),
           const SizedBox(width: 8),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 class VideoPlayerErrorContainer extends StatelessWidget {
   const VideoPlayerErrorContainer({
@@ -56,7 +57,7 @@ class VideoPlayerErrorContainer extends StatelessWidget {
               child: Text(
                 context.t.settings.open_app_settings,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: Kurumi.themeOf(context).colorScheme.onPrimary,
                 ),
               ),
             ),

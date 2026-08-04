@@ -59,7 +59,7 @@ class _BooruSelectorVerticalState extends ConsumerState<BooruSelectorVertical>
 
     return Container(
       width: 68,
-      color: Theme.of(context).colorScheme.surface,
+      color: Kurumi.themeOf(context).colorScheme.surface,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: ref
@@ -136,7 +136,7 @@ class _BooruSelectorHorizontalState
 
     return Container(
       height: 48,
-      color: Theme.of(context).colorScheme.surface,
+      color: Kurumi.themeOf(context).colorScheme.surface,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
         child: ref
@@ -244,7 +244,7 @@ mixin BooruSelectorActionMixin<T extends ConsumerStatefulWidget>
           ContextMenuButtonConfig(
             context.t.generic.action.delete,
             labelStyle: TextStyle(
-              color: Theme.of(context).colorScheme.error,
+              color: Kurumi.themeOf(context).colorScheme.error,
             ),
             onPressed: () {
               showDialog(
@@ -257,7 +257,8 @@ mixin BooruSelectorActionMixin<T extends ConsumerStatefulWidget>
                   description: context.t.booru.deletion.confirmation,
                   onConfirm: () => notifier.delete(
                     config,
-                    onFailure: (message) => Kurumi.showErrorToast(context, message),
+                    onFailure: (message) =>
+                        Kurumi.showErrorToast(context, message),
                   ),
                 ),
               );

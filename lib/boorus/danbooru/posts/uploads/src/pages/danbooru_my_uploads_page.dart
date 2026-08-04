@@ -427,19 +427,19 @@ class _DanbooruUploadGridState extends ConsumerState<DanbooruUploadGrid> {
             children: [
               TextSpan(
                 text: '${post.postedCount}',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Kurumi.themeOf(context).textTheme.bodySmall,
               ),
               TextSpan(
                 text: ' / ',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Kurumi.themeOf(context).textTheme.bodySmall,
               ),
               TextSpan(
                 text: '${post.mediaAssetCount}',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Kurumi.themeOf(context).textTheme.bodySmall,
               ),
               TextSpan(
                 text: ' posted',
-                style: Theme.of(context).textTheme.bodySmall,
+                style: Kurumi.themeOf(context).textTheme.bodySmall,
               ),
             ],
           ),
@@ -449,7 +449,7 @@ class _DanbooruUploadGridState extends ConsumerState<DanbooruUploadGrid> {
   }
 
   Widget _buildUploaderChip(BuildContext context, DanbooruUploadPost post) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return Positioned(
       bottom: 4,

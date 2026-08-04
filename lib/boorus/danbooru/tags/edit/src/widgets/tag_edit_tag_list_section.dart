@@ -105,18 +105,19 @@ final danbooruTagEditColorsProvider =
       name: 'danbooruTagEditColorsProvider',
     );
 
-final _tagColorProvider = Provider.autoDispose.family<KurumiChipColors?, String>(
-  (ref, tag) {
-    final config = ref.watchConfigAuth;
-    final colors = ref.watch(danbooruTagEditColorsProvider(config));
+final _tagColorProvider = Provider.autoDispose
+    .family<KurumiChipColors?, String>(
+      (ref, tag) {
+        final config = ref.watchConfigAuth;
+        final colors = ref.watch(danbooruTagEditColorsProvider(config));
 
-    return colors[tag];
-  },
-  dependencies: [
-    danbooruTagEditColorsProvider,
-  ],
-  name: 'tagColorProvider',
-);
+        return colors[tag];
+      },
+      dependencies: [
+        danbooruTagEditColorsProvider,
+      ],
+      name: 'tagColorProvider',
+    );
 
 final _tagsProvider = Provider.autoDispose<Set<String>>((ref) {
   throw UnimplementedError();
@@ -204,7 +205,7 @@ class _SliverTagEditListViewState
           title: Text(
             tag.replaceAll('_', ' '),
             style: TextStyle(
-              color: Theme.of(context).brightness.isLight
+              color: Kurumi.themeOf(context).brightness.isLight
                   ? colors?.backgroundColor
                   : colors?.foregroundColor,
               fontWeight: isNewlyAdded ? FontWeight.w900 : null,
@@ -244,7 +245,7 @@ class TagEditFilterHeader extends ConsumerWidget {
         children: [
           Text(
             '$tagCount tag${tagCount > 1 ? 's' : ''}',
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
               fontSize: 20,
             ),
           ),
@@ -273,7 +274,9 @@ class TagEditFilterHeader extends ConsumerWidget {
                       style: FilledButton.styleFrom(
                         visualDensity: VisualDensity.compact,
                         shape: const CircleBorder(),
-                        backgroundColor: Theme.of(context).colorScheme.primary,
+                        backgroundColor: Kurumi.themeOf(
+                          context,
+                        ).colorScheme.primary,
                       ),
                       onPressed: () {
                         ref.read(tagEditTagFilterModeProvider.notifier).state =
@@ -284,7 +287,7 @@ class TagEditFilterHeader extends ConsumerWidget {
                       child: Icon(
                         Symbols.check,
                         size: 16,
-                        color: Theme.of(context).colorScheme.onPrimary,
+                        color: Kurumi.themeOf(context).colorScheme.onPrimary,
                       ),
                     ),
                   ],

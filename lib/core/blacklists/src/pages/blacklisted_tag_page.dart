@@ -113,7 +113,7 @@ class BlacklistedTagPage extends ConsumerWidget {
               body: Center(
                 child: Text(
                   error.toString(),
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Kurumi.themeOf(context).textTheme.bodyLarge,
                 ),
               ),
             );

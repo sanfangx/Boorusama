@@ -117,8 +117,8 @@ class BooruConfigGesturesView extends ConsumerWidget {
           const SizedBox(height: 32),
           Text(
             context.t.booru.gestures.override_notice,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: Theme.of(context).colorScheme.hintColor,
+            style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),

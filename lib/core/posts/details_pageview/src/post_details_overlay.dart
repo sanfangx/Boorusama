@@ -134,7 +134,7 @@ class _SheetControlButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return ValueListenableBuilder(
       valueListenable: controller.sheetState,

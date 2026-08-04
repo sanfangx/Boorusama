@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import 'providers.dart';
@@ -48,7 +49,9 @@ class _FullHistoryPageState extends ConsumerState<FullHistoryPage> {
                 actions: [
                   TextButton(
                     style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).colorScheme.onSurface,
+                      foregroundColor: Kurumi.themeOf(
+                        context,
+                      ).colorScheme.onSurface,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(context.t.generic.action.cancel),

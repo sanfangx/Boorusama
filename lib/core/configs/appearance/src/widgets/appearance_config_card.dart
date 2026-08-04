@@ -1,8 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../../themes/theme/types.dart';
 
 class AppearanceConfigCard extends StatelessWidget {
   const AppearanceConfigCard({
@@ -18,12 +20,12 @@ class AppearanceConfigCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final iconTheme = theme.iconTheme;
     final borderRadius = BorderRadius.circular(16);
 
     return Material(
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
       ),

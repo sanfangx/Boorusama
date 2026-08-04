@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:selection_mode/selection_mode.dart';
 
 const _kAnimDuration = Duration(milliseconds: 100);
@@ -16,7 +17,7 @@ class SelectionModeAnimatedFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return SelectionConsumer(
       builder: (context, controller, _) {

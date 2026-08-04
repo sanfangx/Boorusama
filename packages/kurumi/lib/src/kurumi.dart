@@ -1,6 +1,7 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors
 
 import 'package:flutter/material.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
 import 'components/adaptive_sheet.dart' as adaptive_sheet;
 import 'components/bottom_sheet.dart' as bottom_sheet;
@@ -10,6 +11,11 @@ import 'components/segmented_button.dart' as segmented_button;
 import 'components/toast.dart' as toast;
 import 'foundation/platform.dart' as platform;
 import 'foundation/preferred_layout.dart' as preferred_layout;
+import 'theme/semantic_tokens.dart';
+import 'theme/theme.dart' as kurumi_theme;
+import 'theme/color_schemes.dart';
+import 'theme/material_theme.dart';
+import 'theme/theme_mode.dart';
 
 /// The callable and value-based API for the Kurumi design language.
 ///
@@ -25,6 +31,99 @@ abstract final class Kurumi {
 
   static preferred_layout.KurumiPreferredLayout get preferredLayout =>
       preferred_layout.kurumiPreferredLayout;
+
+  /// Returns the semantic colors provided by the nearest [KurumiTheme].
+  static KurumiSemanticColors semanticColorsOf(BuildContext context) =>
+      kurumi_theme.KurumiTheme.of(context).semanticColors;
+
+  /// Material theme bridge for consumers that still need a complete
+  /// [ThemeData] value during migration.
+  static ThemeData themeOf(BuildContext context) => Theme.of(context);
+
+  /// Resolves the active palette while preserving Kurumi's built-in theme
+  /// modes and dynamic-color behavior.
+  static ColorScheme generateColorScheme(
+    KurumiThemeMode mode, {
+    required bool systemDarkMode,
+    ColorScheme? dynamicDarkScheme,
+    ColorScheme? dynamicLightScheme,
+  }) => switch ((dynamicDarkScheme, dynamicLightScheme)) {
+    (final ColorScheme dark, final ColorScheme light) => switch (mode) {
+      KurumiThemeMode.light => light.harmonized(),
+      KurumiThemeMode.dark => dark.harmonized(),
+      KurumiThemeMode.amoledDark => KurumiColorSchemes.amoledDark.copyWith(
+        primary: dark.primary,
+        onPrimary: dark.onPrimary,
+      ),
+      KurumiThemeMode.system =>
+        systemDarkMode ? dark.harmonized() : light.harmonized(),
+    },
+    _ => switch (mode) {
+      KurumiThemeMode.light => KurumiColorSchemes.light,
+      KurumiThemeMode.dark => KurumiColorSchemes.dark,
+      KurumiThemeMode.amoledDark => KurumiColorSchemes.amoledDark,
+      KurumiThemeMode.system =>
+        systemDarkMode ? KurumiColorSchemes.dark : KurumiColorSchemes.light,
+    },
+  };
+
+  /// Builds the complete Material theme from Kurumi's existing theme rules.
+  static ThemeData themeFrom(
+    KurumiThemeMode? mode, {
+    required ColorScheme colorScheme,
+    required bool systemDarkMode,
+    bool? isDesktop,
+  }) {
+    final desktop = isDesktop ?? preferredLayout.isDesktop;
+
+    return switch (mode) {
+      KurumiThemeMode.light => KurumiMaterialTheme.lightTheme(
+        colorScheme: colorScheme,
+        extendedColorScheme: KurumiColorSchemes.lightExtended,
+        isDesktop: desktop,
+      ),
+      KurumiThemeMode.dark => KurumiMaterialTheme.darkTheme(
+        colorScheme: colorScheme,
+        extendedColorScheme: KurumiColorSchemes.darkExtended,
+        isDesktop: desktop,
+      ),
+      KurumiThemeMode.amoledDark =>
+        KurumiMaterialTheme.darkTheme(
+          colorScheme: colorScheme,
+          extendedColorScheme: KurumiColorSchemes.amoledDarkExtended,
+          isDesktop: desktop,
+        ).copyWith(
+          dividerTheme: const DividerThemeData(
+            endIndent: 0,
+            indent: 0,
+          ),
+        ),
+      KurumiThemeMode.system =>
+        systemDarkMode
+            ? KurumiMaterialTheme.darkTheme(
+                colorScheme: colorScheme,
+                extendedColorScheme: KurumiColorSchemes.darkExtended,
+                isDesktop: desktop,
+              )
+            : KurumiMaterialTheme.lightTheme(
+                colorScheme: colorScheme,
+                extendedColorScheme: KurumiColorSchemes.lightExtended,
+                isDesktop: desktop,
+              ),
+      null =>
+        colorScheme.brightness == Brightness.light
+            ? KurumiMaterialTheme.lightTheme(
+                colorScheme: colorScheme,
+                extendedColorScheme: KurumiColorSchemes.lightExtended,
+                isDesktop: desktop,
+              )
+            : KurumiMaterialTheme.darkTheme(
+                colorScheme: colorScheme,
+                extendedColorScheme: KurumiColorSchemes.darkExtended,
+                isDesktop: desktop,
+              ),
+    };
+  }
 
   static const bool enableHeroTransition = hero.kKurumiEnableHeroTransition;
 

@@ -9,6 +9,7 @@ import 'package:anchor_ui/anchor_ui.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -19,7 +20,6 @@ import '../../../configs/config/providers.dart';
 import '../../../posts/listing/providers.dart';
 import '../../../search/queries/types.dart';
 import '../../../search/search/widgets.dart';
-import '../../../themes/theme/types.dart';
 import '../providers/suggestion_provider.dart';
 
 class BookmarkSearchBar extends ConsumerStatefulWidget {
@@ -181,7 +181,7 @@ class _OverlayState extends ConsumerState<_Overlay> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -288,7 +288,7 @@ class _SuggestionItem extends ConsumerWidget {
                 Text(
                   count.toString(),
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.hintColor,
+                    color: Kurumi.themeOf(context).colorScheme.hintColor,
                   ),
                 ),
               ],

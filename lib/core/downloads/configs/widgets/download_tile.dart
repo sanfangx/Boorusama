@@ -6,6 +6,7 @@ import 'package:coreutils/coreutils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -13,7 +14,6 @@ import '../../../../foundation/utils/flutter_utils.dart';
 import '../../../config_widgets/website_logo.dart';
 import '../../../configs/config/providers.dart';
 import '../../../images/booru_image.dart';
-import '../../../themes/theme/types.dart';
 
 class DownloadTileBuilder extends StatelessWidget {
   const DownloadTileBuilder({
@@ -86,7 +86,9 @@ class DownloadTileBuilder extends StatelessWidget {
                 () => SizedBox(
                   height: 60,
                   child: Card(
-                    color: Theme.of(context).colorScheme.tertiaryContainer,
+                    color: Kurumi.themeOf(
+                      context,
+                    ).colorScheme.tertiaryContainer,
                     child: const Icon(
                       Symbols.image,
                       color: Colors.white,
@@ -121,7 +123,9 @@ class DownloadTileBuilder extends StatelessWidget {
                             overflow: TextOverflow.fade,
                             softWrap: false,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.hintColor,
+                              color: Kurumi.themeOf(
+                                context,
+                              ).colorScheme.hintColor,
                               fontSize: 12,
                             ),
                           ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 class ResultCounter extends StatelessWidget {
   const ResultCounter({
@@ -34,7 +35,7 @@ class ResultCounter extends StatelessWidget {
       children: [
         Text(
           context.t.search.search_in_progress_notice,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Kurumi.themeOf(context).textTheme.titleLarge,
         ),
         const SizedBox(width: 10),
         const SizedBox(
@@ -55,7 +56,7 @@ class ResultCounter extends StatelessWidget {
       children: [
         Text(
           context.t.search.result_counter(n: count),
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+          style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w800,
           ),
         ),
@@ -68,7 +69,7 @@ class ResultCounter extends StatelessWidget {
   Widget _buildEmptyState(BuildContext context) {
     return Text(
       context.t.search.no_result_notice,
-      style: Theme.of(context).textTheme.titleLarge,
+      style: Kurumi.themeOf(context).textTheme.titleLarge,
     );
   }
 }

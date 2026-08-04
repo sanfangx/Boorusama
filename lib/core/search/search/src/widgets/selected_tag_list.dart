@@ -114,16 +114,18 @@ class SelectedTagList extends StatelessWidget {
                                 Icon(
                                   Symbols.add,
                                   size: 14,
-                                  color: Theme.of(
+                                  color: Kurumi.themeOf(
                                     context,
                                   ).colorScheme.outline.withValues(alpha: 0.75),
                                 ),
                                 Text(
                                   otherTagsCount,
-                                  style: Theme.of(context).textTheme.bodySmall
+                                  style: Kurumi.themeOf(context)
+                                      .textTheme
+                                      .bodySmall
                                       ?.copyWith(
                                         letterSpacing: 0,
-                                        color: Theme.of(context)
+                                        color: Kurumi.themeOf(context)
                                             .colorScheme
                                             .outline
                                             .withValues(alpha: 0.5),

@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
-import '../themes/theme/types.dart';
+// Package imports:
+import 'package:kurumi/kurumi.dart';
 
 class MultiSelectButton extends StatelessWidget {
   const MultiSelectButton({
@@ -20,7 +20,7 @@ class MultiSelectButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final iconTheme = IconTheme.of(context);
 
     return Semantics(
@@ -30,7 +30,7 @@ class MultiSelectButton extends StatelessWidget {
       onTap: onPressed,
       excludeSemantics: true,
       child: InkWell(
-        hoverColor: Theme.of(context).hoverColor.withValues(alpha: 0.1),
+        hoverColor: Kurumi.themeOf(context).hoverColor.withValues(alpha: 0.1),
         customBorder: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),

@@ -23,7 +23,7 @@ class FavoriteTagLabelChip extends ConsumerWidget {
     final colors = ref
         .watch(booruChipColorsProvider)
         .fromColor(
-          Theme.of(context).colorScheme.primary,
+          Kurumi.themeOf(context).colorScheme.primary,
         );
 
     return SizedBox(

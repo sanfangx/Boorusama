@@ -198,7 +198,7 @@ class EditBlacklistActionSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final config = ref.watchConfigFilter;
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return ref
         .watch(blacklistTagEntriesProvider(config))
@@ -319,7 +319,7 @@ class PostGridActionSheet extends ConsumerWidget {
       imageListingSettingsProvider.select((value) => value.imageQuality),
     );
 
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(

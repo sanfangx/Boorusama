@@ -10,8 +10,8 @@ import '../../../configs/config/providers.dart';
 import '../../../premiums/providers.dart';
 import '../../../settings/providers.dart';
 import '../../colors/providers.dart';
+import '../../colors/types.dart';
 import '../../configs/types.dart';
-import 'app_theme.dart';
 
 class ThemeBuilder extends ConsumerWidget {
   const ThemeBuilder({
@@ -59,7 +59,7 @@ class ThemeBuilder extends ConsumerWidget {
 
         final scheme =
             customColorScheme ??
-            AppTheme.generateScheme(
+            Kurumi.generateColorScheme(
               theme,
               dynamicDarkScheme: dark,
               dynamicLightScheme: light,
@@ -75,11 +75,11 @@ class ThemeBuilder extends ConsumerWidget {
               colorSchemeProvider.overrideWithValue(scheme),
             ],
             child: builder(
-              AppTheme.themeFrom(
+              Kurumi.themeFrom(
                 customColorScheme != null ? null : theme,
                 colorScheme: scheme,
                 systemDarkMode: systemDarkMode,
-              ),
+              ).withBoorusamaColors(),
               theme.toSystem(),
             ),
           ),

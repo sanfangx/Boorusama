@@ -33,7 +33,7 @@ class RawTagsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return DetailsWidgetSeparator(
       child: Theme(
@@ -83,7 +83,7 @@ class RawTagsTileTitle<T extends Post> extends ConsumerWidget {
       children: [
         Text(context.t.tags.counter(n: count ?? 0)),
         KurumiPopupMenuButton(
-          iconColor: Theme.of(context).colorScheme.onSurface,
+          iconColor: Kurumi.themeOf(context).colorScheme.onSurface,
           items: [
             KurumiPopupMenuItem(
               title: Text(context.t.generic.action.select),

@@ -75,7 +75,7 @@ class _DataAndStoragePageState extends ConsumerState<DataAndStoragePage> {
   }
 
   Widget _buildDiskSpace() {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final (sizeInfo, bookmarkCacheSize) = ref.watch(diskSpaceProvider);
     final diskInfo = sizeInfo.diskSpaceInfo;
 

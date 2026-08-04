@@ -85,7 +85,7 @@ class EshuushuuAuthView extends ConsumerWidget {
       margin: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Theme.of(context).colorScheme.primary,
+          color: Kurumi.themeOf(context).colorScheme.primary,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -102,7 +102,7 @@ class EshuushuuAuthView extends ConsumerWidget {
               Row(
                 children: [
                   KurumiSelectableChip(
-                    backgroundColor: Theme.of(
+                    backgroundColor: Kurumi.themeOf(
                       context,
                     ).colorScheme.secondaryContainer,
                     onPressed: () => _showLoginSheet(context, ref),
@@ -110,7 +110,7 @@ class EshuushuuAuthView extends ConsumerWidget {
                   ),
                   const SizedBox(width: 8),
                   KurumiSelectableChip(
-                    backgroundColor: Theme.of(
+                    backgroundColor: Kurumi.themeOf(
                       context,
                     ).colorScheme.secondaryContainer,
                     onPressed: () {
@@ -128,10 +128,10 @@ class EshuushuuAuthView extends ConsumerWidget {
             const SizedBox(height: 8),
             Text(
               '${context.t.auth.login_expires} ${_formatDate(expiry, context.t.$meta.locale.languageTag)}',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              style: Kurumi.themeOf(context).textTheme.bodySmall?.copyWith(
                 color: expiry.isBefore(DateTime.now())
-                    ? Theme.of(context).colorScheme.error
-                    : Theme.of(context).colorScheme.hintColor,
+                    ? Kurumi.themeOf(context).colorScheme.error
+                    : Kurumi.themeOf(context).colorScheme.hintColor,
               ),
             ),
           ],
@@ -279,7 +279,7 @@ class _EshuushuuLoginSheetState extends ConsumerState<_EshuushuuLoginSheet> {
                 Text(
                   _errorMessage!,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
+                    color: Kurumi.themeOf(context).colorScheme.error,
                   ),
                 ),
                 const SizedBox(height: 8),

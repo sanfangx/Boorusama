@@ -129,8 +129,8 @@ class _SettingsPageState extends State<SettingsPage> {
     final entries = _entries(context);
 
     return Theme(
-      data: Theme.of(context).copyWith(
-        iconTheme: Theme.of(context).iconTheme.copyWith(
+      data: Kurumi.themeOf(context).copyWith(
+        iconTheme: Kurumi.themeOf(context).iconTheme.copyWith(
           size: 18,
         ),
       ),
@@ -679,8 +679,8 @@ class _SettingsSection extends StatelessWidget {
       ),
       child: Text(
         label.toUpperCase(),
-        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-          color: Theme.of(context).colorScheme.hintColor,
+        style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
+          color: Kurumi.themeOf(context).colorScheme.hintColor,
         ),
       ),
     );

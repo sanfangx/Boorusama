@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_html/flutter_html.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../core/themes/theme/types.dart';
 
 class AppHtml extends StatefulWidget {
   const AppHtml({
@@ -81,11 +81,11 @@ class _AppHtmlState extends State<AppHtml> {
       ...{
         'body': Style(
           margin: Margins.zero,
-          color: Theme.of(context).colorScheme.onSurface,
+          color: Kurumi.themeOf(context).colorScheme.onSurface,
         ),
         'a': Style(
-          color: Theme.of(context).colorScheme.primary,
-          textDecorationColor: Theme.of(context).colorScheme.primary,
+          color: Kurumi.themeOf(context).colorScheme.primary,
+          textDecorationColor: Kurumi.themeOf(context).colorScheme.primary,
         ),
       },
     };

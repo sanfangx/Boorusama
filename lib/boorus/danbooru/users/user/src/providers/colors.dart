@@ -1,8 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../../../core/users/types.dart';
 import '../types/user.dart';
 import '../types/user_level.dart';
@@ -35,7 +37,7 @@ int getUserHexColor(UserLevel level) => switch (level) {
 
 class DanbooruUserColor implements UserColor {
   factory DanbooruUserColor.of(BuildContext context) =>
-      DanbooruUserColor._(brightness: Theme.of(context).brightness);
+      DanbooruUserColor._(brightness: Kurumi.themeOf(context).brightness);
   const DanbooruUserColor._({required this.brightness});
 
   @override

@@ -53,7 +53,7 @@ class _AccessibilityPageState extends ConsumerState<AccessibilityPage> {
           subtitle: Text(
             context.t.settings.accessibility.swipeAreaToOpenSidebarDescription,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
           ),
           selectedOption: settings.swipeAreaToOpenSidebarPercentage,

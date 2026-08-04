@@ -4,6 +4,9 @@ import 'dart:math';
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../widgets/widgets.dart';
 import '../types/search_bar_position.dart';
@@ -34,7 +37,7 @@ class RawSearchRegion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final parentRoute = ModalRoute.of(context);
 
     final children = [
@@ -98,7 +101,7 @@ class _SearchRegionBottomDisplacement extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewInsets = MediaQuery.viewInsetsOf(context).bottom;
     final viewPadding = MediaQuery.viewPaddingOf(context).bottom;
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Container(
       color: colorScheme.surface,

@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class RawTagEditSelectButton extends StatelessWidget {
   const RawTagEditSelectButton({
     required this.title,
@@ -18,13 +21,15 @@ class RawTagEditSelectButton extends StatelessWidget {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(4)),
         ),
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+        backgroundColor: Kurumi.themeOf(
+          context,
+        ).colorScheme.surfaceContainerHighest,
       ),
       onPressed: onPressed,
       child: Text(
         title,
         style: TextStyle(
-          color: Theme.of(context).colorScheme.onSurfaceVariant,
+          color: Kurumi.themeOf(context).colorScheme.onSurfaceVariant,
         ),
       ),
     );

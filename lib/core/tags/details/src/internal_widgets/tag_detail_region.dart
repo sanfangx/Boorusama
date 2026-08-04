@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../../foundation/display.dart';
 
 class TagDetailsRegion extends ConsumerWidget {
   const TagDetailsRegion({
@@ -26,7 +26,7 @@ class TagDetailsRegion extends ConsumerWidget {
     return !context.isLargeScreen
         ? builder(context)
         : Material(
-            color: Theme.of(context).colorScheme.surface,
+            color: Kurumi.themeOf(context).colorScheme.surface,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

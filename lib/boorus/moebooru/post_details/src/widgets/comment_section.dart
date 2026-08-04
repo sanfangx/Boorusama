@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/configs/config/providers.dart';
 import '../../../../../core/posts/details/types.dart';
-import '../../../../../core/themes/theme/types.dart';
 import '../../../comments/providers.dart';
 import '../../../posts/types.dart';
 import 'comment_item.dart';
@@ -20,7 +20,7 @@ class MoebooruCommentSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
     final post = InheritedPost.of<MoebooruPost>(context);

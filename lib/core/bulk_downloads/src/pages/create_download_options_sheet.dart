@@ -39,7 +39,7 @@ class CreateDownloadOptionsSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final navigatorContext = navigatorKey.currentContext;
 
     void showSnackBar(BuildContext context, String message) {
@@ -153,7 +153,7 @@ class _CreateDownloadOptionsRawSheetState
     final notifier = ref.watch(createDownloadOptionsProvider(params).notifier);
     final options = ref.watch(createDownloadOptionsProvider(params));
 
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
 
@@ -300,8 +300,8 @@ class _ExcludedTagsSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
+    final textTheme = Kurumi.themeOf(context).textTheme;
 
     final extraTags = queryAsList(options.blacklistedTags);
     final config = ref.watchConfigAuth;

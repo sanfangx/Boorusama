@@ -65,7 +65,7 @@ class FavoriteTagsSection extends ConsumerWidget {
         final colors = ref
             .watch(booruChipColorsProvider)
             .fromColor(
-              Theme.of(ref.context).colorScheme.onSurface,
+              Kurumi.themeOf(ref.context).colorScheme.onSurface,
             );
 
         return KurumiSelectableChip(
@@ -128,7 +128,7 @@ class OptionTagsArenaNoEdit extends ConsumerWidget {
               children: [
                 Text(
                   title.toUpperCase(),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -138,7 +138,7 @@ class OptionTagsArenaNoEdit extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     minimumSize: const Size(32, 32),
                     shape: const CircleBorder(),
-                    backgroundColor: Theme.of(
+                    backgroundColor: Kurumi.themeOf(
                       context,
                     ).colorScheme.surfaceContainerHighest,
                   ),
@@ -146,7 +146,7 @@ class OptionTagsArenaNoEdit extends ConsumerWidget {
                   child: Icon(
                     Symbols.settings,
                     size: 16,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    color: Kurumi.themeOf(context).colorScheme.onSurfaceVariant,
                     fill: 1,
                   ),
                 ),

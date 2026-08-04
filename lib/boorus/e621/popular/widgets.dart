@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/configs/config/providers.dart';
@@ -47,7 +48,7 @@ class _E621PopularPageState extends ConsumerState<E621PopularPage> {
             builder: (context, controller) => Column(
               children: [
                 Container(
-                  color: Theme.of(
+                  color: Kurumi.themeOf(
                     context,
                   ).bottomNavigationBarTheme.backgroundColor,
                   child: ValueListenableBuilder<DateTime>(

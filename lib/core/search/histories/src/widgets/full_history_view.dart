@@ -6,12 +6,12 @@ import 'package:animated_list_plus/animated_list_plus.dart';
 import 'package:animated_list_plus/transitions.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../foundation/display.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../search/widgets.dart';
 import '../providers.dart';
 import '../types/search_history.dart';
@@ -82,7 +82,9 @@ class FullHistoryView extends ConsumerWidget {
                             onPressed: () => notifier.removeHistory(history),
                             icon: Icon(
                               Symbols.close,
-                              color: Theme.of(context).colorScheme.hintColor,
+                              color: Kurumi.themeOf(
+                                context,
+                              ).colorScheme.hintColor,
                             ),
                           ),
                         ),

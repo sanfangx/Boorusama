@@ -63,7 +63,7 @@ class _DownloadFolderSelectorSectionState
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -99,7 +99,7 @@ class _DownloadFolderSelectorSectionState
                             widget.hint ??
                                 context.t.settings.download.select_a_folder,
                             overflow: TextOverflow.fade,
-                            style: Theme.of(context).textTheme.titleMedium
+                            style: Kurumi.themeOf(context).textTheme.titleMedium
                                 ?.copyWith(
                                   color: colorScheme.hintColor,
                                 ),

@@ -67,8 +67,8 @@ class CreateBooruRatingOptionsTile extends StatelessWidget {
             context.t.booru.choose_a_custom_filtering(
               n: singleSelection ? 1 : 2,
             ),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(
+            style: Kurumi.themeOf(context).textTheme.bodySmall?.copyWith(
+              color: Kurumi.themeOf(
                 context,
               ).colorScheme.onSurface.withValues(alpha: 0.6),
             ),

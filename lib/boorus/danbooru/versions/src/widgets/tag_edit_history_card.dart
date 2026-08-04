@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/configs/config/types.dart';
@@ -11,7 +12,6 @@ import '../../../../../core/images/booru_image.dart';
 import '../../../../../core/posts/details/routes.dart';
 import '../../../../../core/posts/post/types.dart';
 import '../../../../../core/search/search/routes.dart';
-import '../../../../../core/themes/theme/types.dart';
 import '../../../../../core/widgets/widgets.dart';
 import '../../../users/user/providers.dart';
 import '../types/danbooru_post_version.dart';
@@ -32,7 +32,7 @@ class TagEditHistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final thumbnail = resolveThumbnailWithRatingFilter(
       version: version,
       configSearch: configSearch,
@@ -124,7 +124,9 @@ class TagEditHistoryCard extends StatelessWidget {
                             locale: Localizations.localeOf(context),
                           ),
                           style: TextStyle(
-                            color: Theme.of(context).colorScheme.hintColor,
+                            color: Kurumi.themeOf(
+                              context,
+                            ).colorScheme.hintColor,
                           ),
                         ),
                       ),
@@ -204,7 +206,7 @@ class TagEditHistoryCard extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Theme.of(context).colorScheme.surface,
+        color: Kurumi.themeOf(context).colorScheme.surface,
       ),
       child: Text(
         '${version.version}',

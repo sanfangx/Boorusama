@@ -79,7 +79,7 @@ class _SavedSearchSheetState extends ConsumerState<SavedSearchSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
     final navigator = Navigator.of(context);

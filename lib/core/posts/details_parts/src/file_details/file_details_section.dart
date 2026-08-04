@@ -6,11 +6,11 @@ import 'package:coreutils/coreutils.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/clipboard.dart';
 import '../../../../../foundation/display/media_query_utils.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../post/types.dart';
 import '../../../rating/types.dart';
 import '../_internal/details_widget_frame.dart';
@@ -36,8 +36,8 @@ class FileDetailsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return DetailsWidgetSeparator(
       child: Theme(
-        data: Theme.of(context).copyWith(
-          listTileTheme: Theme.of(context).listTileTheme.copyWith(
+        data: Kurumi.themeOf(context).copyWith(
+          listTileTheme: Kurumi.themeOf(context).listTileTheme.copyWith(
             visualDensity: VisualDensity.compact,
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 12,
@@ -130,7 +130,7 @@ class FileDetailsSection extends StatelessWidget {
           subtitle: Text(
             '$resolutionText$fileFormatText$fileSizeText • $ratingText',
             style: TextStyle(
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
           ),
           children: constraints.maxWidth < 480

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class SearchButton extends ConsumerWidget {
@@ -41,8 +42,10 @@ class SearchButton2 extends StatelessWidget {
       button: true,
       child: Material(
         color: onTap == null
-            ? Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1)
-            : Theme.of(context).colorScheme.primary,
+            ? Kurumi.themeOf(
+                context,
+              ).colorScheme.onSurface.withValues(alpha: 0.1)
+            : Kurumi.themeOf(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(8),
         child: InkWell(
           customBorder: RoundedRectangleBorder(
@@ -53,7 +56,7 @@ class SearchButton2 extends StatelessWidget {
             margin: const EdgeInsets.all(4),
             child: Icon(
               Symbols.search,
-              color: Theme.of(context).colorScheme.onPrimary,
+              color: Kurumi.themeOf(context).colorScheme.onPrimary,
             ),
           ),
         ),

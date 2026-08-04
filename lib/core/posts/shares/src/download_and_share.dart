@@ -102,7 +102,7 @@ class DownloadAndShareDialog extends ConsumerWidget {
               return Center(
                 child: Text(
                   'Failed to download post',
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  style: Kurumi.themeOf(context).textTheme.bodyLarge,
                 ),
               );
             }
@@ -116,7 +116,7 @@ class DownloadAndShareDialog extends ConsumerWidget {
             return Center(
               child: Text(
                 'Error downloading: $error',
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Kurumi.themeOf(context).textTheme.bodyLarge,
               ),
             );
           },
@@ -260,7 +260,7 @@ class _CancelDownloadConfirmationDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KurumiDialog(
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 12,
@@ -287,7 +287,7 @@ class _CancelDownloadConfirmationDialog extends StatelessWidget {
             const SizedBox(height: 20),
             FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.error,
+                backgroundColor: Kurumi.themeOf(context).colorScheme.error,
                 shadowColor: Colors.transparent,
                 elevation: 0,
               ),
@@ -301,7 +301,7 @@ class _CancelDownloadConfirmationDialog extends StatelessWidget {
                 child: Text(
                   'Cancel Download'.hc,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onError,
+                    color: Kurumi.themeOf(context).colorScheme.onError,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -316,7 +316,7 @@ class _CancelDownloadConfirmationDialog extends StatelessWidget {
                   'Keep Downloading'.hc,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: Kurumi.themeOf(context).colorScheme.onSurface,
                   ),
                 ),
               ),

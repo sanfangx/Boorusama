@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/configs/config/providers.dart';
 import '../../../../../core/forums/forum_post.dart';
 import '../../../../../core/text_markup/providers.dart';
-import '../../../../../core/themes/theme/types.dart';
 import '../../../../../foundation/url_launcher.dart';
 import '../../../configs/providers.dart';
 import '../../../text_markup/widgets.dart';
@@ -178,7 +178,7 @@ class _DanbooruForumPostsPageState
                 ),
                 border: Border(
                   left: BorderSide(
-                    color: Theme.of(context).colorScheme.hintColor,
+                    color: Kurumi.themeOf(context).colorScheme.hintColor,
                     width: 3,
                   ),
                 ),

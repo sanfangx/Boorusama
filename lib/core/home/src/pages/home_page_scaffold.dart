@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../foundation/boot/providers.dart';
-import '../../../../foundation/display.dart';
 import '../../../blacklists/widgets.dart';
 import '../../../bookmarks/widgets.dart';
 import '../../../boorus/engine/providers.dart';
@@ -25,7 +25,6 @@ import '../../../premiums/types.dart';
 import '../../../search/search/widgets.dart';
 import '../../../settings/routes.dart';
 import '../../../tags/favorites/widgets.dart';
-import '../../../themes/theme/types.dart';
 import '../../../widgets/widgets.dart';
 import '../../constants.dart';
 import '../controllers/home_page_controller.dart';
@@ -161,8 +160,8 @@ class HomeSideMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
+    final theme = Kurumi.themeOf(context);
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final viewKey = ref.watch(customHomeViewKeyProvider);
 
     return context.isLargeScreen

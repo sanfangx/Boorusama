@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:selection_mode/selection_mode.dart';
 
@@ -101,7 +102,7 @@ class ShowTagListPlaceholder extends StatelessWidget {
             horizontal: 12,
           ),
           child: ColoredBox(
-            color: Theme.of(context).colorScheme.surfaceContainerLow,
+            color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
             child: const Text(
               '',
               maxLines: 1,
@@ -259,7 +260,7 @@ class _TagTileState extends State<_TagTile> {
   Widget _buildTrailing(BuildContext context) {
     return Icon(
       Symbols.chevron_right,
-      color: Theme.of(context).colorScheme.outline,
+      color: Kurumi.themeOf(context).colorScheme.outline,
     );
   }
 }

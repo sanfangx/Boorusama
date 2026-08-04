@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
@@ -30,10 +31,10 @@ class AddToFavoriteGroupPage extends ConsumerWidget {
       appBar: AppBar(
         title: Text(
           context.t.favorite_groups.add_to_group_dialog_title,
-          style: Theme.of(context).textTheme.titleLarge,
+          style: Kurumi.themeOf(context).textTheme.titleLarge,
         ),
       ),
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Kurumi.themeOf(context).colorScheme.surface,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -61,7 +62,7 @@ class AddToFavoriteGroupPage extends ConsumerWidget {
               visualDensity: VisualDensity.compact,
               title: Text(
                 context.t.favorite_groups.add_to.toUpperCase(),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                style: Kurumi.themeOf(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w800,
                 ),
               ),

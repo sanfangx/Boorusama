@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../boorus/engine/providers.dart';
@@ -86,7 +87,7 @@ class PlaybackSpeedActionSheet extends StatelessWidget {
         horizontal: 4,
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainer,
+        color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(12),
         ),

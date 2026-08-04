@@ -111,7 +111,7 @@ class DownloadSettingsInteractionBlocker extends ConsumerWidget {
       ),
     );
     final config = ref.watchConfig;
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return SettingsInteractionBlocker(
       padding: padding,

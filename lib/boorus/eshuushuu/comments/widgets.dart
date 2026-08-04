@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/comments/types.dart';
 import '../../../core/comments/widgets.dart';
-import '../../../core/themes/theme/types.dart';
 import '../../../foundation/html.dart';
 import 'types.dart';
 
@@ -77,7 +77,7 @@ class _EshuushuuCommentItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Padding(
       padding: EdgeInsets.only(left: comment.isReply ? 16 : 0),

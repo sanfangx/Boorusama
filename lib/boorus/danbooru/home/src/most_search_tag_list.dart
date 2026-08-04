@@ -83,11 +83,11 @@ class _Chip extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: KurumiSelectableChip(
         showCheckmark: false,
-        disabledColor: Theme.of(context).chipTheme.disabledColor,
+        disabledColor: Kurumi.themeOf(context).chipTheme.disabledColor,
         backgroundColor:
             colors?.backgroundColor ??
-            Theme.of(context).chipTheme.backgroundColor,
-        selectedColor: Theme.of(context).colorScheme.onSurface,
+            Kurumi.themeOf(context).chipTheme.backgroundColor,
+        selectedColor: Kurumi.themeOf(context).colorScheme.onSurface,
         selected: isSelected,
         side: BorderSide(
           color: isSelected
@@ -105,7 +105,7 @@ class _Chip extends ConsumerWidget {
           search.displayName,
           style: TextStyle(
             color: isSelected
-                ? Theme.of(context).colorScheme.surface
+                ? Kurumi.themeOf(context).colorScheme.surface
                 : colors?.foregroundColor,
           ),
           overflow: TextOverflow.ellipsis,

@@ -8,8 +8,8 @@ import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../configs/appearance/types.dart';
+import '../../../colors/types.dart';
 import '../../../configs/types.dart';
-import '../../../theme/types.dart';
 import '../providers/theme_previewer_notifier.dart';
 import 'theme_preview_page.dart';
 
@@ -82,11 +82,11 @@ class ThemePreviewApp extends ConsumerWidget {
       ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: AppTheme.themeFrom(
+        theme: Kurumi.themeFrom(
           null,
           colorScheme: colorScheme,
           systemDarkMode: notifier.systemDarkMode,
-        ),
+        ).withBoorusamaColors(),
         home: home,
       ),
     );

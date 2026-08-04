@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
@@ -58,7 +59,7 @@ class FavoritesPageScaffold<T extends Post> extends ConsumerWidget {
               floating: true,
               elevation: 0,
               shadowColor: Colors.transparent,
-              backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: Kurumi.themeOf(context).colorScheme.surface,
               actions: [
                 if (favQueryBuilder != null)
                   IconButton(

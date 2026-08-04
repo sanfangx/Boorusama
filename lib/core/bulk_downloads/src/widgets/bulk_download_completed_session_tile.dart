@@ -37,7 +37,7 @@ class BulkDownloadCompletedSessionTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final notifier = ref.watch(bulkDownloadProvider.notifier);
 
     return Dismissible(
@@ -146,7 +146,7 @@ class _CreateSavedTaskButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final notifier = ref.watch(savedDownloadTasksProvider.notifier);
 
     return KurumiCircularIconButton(
@@ -201,7 +201,7 @@ class _CoverImage extends ConsumerWidget {
           : SizedBox(
               height: 72,
               child: Card(
-                color: Theme.of(context).colorScheme.tertiaryContainer,
+                color: Kurumi.themeOf(context).colorScheme.tertiaryContainer,
                 child: const Icon(
                   Symbols.image,
                   color: Colors.white,
@@ -362,7 +362,7 @@ class _InfoText extends ConsumerWidget {
         overflow: TextOverflow.fade,
         softWrap: false,
         style: TextStyle(
-          color: Theme.of(context).colorScheme.hintColor,
+          color: Kurumi.themeOf(context).colorScheme.hintColor,
           fontSize: 12,
         ),
       ),
@@ -390,15 +390,15 @@ class _Subtitle extends ConsumerWidget {
       lessStyle: TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.bold,
-        color: Theme.of(context).colorScheme.primary,
+        color: Kurumi.themeOf(context).colorScheme.primary,
       ),
       moreStyle: TextStyle(
         fontSize: 13,
         fontWeight: FontWeight.bold,
-        color: Theme.of(context).colorScheme.primary,
+        color: Kurumi.themeOf(context).colorScheme.primary,
       ),
       style: TextStyle(
-        color: Theme.of(context).colorScheme.hintColor,
+        color: Kurumi.themeOf(context).colorScheme.hintColor,
         fontSize: 12,
       ),
     );

@@ -222,9 +222,10 @@ class _AddBooruPageInternalState extends ConsumerState<AddBooruPageInternal> {
             children: [
               Text(
                 context.t.booru.add_a_booru_site,
-                style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  fontWeight: FontWeight.w900,
-                ),
+                style: Kurumi.themeOf(context).textTheme.headlineSmall!
+                    .copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
               ),
               IconButton(
                 onPressed: Navigator.of(context).pop,
@@ -300,8 +301,8 @@ class _AddBooruPageInternalState extends ConsumerState<AddBooruPageInternal> {
                 valueListenable: inputText,
                 builder: (_, input, _) => Text(
                   e.message(context, input),
-                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: Theme.of(context).colorScheme.error,
+                  style: Kurumi.themeOf(context).textTheme.bodyLarge!.copyWith(
+                    color: Kurumi.themeOf(context).colorScheme.error,
                   ),
                 ),
               ),

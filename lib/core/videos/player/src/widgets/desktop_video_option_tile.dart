@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 
 class DesktopVideoOptionTile extends StatefulWidget {
@@ -27,7 +28,7 @@ class _DesktopVideoOptionTileState extends State<DesktopVideoOptionTile> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Semantics(
       button: true,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/comments/widgets.dart';
@@ -27,7 +28,7 @@ class MoebooruCommentItem extends ConsumerWidget {
       children: [
         CommentHeader(
           authorName: comment.creator,
-          authorTitleColor: Theme.of(context).colorScheme.primary,
+          authorTitleColor: Kurumi.themeOf(context).colorScheme.primary,
           createdAt: comment.createdAt,
         ),
         const SizedBox(height: 4),

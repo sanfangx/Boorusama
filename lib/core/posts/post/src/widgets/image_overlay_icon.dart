@@ -1,8 +1,8 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
-// Project imports:
-import '../../../../themes/theme/types.dart';
+// Package imports:
+import 'package:kurumi/kurumi.dart';
 
 class ImageOverlayIcon extends StatelessWidget {
   const ImageOverlayIcon({
@@ -16,16 +16,18 @@ class ImageOverlayIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = Kurumi.semanticColorsOf(context);
+
     return Container(
       width: 24,
       height: 24,
       decoration: BoxDecoration(
-        color: context.extendedColorScheme.surfaceContainerOverlayDim,
+        color: colors.overlayDim,
         borderRadius: const BorderRadius.all(Radius.circular(4)),
       ),
       child: Icon(
         icon,
-        color: context.extendedColorScheme.onSurfaceContainerOverlayDim,
+        color: colors.onOverlayDim,
         size: size ?? 18,
         weight: 700,
       ),

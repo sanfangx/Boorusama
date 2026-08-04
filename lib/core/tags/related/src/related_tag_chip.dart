@@ -41,7 +41,7 @@ class RelatedTagButton extends ConsumerWidget {
         ),
       ),
       child: Theme(
-        data: Theme.of(context).copyWith(
+        data: Kurumi.themeOf(context).copyWith(
           iconTheme: IconThemeData(
             color: colors?.foregroundColor,
           ),

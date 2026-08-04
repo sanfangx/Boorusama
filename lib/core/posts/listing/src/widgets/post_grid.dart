@@ -455,7 +455,7 @@ class _BlacklistedTagsInterceptedNotice extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final config = ref.watchConfig;
     final enable = config.blacklistConfigs?.enable;
     final mode = config.blacklistConfigs?.combinationMode;
@@ -590,7 +590,7 @@ class _Error401ActionButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final config = ref.watchConfig;
     final apiKey = config.apiKey;
     final isEmptyApiKey = apiKey == null || apiKey.isEmpty;

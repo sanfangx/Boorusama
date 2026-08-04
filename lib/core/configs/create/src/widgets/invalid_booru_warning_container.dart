@@ -13,7 +13,7 @@ class InvalidBooruWarningContainer extends ConsumerWidget {
   const InvalidBooruWarningContainer({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return ref
         .watch(validateConfigProvider)

@@ -117,7 +117,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final isEditing = widget.initialValue.name.isNotEmpty;
     final suggestions = widget.availableLabels
         .where((label) => !selectedLabels.contains(label))
@@ -238,10 +238,11 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
                   const SizedBox(height: 12),
                   Text(
                     context.t.favorite_tags.editor.suggestions,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: colorScheme.onSurfaceVariant,
-                      fontSize: 13,
-                    ),
+                    style: Kurumi.themeOf(context).textTheme.titleSmall
+                        ?.copyWith(
+                          color: colorScheme.onSurfaceVariant,
+                          fontSize: 13,
+                        ),
                   ),
                   const SizedBox(height: 6),
                   Wrap(

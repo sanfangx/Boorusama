@@ -194,13 +194,13 @@ class _Boorus extends ConsumerWidget {
           children: [
             Text(
               context.t.booru.invalid_selected_profile,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Kurumi.themeOf(context).textTheme.titleLarge,
             ),
             if (availableConfigs.isNotEmpty)
               Text(
                 context.t.booru.invalid_selected_profile_selection_request,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: Theme.of(context).colorScheme.hintColor,
+                style: Kurumi.themeOf(context).textTheme.titleMedium?.copyWith(
+                  color: Kurumi.themeOf(context).colorScheme.hintColor,
                 ),
               ),
             const SizedBox(height: 16),

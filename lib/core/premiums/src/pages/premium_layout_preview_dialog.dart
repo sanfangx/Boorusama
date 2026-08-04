@@ -140,7 +140,7 @@ class _PreviewText extends ConsumerWidget {
 
     // Get preview duration in minutes for UI
     final previewMinutes = kPreviewDuration.inMinutes.toString();
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     if (status == LayoutPreviewStatus.on && remaining != null) {
       return Column(

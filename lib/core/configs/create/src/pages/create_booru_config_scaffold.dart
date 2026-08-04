@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/display.dart';
@@ -13,7 +14,6 @@ import '../../../../boorus/booru/types.dart';
 import '../../../../config_widgets/website_logo.dart';
 import '../../../../posts/sources/types.dart';
 import '../../../../premiums/providers.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../appearance/widgets.dart';
 import '../../../config/data.dart';
 import '../../../config/types.dart';
@@ -114,7 +114,7 @@ class CreateBooruConfigScaffold extends ConsumerWidget {
                 ),
                 tabMap: tabMap,
                 length: tabMap.length,
-                animationDuration: Screen.of(context).size.isLarge
+                animationDuration: Screen.of(context).size != ScreenSize.small
                     ? Duration.zero
                     : null,
                 builder: (controller) => Column(
@@ -154,9 +154,11 @@ class CreateBooruConfigScaffold extends ConsumerWidget {
                           children: [
                             Text(
                               context.t.booru.new_profile_leave_as_empty_tips,
-                              style: Theme.of(context).textTheme.titleSmall
+                              style: Kurumi.themeOf(context)
+                                  .textTheme
+                                  .titleSmall
                                   ?.copyWith(
-                                    color: Theme.of(
+                                    color: Kurumi.themeOf(
                                       context,
                                     ).colorScheme.hintColor,
                                     fontSize: 12,
@@ -381,7 +383,7 @@ class SelectedBooruChip extends StatelessWidget {
           (source) => source.uri.host,
           () => url,
         ),
-        style: Theme.of(context).textTheme.titleLarge,
+        style: Kurumi.themeOf(context).textTheme.titleLarge,
         maxLines: 1,
         softWrap: false,
         overflow: TextOverflow.ellipsis,

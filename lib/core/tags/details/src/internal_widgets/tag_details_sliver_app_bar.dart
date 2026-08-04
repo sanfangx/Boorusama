@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -20,7 +21,7 @@ class TagDetailsSlilverAppBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SliverAppBar(
       floating: true,
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Kurumi.themeOf(context).colorScheme.surface,
       actions: [
         IconButton(
           splashRadius: 20,

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../users/user/providers.dart';
 import '../../../comment/types.dart';
 
@@ -30,7 +30,7 @@ class ReplyHeader extends StatelessWidget {
             '${context.t.comment.list.reply_to} ',
             softWrap: true,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
           ),
           Text(

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/tags/tag/colors.dart';
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../../../foundation/debounce_mixin.dart';
 import '../../../pool/types.dart';
 import '../providers.dart';
@@ -52,7 +52,9 @@ class PoolSearchSuggestionView extends ConsumerWidget {
                           trailing: Text(
                             NumberFormat.compact().format(pool.postCount),
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.hintColor,
+                              color: Kurumi.themeOf(
+                                context,
+                              ).colorScheme.hintColor,
                             ),
                           ),
                           onTap: () {

@@ -79,7 +79,7 @@ class DefaultPostPreviewHeader extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final dio = ref.watch(faviconDioProvider);
     final style =
         this.style ??
@@ -209,7 +209,7 @@ class PostListPrevewTooltip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final screenWidth = MediaQuery.widthOf(context);
     final adjustedMaxWidth = min(
       _maxSize.width,

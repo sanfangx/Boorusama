@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:dtext/dtext.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/html.dart';
@@ -37,7 +38,7 @@ class DTextTable extends StatelessWidget {
     final rows = _tableRows(node);
     if (rows.isEmpty) return const SizedBox.shrink();
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final borderColor = colorScheme.outlineVariant;
     final stripeColor = colorScheme.surfaceContainerHighest;
     final columnCount = rows

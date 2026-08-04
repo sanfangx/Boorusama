@@ -209,12 +209,12 @@ class DefaultDanbooruImageGridItem extends StatelessWidget {
                           tag.replaceAll('_', ' '),
                           maxLines: 1,
                           style: TextStyle(
-                            color: Theme.of(
+                            color: Kurumi.themeOf(
                               context,
                             ).colorScheme.onErrorContainer,
                           ),
                         ),
-                        backgroundColor: Theme.of(
+                        backgroundColor: Kurumi.themeOf(
                           context,
                         ).colorScheme.errorContainer,
                         shape: RoundedRectangleBorder(

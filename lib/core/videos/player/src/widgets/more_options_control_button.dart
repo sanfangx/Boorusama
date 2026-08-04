@@ -66,7 +66,7 @@ class DesktopVideoOptionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return AnchorPopover(
       controller: popoverController,
@@ -215,7 +215,7 @@ class VideoOptionContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     return Container(
       padding: padding,
       constraints: constraints,

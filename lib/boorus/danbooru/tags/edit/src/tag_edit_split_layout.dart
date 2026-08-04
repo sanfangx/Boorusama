@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 
 // Project imports:
@@ -56,16 +57,16 @@ class TagEditSplitLayout extends StatelessWidget {
 
   Widget _buildSplit(BuildContext context) {
     return Theme(
-      data: Theme.of(context).copyWith(
-        focusColor: Theme.of(context).colorScheme.primary,
+      data: Kurumi.themeOf(context).copyWith(
+        focusColor: Kurumi.themeOf(context).colorScheme.primary,
       ),
       child: MultiSplitViewTheme(
         data: MultiSplitViewThemeData(
           dividerPainter: DividerPainters.grooved1(
-            color: Theme.of(context).colorScheme.onSurface,
+            color: Kurumi.themeOf(context).colorScheme.onSurface,
             thickness: 4,
             size: 75,
-            highlightedColor: Theme.of(context).colorScheme.primary,
+            highlightedColor: Kurumi.themeOf(context).colorScheme.primary,
           ),
         ),
         child: MultiSplitView(

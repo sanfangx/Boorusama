@@ -30,7 +30,7 @@ class SelectedTagChip extends StatelessWidget {
     final hasMeta = tagSearchItem.metatag != null;
     final isRaw = tagSearchItem.isRaw;
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final tagColors = TagColors.fromBrightness(colorScheme.brightness);
 
     return GestureDetector(

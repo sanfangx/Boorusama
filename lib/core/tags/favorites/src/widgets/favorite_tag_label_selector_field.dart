@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/widgets/widgets.dart';
@@ -31,7 +32,7 @@ class FavoriteTagLabelSelectorField extends StatelessWidget {
             maxWidth: 160,
           ),
           child: OptionSingleSearchableField(
-            backgroundColor: Theme.of(
+            backgroundColor: Kurumi.themeOf(
               context,
             ).colorScheme.surfaceContainerHigh,
             sheetTitle: context.t.favorite_tags.labels.title,

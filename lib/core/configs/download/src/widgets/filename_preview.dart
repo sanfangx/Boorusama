@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../themes/theme/types.dart';
 
 class FilenamePreview extends StatelessWidget {
   const FilenamePreview({
@@ -26,15 +26,15 @@ class FilenamePreview extends StatelessWidget {
           FaIcon(
             FontAwesomeIcons.hashtag,
             size: 16,
-            color: Theme.of(context).colorScheme.primary,
+            color: Kurumi.themeOf(context).colorScheme.primary,
           ),
           const SizedBox(width: 4),
           Expanded(
             child: Text(
               filename,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              style: Kurumi.themeOf(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.hintColor,
+                color: Kurumi.themeOf(context).colorScheme.hintColor,
               ),
             ),
           ),

@@ -116,7 +116,7 @@ class _List extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final notifier = ref.watch(detailsLayoutProvider(params).notifier);
     final state = ref.watch(detailsLayoutProvider(params));
     final allParts = state.allPartsInOrder;

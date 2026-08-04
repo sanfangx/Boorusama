@@ -29,7 +29,7 @@ class _ManualDeviceInputDialogState extends State<ManualDeviceInputDialog> {
   @override
   Widget build(BuildContext context) {
     return KurumiDialog(
-      color: Theme.of(context).colorScheme.surfaceContainerLow,
+      color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

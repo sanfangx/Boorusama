@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../foundation/info/device_info.dart';
 import '../../../../downloads/configs/widgets.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../create/providers.dart';
 import '../widgets/custom_download_file_name_section.dart';
 
@@ -50,8 +50,8 @@ class BooruConfigDownloadView extends ConsumerWidget {
           const SizedBox(height: 4),
           Text(
             context.t.booru.downloads.leave_empty_to_use_global,
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: Theme.of(context).colorScheme.hintColor,
+            style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
               fontSize: 11,
               fontWeight: FontWeight.w400,
             ),

@@ -7,7 +7,6 @@ import 'package:kurumi/kurumi.dart';
 // Project imports:
 import '../../../tags/tag/colors.dart';
 import '../../colors/types.dart';
-import '../../theme/types.dart';
 import 'color_settings.dart';
 
 // Package imports:
@@ -72,12 +71,12 @@ ColorScheme getSchemeFromBasic(
   required bool? followSystemDarkMode,
 }) {
   final mode = (followSystemDarkMode ?? false)
-      ? AppThemeMode.system
+      ? KurumiThemeMode.system
       : switch (name) {
-          'boorusama_light' => AppThemeMode.light,
-          'boorusama_dark' => AppThemeMode.dark,
-          'boorusama_black' => AppThemeMode.amoledDark,
-          _ => AppThemeMode.amoledDark,
+          'boorusama_light' => KurumiThemeMode.light,
+          'boorusama_dark' => KurumiThemeMode.dark,
+          'boorusama_black' => KurumiThemeMode.amoledDark,
+          _ => KurumiThemeMode.amoledDark,
         };
 
   final (dark, light) = enableDynamicColoring
@@ -86,7 +85,7 @@ ColorScheme getSchemeFromBasic(
             : (null, null)
       : (null, null);
 
-  return AppTheme.generateScheme(
+  return Kurumi.generateColorScheme(
     mode,
     systemDarkMode: systemDarkMode,
     dynamicLightScheme: light,
@@ -96,13 +95,13 @@ ColorScheme getSchemeFromBasic(
 
 ColorScheme? getSchemeFromPredefined(String? name) {
   return switch (name) {
-    'danbooru_dark' => staticDanbooruDarkScheme,
-    'danbooru_light' => staticDanbooruLightScheme,
-    'green' => staticGreenScheme,
-    'dark_green' => staticDarkGreenScheme,
-    'coral_pink' => staticCoralPinkScheme,
-    'hacker' => staticHackerScheme,
-    'cyberpunk' => staticCyberpunkScheme,
+    'danbooru_dark' => KurumiPresetColorSchemes.danbooruDark,
+    'danbooru_light' => KurumiPresetColorSchemes.danbooruLight,
+    'green' => KurumiPresetColorSchemes.green,
+    'dark_green' => KurumiPresetColorSchemes.darkGreen,
+    'coral_pink' => KurumiPresetColorSchemes.coralPink,
+    'hacker' => KurumiPresetColorSchemes.hacker,
+    'cyberpunk' => KurumiPresetColorSchemes.cyberpunk,
     _ => null,
   };
 }
@@ -182,165 +181,3 @@ ColorScheme? getSchemeFromColorSettings(
     _ => colorSettings?.colorScheme,
   };
 }
-
-const staticDanbooruDarkScheme = ColorScheme(
-  brightness: Brightness.dark,
-  secondaryContainer: Color(0xff2c2c3e),
-  onSecondaryContainer: Colors.white,
-  onTertiaryContainer: Colors.white,
-  surfaceContainerLowest: Color.fromARGB(255, 19, 19, 27),
-  surfaceContainerLow: Color.fromARGB(255, 34, 36, 51),
-  surfaceContainer: Color.fromARGB(255, 46, 47, 66),
-  surfaceContainerHigh: Color.fromARGB(255, 53, 54, 73),
-  surfaceContainerHighest: Color.fromARGB(255, 61, 62, 82),
-  primary: Color(0xff019ae6),
-  onPrimary: Colors.white,
-  secondary: Color(0xff019ae6),
-  onSecondary: Colors.white,
-  error: Color(0xffc10105),
-  onError: kOnErrorDarkColor,
-  surface: Color(0xff1f1e2d),
-  onSurface: Colors.white,
-  outline: KurumiGreyscaleShades.gray160,
-  outlineVariant: KurumiGreyscaleShades.gray60,
-);
-
-const staticDanbooruLightScheme = ColorScheme(
-  brightness: Brightness.light,
-  secondaryContainer: Color(0xfff2f6fe),
-  onSecondaryContainer: Colors.black,
-  onTertiaryContainer: Colors.black,
-  surfaceContainerLowest: Color(0xfffafbfe),
-  surfaceContainerLow: Color(0xfff6f8fd),
-  surfaceContainer: Color(0xfff2f6fe),
-  surfaceContainerHigh: Color(0xffe4ebf6),
-  surfaceContainerHighest: Color(0xffd5dfee),
-  primary: Color(0xff0174f9),
-  onPrimary: Colors.white,
-  secondary: Color(0xff0174f9),
-  onSecondary: Colors.white,
-  error: Color(0xffec2525),
-  onError: Colors.black,
-  surface: Color(0xfffefeff),
-  onSurface: Colors.black,
-  outline: KurumiGreyscaleShades.gray110,
-  outlineVariant: KurumiGreyscaleShades.gray60,
-);
-
-const staticGreenScheme = ColorScheme(
-  brightness: Brightness.light,
-  secondaryContainer: Color(0xff93c292),
-  onSecondaryContainer: Colors.black,
-  onTertiaryContainer: Colors.black,
-  surfaceContainerLowest: Color.fromARGB(255, 185, 245, 184),
-  surfaceContainerLow: Color.fromARGB(255, 181, 235, 181),
-  surfaceContainer: Color.fromARGB(255, 165, 219, 164),
-  surfaceContainerHigh: Color.fromARGB(255, 158, 207, 157),
-  surfaceContainerHighest: Color.fromARGB(255, 151, 200, 150),
-  primary: Color(0xff000198),
-  onPrimary: Colors.white,
-  secondary: Color(0xff000198),
-  onSecondary: Colors.white,
-  error: Color(0xffff0101),
-  onError: kOnErrorDarkColor,
-  surface: Color(0xffa9e4a4),
-  onSurface: Colors.black,
-  outline: KurumiGreyscaleShades.gray110,
-  outlineVariant: KurumiGreyscaleShades.gray60,
-);
-
-const staticDarkGreenScheme = ColorScheme(
-  brightness: Brightness.dark,
-  secondaryContainer: Color(0xff505b51),
-  onSecondaryContainer: Color(0xffc0c1c1),
-  onTertiaryContainer: Color(0xff93b393),
-  surfaceContainerLowest: Color.fromARGB(255, 44, 51, 42),
-  surfaceContainerLow: Color.fromARGB(255, 50, 57, 49),
-  surfaceContainer: Color.fromARGB(255, 56, 66, 55),
-  surfaceContainerHigh: Color.fromARGB(255, 62, 71, 58),
-  surfaceContainerHighest: Color.fromARGB(255, 68, 79, 66),
-  primary: Color(0xffa9d6a9),
-  onPrimary: Color(0xff313b30),
-  secondary: Color(0xffa9d6a9),
-  onSecondary: Color(0xff313b30),
-  error: Color(0xffe36d5e),
-  onError: kOnErrorDarkColor,
-  surface: Color.fromARGB(255, 38, 44, 37),
-  onSurface: Color(0xffc0c1c1),
-  outline: Color(0xffb1e0b1),
-  outlineVariant: Color.fromARGB(255, 91, 104, 92),
-);
-
-const staticCoralPinkScheme = ColorScheme(
-  brightness: Brightness.dark,
-  primary: Color(0xffef8987),
-  onPrimary: Colors.white,
-  secondary: Color(0xffef8987),
-  onSecondary: Colors.white,
-  secondaryContainer: Color(0xff2c1f1e),
-  onSecondaryContainer: Colors.white,
-  surfaceContainerLowest: KurumiGreyscaleShades.gray12,
-  surfaceContainerLow: KurumiGreyscaleShades.gray32,
-  surfaceContainer: KurumiGreyscaleShades.gray46,
-  surfaceContainerHigh: KurumiGreyscaleShades.gray50,
-  surfaceContainerHighest: KurumiGreyscaleShades.gray54,
-  onTertiaryContainer: Colors.white,
-  error: Color(0xffc10105),
-  onError: kOnErrorDarkColor,
-  surface: Color(0xff232322),
-  onSurface: Colors.white,
-  outline: KurumiGreyscaleShades.gray160,
-  outlineVariant: KurumiGreyscaleShades.gray60,
-);
-
-const kHackerPrimaryColor = Color(0xff00ff00);
-const kHackerPrimaryVariantColor = Color(0xff388e3c);
-
-const staticHackerScheme = ColorScheme(
-  brightness: Brightness.dark,
-  primary: kHackerPrimaryColor,
-  onPrimary: Colors.black,
-  secondary: kHackerPrimaryColor,
-  onSecondary: Colors.black,
-  secondaryContainer: Color(0xff000000),
-  onSecondaryContainer: kHackerPrimaryColor,
-  surfaceContainerLowest: Color(0xff000000),
-  surfaceContainerLow: Color(0xff000000),
-  surfaceContainer: Color(0xff000000),
-  surfaceContainerHigh: Color(0xff000000),
-  surfaceContainerHighest: Color(0xff000000),
-  outline: kHackerPrimaryVariantColor,
-  outlineVariant: kHackerPrimaryVariantColor,
-  onTertiaryContainer: kHackerPrimaryVariantColor,
-  error: Color(0xffff0000),
-  onError: kOnErrorDarkColor,
-  surface: Color(0xff000000),
-  onSurface: kHackerPrimaryColor,
-);
-
-const kCyberpunkPrimaryColor = Color(0xfffcec0c);
-const kCyberpunkSurfaceColor = Color(0xff120c15);
-const kCyberpunkOnSurfaceColor = Color(0xff02d6f1);
-const kCyberpunkOutlineColor = Color(0xff34736a);
-const kCyberpunkErrorColor = Color(0xffff6159);
-
-const staticCyberpunkScheme = ColorScheme(
-  brightness: Brightness.dark,
-  primary: kCyberpunkPrimaryColor,
-  onPrimary: Colors.black,
-  secondary: kCyberpunkPrimaryColor,
-  onSecondary: Colors.black,
-  secondaryContainer: Color(0xff141824),
-  onSecondaryContainer: kCyberpunkOnSurfaceColor,
-  surfaceContainerLowest: Color(0xff151a27),
-  surfaceContainerLow: Color(0xff161b29),
-  surfaceContainer: Color(0xff141824),
-  surfaceContainerHigh: Color(0xff121623),
-  surfaceContainerHighest: Color(0xff0f1320),
-  outline: kCyberpunkOutlineColor,
-  outlineVariant: kCyberpunkOutlineColor,
-  error: kCyberpunkErrorColor,
-  onError: kOnErrorDarkColor,
-  surface: kCyberpunkSurfaceColor,
-  onSurface: kCyberpunkOnSurfaceColor,
-);

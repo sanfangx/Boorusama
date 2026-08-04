@@ -29,7 +29,7 @@ class PremiumThanksDialog extends StatelessWidget {
             context.t.premium.thanks.description,
             style: TextStyle(
               fontWeight: FontWeight.w400,
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
           ),
           const SizedBox(height: 20),

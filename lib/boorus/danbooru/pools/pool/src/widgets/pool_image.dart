@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
@@ -43,7 +44,7 @@ class PoolImage extends ConsumerWidget {
           child: Container(
             width: constraints.maxWidth,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surfaceContainerLow,
+              color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
               borderRadius: BorderRadius.all(
                 Radius.circular(imageBorderRadius),
               ),

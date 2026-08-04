@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart' show ScrollCacheExtent;
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -26,7 +27,7 @@ class DanbooruWikiPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final wiki = ref.watch(danbooruWikiProvider(wikiPageName));
     final wikiValue = wiki.valueOrNull;
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
 

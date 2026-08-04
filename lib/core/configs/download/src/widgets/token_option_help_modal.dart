@@ -26,8 +26,8 @@ class TokenOptionHelpModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Kurumi.themeOf(context).textTheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -127,7 +127,7 @@ class TokenOptionHelpModal extends StatelessWidget {
     return KurumiCompactChip(
       label: label,
       borderRadius: BorderRadius.circular(12),
-      backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+      backgroundColor: Kurumi.themeOf(context).colorScheme.secondaryContainer,
       padding: const EdgeInsets.symmetric(
         horizontal: 10,
         vertical: 2,

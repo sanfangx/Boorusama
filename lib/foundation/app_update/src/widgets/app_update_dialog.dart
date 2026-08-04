@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../url_launcher.dart';
@@ -19,7 +20,7 @@ class AppUpdateDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = Kurumi.themeOf(context).textTheme;
 
     return Dialog(
       child: Padding(
@@ -83,7 +84,9 @@ class AppUpdateDialog extends StatelessWidget {
               children: [
                 TextButton(
                   style: TextButton.styleFrom(
-                    foregroundColor: Theme.of(context).colorScheme.onSurface,
+                    foregroundColor: Kurumi.themeOf(
+                      context,
+                    ).colorScheme.onSurface,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -116,7 +119,7 @@ class _VersionChangeVisualizedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
 

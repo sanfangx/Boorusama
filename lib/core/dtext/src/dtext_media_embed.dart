@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:dtext/dtext.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/html.dart';
@@ -276,7 +277,7 @@ class _UnavailableEmbed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return InkWell(
       onTap: pageUrl == null || onLinkTap == null

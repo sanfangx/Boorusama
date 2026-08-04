@@ -87,7 +87,7 @@ class _SubscriptionPlans extends ConsumerWidget {
                     e.toString(),
                     style: TextStyle(
                       fontSize: 14,
-                      color: Theme.of(context).colorScheme.error,
+                      color: Kurumi.themeOf(context).colorScheme.error,
                     ),
                   ),
                 ],
@@ -172,7 +172,7 @@ class DiscountChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return IgnorePointer(
       child: KurumiRawCompactChip(
@@ -198,7 +198,7 @@ class _PurchaseButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final notifier = ref.watch(premiumPurchaseProvider.notifier);
     final navigator = Navigator.of(context);
 
@@ -257,7 +257,7 @@ class _LegalDisclaimerText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final appInfo = ref.watch(appInfoProvider);
 
     return Container(

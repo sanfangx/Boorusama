@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class TagTitleName extends StatelessWidget {
   const TagTitleName({
     required this.tagName,
@@ -16,7 +19,7 @@ class TagTitleName extends StatelessWidget {
       child: Text(
         tagName.replaceAll('_', ' '),
         textAlign: TextAlign.center,
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+        style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.w900,
         ),
       ),

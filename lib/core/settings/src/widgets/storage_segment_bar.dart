@@ -4,6 +4,9 @@ import 'dart:math' as math;
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class StorageSegment {
   const StorageSegment({
     required this.name,
@@ -38,7 +41,7 @@ class StorageSegmentBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
 
     return Column(
@@ -81,7 +84,7 @@ class StorageSegmentBar extends StatelessWidget {
       return Container(
         height: height,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surfaceContainer,
+          color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
           borderRadius: BorderRadius.circular(borderRadius),
         ),
       );
@@ -110,7 +113,7 @@ class StorageSegmentBar extends StatelessWidget {
   }
 
   Widget _buildLegend(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final visibleSegments = segments.where((s) => s.size > 0).toList();
 
     if (visibleSegments.isEmpty) return const SizedBox.shrink();

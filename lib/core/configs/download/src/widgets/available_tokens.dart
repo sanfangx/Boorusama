@@ -34,7 +34,9 @@ class AvailableTokens extends ConsumerWidget {
         ),
         for (final token in availableTokens)
           KurumiSelectableChip(
-            backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+            backgroundColor: Kurumi.themeOf(
+              context,
+            ).colorScheme.secondaryContainer,
             visualDensity: VisualDensity.compact,
             label: Text(token.name),
             avatar: token.type == TokenType.async

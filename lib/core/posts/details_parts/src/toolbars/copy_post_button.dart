@@ -87,7 +87,7 @@ class _PostCopySheetState extends ConsumerState<PostCopySheet> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final bottomPadding = MediaQuery.paddingOf(context).bottom;
 
     return ColoredBox(
@@ -295,8 +295,8 @@ class _CopyOptionTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
+    final textTheme = Kurumi.themeOf(context).textTheme;
     final foregroundColor = enabled
         ? colorScheme.onSurface
         : colorScheme.onSurface.withValues(alpha: 0.38);

@@ -28,7 +28,7 @@ class TestProxyButton extends ConsumerWidget {
     final state = ref.watch(testProxyProvider);
     final status = state.status;
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Column(
       children: [

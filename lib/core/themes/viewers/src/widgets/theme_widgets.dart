@@ -51,7 +51,7 @@ class ColorVariantSelector extends ConsumerWidget {
         ),
       ],
       child: Theme(
-        data: Theme.of(context).copyWith(
+        data: Kurumi.themeOf(context).copyWith(
           colorScheme: colorScheme,
         ),
         child: ChoiceOptionSelectorList(
@@ -140,7 +140,7 @@ class PreviewColorContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return GestureDetector(
       onTap: onTap,

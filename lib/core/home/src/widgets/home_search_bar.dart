@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 // Project imports:
 import '../../../../foundation/app_update/widgets.dart';
-import '../../../../foundation/display.dart';
 import '../../../configs/config/providers.dart';
 import '../../../configs/config/types.dart';
 import '../../../search/histories/providers.dart';
@@ -120,7 +120,7 @@ class _SliverHomeSearchBarState
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final persistentSearchBar = ref.watch(
       settingsProvider.select(
         (value) => value.searchBarScrollBehavior.persistSearchBar,

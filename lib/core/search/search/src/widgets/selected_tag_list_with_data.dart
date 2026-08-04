@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../bulk_downloads/routes.dart';
@@ -30,7 +31,7 @@ class SelectedTagListWithData extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tagComposer = ref.watch(tagQueryComposerProvider(config.search));
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final searchBarPosition = ref.watch(searchBarPositionProvider);
     final metatagExtractor = ref.watch(metatagExtractorProvider(config.auth));
 

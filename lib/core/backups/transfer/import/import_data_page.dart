@@ -70,7 +70,7 @@ class _ImportDataPageState extends ConsumerState<ImportDataPage> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final currentVersion = ref.watch(appVersionProvider);
 
     return Scaffold(
@@ -92,7 +92,7 @@ class _ImportDataPageState extends ConsumerState<ImportDataPage> {
                       .backup_and_restore
                       .receive_data
                       .nearby_devices,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Kurumi.themeOf(context).textTheme.titleLarge,
                 ),
                 IconButton(
                   icon: const Icon(Icons.add),
@@ -213,9 +213,10 @@ class _ImportDataPageState extends ConsumerState<ImportDataPage> {
                   ),
                   child: Text.rich(
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: colorScheme.hintColor,
-                    ),
+                    style: Kurumi.themeOf(context).textTheme.titleSmall
+                        ?.copyWith(
+                          color: colorScheme.hintColor,
+                        ),
                     context.t.settings.backup_and_restore.receive_data
                         .no_devices_found(
                           tapHere: (_) => const WidgetSpan(

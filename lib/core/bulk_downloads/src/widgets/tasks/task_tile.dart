@@ -40,7 +40,7 @@ class BulkDownloadTaskTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final notifier = ref.watch(bulkDownloadProvider.notifier);
 
     return Dismissible(
@@ -143,7 +143,7 @@ class _SuspendTaskChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return KurumiCompactChip(
       label: context.t.bulk_downloads.status.suspended,
@@ -162,7 +162,7 @@ class _MoreIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return SizedBox(
       height: 18,
@@ -274,7 +274,7 @@ class _CoverImage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final coverUrl = session.stats.coverUrl;
     final status = session.session.status;
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return SizedBox(
       width: 72,
@@ -397,7 +397,7 @@ class _InfoText extends ConsumerWidget {
       overflow: TextOverflow.fade,
       softWrap: false,
       style: TextStyle(
-        color: Theme.of(context).colorScheme.hintColor,
+        color: Kurumi.themeOf(context).colorScheme.hintColor,
         fontSize: 12,
       ),
     );
@@ -438,15 +438,15 @@ class _Subtitle extends ConsumerWidget {
                 lessStyle: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Kurumi.themeOf(context).colorScheme.primary,
                 ),
                 moreStyle: TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Kurumi.themeOf(context).colorScheme.primary,
                 ),
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.hintColor,
+                  color: Kurumi.themeOf(context).colorScheme.hintColor,
                   fontSize: 12,
                 ),
               ),
@@ -472,7 +472,7 @@ class _FailedCount extends ConsumerWidget {
         ? Text(
             '$failedCount failed',
             style: TextStyle(
-              color: Theme.of(context).colorScheme.error,
+              color: Kurumi.themeOf(context).colorScheme.error,
               fontSize: 11,
             ),
           )
@@ -495,7 +495,7 @@ class _ErrorText extends ConsumerWidget {
         ? Text(
             BulkDownloadErrorInterpreter.fromString(error).toString(),
             style: TextStyle(
-              color: Theme.of(context).colorScheme.error,
+              color: Kurumi.themeOf(context).colorScheme.error,
               fontSize: 11,
             ),
           )
@@ -545,7 +545,7 @@ class _Title extends ConsumerWidget {
       softWrap: false,
       style: TextStyle(
         color: status == DownloadSessionStatus.cancelled
-            ? Theme.of(context).colorScheme.hintColor
+            ? Kurumi.themeOf(context).colorScheme.hintColor
             : null,
         fontWeight: FontWeight.w500,
         decoration: strikeThrough ? TextDecoration.lineThrough : null,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../core/configs/config/providers.dart';
@@ -80,7 +81,9 @@ class _MoebooruPopularPageState extends ConsumerState<MoebooruPopularPage> {
             ),
           ),
           Container(
-            color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+            color: Kurumi.themeOf(
+              context,
+            ).bottomNavigationBarTheme.backgroundColor,
             margin: EdgeInsets.only(
               bottom: MediaQuery.viewPaddingOf(context).bottom,
             ),

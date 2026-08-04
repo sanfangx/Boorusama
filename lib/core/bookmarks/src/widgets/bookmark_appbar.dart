@@ -37,7 +37,7 @@ class BookmarkAppBar extends ConsumerWidget {
                   ref.read(bookmarkEditProvider.notifier).state = false,
               icon: Icon(
                 Symbols.check,
-                color: Theme.of(context).colorScheme.primary,
+                color: Kurumi.themeOf(context).colorScheme.primary,
               ),
             )
           : null,

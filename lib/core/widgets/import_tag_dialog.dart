@@ -36,7 +36,7 @@ class _ImportTagsDialogState extends ConsumerState<ImportTagsDialog> {
   @override
   Widget build(BuildContext context) {
     return KurumiDialog(
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       child: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -53,7 +53,7 @@ class _ImportTagsDialogState extends ConsumerState<ImportTagsDialog> {
               Center(
                 child: Text(
                   context.t.settings.backup_and_restore.import,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Kurumi.themeOf(context).textTheme.titleLarge,
                 ),
               ),
               const SizedBox(

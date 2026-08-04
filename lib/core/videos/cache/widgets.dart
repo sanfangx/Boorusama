@@ -56,7 +56,7 @@ class _VideoCacheLimitDialogState extends State<VideoCacheLimitDialog> {
           Center(
             child: Text(
               selectedSize.displayString(withSpace: true),
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+              style: Kurumi.themeOf(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),

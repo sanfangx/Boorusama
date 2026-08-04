@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../theme/semantic_tokens.dart';
 import '../theme/theme.dart';
 
 class KurumiCircularIconButton extends StatelessWidget {
@@ -24,7 +25,9 @@ class KurumiCircularIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final kurumiTheme = KurumiTheme.maybeOf(context)?.data;
+    final semanticColors =
+        KurumiTheme.maybeOf(context)?.data.semanticColors ??
+        KurumiSemanticColors.fromMaterial(Theme.of(context));
 
     return Semantics(
       button: true,
@@ -38,10 +41,7 @@ class KurumiCircularIconButton extends StatelessWidget {
               minHeight: 40,
             ),
         child: Material(
-          color:
-              backgroundColor ??
-              kurumiTheme?.surfaceContainerOverlay ??
-              const Color(0x7F000000),
+          color: backgroundColor ?? semanticColors.overlay,
           shape: const CircleBorder(),
           child: InkWell(
             splashFactory: InkRipple.splashFactory,
@@ -52,10 +52,7 @@ class KurumiCircularIconButton extends StatelessWidget {
               child: Theme(
                 data: Theme.of(context).copyWith(
                   iconTheme: Theme.of(context).iconTheme.copyWith(
-                    color:
-                        iconColor ??
-                        kurumiTheme?.onSurfaceContainerOverlay ??
-                        Colors.white,
+                    color: iconColor ?? semanticColors.onOverlay,
                   ),
                 ),
                 child: icon,

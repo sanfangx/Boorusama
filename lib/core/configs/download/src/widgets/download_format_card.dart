@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 
 // Project imports:
@@ -93,21 +94,21 @@ class _DownloadFormatCardState extends ConsumerState<DownloadFormatCard> {
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainer,
+        color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
       child: ExpandablePanel(
         theme: ExpandableThemeData(
           headerAlignment: ExpandablePanelHeaderAlignment.center,
           tapBodyToCollapse: true,
-          iconColor: Theme.of(context).iconTheme.color,
+          iconColor: Kurumi.themeOf(context).iconTheme.color,
           inkWellBorderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
         header: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
             widget.title,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Kurumi.themeOf(context).textTheme.bodyMedium,
           ),
         ),
         collapsed: preview,

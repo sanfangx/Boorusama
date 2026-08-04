@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:booru_clients/boorusama.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../foundation/url_launcher.dart';
@@ -91,7 +92,7 @@ class _AnnouncementContainer extends StatelessWidget {
       for (final action in announcement.actions)
         TextButton(
           style: TextButton.styleFrom(
-            foregroundColor: Theme.of(context).colorScheme.onSurface,
+            foregroundColor: Kurumi.themeOf(context).colorScheme.onSurface,
           ),
           onPressed: () => _openAnnouncementAction(action),
           child: Text(action.label),

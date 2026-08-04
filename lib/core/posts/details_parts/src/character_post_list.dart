@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 // Project imports:
@@ -85,9 +86,10 @@ class SliverCharacterPostList extends ConsumerWidget {
                 children: [
                   Text(
                     'Characters',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Kurumi.themeOf(context).textTheme.titleLarge
+                        ?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               ),

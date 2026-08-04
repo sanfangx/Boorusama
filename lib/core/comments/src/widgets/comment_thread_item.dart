@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../themes/theme/types.dart';
 import '../types/comment_vote.dart';
 import '../types/vote_event.dart';
 import 'comment_header.dart';
@@ -48,7 +48,7 @@ class CommentThreadItem extends StatelessWidget {
         CommentHeader(
           authorName: authorName,
           authorTitleColor:
-              authorTitleColor ?? Theme.of(context).colorScheme.primary,
+              authorTitleColor ?? Kurumi.themeOf(context).colorScheme.primary,
           createdAt: createdAt,
         ),
         const SizedBox(height: 4),
@@ -60,7 +60,7 @@ class CommentThreadItem extends StatelessWidget {
               child: Text(
                 '${context.t.comment.list.last_updated}: ${updatedAt.fuzzify(locale: Localizations.localeOf(context))}',
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.hintColor,
+                  color: Kurumi.themeOf(context).colorScheme.hintColor,
                   fontStyle: FontStyle.italic,
                   fontSize: 12,
                 ),

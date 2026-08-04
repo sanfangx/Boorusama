@@ -38,7 +38,7 @@ class _ZipPreviewDialogState extends ConsumerState<ZipPreviewDialog> {
   @override
   Widget build(BuildContext context) {
     final availableSources = widget.previewResult.availableSources;
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return KurumiDialog(
       child: Container(
@@ -210,7 +210,7 @@ class _InfoRow extends StatelessWidget {
           Text(
             value,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
           ),
         ],

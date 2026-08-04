@@ -22,7 +22,7 @@ class RemoveBooruConfigAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KurumiDialog(
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       child: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 12,
@@ -50,7 +50,7 @@ class RemoveBooruConfigAlertDialog extends StatelessWidget {
             const SizedBox(height: 20),
             FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.error,
+                backgroundColor: Kurumi.themeOf(context).colorScheme.error,
                 shadowColor: Colors.transparent,
                 elevation: 0,
               ),
@@ -63,7 +63,7 @@ class RemoveBooruConfigAlertDialog extends StatelessWidget {
                 child: Text(
                   context.t.generic.action.delete,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onError,
+                    color: Kurumi.themeOf(context).colorScheme.onError,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -80,7 +80,7 @@ class RemoveBooruConfigAlertDialog extends StatelessWidget {
                   context.t.generic.action.cancel,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: Kurumi.themeOf(context).colorScheme.onSurface,
                   ),
                 ),
               ),

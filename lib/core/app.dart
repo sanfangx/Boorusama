@@ -56,21 +56,9 @@ class _App extends ConsumerWidget {
 
     return ThemeBuilder(
       builder: (theme, themeMode) {
-        final extendedColorScheme = theme.extension<KurumiExtendedColorScheme>()!;
-
         return MaterialApp.router(
           builder: (context, child) => KurumiTheme(
-            data: KurumiThemeData.fromMaterial(
-              theme,
-              surfaceContainerOverlay:
-                  extendedColorScheme.surfaceContainerOverlay,
-              onSurfaceContainerOverlay:
-                  extendedColorScheme.onSurfaceContainerOverlay,
-              surfaceContainerOverlayDim:
-                  extendedColorScheme.surfaceContainerOverlayDim,
-              onSurfaceContainerOverlayDim:
-                  extendedColorScheme.onSurfaceContainerOverlayDim,
-            ),
+            data: KurumiThemeData.fromMaterial(theme),
             behavior: KurumiBehaviorData(
               reduceMotion: reduceAnimations,
               enableIMEPersonalizedLearning: enableIMEPersonalizedLearning,
@@ -105,8 +93,8 @@ class _App extends ConsumerWidget {
                   : null,
             ),
             child: Theme(
-              data: Theme.of(context).copyWith(
-                iconTheme: Theme.of(context).iconTheme.copyWith(
+              data: Kurumi.themeOf(context).copyWith(
+                iconTheme: Kurumi.themeOf(context).iconTheme.copyWith(
                   weight: isWindows() ? 200 : 400,
                 ),
               ),

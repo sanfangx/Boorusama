@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class ModalSavedSearchAction extends StatelessWidget {
@@ -18,7 +19,7 @@ class ModalSavedSearchAction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       child: SafeArea(
         top: false,
         child: Column(

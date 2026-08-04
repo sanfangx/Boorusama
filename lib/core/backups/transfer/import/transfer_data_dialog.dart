@@ -22,14 +22,14 @@ class TransferDataDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final step = ref.watch(importDataProvider(url).select((s) => s.step));
 
     return KurumiDialog(
       color: theme.colorScheme.surfaceContainerLow,
       dismissible: false,
       child: Theme(
-        data: Theme.of(context).copyWith(
+        data: Kurumi.themeOf(context).copyWith(
           listTileTheme: theme.listTileTheme.copyWith(
             contentPadding: const EdgeInsets.symmetric(
               horizontal: 4,
@@ -63,7 +63,7 @@ class ImportingStep extends ConsumerWidget {
       return element.importStatus is ImportDone;
     });
 
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
     final reloadPayload = ref.watch(
       importDataProvider(url).select((s) => s.reloadPayload),
@@ -325,7 +325,7 @@ class ImportingStep extends ConsumerWidget {
                 'Close',
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: Kurumi.themeOf(context).colorScheme.onSurface,
                 ),
               ),
             ),
@@ -439,7 +439,7 @@ class SelectDataStep extends ConsumerWidget {
               context.t.generic.action.cancel,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                color: Theme.of(context).colorScheme.onSurface,
+                color: Kurumi.themeOf(context).colorScheme.onSurface,
               ),
             ),
           ),

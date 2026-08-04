@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 
 // Project imports:
@@ -105,7 +106,7 @@ class _BooruScopeState extends ConsumerState<BooruScope> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     final swipeArea = ref.watch(
       settingsProvider.select(
@@ -135,7 +136,7 @@ class _BooruScopeState extends ConsumerState<BooruScope> {
       body: MultiSplitViewTheme(
         data: MultiSplitViewThemeData(
           dividerThickness: !isDesktopPlatform()
-              ? Screen.of(context).size.isLarge
+              ? Screen.of(context).size != ScreenSize.small
                     ? 24
                     : 16
               : 4,
@@ -148,7 +149,9 @@ class _BooruScopeState extends ConsumerState<BooruScope> {
               : DividerPainters.grooved1(
                   animationDuration: const Duration(milliseconds: 150),
                   color: colorScheme.onSurface,
-                  thickness: Screen.of(context).size.isLarge ? 6 : 3,
+                  thickness: Screen.of(context).size != ScreenSize.small
+                      ? 6
+                      : 3,
                   size: 75,
                   highlightedColor: colorScheme.primary,
                 ),

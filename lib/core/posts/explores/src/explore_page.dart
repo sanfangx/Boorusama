@@ -235,7 +235,7 @@ class ExploreList extends ConsumerWidget {
                       bottom: 1,
                       child: Text(
                         '${index + 1}',
-                        style: Theme.of(context).textTheme.displayMedium
+                        style: Kurumi.themeOf(context).textTheme.displayMedium
                             ?.copyWith(
                               color: Colors.white,
                             ),

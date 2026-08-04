@@ -77,7 +77,7 @@ class EshuushuuUserDetailsPage extends ConsumerWidget {
                 width: 72,
                 height: 72,
                 decoration: BoxDecoration(
-                  color: Theme.of(
+                  color: Kurumi.themeOf(
                     context,
                   ).colorScheme.surfaceContainerHighest,
                   borderRadius: BorderRadius.circular(8),
@@ -86,7 +86,7 @@ class EshuushuuUserDetailsPage extends ConsumerWidget {
               const SizedBox(width: 12),
               Text(
                 username ?? '...',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -168,7 +168,7 @@ class _EshuushuuUserOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final locale = Localizations.localeOf(context).toString();
     final dateFormat = DateFormat.yMd(locale);
 
@@ -208,7 +208,7 @@ class _EshuushuuUserOverview extends StatelessWidget {
             children: [
               Text(
                 user.name,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -243,7 +243,7 @@ class _EshuushuuUserOverview extends StatelessWidget {
   }
 
   Widget _buildDatesRow(BuildContext context, DateFormat dateFormat) {
-    final hintColor = Theme.of(context).colorScheme.hintColor;
+    final hintColor = Kurumi.themeOf(context).colorScheme.hintColor;
     final hintStyle = TextStyle(color: hintColor, fontSize: 12);
     final t = context.t.eshuushuu.profile;
 
@@ -343,7 +343,7 @@ class _StatCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -386,7 +386,9 @@ class _StatsItem extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(color: Theme.of(context).colorScheme.hintColor),
+          style: TextStyle(
+            color: Kurumi.themeOf(context).colorScheme.hintColor,
+          ),
         ),
       ],
     );
@@ -400,7 +402,7 @@ class _PersonalInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hintColor = Theme.of(context).colorScheme.hintColor;
+    final hintColor = Kurumi.themeOf(context).colorScheme.hintColor;
 
     final t = context.t.eshuushuu.personal_info;
 
@@ -435,7 +437,9 @@ class _PersonalInfoCard extends StatelessWidget {
                             child: Text(
                               website,
                               style: TextStyle(
-                                color: Theme.of(context).colorScheme.primary,
+                                color: Kurumi.themeOf(
+                                  context,
+                                ).colorScheme.primary,
                               ),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -444,7 +448,7 @@ class _PersonalInfoCard extends StatelessWidget {
                           Icon(
                             Icons.open_in_new,
                             size: 14,
-                            color: Theme.of(context).colorScheme.primary,
+                            color: Kurumi.themeOf(context).colorScheme.primary,
                           ),
                         ],
                       ),
@@ -477,7 +481,7 @@ class _InfoRow extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
           ),
           const SizedBox(width: 16),

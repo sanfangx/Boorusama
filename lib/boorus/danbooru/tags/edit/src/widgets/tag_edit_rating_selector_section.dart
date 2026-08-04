@@ -37,7 +37,7 @@ class TagEditRatingSelectorSection extends ConsumerWidget {
               children: [
                 Text(
                   'Rating',
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Kurumi.themeOf(context).textTheme.titleLarge,
                 ),
                 if (!loginDetails.hasStrictSFW) const TagHowToRateButton(),
               ],

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../themes/theme/types.dart';
 
 class CommentHeader extends StatelessWidget {
   const CommentHeader({
@@ -45,7 +45,7 @@ class CommentHeader extends StatelessWidget {
           Text(
             DateFormat('MMM d, yyyy hh:mm a').format(createdAt.toLocal()),
             style: TextStyle(
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
               fontSize: 12,
             ),
           ),

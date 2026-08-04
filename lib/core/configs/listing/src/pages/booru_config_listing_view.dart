@@ -16,9 +16,6 @@ import '../widgets/tooltip_toggle.dart';
 
 // Flutter imports:
 
-
-
-
 const kDefaultPreviewImageButtonAction = {
   '',
   null,
@@ -72,8 +69,8 @@ class BooruConfigListingView extends ConsumerWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Theme(
-        data: Theme.of(context).copyWith(
-          listTileTheme: Theme.of(context).listTileTheme.copyWith(
+        data: Kurumi.themeOf(context).copyWith(
+          listTileTheme: Kurumi.themeOf(context).listTileTheme.copyWith(
             contentPadding: EdgeInsets.zero,
           ),
         ),

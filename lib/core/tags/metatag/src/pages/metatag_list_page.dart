@@ -53,13 +53,15 @@ class MetatagListPage extends StatelessWidget {
                   trailing: tag.isFree
                       ? KurumiSelectableChip(
                           tapEnabled: false,
-                          backgroundColor: Theme.of(
+                          backgroundColor: Kurumi.themeOf(
                             context,
                           ).colorScheme.primary,
                           label: Text(
                             'Free'.hc,
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.onPrimary,
+                              color: Kurumi.themeOf(
+                                context,
+                              ).colorScheme.onPrimary,
                             ),
                           ),
                         )

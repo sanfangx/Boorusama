@@ -159,7 +159,7 @@ class NozomiSearchOrderSection extends StatelessWidget {
         children: [
           Text(
             'Order',
-            style: Theme.of(context).textTheme.titleSmall,
+            style: Kurumi.themeOf(context).textTheme.titleSmall,
           ),
           const SizedBox(width: 12),
           NozomiSearchOrderControl(

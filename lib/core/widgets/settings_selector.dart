@@ -66,7 +66,7 @@ class SettingsSelector<T> extends StatelessWidget {
                 Icon(
                   Symbols.keyboard_arrow_down,
                   size: 20,
-                  color: Theme.of(context).iconTheme.color,
+                  color: Kurumi.themeOf(context).iconTheme.color,
                 ),
               ],
             ),
@@ -150,7 +150,7 @@ class SettingsOptionTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final borderRadius = BorderRadius.circular(12);
 
     return Padding(
@@ -232,7 +232,7 @@ class SettingsNavigationTile<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return ListTile(
       title: Text(title),

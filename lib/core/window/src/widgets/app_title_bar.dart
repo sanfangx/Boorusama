@@ -25,7 +25,7 @@ class AppTitleBar extends ConsumerWidget {
 
     if (!isDesktopPlatform()) return child;
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return KurumiDesktopWindowFrame(
       isMacOS: isMacOS(),

@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../configs/create/routes.dart';
-import '../../../themes/theme/types.dart';
 import '../controllers/home_page_controller.dart';
 import '../widgets/side_bar_menu.dart';
 
@@ -41,7 +41,7 @@ class _EmptyBooruConfigHomePageState
       value: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Colors.transparent,
-        statusBarBrightness: Theme.of(context).brightness,
+        statusBarBrightness: Kurumi.themeOf(context).brightness,
         statusBarIconBrightness: context.onBrightness,
       ),
       child: Scaffold(
@@ -63,13 +63,16 @@ class _EmptyBooruConfigHomePageState
                   children: [
                     Text(
                       context.t.booru.no_profiles_available,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Kurumi.themeOf(context).textTheme.titleLarge,
                     ),
                     Text(
                       context.t.booru.add_profile_to_continue,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.hintColor,
-                      ),
+                      style: Kurumi.themeOf(context).textTheme.titleMedium
+                          ?.copyWith(
+                            color: Kurumi.themeOf(
+                              context,
+                            ).colorScheme.hintColor,
+                          ),
                     ),
                     const SizedBox(height: 16),
                     FilledButton(

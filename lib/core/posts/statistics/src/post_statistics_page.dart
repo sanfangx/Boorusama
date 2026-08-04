@@ -377,7 +377,7 @@ class PostStatsTile extends StatelessWidget {
           Expanded(
             child: Text(
               title,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+              style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
                 color: titleColor,
@@ -392,13 +392,13 @@ class PostStatsTile extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surfaceContainerHigh,
+              color: Kurumi.themeOf(context).colorScheme.surfaceContainerHigh,
               borderRadius: const BorderRadius.all(Radius.circular(4)),
             ),
             child: Text(
               value,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+                color: Kurumi.themeOf(context).colorScheme.onSurfaceVariant,
                 fontSize: 14,
               ),
             ),

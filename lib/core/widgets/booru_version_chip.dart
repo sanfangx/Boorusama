@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:coreutils/coreutils.dart';
+import 'package:kurumi/kurumi.dart';
 
 class BooruVersionChip extends StatelessWidget {
   const BooruVersionChip({
@@ -29,12 +30,12 @@ class BooruVersionChip extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
-          color: Theme.of(context).colorScheme.surfaceContainer,
+          color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
         ),
         child: Text(
           versionText,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.onSurface,
+            color: Kurumi.themeOf(context).colorScheme.onSurface,
             fontSize: 11,
             fontWeight: FontWeight.w700,
           ),

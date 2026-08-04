@@ -80,7 +80,7 @@ class _PinButton extends StatelessWidget {
             child: Icon(
               isPinned ? Icons.push_pin : Icons.push_pin_outlined,
               size: iconSize,
-              color: Theme.of(context).colorScheme.outline,
+              color: Kurumi.themeOf(context).colorScheme.outline,
             ),
           ),
         ),

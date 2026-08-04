@@ -76,7 +76,9 @@ class SimpleDownloadTile extends ConsumerWidget {
       builder: (_) => RawDownloadTile(
         fileName: task.task.filename,
         strikeThrough: task.isCanceled,
-        color: task.isCanceled ? Theme.of(context).colorScheme.hintColor : null,
+        color: task.isCanceled
+            ? Kurumi.themeOf(context).colorScheme.hintColor
+            : null,
         trailing: switch (task) {
           final TaskStatusUpdate s => switch (s.status) {
             TaskStatus.failed =>
@@ -187,7 +189,7 @@ class _TaskSubtitle extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final status = task.status;
     final exception = task.exception;
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return ReadMoreText(
       exception == null

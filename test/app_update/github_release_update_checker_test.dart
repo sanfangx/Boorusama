@@ -1,10 +1,8 @@
 // Dart imports:
 import 'dart:convert';
 
-// Flutter imports:
-import 'package:flutter_test/flutter_test.dart';
-
 // Package imports:
+import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
 import 'package:package_info_plus/package_info_plus.dart';

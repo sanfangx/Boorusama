@@ -24,7 +24,7 @@ class EffectiveTagPreview extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     final tags = ref.watch(
       editBooruConfigProvider(
@@ -47,7 +47,7 @@ class EffectiveTagPreview extends ConsumerWidget {
     return TagListPreview(
       header: Text(
         context.t.booru.search.preview_tags,
-        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+        style: Kurumi.themeOf(context).textTheme.bodySmall?.copyWith(
           color: colorScheme.onSurfaceVariant,
         ),
       ),
@@ -62,7 +62,7 @@ class EffectiveTagPreview extends ConsumerWidget {
               label: Text(
                 context.t.booru.search.any_search_query,
                 style: TextStyle(
-                  color: Theme.of(
+                  color: Kurumi.themeOf(
                     context,
                   ).colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
                   fontStyle: FontStyle.italic,

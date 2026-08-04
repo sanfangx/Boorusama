@@ -84,6 +84,7 @@ export 'src/components/toast.dart'
 export 'src/components/tooltip.dart';
 export 'src/theme/theme.dart';
 export 'src/theme/theme_data.dart';
+export 'src/theme/theme_mode.dart';
 export 'src/theme/extended_color_scheme.dart';
 export 'src/theme/color_tokens.dart';
 export 'src/theme/color_schemes.dart';
@@ -93,6 +94,8 @@ export 'src/theme/durations.dart';
 export 'src/theme/extensions.dart';
 export 'src/theme/grayscale_shades.dart';
 export 'src/theme/material_theme.dart';
+export 'src/theme/preset_color_schemes.dart';
+export 'src/theme/semantic_tokens.dart';
 export 'src/theme/slider_shapes.dart';
 export 'src/foundation/preferred_layout.dart' hide kurumiPreferredLayout;
 export 'src/foundation/platform.dart'

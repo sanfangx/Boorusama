@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:rich_text_controller/rich_text_controller.dart';
 
 // Project imports:
@@ -83,7 +84,7 @@ class _CustomDownloadFileNameSectionState
           text: TextSpan(
             text: context.t.booru.downloads.custom_filename_format,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.onSurface,
+              color: Kurumi.themeOf(context).colorScheme.onSurface,
             ),
           ),
         ),
@@ -141,7 +142,7 @@ class _CustomDownloadFileNameSectionState
                       child: Text(
                         context.t.booru.downloads.bulk_slow_token_warning,
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.error,
+                          color: Kurumi.themeOf(context).colorScheme.error,
                         ),
                       ),
                     )

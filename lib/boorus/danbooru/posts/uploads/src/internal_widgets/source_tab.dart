@@ -56,9 +56,9 @@ class TagEditUploadSource extends ConsumerWidget {
             decoration: BoxDecoration(
               borderRadius: const BorderRadius.all(Radius.circular(8)),
               border: Border.all(
-                color: Theme.of(context).colorScheme.onSecondaryContainer,
+                color: Kurumi.themeOf(context).colorScheme.onSecondaryContainer,
               ),
-              color: Theme.of(context).colorScheme.secondaryContainer,
+              color: Kurumi.themeOf(context).colorScheme.secondaryContainer,
             ),
             child: ref
                 .watch(danbooruSourceProvider(post.pageUrl))

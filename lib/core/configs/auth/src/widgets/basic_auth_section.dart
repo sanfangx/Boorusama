@@ -1,9 +1,11 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import '../../../../../foundation/url_launcher.dart';
-import '../../../../themes/theme/types.dart';
 import '../../widgets.dart';
 
 class BasicAuthSection extends StatelessWidget {
@@ -34,7 +36,7 @@ class BasicAuthSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
 

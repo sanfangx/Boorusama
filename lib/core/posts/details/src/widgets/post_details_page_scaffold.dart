@@ -234,7 +234,7 @@ class _PostDetailPageScaffoldState<T extends Post>
         ),
       },
       child: CustomContextMenuOverlay(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        backgroundColor: Kurumi.themeOf(context).colorScheme.secondaryContainer,
         child: VisibilityDetector(
           key: const Key('post_details_page_scaffold'),
           onVisibilityChanged: (info) {
@@ -445,7 +445,7 @@ class _PostDetailPageScaffoldState<T extends Post>
       hasPremium: hasPremium,
     );
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final decoration = BoxDecoration(
       color: colorScheme.surface,
       border: Border(
@@ -535,14 +535,14 @@ class DisclaimerDialog extends StatelessWidget {
     final viewPadding = MediaQuery.paddingOf(context);
 
     return ColoredBox(
-      color: Theme.of(context).colorScheme.surface,
+      color: Kurumi.themeOf(context).colorScheme.surface,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 8),
           Text(
             disclaimer,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Kurumi.themeOf(context).textTheme.bodyMedium,
           ),
           SizedBox(
             height: viewPadding.bottom + 8,
@@ -558,7 +558,7 @@ class _SliverBottomPadding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return DecoratedSliver(
       decoration: BoxDecoration(

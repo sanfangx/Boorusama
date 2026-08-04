@@ -81,15 +81,19 @@ class TagEditUploadSimilar extends ConsumerWidget {
                                 padding: const EdgeInsets.all(4),
                                 child: Text(
                                   buildDetailsText(post),
-                                  style: Theme.of(context).textTheme.bodySmall,
+                                  style: Kurumi.themeOf(
+                                    context,
+                                  ).textTheme.bodySmall,
                                 ),
                               ),
                               // xx% similar
                               Text(
                                 '${similar.toInt()}% Similar',
-                                style: Theme.of(context).textTheme.bodySmall
+                                style: Kurumi.themeOf(context)
+                                    .textTheme
+                                    .bodySmall
                                     ?.copyWith(
-                                      color: Theme.of(
+                                      color: Kurumi.themeOf(
                                         context,
                                       ).colorScheme.hintColor,
                                     ),
@@ -102,7 +106,9 @@ class TagEditUploadSimilar extends ConsumerWidget {
                         child: Center(
                           child: Text(
                             'No similar images found',
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Kurumi.themeOf(
+                              context,
+                            ).textTheme.titleMedium,
                           ),
                         ),
                       );

@@ -62,7 +62,7 @@ class DanbooruPostPreviewPopover extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final style = theme.textTheme.bodySmall?.copyWith(
       color: theme.listTileTheme.subtitleTextStyle?.color,
       fontSize: 11,
@@ -108,7 +108,7 @@ class __VotesState extends ConsumerState<_Votes> {
     final params = (widget.config, widget.post.id);
     final postVote = ref.watch(danbooruPostVoteProvider(params));
     final voteState = postVote?.voteState ?? VoteState.unvote;
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final postId = widget.post.id;
     final voteId = postVote?.voteId;
 

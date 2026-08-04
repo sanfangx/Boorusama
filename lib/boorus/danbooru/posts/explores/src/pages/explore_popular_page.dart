@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
@@ -34,7 +35,7 @@ class _ExplorePopularPageState extends ConsumerState<ExplorePopularPage> {
   @override
   Widget build(BuildContext context) {
     final config = ref.watchConfigSearch;
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return CustomContextMenuOverlay(
       child: PostScope(

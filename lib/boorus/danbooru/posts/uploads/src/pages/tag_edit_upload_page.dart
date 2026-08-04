@@ -101,7 +101,7 @@ class _TagEditUploadPageState extends ConsumerState<TagEditUploadPage> {
                                 textColor: Colors.white,
                                 label: 'Pixel-Perfect Duplicate',
                                 onTap: () {},
-                                backgroundColor: Theme.of(
+                                backgroundColor: Kurumi.themeOf(
                                   context,
                                 ).colorScheme.errorContainer,
                               )
@@ -110,7 +110,7 @@ class _TagEditUploadPageState extends ConsumerState<TagEditUploadPage> {
                                 textColor: Colors.white,
                                 label: 'Duplicate',
                                 onTap: () {},
-                                backgroundColor: Theme.of(
+                                backgroundColor: Kurumi.themeOf(
                                   context,
                                 ).colorScheme.errorContainer,
                               ),

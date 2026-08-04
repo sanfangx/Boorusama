@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/html.dart';
@@ -13,7 +14,6 @@ import '../../tags/autocompletes/types.dart';
 import '../../tags/metatag/providers.dart';
 import '../../tags/metatag/types.dart';
 import '../../tags/tag/providers.dart';
-import '../../themes/theme/types.dart';
 
 class TagSuggestionItem extends StatelessWidget {
   const TagSuggestionItem({
@@ -62,7 +62,7 @@ class TagSuggestionItem extends StatelessWidget {
                 child: Text(
                   NumberFormat.compact().format(tag.postCount),
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.hintColor,
+                    color: Kurumi.themeOf(context).colorScheme.hintColor,
                   ),
                 ),
               ),

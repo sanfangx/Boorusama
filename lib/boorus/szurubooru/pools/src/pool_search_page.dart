@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../core/search/search/widgets.dart';
 import '../../../../core/tags/tag/colors.dart';
-import '../../../../core/themes/theme/types.dart';
 import '../../../../foundation/debounce_mixin.dart';
 import '../providers.dart';
 import '../types.dart';
@@ -157,7 +157,9 @@ class _SzurubooruPoolSuggestionView extends ConsumerWidget {
                           trailing: Text(
                             NumberFormat.compact().format(pool.postCount),
                             style: TextStyle(
-                              color: Theme.of(context).colorScheme.hintColor,
+                              color: Kurumi.themeOf(
+                                context,
+                              ).colorScheme.hintColor,
                             ),
                           ),
                           onTap: () {

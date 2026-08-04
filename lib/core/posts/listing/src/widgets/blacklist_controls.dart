@@ -59,12 +59,12 @@ class BlacklistControls extends StatelessWidget {
         KurumiSelectableChip(
           visualDensity: const ShrinkVisualDensity(),
           side: BorderSide(
-            color: Theme.of(context).colorScheme.outlineVariant,
+            color: Kurumi.themeOf(context).colorScheme.outlineVariant,
             width: 0.7,
           ),
           shape: StadiumBorder(
             side: BorderSide(
-              color: Theme.of(context).colorScheme.outlineVariant,
+              color: Kurumi.themeOf(context).colorScheme.outlineVariant,
               width: 0.7,
             ),
           ),
@@ -216,7 +216,7 @@ class _BadgedChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Badge(
       offset: switch (count.digitCount()) {

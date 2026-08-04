@@ -306,8 +306,8 @@ void showDownloadStartToast(BuildContext context, {String? message}) {
       align: Alignment.bottomCenter,
     ),
     textPadding: const EdgeInsets.all(12),
-    textStyle: TextStyle(color: Theme.of(context).colorScheme.surface),
-    backgroundColor: Theme.of(context).colorScheme.onSurface,
+    textStyle: TextStyle(color: Kurumi.themeOf(context).colorScheme.surface),
+    backgroundColor: Kurumi.themeOf(context).colorScheme.onSurface,
   );
 }
 

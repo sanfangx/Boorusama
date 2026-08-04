@@ -30,7 +30,7 @@ class SavedTaskListTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final notifier = ref.watch(savedDownloadTasksProvider.notifier);
     final isLocked = ref.watch(isSavedTaskLockedProvider(savedTask.task.id));
-    final listTileTheme = Theme.of(context).listTileTheme;
+    final listTileTheme = Kurumi.themeOf(context).listTileTheme;
     final currentRouteName = ModalRoute.of(context)?.settings.name;
 
     final downloadConfigs = currentRouteName != kBulkdownload
@@ -66,10 +66,10 @@ class SavedTaskListTile extends ConsumerWidget {
         margin: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
           border: Border.all(
-            color: Theme.of(context).colorScheme.outlineVariant,
+            color: Kurumi.themeOf(context).colorScheme.outlineVariant,
             width: 0.5,
           ),
-          color: Theme.of(context).colorScheme.surfaceContainerLow,
+          color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Material(
@@ -168,7 +168,7 @@ class _ModalOptions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final navigator = Navigator.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return SafeArea(
       child: Column(
@@ -220,7 +220,7 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return KurumiCircularIconButton(
       padding: const EdgeInsets.all(8),

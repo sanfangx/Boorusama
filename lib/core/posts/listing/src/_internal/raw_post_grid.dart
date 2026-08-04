@@ -188,7 +188,7 @@ class _RawPostGridState<T extends Post> extends State<RawPostGrid<T>>
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return ColoredBox(
       color: colorScheme.surface,
@@ -436,7 +436,7 @@ class _SwipeTo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return SwipeTo(
       enabled: pageMode == PageMode.paginated && !refreshing,

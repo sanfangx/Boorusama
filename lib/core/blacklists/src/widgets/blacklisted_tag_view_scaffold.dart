@@ -142,7 +142,7 @@ class DefaultBlacklistTagsLimitation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return PersistentDismissalWrapper(
       storageKey: storageKey,

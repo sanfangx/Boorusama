@@ -189,7 +189,7 @@ class BooruRawImage extends StatelessWidget {
                   gaplessPlayback: gaplessPlayback,
                   fetchStrategy: _fetchStrategy,
                   controller: controller,
-                  platform: Theme.of(context).platform,
+                  platform: Kurumi.themeOf(context).platform,
                   androidVersion: androidVersion,
                   cacheManager: imageCacheManager,
                   placeholderWidget:
@@ -229,7 +229,9 @@ class BooruRawImage extends StatelessWidget {
                                       fit: placeholderFit ?? fit,
                                       fetchStrategy: _fetchStrategy,
                                       placeholderWidget: imagePlaceHolder,
-                                      platform: Theme.of(context).platform,
+                                      platform: Kurumi.themeOf(
+                                        context,
+                                      ).platform,
                                       androidVersion: androidVersion,
                                       cacheManager: imageCacheManager,
                                     ),
@@ -328,7 +330,7 @@ class ErrorPlaceholder extends StatelessWidget {
     borderRadius: borderRadius,
     child: Image.asset(
       'assets/images/error.png',
-      color: Theme.of(context).colorScheme.surface,
+      color: Kurumi.themeOf(context).colorScheme.surface,
     ),
   );
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../core/comments/types.dart';
@@ -54,7 +55,7 @@ class _CommentItem extends StatelessWidget {
           authorName: comment.creatorName == null
               ? comment.creatorId?.toString() ?? 'Anon'
               : comment.creatorName!,
-          authorTitleColor: Theme.of(context).colorScheme.primary,
+          authorTitleColor: Kurumi.themeOf(context).colorScheme.primary,
           createdAt: comment.createdAt,
         ),
         const SizedBox(height: 4),

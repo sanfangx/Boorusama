@@ -42,7 +42,7 @@ class _PostListConfigurationHeaderState
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final hiddenCount = widget.hiddenCount;
 
     return Card(
@@ -54,7 +54,7 @@ class _PostListConfigurationHeaderState
           ? null
           : Colors.transparent,
       child: Theme(
-        data: Theme.of(context).copyWith(
+        data: Kurumi.themeOf(context).copyWith(
           dividerColor: Colors.transparent,
           listTileTheme: ListTileTheme.of(context).copyWith(
             contentPadding: EdgeInsets.zero,
@@ -130,7 +130,7 @@ class _PostListConfigurationHeaderState
                     if (widget.axis == Axis.horizontal)
                       Text(
                         context.t.posts.counter(n: widget.postCount),
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Kurumi.themeOf(context).textTheme.titleLarge,
                       ),
                     const Spacer(),
                     FittedBox(

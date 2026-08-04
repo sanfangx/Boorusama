@@ -48,7 +48,7 @@ class _TagEditUploadTextFieldState
       ),
       arrowShape: const NoArrow(),
       spacing: 4,
-      backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+      backgroundColor: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       overlayBuilder: (context) => Container(
         constraints: BoxConstraints(
           maxHeight: 200,

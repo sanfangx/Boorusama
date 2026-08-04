@@ -132,7 +132,9 @@ class _WidgetList extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(12),
               label: translateRawDetailsPartName(context, part.name),
-              backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+              backgroundColor: Kurumi.themeOf(
+                context,
+              ).colorScheme.surfaceContainer,
             ),
           )
           .toList(),

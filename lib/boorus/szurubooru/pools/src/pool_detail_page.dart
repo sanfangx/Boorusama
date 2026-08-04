@@ -6,6 +6,7 @@ import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -90,7 +91,7 @@ class SzurubooruPoolDetailPage extends ConsumerWidget {
           child: ListTile(
             title: Text(
               effectivePool.name?.replaceAll('_', ' ') ?? '???',
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Kurumi.themeOf(context).textTheme.titleLarge,
             ),
             subtitle: _SzurubooruPoolMetadata(pool: effectivePool),
           ),

@@ -52,13 +52,17 @@ class HomeNavigationTile extends StatelessWidget {
           selectedIcon: Icon(
             selected ? selectedIcon : icon,
             fill: 1,
-            color: selected ? Theme.of(context).colorScheme.onSecondary : null,
+            color: selected
+                ? Kurumi.themeOf(context).colorScheme.onSecondary
+                : null,
           ),
           icon: Icon(
             icon,
             color:
                 forceIconColor ??
-                (selected ? Theme.of(context).colorScheme.onSecondary : null),
+                (selected
+                    ? Kurumi.themeOf(context).colorScheme.onSecondary
+                    : null),
             fill: forceFillIcon ? 1 : 0,
           ),
           title: Text(
@@ -68,7 +72,7 @@ class HomeNavigationTile extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: selected
-                  ? Theme.of(context).colorScheme.onSecondary
+                  ? Kurumi.themeOf(context).colorScheme.onSecondary
                   : null,
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 class ExploreSection extends StatelessWidget {
   const ExploreSection({
@@ -24,7 +25,7 @@ class ExploreSection extends StatelessWidget {
           contentPadding: const EdgeInsets.symmetric(horizontal: 4),
           title: Text(
             title,
-            style: Theme.of(
+            style: Kurumi.themeOf(
               context,
             ).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w700),
           ),
@@ -33,7 +34,7 @@ class ExploreSection extends StatelessWidget {
                   onPressed: onPressed,
                   child: Text(
                     context.t.explore.see_more,
-                    style: Theme.of(context).textTheme.labelLarge,
+                    style: Kurumi.themeOf(context).textTheme.labelLarge,
                   ),
                 )
               : null,

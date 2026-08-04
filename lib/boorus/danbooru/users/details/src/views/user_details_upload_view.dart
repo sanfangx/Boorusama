@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 // Project imports:
@@ -14,7 +15,6 @@ import '../../../../../../core/posts/details_parts/widgets.dart';
 import '../../../../../../core/search/search/routes.dart';
 import '../../../../../../core/tags/categories/types.dart';
 import '../../../../../../core/tags/tag/providers.dart';
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../../foundation/platform.dart';
 import '../../../../../../foundation/utils/flutter_utils.dart';
@@ -44,7 +44,7 @@ class UserDetailsUploadView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = Kurumi.themeOf(context).textTheme;
 
     return LayoutBuilder(
       builder: (context, constraints) => PostDetailsSheetConstraints(
@@ -185,7 +185,7 @@ class UserDetailsUploadView extends ConsumerWidget {
 
   Widget _buildTags(WidgetRef ref, List<DanbooruRelatedTagItem> tags) {
     final context = ref.context;
-    final brightness = Theme.of(context).brightness;
+    final brightness = Kurumi.themeOf(context).brightness;
     return Wrap(
       spacing: 8,
       runSpacing: isDesktopPlatform() ? 4 : 0,
@@ -226,11 +226,12 @@ class UserDetailsUploadView extends ConsumerWidget {
                     children: [
                       TextSpan(
                         text: '  ${(e.frequency * 100).toStringAsFixed(1)}%',
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: brightness.isLight
-                              ? Colors.white.withValues(alpha: 0.85)
-                              : null,
-                        ),
+                        style: Kurumi.themeOf(context).textTheme.bodySmall
+                            ?.copyWith(
+                              color: brightness.isLight
+                                  ? Colors.white.withValues(alpha: 0.85)
+                                  : null,
+                            ),
                       ),
                     ],
                   ),

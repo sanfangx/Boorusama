@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_markdown_plus/flutter_markdown_plus.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:sliver_masonry_grid/sliver_masonry_grid.dart';
 
 // Project imports:
@@ -60,7 +61,7 @@ class SliverPostGrid<T extends Post> extends StatelessWidget {
         valueListenable: postController.errors,
         builder: (_, error, _) {
           if (error != null) {
-            final theme = Theme.of(context);
+            final theme = Kurumi.themeOf(context);
 
             return SliverToBoxAdapter(
               child: switch (error) {

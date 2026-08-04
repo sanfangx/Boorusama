@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../themes/theme/types.dart';
 
 class UserInfoBox extends ConsumerWidget {
   const UserInfoBox({
@@ -24,7 +24,7 @@ class UserInfoBox extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final isLoading = loading ?? false;
 
     return Row(
@@ -65,7 +65,7 @@ class UserInfoNameText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return Text(
       name.replaceAll('_', ' '),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/clipboard.dart';
@@ -50,17 +51,19 @@ class SourceLink extends StatelessWidget {
                   url.toString(),
                   maxLines: 1,
                   softWrap: false,
-                  style: Theme.of(context).textTheme.bodySmall,
+                  style: Kurumi.themeOf(context).textTheme.bodySmall,
                 ),
               )
             : null,
         leading: CircleAvatar(
-          backgroundColor: Theme.of(context).colorScheme.tertiaryContainer,
+          backgroundColor: Kurumi.themeOf(
+            context,
+          ).colorScheme.tertiaryContainer,
           child: Center(
             child: Text(
               name.getFirstCharacter().toUpperCase(),
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onTertiaryContainer,
+                color: Kurumi.themeOf(context).colorScheme.onTertiaryContainer,
               ),
             ),
           ),

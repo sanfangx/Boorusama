@@ -6,7 +6,6 @@ import 'package:coreutils/coreutils.dart';
 import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../core/themes/theme/types.dart';
 import '../core/widgets/booru_version_chip.dart';
 import '../core/widgets/center_play_button.dart';
 import '../core/widgets/multi_select_button.dart';
@@ -18,26 +17,17 @@ class _KurumiGallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = AppTheme.darkTheme(
-      colorScheme: staticDarkScheme,
-      extendedColorScheme: staticDarkExtendedScheme,
+    final theme = Kurumi.themeFrom(
+      KurumiThemeMode.dark,
+      colorScheme: KurumiColorSchemes.dark,
+      systemDarkMode: true,
     );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: theme,
       builder: (context, navigator) => KurumiTheme(
-        data: KurumiThemeData.fromMaterial(
-          theme,
-          surfaceContainerOverlay:
-              staticDarkExtendedScheme.surfaceContainerOverlay,
-          onSurfaceContainerOverlay:
-              staticDarkExtendedScheme.onSurfaceContainerOverlay,
-          surfaceContainerOverlayDim:
-              staticDarkExtendedScheme.surfaceContainerOverlayDim,
-          onSurfaceContainerOverlayDim:
-              staticDarkExtendedScheme.onSurfaceContainerOverlayDim,
-        ),
+        data: KurumiThemeData.fromMaterial(theme),
         child: navigator!,
       ),
       home: const _GalleryPage(),
@@ -93,7 +83,7 @@ class _ComponentColumn extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(title, style: Theme.of(context).textTheme.headlineSmall),
+        Text(title, style: Kurumi.themeOf(context).textTheme.headlineSmall),
         const SizedBox(height: 16),
         if (useKurumi)
           KurumiButton(
@@ -109,13 +99,17 @@ class _ComponentColumn extends StatelessWidget {
         if (useKurumi)
           KurumiCompactChip(
             label: 'artist',
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
+            backgroundColor: Kurumi.themeOf(
+              context,
+            ).colorScheme.surfaceContainerHigh,
             onTap: () {},
           )
         else
           KurumiCompactChip(
             label: 'artist',
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
+            backgroundColor: Kurumi.themeOf(
+              context,
+            ).colorScheme.surfaceContainerHigh,
             onTap: () {},
           ),
         const SizedBox(height: 16),

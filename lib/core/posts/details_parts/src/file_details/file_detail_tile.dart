@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class FileDetailTile extends StatelessWidget {
   const FileDetailTile({
     required this.title,
@@ -20,13 +23,13 @@ class FileDetailTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return ListTile(
       visualDensity: VisualDensity.compact,
       leading: Text(
         title,
-        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+        style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
           fontSize: 14,
           fontWeight: FontWeight.w700,
         ),

@@ -157,7 +157,7 @@ class _UserFeedbackItem extends ConsumerWidget {
                       locale: Localizations.localeOf(context),
                     ),
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.hintColor,
+                      color: Kurumi.themeOf(context).colorScheme.hintColor,
                       fontSize: 12,
                     ),
                   ),

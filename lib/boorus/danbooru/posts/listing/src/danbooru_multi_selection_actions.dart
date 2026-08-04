@@ -123,7 +123,7 @@ class MassEditRatingSheet extends ConsumerWidget {
     );
 
     return Material(
-      color: Theme.of(context).colorScheme.surfaceContainer,
+      color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,

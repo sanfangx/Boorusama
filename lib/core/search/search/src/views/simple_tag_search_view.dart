@@ -80,7 +80,7 @@ class _SimpleTagSearchViewState extends ConsumerState<SimpleTagSearchView> {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final config = widget.initialConfig ?? ref.watchConfigAuth;
     final suggestionNotifier = ref.watch(
       suggestionsNotifierProvider(config).notifier,
@@ -245,7 +245,7 @@ class _AddButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Semantics(
       button: true,

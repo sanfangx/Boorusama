@@ -4,6 +4,7 @@ import 'dart:convert';
 // Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/applock/types.dart';
@@ -21,7 +22,6 @@ import '../../../posts/post/types.dart';
 import '../../../posts/slideshow/types.dart';
 import '../../../search/search/types.dart';
 import '../../../themes/configs/types.dart';
-import '../../../themes/theme/types.dart';
 import '../../../videos/engines/types.dart';
 import '../../../videos/player/types.dart';
 
@@ -65,7 +65,7 @@ class Settings extends Equatable {
       listing = ImageListingSettings.fromJson(json),
       viewer = ImageViewerSettings.fromJson(json),
       blacklistedTags = json['hideBlacklist'] ?? '',
-      themeMode = AppThemeMode.parse(
+      themeMode = KurumiThemeMode.parse(
         json['themeMode'],
       ),
       dataCollectingStatus = DataCollectingStatus.parse(
@@ -155,7 +155,7 @@ class Settings extends Equatable {
     colors: null,
     safeMode: true,
     blacklistedTags: '',
-    themeMode: AppThemeMode.defaultValue,
+    themeMode: KurumiThemeMode.defaultValue,
     language: 'en-US',
     dataCollectingStatus: DataCollectingStatus.defaultValue,
     downloadPath: null,
@@ -190,7 +190,7 @@ class Settings extends Equatable {
   final String blacklistedTags;
   final String language;
   final bool safeMode;
-  final AppThemeMode themeMode;
+  final KurumiThemeMode themeMode;
   final DataCollectingStatus dataCollectingStatus;
 
   final String? downloadPath;
@@ -245,7 +245,7 @@ class Settings extends Equatable {
     String? blacklistedTags,
     String? language,
     bool? safeMode,
-    AppThemeMode? themeMode,
+    KurumiThemeMode? themeMode,
     DataCollectingStatus? dataCollectingStatus,
     String? downloadPath,
     ImageQuality? imageQualityInFullView,
@@ -329,7 +329,7 @@ class Settings extends Equatable {
       ...viewer,
       'safeMode': safeMode,
       'hideBlacklist': blacklistedTags,
-      'themeMode': themeMode.toData(),
+      'themeMode': themeMode.index,
       'dataCollectingStatus': dataCollectingStatus.toData(),
       'language': language,
       'downloadPath': downloadPath,
@@ -677,7 +677,7 @@ class ImageListingSettings extends Equatable {
     bool? showPostListConfigHeader,
     MediaBlurCondition? mediaBlurCondition,
     bool? enableDynamicColoring,
-    AppThemeMode? themeMode,
+    KurumiThemeMode? themeMode,
     double? imageGridSpacing,
     double? imageBorderRadius,
     double? imageGridPadding,

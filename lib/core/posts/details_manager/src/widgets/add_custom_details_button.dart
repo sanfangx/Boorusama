@@ -22,7 +22,7 @@ class AddCustomDetailsButton extends ConsumerWidget {
         vertical: 8,
       ),
       child: KurumiDottedBorderButton(
-        borderColor: Theme.of(context).colorScheme.hintColor,
+        borderColor: Kurumi.themeOf(context).colorScheme.hintColor,
         onTap: () {
           goToDetailsLayoutManagerForFullWidgets(ref);
         },

@@ -2,12 +2,11 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
-import 'package:anchor_ui/anchor_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
-import '../../../../themes/theme/types.dart';
 import '../../../../videos/player/providers.dart';
 import '../../../../videos/player/widgets.dart';
 import '../../../../widgets/widgets.dart';
@@ -106,7 +105,7 @@ class _VideoControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final surfaceColor = Theme.of(context).colorScheme.surface;
+    final surfaceColor = Kurumi.themeOf(context).colorScheme.surface;
 
     return Stack(
       children: [
@@ -238,7 +237,7 @@ class _VideoControlsContent<T extends Post> extends ConsumerWidget {
         first: controller.currentPost,
         second: controller.videoProgress,
         builder: (context, post, progress) {
-          final colorScheme = Theme.of(context).colorScheme;
+          final colorScheme = Kurumi.themeOf(context).colorScheme;
 
           return VideoProgressBar(
             duration: progress.duration,

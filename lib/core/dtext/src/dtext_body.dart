@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:dtext/dtext.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../foundation/html.dart';
 import '../../configs/config/types.dart';
 import '../../text_markup/types.dart';
-import '../../themes/theme/types.dart';
 import 'dtext_emoji_renderer.dart';
 import 'dtext_html.dart';
 import 'dtext_media_embed.dart';
@@ -486,7 +486,7 @@ class _DTextQuote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Container(
       width: double.infinity,

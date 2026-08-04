@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:foundation/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
@@ -272,7 +273,7 @@ class _ImageInkWellWithBorderOnFocusState
                             widget.borderRadius ??
                             const BorderRadius.all(Radius.circular(8)),
                         border: Border.all(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Kurumi.themeOf(context).colorScheme.primary,
                           width: 6,
                         ),
                       ),
@@ -283,7 +284,7 @@ class _ImageInkWellWithBorderOnFocusState
         ),
         InkWell(
           focusNode: node,
-          focusColor: Theme.of(context).colorScheme.primary.withAlpha(50),
+          focusColor: Kurumi.themeOf(context).colorScheme.primary.withAlpha(50),
           highlightColor: Colors.transparent,
           splashFactory: FasterInkSplash.splashFactory,
           splashColor: widget.splashColor ?? Colors.black38,

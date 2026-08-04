@@ -101,7 +101,7 @@ class _ImageListingSettingsSectionState
                       .image_quality
                       .high_quality_notice,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.hintColor,
+                    color: Kurumi.themeOf(context).colorScheme.hintColor,
                   ),
                 )
               : null,
@@ -135,7 +135,7 @@ class _ImageListingSettingsSectionState
           subtitle: Text(
             context.t.settings.performance.posts_per_page_explain,
             style: TextStyle(
-              color: Theme.of(context).colorScheme.hintColor,
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
           ),
           selectedOption: settings.postsPerPage,

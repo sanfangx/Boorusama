@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../providers/finder_notifier.dart';
@@ -80,7 +81,7 @@ class _PageFindingDialogState extends ConsumerState<PageFindingDialog> {
         Text(
           'Failed to find page: $error',
           style: TextStyle(
-            color: Theme.of(context).colorScheme.error,
+            color: Kurumi.themeOf(context).colorScheme.error,
           ),
         ),
         const SizedBox(height: 16),
@@ -101,7 +102,7 @@ class _PageFindingDialogState extends ConsumerState<PageFindingDialog> {
         ProgressStepper(
           current: current,
           max: max,
-          color: Theme.of(context).colorScheme.primary,
+          color: Kurumi.themeOf(context).colorScheme.primary,
         ),
         const SizedBox(height: 8),
         Text('Step $current of $max'),

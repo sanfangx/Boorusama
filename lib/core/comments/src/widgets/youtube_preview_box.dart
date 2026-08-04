@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:html/parser.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -43,13 +44,13 @@ class YoutubePreviewBox extends ConsumerWidget {
                   children: [
                     Text(
                       data.siteName,
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Kurumi.themeOf(context).textTheme.bodySmall,
                     ),
                     TextButton(
                       onPressed: () => launchExternalUrl(uri),
                       child: Text(
                         data.title,
-                        style: Theme.of(
+                        style: Kurumi.themeOf(
                           context,
                         ).textTheme.titleMedium!.copyWith(color: Colors.blue),
                       ),

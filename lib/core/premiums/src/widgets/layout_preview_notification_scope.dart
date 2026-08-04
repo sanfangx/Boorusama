@@ -40,7 +40,7 @@ class LayoutPreviewNotificationScope extends ConsumerWidget {
             ),
             action: SnackBarAction(
               label: context.t.premium.upgrade,
-              textColor: Theme.of(context).colorScheme.surface,
+              textColor: Kurumi.themeOf(context).colorScheme.surface,
               onPressed: () => goToPremiumPage(ref),
             ),
           );

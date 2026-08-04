@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
-
-// Project imports:
-import '../../../../themes/theme/types.dart';
 
 class VideoPlayDurationIcon extends StatelessWidget {
   const VideoPlayDurationIcon({
@@ -25,8 +23,9 @@ class VideoPlayDurationIcon extends StatelessWidget {
         seconds: duration < 1 ? 1 : duration.round(),
       ),
     );
-    final background = context.extendedColorScheme.surfaceContainerOverlayDim;
-    final foreground = context.extendedColorScheme.onSurfaceContainerOverlayDim;
+    final colors = Kurumi.semanticColorsOf(context);
+    final background = colors.overlayDim;
+    final foreground = colors.onOverlayDim;
 
     return Semantics(
       label: durationLabel,

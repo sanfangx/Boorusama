@@ -26,7 +26,7 @@ class PageNavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return ValueListenableBuilder(
       valueListenable: controller.overlay,

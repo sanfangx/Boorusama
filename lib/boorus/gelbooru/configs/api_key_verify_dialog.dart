@@ -37,7 +37,7 @@ class ApiKeyVerifyDialog extends ConsumerWidget {
       actions: [
         ElevatedButton(
           style: ElevatedButton.styleFrom(
-            foregroundColor: Theme.of(context).colorScheme.hintColor,
+            foregroundColor: Kurumi.themeOf(context).colorScheme.hintColor,
           ),
           onPressed: () => Navigator.of(context).pop(),
           child: Text(context.t.generic.action.cancel),

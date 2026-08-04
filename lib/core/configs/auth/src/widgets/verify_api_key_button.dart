@@ -22,7 +22,7 @@ class VerifyApiKeyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return MultiValueListenableBuilder2(
       first: loginController,

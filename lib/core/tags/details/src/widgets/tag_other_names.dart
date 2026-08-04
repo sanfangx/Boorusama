@@ -87,7 +87,7 @@ class OtherNameChip extends StatelessWidget {
         child: KurumiSelectableChip(
           onPressed: () {},
           side: BorderSide(
-            color: Theme.of(context).colorScheme.hintColor,
+            color: Kurumi.themeOf(context).colorScheme.hintColor,
             width: 0.5,
           ),
           padding: const EdgeInsets.all(4),

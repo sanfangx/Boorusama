@@ -19,7 +19,7 @@ class UnsavedAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
 
     return KurumiDialog(

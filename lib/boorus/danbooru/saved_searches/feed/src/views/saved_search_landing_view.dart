@@ -133,12 +133,12 @@ class _ExampleContainer extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
                   title,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Kurumi.themeOf(context).textTheme.titleLarge,
                 ),
               ),
               Card(
                 margin: const EdgeInsets.all(8),
-                color: Theme.of(context).colorScheme.surface,
+                color: Kurumi.themeOf(context).colorScheme.surface,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 8,

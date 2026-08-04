@@ -92,7 +92,7 @@ class BackupNotifier extends AutoDisposeNotifier<BackupState> {
 
   Future<void> exportToZip(BuildContext context, List<String> sourceIds) async {
     final logger = ref.read(loggerProvider);
-    final platform = Theme.of(context).platform;
+    final platform = Kurumi.themeOf(context).platform;
 
     if (state.isActive) {
       logger.warn(

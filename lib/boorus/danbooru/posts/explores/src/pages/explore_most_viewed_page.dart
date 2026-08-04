@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../../../core/configs/config/providers.dart';
@@ -45,7 +46,7 @@ class _ExploreMostViewedPageState extends ConsumerState<ExploreMostViewedPage> {
                   .read(danbooruExploreRepoProvider(config))
                   .getMostViewedPosts(selectedDateNotifier.value),
         builder: (context, controller) => ColoredBox(
-          color: Theme.of(context).colorScheme.surface,
+          color: Kurumi.themeOf(context).colorScheme.surface,
           child: SafeArea(
             child: Column(
               children: [
@@ -73,7 +74,7 @@ class _ExploreMostViewedPageState extends ConsumerState<ExploreMostViewedPage> {
                   ),
                 ),
                 Container(
-                  color: Theme.of(
+                  color: Kurumi.themeOf(
                     context,
                   ).bottomNavigationBarTheme.backgroundColor,
                   child: ValueListenableBuilder(

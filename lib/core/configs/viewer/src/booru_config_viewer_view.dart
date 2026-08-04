@@ -36,8 +36,8 @@ class BooruConfigViewerView extends ConsumerWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Theme(
-        data: Theme.of(context).copyWith(
-          listTileTheme: Theme.of(context).listTileTheme.copyWith(
+        data: Kurumi.themeOf(context).copyWith(
+          listTileTheme: Kurumi.themeOf(context).listTileTheme.copyWith(
             contentPadding: EdgeInsets.zero,
           ),
         ),

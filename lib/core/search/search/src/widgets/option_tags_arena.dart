@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -70,7 +71,7 @@ class _OptionTagsArenaState extends State<OptionTagsArena> {
           children: [
             Text(
               widget.title.toUpperCase(),
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+              style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -85,8 +86,8 @@ class _OptionTagsArenaState extends State<OptionTagsArena> {
                       minimumSize: const Size(32, 32),
                       shape: const CircleBorder(),
                       backgroundColor: editMode
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(
+                          ? Kurumi.themeOf(context).colorScheme.primary
+                          : Kurumi.themeOf(
                               context,
                             ).colorScheme.surfaceContainerHighest,
                     ),
@@ -95,8 +96,10 @@ class _OptionTagsArenaState extends State<OptionTagsArena> {
                       editMode ? Symbols.check : Symbols.edit,
                       size: 16,
                       color: editMode
-                          ? Theme.of(context).colorScheme.onPrimary
-                          : Theme.of(context).colorScheme.onSurfaceVariant,
+                          ? Kurumi.themeOf(context).colorScheme.onPrimary
+                          : Kurumi.themeOf(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                       fill: 1,
                     ),
                   );

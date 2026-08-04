@@ -138,7 +138,7 @@ class InformationSection extends ConsumerWidget {
         copyrightTags,
       ).replaceAll('_', ' ').titleCase,
       overflow: TextOverflow.fade,
-      style: Theme.of(context).textTheme.bodyLarge,
+      style: Kurumi.themeOf(context).textTheme.bodyLarge,
       maxLines: 1,
       softWrap: false,
     );
@@ -150,7 +150,7 @@ class InformationSection extends ConsumerWidget {
         characterTags,
       ).replaceAll('_', ' ').titleCase,
       overflow: TextOverflow.fade,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+      style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w800,
       ),
@@ -169,8 +169,10 @@ class InformationSection extends ConsumerWidget {
           createdAt.fuzzify(
             locale: Localizations.localeOf(context),
           ),
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-            color: Theme.of(context).listTileTheme.subtitleTextStyle?.color,
+          style: Kurumi.themeOf(context).textTheme.bodySmall?.copyWith(
+            color: Kurumi.themeOf(
+              context,
+            ).listTileTheme.subtitleTextStyle?.color,
           ),
         ),
       ),
@@ -277,7 +279,7 @@ class _DotSeparator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
 
     return Padding(

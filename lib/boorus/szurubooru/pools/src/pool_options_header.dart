@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -20,7 +21,7 @@ class SzurubooruPoolOptionsHeader extends ConsumerWidget {
     final notifier = ref.watch(szurubooruPoolFilterProvider.notifier);
 
     return Container(
-      color: Theme.of(context).colorScheme.surface,
+      color: Kurumi.themeOf(context).colorScheme.surface,
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: ChoiceOptionSelectorList(
         icon: const Icon(Symbols.sort),

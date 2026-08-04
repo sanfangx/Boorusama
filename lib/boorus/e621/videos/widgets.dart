@@ -245,7 +245,7 @@ class E621VideoQualitySheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Material(
-        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
         child: Container(
           padding: const EdgeInsets.symmetric(
             vertical: 8,
@@ -283,7 +283,7 @@ class E621VideoQualitySheet extends StatelessWidget {
                     return AppHtml(
                       style: {
                         'a': Style(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Kurumi.themeOf(context).colorScheme.primary,
                           textDecoration: TextDecoration.none,
                         ),
                       },

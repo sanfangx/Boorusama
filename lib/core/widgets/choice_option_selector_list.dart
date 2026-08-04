@@ -89,7 +89,7 @@ class _ChoiceOptionSelectorListState<T>
       ...widget.options.map((e) => OptionType(data: e)),
     ];
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Container(
       height: 32,

@@ -1,12 +1,14 @@
 // Package imports:
 import 'package:booru_clients/boorusama.dart';
+import 'package:coreutils/coreutils.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:boorusama/core/announcements/filter.dart';
 import 'package:boorusama/core/announcements/types.dart';
 import 'package:boorusama/core/environment/data.dart';
 import 'package:boorusama/core/environment/types.dart';
 import 'package:boorusama/foundation/platform.dart';
-import 'package:coreutils/coreutils.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final now = DateTime.utc(2026, 5, 5, 12);

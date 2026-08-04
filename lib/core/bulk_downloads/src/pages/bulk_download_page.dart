@@ -159,8 +159,8 @@ class BulkDownloadActionSessions extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final sessions = ref.watch(bulkDownloadSessionsProvider);
-    final colorScheme = Theme.of(context).colorScheme;
-    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
+    final textTheme = Kurumi.themeOf(context).textTheme;
 
     return sessions.isNotEmpty
         ? ListView.builder(

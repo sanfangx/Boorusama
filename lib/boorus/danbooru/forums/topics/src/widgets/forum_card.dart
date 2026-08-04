@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../../../core/themes/theme/types.dart';
 import '../../../../../../core/widgets/widgets.dart';
 
 class ForumCard extends ConsumerWidget {
@@ -47,13 +47,13 @@ class ForumCard extends ConsumerWidget {
                     Icon(
                       Symbols.push_pin,
                       size: 20,
-                      color: Theme.of(context).colorScheme.hintColor,
+                      color: Kurumi.themeOf(context).colorScheme.hintColor,
                     ),
                   if (isLocked)
                     Icon(
                       Symbols.lock_outline,
                       size: 20,
-                      color: Theme.of(context).colorScheme.hintColor,
+                      color: Kurumi.themeOf(context).colorScheme.hintColor,
                     ),
                   const SizedBox(width: 4),
                   Expanded(

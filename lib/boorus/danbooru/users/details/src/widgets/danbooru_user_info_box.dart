@@ -25,7 +25,7 @@ class DanbooruUserInfoBox extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userColor = DanbooruUserColor.of(context);
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colors = ref
         .watch(booruChipColorsProvider)
         .fromColor(

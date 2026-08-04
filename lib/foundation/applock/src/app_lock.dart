@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -82,7 +83,7 @@ class _AppLockState extends ConsumerState<AppLock> {
                     children: [
                       Text(
                         'Please authenticate to use the app',
-                        style: Theme.of(context).textTheme.titleMedium,
+                        style: Kurumi.themeOf(context).textTheme.titleMedium,
                       ),
                       const SizedBox(height: 16),
                       IconButton(
@@ -90,7 +91,7 @@ class _AppLockState extends ConsumerState<AppLock> {
                         icon: Icon(
                           Symbols.fingerprint,
                           size: 72,
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Kurumi.themeOf(context).colorScheme.primary,
                         ),
                       ),
                     ],

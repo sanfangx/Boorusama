@@ -1,8 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
-import '../../../themes/theme/types.dart';
 import 'constants.dart';
 import 'post_details_page_view_controller.dart';
 
@@ -20,7 +22,7 @@ class SideSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     final child = Container(
       constraints: const BoxConstraints(maxWidth: kSideSheetWidth),

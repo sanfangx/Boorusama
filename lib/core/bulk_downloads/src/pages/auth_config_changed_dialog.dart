@@ -44,7 +44,7 @@ class AuthConfigChangedDialog extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: Theme.of(context).colorScheme.hintColor,
+                  color: Kurumi.themeOf(context).colorScheme.hintColor,
                 ),
                 children: [
                   TextSpan(
@@ -64,7 +64,7 @@ class AuthConfigChangedDialog extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w400,
-                  color: Theme.of(context).colorScheme.hintColor,
+                  color: Kurumi.themeOf(context).colorScheme.hintColor,
                 ),
                 children: [
                   TextSpan(
@@ -101,7 +101,9 @@ class AuthConfigChangedDialog extends ConsumerWidget {
           if (hasMismatch)
             FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.errorContainer,
+                backgroundColor: Kurumi.themeOf(
+                  context,
+                ).colorScheme.errorContainer,
                 shadowColor: Colors.transparent,
                 elevation: 0,
               ),
@@ -113,7 +115,7 @@ class AuthConfigChangedDialog extends ConsumerWidget {
                 child: Text(
                   context.t.generic.action.ok,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onErrorContainer,
+                    color: Kurumi.themeOf(context).colorScheme.onErrorContainer,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -122,7 +124,9 @@ class AuthConfigChangedDialog extends ConsumerWidget {
           else ...[
             FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.errorContainer,
+                backgroundColor: Kurumi.themeOf(
+                  context,
+                ).colorScheme.errorContainer,
                 shadowColor: Colors.transparent,
                 elevation: 0,
               ),
@@ -134,7 +138,7 @@ class AuthConfigChangedDialog extends ConsumerWidget {
                 child: Text(
                   context.t.bulk_downloads.auth_changed.kContinue,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onErrorContainer,
+                    color: Kurumi.themeOf(context).colorScheme.onErrorContainer,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -151,7 +155,7 @@ class AuthConfigChangedDialog extends ConsumerWidget {
                   context.t.generic.action.cancel,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).colorScheme.onSurface,
+                    color: Kurumi.themeOf(context).colorScheme.onSurface,
                   ),
                 ),
               ),

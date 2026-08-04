@@ -6,6 +6,7 @@ import 'package:booru_clients/shimmie2.dart';
 import 'package:coreutils/coreutils.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 // Project imports:
@@ -139,7 +140,7 @@ class Shimmie2UserApiKeyExtDisclaimer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final style = AppHtml.hintStyle(colorScheme);
 
     return Padding(
@@ -163,7 +164,7 @@ class Shimmie2BooruUrlField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final config = ref.watch(initialBooruConfigProvider);
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
     final editId = ref.watch(editBooruConfigIdProvider);
     final notifier = ref.watch(editBooruConfigProvider(editId).notifier);

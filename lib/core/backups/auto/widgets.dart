@@ -21,7 +21,7 @@ class AutoBackupSection extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
     final settings = ref.watch(settingsProvider.select((s) => s.autoBackup));
     final settingsNotifier = ref.watch(settingsNotifierProvider.notifier);
@@ -164,7 +164,7 @@ class _SelectLocationRequestBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
 
     return Container(
@@ -211,7 +211,7 @@ class _StatusTile extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final colorScheme = theme.colorScheme;
     final isLoading = ref.watch(
       backupProvider.select((s) => s.isActive),

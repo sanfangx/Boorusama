@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -88,7 +89,7 @@ class _Tile extends ConsumerWidget {
               softWrap: false,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.outline,
+                color: Kurumi.themeOf(context).colorScheme.outline,
               ),
             ),
       ],

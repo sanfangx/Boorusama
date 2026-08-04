@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
@@ -169,7 +170,7 @@ class SliverPreviewPostGridPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final constraints = PostDetailsSheetConstraints.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final effectiveLimit = limit ?? const UnlimitedPreview();
 
     return switch (effectiveLimit) {

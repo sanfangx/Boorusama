@@ -56,7 +56,7 @@ class BooruSelectorItem extends StatelessWidget {
                 left: 4,
               ),
         child: InkWell(
-          hoverColor: Theme.of(context).hoverColor.withValues(alpha: 0.1),
+          hoverColor: Kurumi.themeOf(context).hoverColor.withValues(alpha: 0.1),
           customBorder: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -94,7 +94,7 @@ class BooruSelectorItem extends StatelessWidget {
                 border: Border(
                   top: BorderSide(
                     color: selected
-                        ? Theme.of(context).colorScheme.primary
+                        ? Kurumi.themeOf(context).colorScheme.primary
                         : Colors.transparent,
                     width: 4,
                   ),
@@ -116,7 +116,7 @@ class BooruSelectorItem extends StatelessWidget {
                 border: Border(
                   top: BorderSide(
                     color: selected
-                        ? Theme.of(context).colorScheme.primary
+                        ? Kurumi.themeOf(context).colorScheme.primary
                         : Colors.transparent,
                     width: 48,
                   ),

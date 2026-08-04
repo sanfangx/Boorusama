@@ -73,14 +73,14 @@ class DefaultBackupTile extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: isSelected
-              ? Theme.of(
+              ? Kurumi.themeOf(
                   context,
                 ).colorScheme.primaryContainer.withValues(alpha: 0.3)
-              : Theme.of(context).colorScheme.surfaceContainer,
+              : Kurumi.themeOf(context).colorScheme.surfaceContainer,
           borderRadius: BorderRadius.circular(8),
           border: isSelected
               ? Border.all(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Kurumi.themeOf(context).colorScheme.primary,
                   width: 2,
                 )
               : null,
@@ -89,10 +89,10 @@ class DefaultBackupTile extends ConsumerWidget {
           children: [
             CircleAvatar(
               radius: 22,
-              backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: Kurumi.themeOf(context).colorScheme.surface,
               child: Icon(
                 icon,
-                color: Theme.of(context).colorScheme.onSurface,
+                color: Kurumi.themeOf(context).colorScheme.onSurface,
                 fill: 1,
               ),
             ),
@@ -116,7 +116,9 @@ class DefaultBackupTile extends ConsumerWidget {
                           subtitleStyle ??
                           TextStyle(
                             fontWeight: FontWeight.w400,
-                            color: Theme.of(context).colorScheme.hintColor,
+                            color: Kurumi.themeOf(
+                              context,
+                            ).colorScheme.hintColor,
                           ),
                     ),
                   ...?extra,

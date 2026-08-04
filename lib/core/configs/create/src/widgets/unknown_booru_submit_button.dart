@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../boorus/booru/types.dart';
-import '../../../../themes/theme/types.dart';
 import '../../../config/types.dart';
 import '../../../manage/providers.dart';
 import '../providers/internal_providers.dart';
@@ -96,7 +96,7 @@ class UnknownBooruSubmitButton extends ConsumerWidget {
                 ),
           loading: () => CreateBooruSubmitButton(
             fill: true,
-            backgroundColor: Theme.of(context).colorScheme.hintColor,
+            backgroundColor: Kurumi.themeOf(context).colorScheme.hintColor,
             onSubmit: null,
             child: const Center(
               child: SizedBox(

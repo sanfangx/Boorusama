@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:selection_mode/selection_mode.dart';
 
@@ -128,7 +129,7 @@ class _SelectionAppBar extends StatelessWidget implements PreferredSizeWidget {
                     },
                     icon: Icon(
                       Symbols.select_all,
-                      color: Theme.of(context).colorScheme.primary,
+                      color: Kurumi.themeOf(context).colorScheme.primary,
                     ),
                   ),
                 )

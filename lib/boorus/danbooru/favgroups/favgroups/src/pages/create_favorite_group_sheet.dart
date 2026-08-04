@@ -173,14 +173,14 @@ class _EditFavoriteGroupDialogState
           Center(
             child: Text(
               widget.title,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Kurumi.themeOf(context).textTheme.titleLarge,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12),
             child: Text(
               context.t.favorite_groups.group_name.toUpperCase(),
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              style: Kurumi.themeOf(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w800,
               ),
             ),
@@ -200,7 +200,7 @@ class _EditFavoriteGroupDialogState
           if (widget.enableManualDataInput)
             Text(
               context.t.favorite_groups.all_posts.toUpperCase(),
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+              style: Kurumi.themeOf(context).textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w800,
               ),
             ),
@@ -240,7 +240,7 @@ class _EditFavoriteGroupDialogState
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(),
                   style: TextButton.styleFrom(
-                    foregroundColor: Theme.of(
+                    foregroundColor: Kurumi.themeOf(
                       context,
                     ).colorScheme.onSurface,
                   ),
@@ -268,10 +268,11 @@ class _EditFavoriteGroupDialogState
                                     ),
                                     name: value.text,
                                     isPrivate: isPrivate,
-                                    onFailure: (message) => Kurumi.showErrorToast(
-                                      context,
-                                      message,
-                                    ),
+                                    onFailure: (message) =>
+                                        Kurumi.showErrorToast(
+                                          context,
+                                          message,
+                                        ),
                                   );
                             } else {
                               _confirmAndEdit(

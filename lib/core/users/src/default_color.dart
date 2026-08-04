@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 // Project imports:
 import 'user_color.dart';
 
@@ -8,7 +11,7 @@ class DefaultUserColor implements UserColor {
   DefaultUserColor._(this.brightness);
 
   factory DefaultUserColor.of(BuildContext context) =>
-      DefaultUserColor._(Theme.of(context).brightness);
+      DefaultUserColor._(Kurumi.themeOf(context).brightness);
 
   @override
   final Brightness brightness;

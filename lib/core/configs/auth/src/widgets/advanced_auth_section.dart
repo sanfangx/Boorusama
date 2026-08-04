@@ -49,8 +49,8 @@ class AdvancedAuthSection extends ConsumerWidget {
         const SizedBox(height: 8),
         Text(
           context.t.booru.authentication.gelbooru.advanced_auth,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-            color: Theme.of(context).colorScheme.hintColor,
+          style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
+            color: Kurumi.themeOf(context).colorScheme.hintColor,
             fontSize: 14,
             fontWeight: FontWeight.w700,
           ),
@@ -58,8 +58,8 @@ class AdvancedAuthSection extends ConsumerWidget {
         const SizedBox(height: 4),
         Text(
           context.t.booru.authentication.gelbooru.advanced_auth_description,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-            color: Theme.of(context).colorScheme.hintColor,
+          style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
+            color: Kurumi.themeOf(context).colorScheme.hintColor,
             fontSize: 12,
             fontWeight: FontWeight.w400,
           ),
@@ -100,7 +100,7 @@ class AdvancedAuthSection extends ConsumerWidget {
       margin: const EdgeInsets.symmetric(vertical: 16),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Theme.of(context).colorScheme.primary,
+          color: Kurumi.themeOf(context).colorScheme.primary,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -116,7 +116,7 @@ class AdvancedAuthSection extends ConsumerWidget {
           Row(
             children: [
               KurumiSelectableChip(
-                backgroundColor: Theme.of(
+                backgroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.secondaryContainer,
                 onPressed: () {
@@ -128,7 +128,7 @@ class AdvancedAuthSection extends ConsumerWidget {
               ),
               const SizedBox(width: 8),
               KurumiSelectableChip(
-                backgroundColor: Theme.of(
+                backgroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.secondaryContainer,
                 onPressed: () {
@@ -212,7 +212,9 @@ class AdvancedAuthSection extends ConsumerWidget {
         children: [
           FilledButton(
             style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+              backgroundColor: Kurumi.themeOf(
+                context,
+              ).colorScheme.secondaryContainer,
             ),
             onPressed: () {
               _openBrowser(context, ref, config);
@@ -220,7 +222,7 @@ class AdvancedAuthSection extends ConsumerWidget {
             child: Text(
               title ?? 'Login with Browser',
               style: TextStyle(
-                color: Theme.of(context).colorScheme.onSecondaryContainer,
+                color: Kurumi.themeOf(context).colorScheme.onSecondaryContainer,
               ),
             ),
           ),

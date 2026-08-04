@@ -186,7 +186,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
           value: viewer.videoPlayerEngine,
           valueBuilder: (engine) => VideoEngineUtils.getUnderlyingEngineName(
             engine,
-            platform: Theme.of(context).platform,
+            platform: Kurumi.themeOf(context).platform,
             context: context,
           ),
           onTap: () {
@@ -260,7 +260,7 @@ class _VideoEngineSelectorSheet extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final platform = Theme.of(context).platform;
+    final platform = Kurumi.themeOf(context).platform;
 
     return SettingsSheet(
       title: context.t.settings.image_viewer.video.video_player_engine,

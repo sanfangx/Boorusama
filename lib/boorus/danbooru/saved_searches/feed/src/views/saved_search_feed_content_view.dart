@@ -149,7 +149,7 @@ class _SavedSearchList extends ConsumerWidget {
           visualDensity: VisualDensity.compact,
           side: BorderSide(
             width: 0.5,
-            color: Theme.of(context).colorScheme.hintColor,
+            color: Kurumi.themeOf(context).colorScheme.hintColor,
           ),
           label: Text(
             text.fold(

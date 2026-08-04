@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:anchor_ui/anchor_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -110,7 +111,7 @@ class _DesktopSearchbarState extends ConsumerState<DesktopSearchbar> {
       trailingSearchButton: MaterialButton(
         minWidth: 0,
         elevation: 0,
-        color: Theme.of(context).colorScheme.surface,
+        color: Kurumi.themeOf(context).colorScheme.surface,
         shape: const CircleBorder(),
         onPressed: widget.onSearch,
         child: const Padding(
@@ -125,7 +126,7 @@ class _DesktopSearchbarState extends ConsumerState<DesktopSearchbar> {
   }
 
   Widget _buildOverlay(FocusNode focusNode) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final size = MediaQuery.sizeOf(context);
     final auth = ref.watchConfigAuth;
 

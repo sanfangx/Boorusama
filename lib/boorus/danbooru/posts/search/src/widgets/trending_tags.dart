@@ -41,7 +41,9 @@ class TrendingTags extends ConsumerWidget {
                   label: Text(
                     e.displayName,
                     style: TextStyle(
-                      color: Theme.of(context).brightness.isDark ? color : null,
+                      color: Kurumi.themeOf(context).brightness.isDark
+                          ? color
+                          : null,
                     ),
                   ),
                 ),
@@ -68,7 +70,9 @@ class TrendingTagsPlaceholder extends StatelessWidget {
       children: tags.map((e) {
         return BooruChip(
           chipColors: KurumiChipColors(
-            backgroundColor: Theme.of(context).colorScheme.surfaceContainerLow,
+            backgroundColor: Kurumi.themeOf(
+              context,
+            ).colorScheme.surfaceContainerLow,
             borderColor: Colors.transparent,
             foregroundColor: Colors.transparent,
           ),

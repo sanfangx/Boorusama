@@ -86,7 +86,7 @@ class _DanbooruPostVersionsPageState
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -103,7 +103,7 @@ class _DanbooruPostVersionsPageState
       ),
       extendBodyBehindAppBar: true,
       body: Theme(
-        data: Theme.of(context).copyWith(
+        data: Kurumi.themeOf(context).copyWith(
           focusColor: colorScheme.primary,
         ),
         child: MultiSplitViewTheme(

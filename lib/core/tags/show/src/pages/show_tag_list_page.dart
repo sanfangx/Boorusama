@@ -51,7 +51,7 @@ class _ShowTagListPageState extends ConsumerState<ShowTagListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
     final globalNotifier = ref.watch(globalBlacklistedTagsProvider.notifier);

@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class SheetDragline extends StatelessWidget {
   const SheetDragline({
     super.key,
@@ -19,7 +22,7 @@ class SheetDragline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return GestureDetector(
       child: ColoredBox(

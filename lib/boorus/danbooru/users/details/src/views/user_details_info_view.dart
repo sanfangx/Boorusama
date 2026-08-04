@@ -241,7 +241,9 @@ class _StatsButton extends StatelessWidget {
         ),
         Text(
           title,
-          style: TextStyle(color: Theme.of(context).colorScheme.hintColor),
+          style: TextStyle(
+            color: Kurumi.themeOf(context).colorScheme.hintColor,
+          ),
         ),
       ],
     );

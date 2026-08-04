@@ -142,10 +142,10 @@ class UserDetailsActionButtons extends ConsumerWidget {
           if (ref.watch(isDevEnvironmentProvider))
             FilledButton(
               style: FilledButton.styleFrom(
-                backgroundColor: Theme.of(
+                backgroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.secondaryContainer,
-                foregroundColor: Theme.of(
+                foregroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.onSecondaryContainer,
               ),
@@ -155,8 +155,10 @@ class UserDetailsActionButtons extends ConsumerWidget {
           const SizedBox(width: 8),
           FilledButton(
             style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-              foregroundColor: Theme.of(
+              backgroundColor: Kurumi.themeOf(
+                context,
+              ).colorScheme.secondaryContainer,
+              foregroundColor: Kurumi.themeOf(
                 context,
               ).colorScheme.onSecondaryContainer,
             ),

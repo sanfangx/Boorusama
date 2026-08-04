@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../core/configs/config/providers.dart';
 import '../../../../core/home/widgets.dart';
 import '../../../../core/posts/favorites/routes.dart';
-import '../../../../core/themes/theme/types.dart';
 import '../../artists/search/routes.dart';
 import '../../artists/search/widgets.dart';
 import '../../blacklist/routes.dart';
@@ -255,7 +255,7 @@ class _Icon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Icon(
       icon,
-      fill: Theme.of(context).brightness.isLight ? 0 : 1,
+      fill: Kurumi.themeOf(context).brightness.isLight ? 0 : 1,
     );
   }
 }

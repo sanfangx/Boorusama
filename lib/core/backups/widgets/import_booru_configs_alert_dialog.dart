@@ -42,7 +42,9 @@ class ImportBooruConfigsAlertDialog extends StatelessWidget {
           const SizedBox(height: 20),
           FilledButton(
             style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.errorContainer,
+              backgroundColor: Kurumi.themeOf(
+                context,
+              ).colorScheme.errorContainer,
               shadowColor: Colors.transparent,
               elevation: 0,
             ),
@@ -54,7 +56,7 @@ class ImportBooruConfigsAlertDialog extends StatelessWidget {
               child: Text(
                 'Sure'.hc,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onErrorContainer,
+                  color: Kurumi.themeOf(context).colorScheme.onErrorContainer,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -71,7 +73,7 @@ class ImportBooruConfigsAlertDialog extends StatelessWidget {
                 context.t.generic.action.cancel,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: Kurumi.themeOf(context).colorScheme.onSurface,
                 ),
               ),
             ),

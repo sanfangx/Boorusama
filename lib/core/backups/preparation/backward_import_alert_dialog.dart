@@ -35,7 +35,7 @@ class BackwardImportAlertDialog extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
     final appVersion = ref.watch(appVersionProvider);
 
     return KurumiDialogContent(

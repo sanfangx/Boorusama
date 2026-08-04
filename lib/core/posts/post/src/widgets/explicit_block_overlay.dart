@@ -64,7 +64,7 @@ class _ExplicitContentBlockOverlayState
                     ? Positioned.fill(
                         child: KurumiSelectableChip(
                           side: BorderSide(
-                            color: Theme.of(
+                            color: Kurumi.themeOf(
                               context,
                             ).colorScheme.outline.withAlpha(25),
                           ),
@@ -102,7 +102,7 @@ class _ExplicitContentBlockOverlayState
                 builder: (_, block, _) => block
                     ? Positioned.fill(
                         child: Container(
-                          color: Theme.of(
+                          color: Kurumi.themeOf(
                             context,
                           ).colorScheme.surfaceContainerLow,
                         ),

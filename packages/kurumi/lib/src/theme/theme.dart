@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import '../accessibility/behavior.dart';
+import 'semantic_tokens.dart';
 import 'theme_data.dart';
 
 class KurumiTheme extends InheritedTheme {
@@ -47,4 +48,5 @@ class KurumiTheme extends InheritedTheme {
 extension KurumiBuildContext on BuildContext {
   KurumiThemeData get kurumi => KurumiTheme.of(this);
   KurumiBehaviorData get kurumiBehavior => KurumiTheme.behaviorOf(this);
+  KurumiSemanticColors get kurumiColors => kurumi.semanticColors;
 }

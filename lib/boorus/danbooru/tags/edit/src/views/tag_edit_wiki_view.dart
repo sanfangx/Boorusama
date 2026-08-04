@@ -149,7 +149,7 @@ class _RelatedTagChips extends ConsumerWidget {
           selectedColor: colors?.backgroundColor,
           backgroundColor: selected
               ? colors?.backgroundColor
-              : Theme.of(context).colorScheme.surfaceContainer,
+              : Kurumi.themeOf(context).colorScheme.surfaceContainer,
           side: colors != null
               ? BorderSide(
                   color: selected ? colors.borderColor : Colors.transparent,
@@ -168,20 +168,21 @@ class _RelatedTagChips extends ConsumerWidget {
                 style: TextStyle(
                   color: selected
                       ? colors?.foregroundColor
-                      : Theme.of(context).colorScheme.onSurfaceVariant,
+                      : Kurumi.themeOf(context).colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w500,
                 ),
                 children: [
                   TextSpan(
                     text: '  ${NumberFormat.compact().format(tag.postCount)}',
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      fontSize: 11,
-                      color: Theme.of(context).brightness.isLight
-                          ? !selected
-                                ? null
-                                : Colors.white.withValues(alpha: 0.85)
-                          : Theme.of(context).colorScheme.hintColor,
-                    ),
+                    style: Kurumi.themeOf(context).textTheme.bodySmall
+                        ?.copyWith(
+                          fontSize: 11,
+                          color: Kurumi.themeOf(context).brightness.isLight
+                              ? !selected
+                                    ? null
+                                    : Colors.white.withValues(alpha: 0.85)
+                              : Kurumi.themeOf(context).colorScheme.hintColor,
+                        ),
                   ),
                 ],
               ),

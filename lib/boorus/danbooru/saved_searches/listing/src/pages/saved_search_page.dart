@@ -81,9 +81,11 @@ class _SuccessView extends ConsumerWidget {
                         context.t.saved_search
                             .saved_search_counter(n: savedSearches.length)
                             .toUpperCase(),
-                        style: Theme.of(context).textTheme.titleMedium
+                        style: Kurumi.themeOf(context).textTheme.titleMedium
                             ?.copyWith(
-                              color: Theme.of(context).colorScheme.hintColor,
+                              color: Kurumi.themeOf(
+                                context,
+                              ).colorScheme.hintColor,
                               fontWeight: FontWeight.bold,
                             ),
                       ),

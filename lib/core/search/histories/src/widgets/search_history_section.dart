@@ -45,9 +45,10 @@ class SearchHistorySection extends StatelessWidget {
                     children: [
                       Text(
                         context.t.search.history.history.toUpperCase(),
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                        style: Kurumi.themeOf(context).textTheme.titleSmall
+                            ?.copyWith(
+                              fontWeight: FontWeight.w700,
+                            ),
                       ),
                       if (onFullHistoryRequested != null)
                         IconButton(
@@ -116,8 +117,10 @@ class SearchHistoryQueryWidget extends StatelessWidget {
                     horizontal: 8,
                   ),
                   backgroundColor: (reverseScheme ?? false)
-                      ? Theme.of(context).colorScheme.surface
-                      : Theme.of(context).colorScheme.surfaceContainerHighest,
+                      ? Kurumi.themeOf(context).colorScheme.surface
+                      : Kurumi.themeOf(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                 ),
               ),
             )

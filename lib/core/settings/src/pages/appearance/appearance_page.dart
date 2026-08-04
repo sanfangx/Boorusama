@@ -85,7 +85,7 @@ class _AppearancePageState extends ConsumerState<AppearancePage> {
   Widget _buildSimpleTheme(Settings settings) {
     final dynamicColorSupported = ref.watch(dynamicColorSupportProvider);
     final notifier = ref.watch(settingsNotifierProvider.notifier);
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +93,7 @@ class _AppearancePageState extends ConsumerState<AppearancePage> {
         KurumiSettingsTile(
           title: Text(context.t.settings.theme.theme),
           selectedOption: settings.themeMode,
-          items: AppThemeMode.values,
+          items: KurumiThemeMode.values,
           onChanged: (value) =>
               notifier.updateSettings(settings.copyWith(themeMode: value)),
           optionBuilder: (value) => Text(value.localize(context)),

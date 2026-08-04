@@ -198,7 +198,7 @@ class _GetPremiumButton extends ConsumerWidget {
               width: 16,
               height: 16,
               child: CircularProgressIndicator(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Kurumi.themeOf(context).colorScheme.onPrimary,
               ),
             ),
           ),
@@ -210,7 +210,7 @@ class _GetPremiumButton extends ConsumerWidget {
       enableDrag: false,
       context: context,
       routeSettings: const RouteSettings(name: 'select_subscription_plan'),
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Kurumi.themeOf(context).colorScheme.surface,
       builder: (_) => const PremiumPurchaseModal(),
     );
   }
@@ -227,7 +227,7 @@ class _RestorePremiumButton extends ConsumerWidget {
       ),
       child: TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Theme.of(context).colorScheme.onSurface,
+          foregroundColor: Kurumi.themeOf(context).colorScheme.onSurface,
         ),
         onPressed: ref
             .watch(packagePurchaseProvider)

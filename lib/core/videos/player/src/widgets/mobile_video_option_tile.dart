@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
-import '../../../../themes/theme/types.dart';
 
 class MobileConfigTile extends StatelessWidget {
   const MobileConfigTile({
@@ -33,7 +33,7 @@ class MobileConfigTile extends StatelessWidget {
             Text(
               value,
               style: TextStyle(
-                color: Theme.of(context).colorScheme.hintColor,
+                color: Kurumi.themeOf(context).colorScheme.hintColor,
                 fontSize: 14,
               ),
             ),

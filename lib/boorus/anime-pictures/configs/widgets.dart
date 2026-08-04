@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -36,7 +37,7 @@ class CreateAnimePicturesConfigPage extends ConsumerWidget {
                 vertical: 8,
               ),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondaryContainer,
+                color: Kurumi.themeOf(context).colorScheme.secondaryContainer,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12),
                   topRight: Radius.circular(12),
@@ -48,13 +49,13 @@ class CreateAnimePicturesConfigPage extends ConsumerWidget {
                   Icon(
                     Symbols.info,
                     size: 16,
-                    color: Theme.of(context).colorScheme.error,
+                    color: Kurumi.themeOf(context).colorScheme.error,
                   ),
                   const SizedBox(width: 8),
                   Flexible(
                     child: Text(
                       "Bulk download and blacklist won't work for this booru.",
-                      style: Theme.of(context).textTheme.bodySmall,
+                      style: Kurumi.themeOf(context).textTheme.bodySmall,
                     ),
                   ),
                 ],

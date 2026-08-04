@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
 import '../../../../foundation/url_launcher.dart';
 import '../../../config_widgets/website_logo.dart';
-import '../../../themes/theme/types.dart';
 import '../../details/types.dart';
 import '../../post/types.dart';
 import '../../sources/types.dart';
@@ -55,8 +55,8 @@ class SourceSection extends StatelessWidget {
           ),
           child: Text(
             title ?? context.t.post.detail.source_label,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: Theme.of(context).colorScheme.hintColor,
+            style: Kurumi.themeOf(context).textTheme.titleLarge?.copyWith(
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
               fontSize: 16,
             ),
           ),
@@ -71,7 +71,7 @@ class SourceSection extends StatelessWidget {
               child: DecoratedBox(
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Theme.of(context).colorScheme.hintColor,
+                    color: Kurumi.themeOf(context).colorScheme.hintColor,
                   ),
                   borderRadius: BorderRadius.circular(4),
                 ),

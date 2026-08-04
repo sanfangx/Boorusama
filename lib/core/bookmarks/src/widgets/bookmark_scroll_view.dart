@@ -183,7 +183,7 @@ class _BookmarkScrollViewState extends ConsumerState<BookmarkScrollView> {
                       valueListenable: controller.itemsNotifier,
                       builder: (_, posts, _) => Text(
                         context.t.bookmark.counter(n: posts.length),
-                        style: Theme.of(context).textTheme.titleLarge,
+                        style: Kurumi.themeOf(context).textTheme.titleLarge,
                       ),
                     ),
                   ),
@@ -206,7 +206,7 @@ class _BookmarkScrollViewState extends ConsumerState<BookmarkScrollView> {
                 pinned: true,
                 automaticallyImplyLeading: false,
                 titleSpacing: 0,
-                backgroundColor: Theme.of(context).colorScheme.surface,
+                backgroundColor: Kurumi.themeOf(context).colorScheme.surface,
                 title: BookmarkAppBar(
                   controller: controller,
                 ),

@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class TagChangedText extends StatelessWidget {
   const TagChangedText({
     required this.title,
@@ -15,7 +18,7 @@ class TagChangedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final textTheme = Kurumi.themeOf(context).textTheme;
     final positiveStyle = textTheme.bodySmall?.copyWith(
       color: Colors.green,
       fontWeight: FontWeight.w800,

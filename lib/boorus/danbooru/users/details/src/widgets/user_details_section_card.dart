@@ -1,6 +1,9 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
 
+// Package imports:
+import 'package:kurumi/kurumi.dart';
+
 class UserDetailsSectionCard extends StatelessWidget {
   const UserDetailsSectionCard({
     required this.child,
@@ -36,7 +39,7 @@ class UserDetailsSectionCard extends StatelessWidget {
         vertical: 12,
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerLow,
+        color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(

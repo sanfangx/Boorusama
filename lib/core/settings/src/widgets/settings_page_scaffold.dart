@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:equatable/equatable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../widgets/widgets.dart';
@@ -22,7 +23,7 @@ class SettingsPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final options = SettingsPageScope.maybeOf(context)?.options;
     final hasAppBar = !(options?.dense ?? false);
 

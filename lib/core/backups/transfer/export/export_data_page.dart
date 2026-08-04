@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../foundation/networking.dart';
-import '../../../themes/theme/types.dart';
 import 'export_data_notifier.dart';
 
 class ExportDataPage extends ConsumerStatefulWidget {
@@ -65,8 +65,8 @@ class _ExportDataPageState extends ConsumerState<ExportDataPage> {
         child: RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-              color: Theme.of(context).colorScheme.hintColor,
+            style: Kurumi.themeOf(context).textTheme.titleSmall?.copyWith(
+              color: Kurumi.themeOf(context).colorScheme.hintColor,
             ),
             children: [
               TextSpan(
@@ -85,7 +85,7 @@ class _ExportDataPageState extends ConsumerState<ExportDataPage> {
   }
 
   Widget _buildBody(ExportDataState state) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
     final textTheme = theme.textTheme;
     final colorScheme = theme.colorScheme;
 
@@ -226,7 +226,7 @@ class ServerInfoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final theme = Kurumi.themeOf(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:selection_mode/selection_mode.dart';
 
@@ -190,7 +191,7 @@ class _TagPreviewContainer extends ConsumerWidget {
           topLeft: Radius.circular(12),
           topRight: Radius.circular(12),
         ),
-        color: Theme.of(context).colorScheme.surfaceContainer,
+        color: Kurumi.themeOf(context).colorScheme.surfaceContainer,
       ),
       child: RichText(
         text: TextSpan(

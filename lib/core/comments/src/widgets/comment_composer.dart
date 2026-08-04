@@ -62,7 +62,7 @@ class _CommentComposerState extends State<CommentComposer> {
       decoration: BoxDecoration(
         border: Border(
           top: BorderSide(
-            color: Theme.of(context).colorScheme.outlineVariant,
+            color: Kurumi.themeOf(context).colorScheme.outlineVariant,
           ),
         ),
       ),
@@ -81,7 +81,7 @@ class _CommentComposerState extends State<CommentComposer> {
             controller: textEditingController,
             decoration: InputDecoration(
               hintStyle: TextStyle(
-                color: Theme.of(context).colorScheme.hintColor,
+                color: Kurumi.themeOf(context).colorScheme.hintColor,
               ),
               hintText: context.t.comment.create.hint,
               suffixIcon: _buildSuffixIcon(context),

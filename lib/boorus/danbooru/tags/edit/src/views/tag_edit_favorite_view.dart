@@ -77,8 +77,10 @@ class _TagEditFavoriteViewState extends ConsumerState<TagEditFavoriteView> {
                           selected: selected,
                           showCheckmark: false,
                           visualDensity: VisualDensity.compact,
-                          selectedColor: Theme.of(context).colorScheme.primary,
-                          backgroundColor: Theme.of(
+                          selectedColor: Kurumi.themeOf(
+                            context,
+                          ).colorScheme.primary,
+                          backgroundColor: Kurumi.themeOf(
                             context,
                           ).colorScheme.surface,
                           onSelected: (value) => value
@@ -88,8 +90,12 @@ class _TagEditFavoriteViewState extends ConsumerState<TagEditFavoriteView> {
                             tag.name,
                             style: TextStyle(
                               color: selected
-                                  ? Theme.of(context).colorScheme.onPrimary
-                                  : Theme.of(context).colorScheme.onSurface,
+                                  ? Kurumi.themeOf(
+                                      context,
+                                    ).colorScheme.onPrimary
+                                  : Kurumi.themeOf(
+                                      context,
+                                    ).colorScheme.onSurface,
                             ),
                           ),
                         );

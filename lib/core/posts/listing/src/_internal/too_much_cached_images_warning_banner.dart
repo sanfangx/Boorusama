@@ -42,7 +42,7 @@ class TooMuchCachedImagesWarningBanner extends ConsumerWidget {
             return PersistentDismissableInfoContainer(
               storageKey: _kHideImageCacheWarningKey,
               shouldShow: () => cacheSize > threshold,
-              mainColor: Theme.of(context).colorScheme.primary,
+              mainColor: Kurumi.themeOf(context).colorScheme.primary,
               content: context.t.cache.image.reminder.description(
                 size: Filesize.parse(cacheSize),
               ),

@@ -34,7 +34,7 @@ class RawTagChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.widthOf(context);
     final baseStyle =
-        Theme.of(context).textTheme.bodyMedium ??
+        Kurumi.themeOf(context).textTheme.bodyMedium ??
         DefaultTextStyle.of(context).style;
     final labelStyle = baseStyle.copyWith(
       color: foregroundColor,
@@ -77,9 +77,9 @@ class RawTagChip extends StatelessWidget {
               if (subtitle != null)
                 TextSpan(
                   text: '  $subtitle',
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  style: Kurumi.themeOf(context).textTheme.bodySmall?.copyWith(
                     fontSize: 11,
-                    color: Theme.of(context).brightness.isLight
+                    color: Kurumi.themeOf(context).brightness.isLight
                         ? Colors.white.withValues(alpha: 0.85)
                         : Colors.grey.withValues(alpha: 0.85),
                   ),

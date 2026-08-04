@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/widgets.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:selection_mode/selection_mode.dart';
@@ -250,7 +251,7 @@ class _SearchPageScaffoldState<T extends Post>
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return CustomContextMenuOverlay(
       child: InheritedSearchPageController(
@@ -375,7 +376,7 @@ class _SearchPageScaffoldState<T extends Post>
     final searchBarPosition = ref.watch(searchBarPositionProvider);
 
     return ColoredBox(
-      color: Theme.of(context).colorScheme.surface,
+      color: Kurumi.themeOf(context).colorScheme.surface,
       child: SafeArea(
         bottom: false,
         child: PostGrid<T>(
@@ -690,7 +691,7 @@ class _SearchOptionsView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = InheritedSearchPageController.of(context);
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return SearchRegionSafeArea(
       selectionModeController: selectionModeController,

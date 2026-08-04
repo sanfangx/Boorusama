@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:foundation/foundation.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 // Project imports:
@@ -247,7 +248,7 @@ class QueryActionsSection extends StatelessWidget {
                   children: [
                     // Text(
                     //   'Actions'.toUpperCase(),
-                    //   style: Theme.of(context).titleSmall?.copyWith(
+                    //   style: Kurumi.themeOf(context).titleSmall?.copyWith(
                     //     fontWeight: FontWeight.w700,
                     //   ),
                     // ),
@@ -256,7 +257,7 @@ class QueryActionsSection extends StatelessWidget {
                       style: FilledButton.styleFrom(
                         padding: const EdgeInsets.only(left: 4, right: 8),
                         visualDensity: VisualDensity.compact,
-                        backgroundColor: Theme.of(
+                        backgroundColor: Kurumi.themeOf(
                           context,
                         ).colorScheme.surfaceContainerHighest,
                       ),
@@ -282,7 +283,7 @@ class QueryActionsSection extends StatelessWidget {
                         children: [
                           Icon(
                             Symbols.add,
-                            color: Theme.of(
+                            color: Kurumi.themeOf(
                               context,
                             ).colorScheme.onSurfaceVariant,
                             fill: 1,
@@ -290,7 +291,7 @@ class QueryActionsSection extends StatelessWidget {
                           Text(
                             context.t.search.raw_query,
                             style: TextStyle(
-                              color: Theme.of(
+                              color: Kurumi.themeOf(
                                 context,
                               ).colorScheme.onSurfaceVariant,
                             ),

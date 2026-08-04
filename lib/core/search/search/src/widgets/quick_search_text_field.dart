@@ -88,7 +88,7 @@ class QuickSearchTextField extends ConsumerWidget {
       );
     }
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return Material(
       color: colorScheme.surfaceContainerHigh,

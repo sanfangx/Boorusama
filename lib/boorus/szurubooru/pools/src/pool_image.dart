@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/kurumi.dart';
 
 // Project imports:
 import '../../../../core/configs/config/providers.dart';
@@ -40,7 +41,7 @@ class SzurubooruPoolImage extends ConsumerWidget {
         aspectRatio: 0.6,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surfaceContainerLow,
+            color: Kurumi.themeOf(context).colorScheme.surfaceContainerLow,
             borderRadius: BorderRadius.all(
               Radius.circular(imageBorderRadius),
             ),

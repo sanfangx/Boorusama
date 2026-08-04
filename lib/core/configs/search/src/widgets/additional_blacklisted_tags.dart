@@ -49,7 +49,7 @@ class AdditionalBlacklistedTags extends ConsumerWidget {
       ),
     );
 
-    final colorScheme = Theme.of(context).colorScheme;
+    final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return KurumiGrayedOut(
       grayedOut: !enabled,
@@ -66,7 +66,7 @@ class AdditionalBlacklistedTags extends ConsumerWidget {
             child: TagListPreview(
               header: Text(
                 context.t.booru.search.blacklist,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                style: Kurumi.themeOf(context).textTheme.bodySmall?.copyWith(
                   color: colorScheme.onSurfaceVariant,
                 ),
               ),
