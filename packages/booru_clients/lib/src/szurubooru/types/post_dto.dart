@@ -60,8 +60,8 @@ class PostDto {
       fileSize: json['fileSize'] as int?,
       canvasWidth: json['canvasWidth'] as int?,
       canvasHeight: json['canvasHeight'] as int?,
-      contentUrl: contentUrl != null ? '$baseUrl$contentUrl' : null,
-      thumbnailUrl: thumbnailUrl != null ? '$baseUrl$thumbnailUrl' : null,
+      contentUrl: _resolveUrl(contentUrl, baseUrl),
+      thumbnailUrl: _resolveUrl(thumbnailUrl, baseUrl),
       flags: json['flags'] as List<dynamic>?,
       tags: (json['tags'] as List<dynamic>?)
           ?.map((e) => TagDto.fromJson(e as Map<String, dynamic>))
@@ -159,10 +159,23 @@ class MicroPostDto {
     final thumbnailUrl = json['thumbnailUrl'] as String?;
     return MicroPostDto(
       id: json['id'] as int?,
-      thumbnailUrl: thumbnailUrl != null ? '$baseUrl$thumbnailUrl' : null,
+      thumbnailUrl: _resolveUrl(thumbnailUrl, baseUrl),
     );
   }
 
   final int? id;
   final String? thumbnailUrl;
+}
+
+String? _resolveUrl(String? url, String? baseUrl) {
+  if (url == null) return null;
+
+  final uri = Uri.tryParse(url);
+  if ((uri?.hasScheme ?? false) || (uri?.hasAuthority ?? false)) return url;
+  if (baseUrl == null || baseUrl.isEmpty) return url;
+
+  final normalizedBaseUrl = baseUrl.endsWith('/') ? baseUrl : '$baseUrl/';
+  final relativeUrl = url.startsWith('/') ? url.substring(1) : url;
+
+  return Uri.parse(normalizedBaseUrl).resolve(relativeUrl).toString();
 }
