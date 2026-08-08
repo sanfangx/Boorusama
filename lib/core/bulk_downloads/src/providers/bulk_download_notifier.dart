@@ -2,7 +2,6 @@
 import 'dart:async';
 
 // Package imports:
-import 'package:collection/collection.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../foundation/info/device_info.dart';
 import '../../../../foundation/loggers.dart';
 import '../../../../foundation/permissions.dart';
-import '../../../../foundation/platform.dart';
 import '../../../../foundation/utils/duration_utils.dart';
 import '../../../analytics/providers.dart';
 import '../../../configs/config/providers.dart';
@@ -21,7 +19,6 @@ import '../../../posts/sources/types.dart';
 import '../../../premiums/providers.dart';
 import '../data/filesystem.dart';
 import '../data/providers.dart';
-import '../notifications/providers.dart';
 import '../types/bulk_download_error.dart';
 import '../types/bulk_download_session.dart';
 import '../types/bulk_download_state.dart';
@@ -124,23 +121,6 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
           );
           final totalCount = await repo.getRecordsCountBySessionId(sessionId);
 
-          final session = await repo.getSession(sessionId);
-
-          // Only show progress if session is running AND notifications are enabled
-          if (session?.status == DownloadSessionStatus.running &&
-              (session?.task?.notifications ?? false) &&
-              !isIOS()) {
-            final notification = ref.read(bulkDownloadNotificationProvider);
-            await notification.showProgressNotification(
-              sessionId,
-              session?.task?.prettyTags ?? 'Downloading...',
-              '$completedCount/$totalCount files',
-              completed: completedCount,
-              total: totalCount,
-            );
-          }
-
-          // Always update progress state regardless of notifications
           progressNotifier.updateProgressFromCounts(
             sessionId,
             completedCount,
@@ -399,11 +379,6 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
 
     final mediaPermManager = ref.read(mediaPermissionManagerProvider);
 
-    final notificationPermManager =
-        downloadConfigs?.notificationPermissionManager != null
-        ? downloadConfigs!.notificationPermissionManager!
-        : ref.read(notificationPermissionManagerProvider);
-
     final logger = ref.read(loggerProvider);
 
     final sessionId = session.id;
@@ -444,17 +419,12 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
       }
     }
 
-    if (task.notifications) {
-      await notificationPermManager.requestIfNotGranted();
-    }
-
     ref.read(analyticsProvider).whenData((analytics) {
       analytics?.logEvent(
         'bulk_download_start',
         parameters: {
           'quality': task.quality,
           'skip_if_exists': task.skipIfExists,
-          'notifications': task.notifications,
         },
       );
     });
@@ -901,11 +871,6 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
       final downloader = ref.read(downloadServiceProvider);
       final session = await _withRepo((repo) => repo.getSession(sessionId));
       final progressNotifier = ref.read(bulkDownloadProgressProvider.notifier);
-      final notification = ref.read(bulkDownloadNotificationProvider);
-
-      // Cancel notification immediately
-      await notification.cancelNotification(sessionId);
-
       // Cancel async token operations immediately
       _cancelSessionToken(sessionId);
 
@@ -1051,24 +1016,9 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
     );
 
     // Calculate final statistics and cleanup
-    final stats = await _withRepo(
+    await _withRepo(
       (repo) => repo.updateStatisticsAndCleanup(sessionId),
     );
-
-    final currentSessionState = state.sessions.firstWhereOrNull(
-      (e) => e.session.id == sessionId,
-    );
-
-    if (currentSessionState?.task.notifications ?? true) {
-      final notification = ref.read(bulkDownloadNotificationProvider);
-      unawaited(
-        notification.showCompleteNotification(
-          currentSessionState?.task.prettyTags ?? 'Download completed',
-          'Downloaded ${stats.totalItems} files',
-          notificationId: sessionId.hashCode,
-        ),
-      );
-    }
 
     // Clean up cancel token for completed session
     _cancelSessionToken(sessionId);
@@ -1207,30 +1157,6 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
       sessionId,
       session,
     );
-
-    // Handle notifications based on status and notification settings
-    final notification = ref.read(bulkDownloadNotificationProvider);
-
-    // Only show notifications if task.notifications is true
-    if (session?.task?.notifications ?? false) {
-      if (session?.status == DownloadSessionStatus.dryRun) {
-        // Show/update indeterminate progress during dry run
-        await notification.showNotification(
-          session?.task?.prettyTags ?? 'Preparing download...',
-          'Scanning page ${currentPage ?? 1}',
-          indeterminate: true,
-          notificationId: sessionId.hashCode,
-        );
-      } else if (status != null &&
-          (status == DownloadSessionStatus.completed ||
-              status == DownloadSessionStatus.failed ||
-              status == DownloadSessionStatus.cancelled ||
-              status == DownloadSessionStatus.allSkipped ||
-              status == DownloadSessionStatus.running ||
-              status == DownloadSessionStatus.suspended)) {
-        await notification.cancelNotification(sessionId);
-      }
-    }
 
     return session;
   }
@@ -1412,7 +1338,7 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
               status: DownloadRecordStatus.failed,
             ),
           );
-        case d.DownloadSuccess(:final info):
+        case d.DownloadEnqueued(:final info):
           await _withRepo(
             (repo) => repo.updateRecord(
               url: record.url,
@@ -1421,6 +1347,16 @@ class BulkDownloadNotifier extends Notifier<BulkDownloadState> {
               status: DownloadRecordStatus.downloading,
             ),
           );
+        case d.DownloadCompleted(:final info) || d.DownloadSkipped(:final info):
+          await _withRepo(
+            (repo) => repo.updateRecord(
+              url: record.url,
+              sessionId: record.sessionId,
+              downloadId: info.id,
+              status: DownloadRecordStatus.completed,
+            ),
+          );
+          await tryCompleteSession(sessionId);
       }
 
       // Delay to prevent too many requests

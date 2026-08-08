@@ -51,6 +51,7 @@ class Settings extends Equatable {
     required this.booruConfigLabelVisibility,
     required this.reduceAnimations,
     required this.downloadFileExistedBehavior,
+    required this.downloadNotificationsEnabled,
     required this.colors,
     required this.volumeKeyViewerNavigation,
     required this.searchBarScrollBehavior,
@@ -100,6 +101,8 @@ class Settings extends Equatable {
       downloadFileExistedBehavior = DownloadFileExistedBehavior.parse(
         json['downloadFileExistedBehavior'],
       ),
+      downloadNotificationsEnabled =
+          json['downloadNotificationsEnabled'] as bool? ?? true,
       colors = json['colors'] != null
           ? ColorSettings.fromJson(json['colors'])
           : null,
@@ -175,6 +178,7 @@ class Settings extends Equatable {
     booruConfigLabelVisibility: BooruConfigLabelVisibility.defaultValue,
     reduceAnimations: false,
     downloadFileExistedBehavior: DownloadFileExistedBehavior.defaultValue,
+    downloadNotificationsEnabled: true,
     volumeKeyViewerNavigation: false,
     searchBarScrollBehavior: SearchBarScrollBehavior.defaultValue,
     searchBarPosition: SearchBarPosition.defaultValue,
@@ -227,6 +231,8 @@ class Settings extends Equatable {
 
   final DownloadFileExistedBehavior downloadFileExistedBehavior;
 
+  final bool downloadNotificationsEnabled;
+
   final ColorSettings? colors;
 
   final bool volumeKeyViewerNavigation;
@@ -265,6 +271,7 @@ class Settings extends Equatable {
     BooruConfigLabelVisibility? booruConfigLabelVisibility,
     bool? reduceAnimations,
     DownloadFileExistedBehavior? downloadFileExistedBehavior,
+    bool? downloadNotificationsEnabled,
     ImageListingSettings? listing,
     ImageViewerSettings? viewer,
     ColorSettings? colors,
@@ -309,6 +316,8 @@ class Settings extends Equatable {
     reduceAnimations: reduceAnimations ?? this.reduceAnimations,
     downloadFileExistedBehavior:
         downloadFileExistedBehavior ?? this.downloadFileExistedBehavior,
+    downloadNotificationsEnabled:
+        downloadNotificationsEnabled ?? this.downloadNotificationsEnabled,
     colors: colors ?? this.colors,
     volumeKeyViewerNavigation:
         volumeKeyViewerNavigation ?? this.volumeKeyViewerNavigation,
@@ -350,6 +359,7 @@ class Settings extends Equatable {
       'booruConfigLabelVisibility': booruConfigLabelVisibility.toData(),
       'reduceAnimations': reduceAnimations,
       'downloadFileExistedBehavior': downloadFileExistedBehavior.toData(),
+      'downloadNotificationsEnabled': downloadNotificationsEnabled,
       'colors': colors?.toJson(),
       'volumeKeyViewerNavigation': volumeKeyViewerNavigation,
       'searchBarScrollBehavior': searchBarScrollBehavior.toData(),
@@ -386,6 +396,7 @@ class Settings extends Equatable {
     booruConfigLabelVisibility,
     reduceAnimations,
     downloadFileExistedBehavior,
+    downloadNotificationsEnabled,
     colors,
     volumeKeyViewerNavigation,
     searchBarScrollBehavior,

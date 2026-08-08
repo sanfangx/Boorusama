@@ -125,7 +125,7 @@ class _NotificationScope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BulkDownloadNotificationScope(
+    return BulkDownloadErrorScope(
       child: LayoutPreviewNotificationScope(
         child: child,
       ),

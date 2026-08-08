@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kurumi/cupertino.dart';
 
 // Project imports:
-import '../../../../router.dart';
+import '../../../../download_activity/activity.dart';
 import '../../../background/widgets.dart';
 
 class DownloaderScope extends ConsumerWidget {
@@ -16,18 +16,10 @@ class DownloaderScope extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return BackgroundDownloaderScope(
-      onTapNotification: (task, notificationType) {
-        ref.router.go(
-          Uri(
-            path: '/download_manager',
-            queryParameters: {
-              'filter': notificationType.name,
-            },
-          ).toString(),
-        );
-      },
-      child: child,
+    return DownloadActivityScope(
+      child: BackgroundDownloadRuntime(
+        child: child,
+      ),
     );
   }
 }

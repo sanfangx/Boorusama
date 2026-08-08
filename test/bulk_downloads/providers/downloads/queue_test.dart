@@ -38,7 +38,6 @@ void main() {
   group('Download Queueing', () {
     final downloadOptions = DownloadOptions(
       path: '/storage/emulated/0/Download',
-      notifications: false,
       skipIfExists: false,
       perPage: 100,
       concurrency: 1,

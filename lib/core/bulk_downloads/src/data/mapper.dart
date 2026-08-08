@@ -23,7 +23,6 @@ DownloadTask mapToTask(Row row) {
   return DownloadTask(
     id: id as String,
     path: row['path'] as String,
-    notifications: row['notifications'] == 1,
     skipIfExists: row['skip_if_exists'] == 1,
     quality: row['quality'] as String?,
     createdAt: DateTime.fromMillisecondsSinceEpoch(createdAt as int),

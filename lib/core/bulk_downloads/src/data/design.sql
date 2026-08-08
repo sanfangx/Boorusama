@@ -14,7 +14,6 @@
 CREATE TABLE download_tasks (
     id TEXT PRIMARY KEY,
     path TEXT NOT NULL,
-    notifications BOOLEAN NOT NULL DEFAULT 0,
     skip_if_exists BOOLEAN NOT NULL DEFAULT 1,
     quality TEXT,
     created_at INTEGER NOT NULL,

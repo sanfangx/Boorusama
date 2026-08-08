@@ -16,7 +16,6 @@ class CreateDownloadOptionsNotifier
   DownloadOptions build(DownloadOptions arg) {
     return DownloadOptions(
       path: arg.path,
-      notifications: arg.notifications,
       skipIfExists: arg.skipIfExists,
       quality: arg.quality,
       perPage: arg.perPage,
@@ -53,12 +52,6 @@ class CreateDownloadOptionsNotifier
   void setPath(String path) {
     state = state.copyWith(
       path: path,
-    );
-  }
-
-  void setNotifications(bool value) {
-    state = state.copyWith(
-      notifications: value,
     );
   }
 

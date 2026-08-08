@@ -9,7 +9,6 @@ import 'download_task.dart';
 class DownloadOptions extends Equatable {
   const DownloadOptions({
     required this.path,
-    required this.notifications,
     required this.skipIfExists,
     required this.perPage,
     required this.concurrency,
@@ -24,7 +23,6 @@ class DownloadOptions extends Equatable {
   }) {
     return DownloadOptions(
       path: '',
-      notifications: true,
       skipIfExists: true,
       quality: quality,
       perPage: 100,
@@ -36,7 +34,6 @@ class DownloadOptions extends Equatable {
   factory DownloadOptions.fromTask(DownloadTask task) {
     return DownloadOptions(
       path: task.path,
-      notifications: task.notifications,
       skipIfExists: task.skipIfExists,
       perPage: task.perPage,
       concurrency: task.concurrency,
@@ -51,7 +48,6 @@ class DownloadOptions extends Equatable {
     return DownloadTask(
       id: id,
       path: path,
-      notifications: notifications,
       skipIfExists: skipIfExists,
       createdAt: DateTime(1),
       updatedAt: DateTime(1),
@@ -63,7 +59,6 @@ class DownloadOptions extends Equatable {
   }
 
   final String path;
-  final bool notifications;
   final bool skipIfExists;
   final String? quality;
   final int perPage;
@@ -73,7 +68,6 @@ class DownloadOptions extends Equatable {
 
   DownloadOptions copyWith({
     String? path,
-    bool? notifications,
     bool? skipIfExists,
     String? quality,
     int? perPage,
@@ -83,7 +77,6 @@ class DownloadOptions extends Equatable {
   }) {
     return DownloadOptions(
       path: path ?? this.path,
-      notifications: notifications ?? this.notifications,
       skipIfExists: skipIfExists ?? this.skipIfExists,
       quality: quality ?? this.quality,
       perPage: perPage ?? this.perPage,
@@ -98,7 +91,6 @@ class DownloadOptions extends Equatable {
   @override
   List<Object?> get props => [
     path,
-    notifications,
     skipIfExists,
     quality,
     perPage,

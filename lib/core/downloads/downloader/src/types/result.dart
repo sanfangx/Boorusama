@@ -21,8 +21,26 @@ sealed class DownloadResult {
   const DownloadResult();
 }
 
-final class DownloadSuccess extends DownloadResult {
-  const DownloadSuccess(this.info);
+enum DownloadCompletionSource { network, cache, alreadyPresent }
+
+final class DownloadEnqueued extends DownloadResult {
+  const DownloadEnqueued(this.info);
+
+  final DownloadTaskInfo info;
+}
+
+final class DownloadCompleted extends DownloadResult {
+  const DownloadCompleted(
+    this.info, {
+    required this.source,
+  });
+
+  final DownloadTaskInfo info;
+  final DownloadCompletionSource source;
+}
+
+final class DownloadSkipped extends DownloadResult {
+  const DownloadSkipped(this.info);
 
   final DownloadTaskInfo info;
 }

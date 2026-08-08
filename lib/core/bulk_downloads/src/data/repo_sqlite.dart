@@ -20,7 +20,7 @@ import '../types/download_task.dart';
 import '../types/saved_download_task.dart';
 import 'mapper.dart';
 
-const _kDownloadVersion = 0;
+const _kDownloadVersion = 1;
 
 class DownloadRepositorySqlite
     with DatabaseUtilsMixin
@@ -38,7 +38,23 @@ class DownloadRepositorySqlite
     DbMigrationManager.create(
       db: db,
       targetVersion: _kDownloadVersion,
-      migrations: [],
+      migrations: [
+        BasicMigration(
+          version: 1,
+          description: 'Remove notification presentation from download tasks',
+          onUp: (context) {
+            final columns = context
+                .select('PRAGMA table_info(download_tasks)')
+                .map((row) => row['name'])
+                .toSet();
+            if (columns.contains('notifications')) {
+              context.execute(
+                'ALTER TABLE download_tasks DROP COLUMN notifications',
+              );
+            }
+          },
+        ),
+      ],
     ).runMigrations();
   }
 
@@ -48,7 +64,6 @@ class DownloadRepositorySqlite
         CREATE TABLE IF NOT EXISTS download_tasks (
           id TEXT PRIMARY KEY,
           path TEXT NOT NULL,
-          notifications BOOLEAN NOT NULL DEFAULT 0,
           skip_if_exists BOOLEAN NOT NULL DEFAULT 1,
           quality TEXT,
           created_at INTEGER NOT NULL,
@@ -155,13 +170,12 @@ class DownloadRepositorySqlite
       db.execute(
         '''
         UPDATE download_tasks 
-        SET path = ?, notifications = ?, skip_if_exists = ?, quality = ?, 
+        SET path = ?, skip_if_exists = ?, quality = ?,
             updated_at = ?, per_page = ?, concurrency = ?, tags = ?, blacklisted_tags = ? 
         WHERE id = ?
         ''',
         [
           newTask.path,
-          if (newTask.notifications) 1 else 0,
           if (newTask.skipIfExists) 1 else 0,
           newTask.quality,
           DateTime.now().millisecondsSinceEpoch,
@@ -181,7 +195,6 @@ class DownloadRepositorySqlite
     final task = DownloadTask(
       id: _uuid.v4(),
       path: options.path,
-      notifications: options.notifications,
       skipIfExists: options.skipIfExists,
       quality: options.quality,
       createdAt: now,
@@ -195,14 +208,13 @@ class DownloadRepositorySqlite
     db.execute(
       '''
       INSERT INTO download_tasks (
-        id, path, notifications, skip_if_exists, quality, 
+        id, path, skip_if_exists, quality,
         created_at, updated_at, per_page, concurrency, tags, blacklisted_tags
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ''',
       [
         task.id,
         task.path,
-        if (task.notifications) 1 else 0,
         if (task.skipIfExists) 1 else 0,
         task.quality,
         task.createdAt.millisecondsSinceEpoch,
@@ -338,7 +350,6 @@ class DownloadRepositorySqlite
         s.*,
         t.id as task_id,
         t.path,
-        t.notifications,
         t.skip_if_exists,
         t.quality,
         t.created_at as task_created_at,
@@ -366,7 +377,6 @@ class DownloadRepositorySqlite
       final task = DownloadTask(
         id: row['task_id'] as String,
         path: row['path'] as String,
-        notifications: row['notifications'] == 1,
         skipIfExists: row['skip_if_exists'] == 1,
         quality: row['quality'] as String?,
         createdAt: DateTime.fromMillisecondsSinceEpoch(
@@ -984,7 +994,6 @@ class DownloadRepositorySqlite
         s.created_at,
         s.updated_at,
         t.path, 
-        t.notifications,
         t.skip_if_exists,
         t.quality,
         t.created_at as task_created_at,
@@ -1002,7 +1011,6 @@ class DownloadRepositorySqlite
       final task = DownloadTask(
         id: row['task_id'] as String,
         path: row['path'] as String,
-        notifications: row['notifications'] == 1,
         skipIfExists: row['skip_if_exists'] == 1,
         quality: row['quality'] as String?,
         createdAt: DateTime.fromMillisecondsSinceEpoch(
@@ -1049,7 +1057,6 @@ class DownloadRepositorySqlite
         s.created_at,
         s.updated_at,
         t.path, 
-        t.notifications,
         t.skip_if_exists,
         t.quality,
         t.created_at as task_created_at,
@@ -1071,7 +1078,6 @@ class DownloadRepositorySqlite
     final task = DownloadTask(
       id: row['task_id'] as String,
       path: row['path'] as String,
-      notifications: row['notifications'] == 1,
       skipIfExists: row['skip_if_exists'] == 1,
       quality: row['quality'] as String?,
       createdAt: DateTime.fromMillisecondsSinceEpoch(

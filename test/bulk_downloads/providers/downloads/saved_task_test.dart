@@ -54,7 +54,6 @@ void main() {
       expect(savedTask.task.quality, equals(originalTask.quality));
       expect(savedTask.task.perPage, equals(originalTask.perPage));
       expect(savedTask.task.skipIfExists, equals(originalTask.skipIfExists));
-      expect(savedTask.task.notifications, equals(originalTask.notifications));
     });
 
     test('should rerun saved task with same settings', () async {

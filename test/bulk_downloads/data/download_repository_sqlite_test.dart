@@ -12,7 +12,6 @@ import '../providers/downloads/common.dart';
 
 final _options = DownloadOptions(
   path: '/test/path',
-  notifications: true,
   skipIfExists: true,
   quality: 'high',
   perPage: 100,
@@ -36,6 +35,45 @@ void main() {
   });
 
   group('DownloadRepositorySqlite', () {
+    test('migrates version 0 tasks without presentation state', () async {
+      final migrationDb = sqlite3.openInMemory();
+      addTearDown(migrationDb.close);
+      migrationDb
+        ..execute('''
+          CREATE TABLE download_tasks (
+            id TEXT PRIMARY KEY,
+            path TEXT NOT NULL,
+            notifications BOOLEAN NOT NULL DEFAULT 0,
+            skip_if_exists BOOLEAN NOT NULL DEFAULT 1,
+            quality TEXT,
+            created_at INTEGER NOT NULL,
+            updated_at INTEGER NOT NULL,
+            per_page INTEGER NOT NULL DEFAULT 100,
+            concurrency INTEGER NOT NULL DEFAULT 5,
+            tags TEXT,
+            blacklisted_tags TEXT,
+            filename_format TEXT,
+            dup_check_type TEXT
+          )
+        ''')
+        ..execute('''
+          INSERT INTO download_tasks (
+            id, path, notifications, skip_if_exists, created_at, updated_at,
+            per_page, concurrency, tags
+          ) VALUES ('legacy', '/downloads', 0, 1, 1, 1, 20, 2, 'cat')
+        ''');
+
+      final migrated = DownloadRepositorySqlite(migrationDb)..initialize();
+      final columns = migrationDb
+          .select('PRAGMA table_info(download_tasks)')
+          .map((row) => row['name'])
+          .toSet();
+
+      expect(columns, isNot(contains('notifications')));
+      expect((await migrated.getTask('legacy'))?.path, '/downloads');
+      expect(migrationDb.userVersion, 1);
+    });
+
     group('core operations', () {
       test('should handle basic CRUD operations', () async {
         // Create and verify task

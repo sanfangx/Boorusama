@@ -231,18 +231,6 @@ class _CreateDownloadOptionsRawSheetState
                     horizontal: 4,
                   ),
                   title: Text(
-                    context.t.bulk_downloads.options.enable_notification,
-                  ),
-                  value: options.notifications,
-                  onChanged: (value) {
-                    notifier.setNotifications(value);
-                  },
-                ),
-                KurumiSwitchListTile(
-                  contentPadding: const EdgeInsets.symmetric(
-                    horizontal: 4,
-                  ),
-                  title: Text(
                     context.t.settings.download.skip_existing_files,
                   ),
                   value: options.skipIfExists,

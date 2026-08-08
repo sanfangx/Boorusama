@@ -67,6 +67,16 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
         ),
         const SizedBox(height: 4),
         KurumiSwitchListTile(
+          title: Text(context.t.bulk_downloads.options.enable_notification),
+          value: settings.downloadNotificationsEnabled,
+          onChanged: (value) async {
+            await notifer.updateSettings(
+              settings.copyWith(downloadNotificationsEnabled: value),
+            );
+          },
+        ),
+        const SizedBox(height: 4),
+        KurumiSwitchListTile(
           title: Text(context.t.settings.download.skip_existing_files),
           subtitle: Text(
             context.t.settings.download.skip_existing_files_explanation,

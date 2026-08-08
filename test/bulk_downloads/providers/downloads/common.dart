@@ -18,8 +18,6 @@ import 'package:boorusama/core/boorus/booru/types.dart';
 import 'package:boorusama/core/boorus/engine/providers.dart';
 import 'package:boorusama/core/boorus/engine/types.dart';
 import 'package:boorusama/core/bulk_downloads/providers.dart';
-import 'package:boorusama/core/bulk_downloads/src/notifications/bulk_download_notification.dart';
-import 'package:boorusama/core/bulk_downloads/src/notifications/providers.dart';
 import 'package:boorusama/core/bulk_downloads/src/types/download_configs.dart';
 import 'package:boorusama/core/bulk_downloads/src/types/download_options.dart';
 import 'package:boorusama/core/bulk_downloads/src/types/download_repository.dart';
@@ -76,7 +74,6 @@ class DownloadTestConstants {
 
   static final defaultOptions = DownloadOptions(
     path: '/storage/emulated/0/Download',
-    notifications: true,
     skipIfExists: true,
     perPage: 2,
     concurrency: 5,
@@ -206,49 +203,10 @@ final booruConfig = BooruConfig.defaultConfig(
 
 class MockBooruBuilder extends Mock implements BooruBuilder {}
 
-class DummyBulkNotification implements BulkDownloadNotifications {
-  @override
-  Future<void> cancelNotification(String sessionId) async {}
-
-  @override
-  void dispose() {}
-
-  @override
-  Future<void> showNotification(
-    String title,
-    String body, {
-    String? payload,
-    int? progress,
-    int? total,
-    bool? indeterminate,
-    int? notificationId,
-  }) async {}
-
-  @override
-  Future<void> showCompleteNotification(
-    String title,
-    String body, {
-    required int notificationId,
-    String? payload,
-  }) async {}
-
-  @override
-  Future<void> showProgressNotification(
-    String sessionId,
-    String title,
-    String body, {
-    required int completed,
-    required int total,
-  }) async {}
-
-  @override
-  Stream<String> get tapStream => const Stream.empty();
-}
-
 class DummyDownloadService implements d.DownloadService {
   @override
   Future<d.DownloadResult> download(d.DownloadOptions options) async {
-    return d.DownloadSuccess(
+    return d.DownloadEnqueued(
       d.DownloadTaskInfo(
         path: 'path',
         id: options.url,
@@ -298,27 +256,6 @@ class AlwaysGrantedPermissionManager implements MediaPermissionManager {
   DeviceInfo get deviceInfo => DeviceInfo.empty();
 }
 
-class AlwaysGrantedNotificationPermissionManager
-    implements NotificationPermissionManager {
-  @override
-  Logger logger = const DummyLogger();
-
-  @override
-  Future<PermissionStatus> check() async => PermissionStatus.granted;
-
-  @override
-  Future<PermissionStatus> request() async => PermissionStatus.granted;
-
-  @override
-  PermissionStatus? get status => PermissionStatus.granted;
-
-  @override
-  set status(PermissionStatus? status) {}
-
-  @override
-  Future<void> requestIfNotGranted() async {}
-}
-
 class ExistCheckerMock extends Mock implements DownloadExistChecker {}
 
 const emptyTaskUpdateStream = Stream<TaskUpdate>.empty();
@@ -338,7 +275,6 @@ ProviderContainer createBulkDownloadContainer({
       mediaPermissionManager:
           mediaPermissionManager ?? AlwaysGrantedPermissionManager(),
       booruBuilder: booruBuilder,
-      notifications: DummyBulkNotification(),
       hasPremium: hasPremium,
       taskUpdateStream: taskUpdateStream,
       overrideConfig: overrideConfig,
@@ -358,7 +294,6 @@ List<Override> getTestOverrides({
   required DownloadRepository downloadRepository,
   MediaPermissionManager? mediaPermissionManager,
   BooruBuilder? booruBuilder,
-  BulkDownloadNotifications? notifications,
   DeviceInfo? deviceInfo,
   bool hasPremium = true,
   Stream<TaskUpdate>? taskUpdateStream,
@@ -382,9 +317,6 @@ List<Override> getTestOverrides({
     mediaPermissionManagerProvider.overrideWithValue(
       mediaPermissionManager ?? MockMediaPermissionManager(),
     ),
-    notificationPermissionManagerProvider.overrideWithValue(
-      AlwaysGrantedNotificationPermissionManager(),
-    ),
     settingsProvider.overrideWithValue(Settings.defaultSettings),
     downloadFileUrlExtractorProvider.overrideWith(
       (_, _) => const UrlInsidePostExtractor(),
@@ -403,8 +335,6 @@ List<Override> getTestOverrides({
     ),
     taskFileSizeResolverProvider.overrideWith((_, _) => Future.value(0)),
     deviceInfoProvider.overrideWithValue(deviceInfo ?? DeviceInfo.empty()),
-    if (notifications != null)
-      bulkDownloadNotificationProvider.overrideWith((_) => notifications),
   ];
 }
 

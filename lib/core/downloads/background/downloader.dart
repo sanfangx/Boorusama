@@ -1,5 +1,4 @@
 // Dart imports:
-import 'dart:async';
 import 'dart:io';
 
 // Package imports:
@@ -15,19 +14,16 @@ import '../../ddos/solver/types.dart';
 import '../downloader/types.dart';
 import '../path/types.dart';
 import 'file_downloader_ex.dart';
-import 'notification.dart';
 
 class BackgroundDownloader implements DownloadService {
   const BackgroundDownloader({
     this.videoCacheManager,
-    this.downloadNotifications,
     this.androidSdkInt,
     this.logger,
     required this.fs,
   });
 
   final VideoCacheManager? videoCacheManager;
-  final DownloadNotifications? downloadNotifications;
   final int? androidSdkInt;
   final Logger? logger;
   final AppFileSystem fs;
@@ -144,13 +140,11 @@ class BackgroundDownloader implements DownloadService {
         'Starting download: ${options.url} to $targetDir/${options.filename}',
       );
 
-      final info = await FileDownloader().enqueueIfNeeded(
+      return FileDownloader().enqueueIfNeeded(
         task,
         skipIfExists: options.skipIfExists,
         fs: fs,
       );
-
-      return DownloadSuccess(info);
     } on FileSystemException catch (e) {
       return DownloadFailure(
         FileSystemDownloadError(
@@ -180,7 +174,7 @@ class BackgroundDownloader implements DownloadService {
       final cachedPath = await vcm.getCachedVideoPath(options.url);
       if (cachedPath case final cp?) {
         try {
-          final info = await _copyCachedContentToTarget(
+          final result = await _copyCachedContentToTarget(
             cp,
             targetDir,
             options.filename,
@@ -189,7 +183,7 @@ class BackgroundDownloader implements DownloadService {
           _log(
             'Downloaded from video cache: ${options.url} to $targetDir/${options.filename}',
           );
-          return DownloadSuccess(info);
+          return result;
         } catch (e) {
           // Fall back to normal download if cache copy fails
         }
@@ -240,7 +234,7 @@ class BackgroundDownloader implements DownloadService {
     );
   }
 
-  Future<DownloadTaskInfo> _copyCachedContentToTarget(
+  Future<DownloadResult> _copyCachedContentToTarget(
     String cachedPath,
     String targetDir,
     String filename,
@@ -259,47 +253,23 @@ class BackgroundDownloader implements DownloadService {
 
     // Check if target file already exists
     if ((skipIfExists ?? false) && fs.fileExistsSync(targetPath)) {
-      // Show completion notification for existing file
-      if (downloadNotifications case final notifications?) {
-        unawaited(
-          notifications
-              .showDownloadCompleteNotification(
-                filename,
-                fromCache: true,
-                customMessage: '$filename was already saved from cache',
-              )
-              .catchError((e) {
-                // Ignore notification errors
-              }),
-        );
-      }
-
-      return DownloadTaskInfo(
-        path: targetPath,
-        id: 'cached_${DateTime.now().millisecondsSinceEpoch}',
+      return DownloadSkipped(
+        DownloadTaskInfo(
+          path: targetPath,
+          id: 'existing_${DateTime.now().millisecondsSinceEpoch}',
+        ),
       );
     }
 
     // Copy cached file to target location
     await fs.copyFile(cachedPath, targetPath);
 
-    // Show completion notification for successful copy
-    if (downloadNotifications case final notifications?) {
-      unawaited(
-        notifications
-            .showDownloadCompleteNotification(
-              filename,
-              fromCache: true,
-            )
-            .catchError((e) {
-              // Ignore notification errors
-            }),
-      );
-    }
-
-    return DownloadTaskInfo(
-      path: targetPath,
-      id: 'cached_${DateTime.now().millisecondsSinceEpoch}',
+    return DownloadCompleted(
+      DownloadTaskInfo(
+        path: targetPath,
+        id: 'cached_${DateTime.now().millisecondsSinceEpoch}',
+      ),
+      source: DownloadCompletionSource.cache,
     );
   }
 

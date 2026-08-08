@@ -8,7 +8,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../../boorus/engine/providers.dart';
 import '../../../configs/config/providers.dart';
 import '../../../configs/config/types.dart';
-import '../../../downloads/downloader/providers.dart';
 import '../../../downloads/filename/types.dart';
 import '../../../posts/details/types.dart';
 import '../../../posts/details/widgets.dart';
@@ -231,7 +230,6 @@ class BookmarkPostActionToolbar extends ConsumerWidget {
                   widget: IconButton(
                     splashRadius: 16,
                     onPressed: () {
-                      showDownloadStartToast(context);
                       ref.bookmarks.downloadBookmarks(
                         config.auth,
                         config.download,

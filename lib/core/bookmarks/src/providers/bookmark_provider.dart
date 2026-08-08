@@ -14,6 +14,7 @@ import 'package:kurumi/kurumi.dart';
 import '../../../boorus/booru/types.dart';
 import '../../../boorus/engine/providers.dart';
 import '../../../configs/config/types.dart';
+import '../../../download_activity/activity.dart';
 import '../../../downloads/downloader/providers.dart';
 import '../../../downloads/downloader/types.dart';
 import '../../../downloads/filename/types.dart';
@@ -263,7 +264,7 @@ class BookmarkNotifier extends AsyncNotifier<BookmarkState> {
           downloadUrl: bookmark.originalUrl,
         );
 
-        return downloader.download(
+        final result = await downloader.download(
           DownloadOptions.fromSettings(
             settings,
             config: download,
@@ -278,12 +279,30 @@ class BookmarkNotifier extends AsyncNotifier<BookmarkState> {
             headers: headers,
           ),
         );
+        return (
+          result: result,
+          fileName: fileName,
+          thumbnailUrl: bookmark.thumbnailUrl,
+        );
       },
     ).toList();
 
     final results = await Future.wait(tasks);
 
-    final failures = results.whereType<DownloadFailure>().toList();
+    for (final outcome in results) {
+      ref
+          .read(immediateDownloadActivitiesProvider.notifier)
+          .recordImmediateOutcome(
+            outcome.result,
+            label: outcome.fileName,
+            thumbnailUrl: outcome.thumbnailUrl,
+          );
+    }
+
+    final failures = results
+        .map((outcome) => outcome.result)
+        .whereType<DownloadFailure>()
+        .toList();
 
     if (failures.isNotEmpty) {
       final context = navigatorKey.currentContext;
@@ -319,8 +338,10 @@ extension BookmarkCubitToastX on BookmarkNotifier {
     await addBookmark(
       config,
       post,
-      onSuccess: () => Kurumi.showSuccessToast(context, context.t.bookmark.added),
-      onError: () => Kurumi.showErrorToast(context, context.t.bookmark.failed_to_add),
+      onSuccess: () =>
+          Kurumi.showSuccessToast(context, context.t.bookmark.added),
+      onError: () =>
+          Kurumi.showErrorToast(context, context.t.bookmark.failed_to_add),
     );
   }
 

@@ -9,15 +9,20 @@ import '../../videos/cache/providers.dart';
 import 'downloader.dart';
 import 'notification.dart';
 
-final downloadNotificationsProvider = Provider<DownloadNotifications>(
-  (ref) => DownloadNotifications.uninitialized(),
+final downloadNotificationsProvider = Provider<DownloadNotifications>((ref) {
+  final notifications = DownloadNotifications.uninitialized();
+  ref.onDispose(notifications.dispose);
+  return notifications;
+});
+
+final downloadNotificationTapProvider = StreamProvider<String>(
+  (ref) => ref.watch(downloadNotificationsProvider).tapStream,
 );
 
 final backgroundDownloaderProvider = Provider<BackgroundDownloader>(
   (ref) {
     return BackgroundDownloader(
       videoCacheManager: ref.watch(videoCacheManagerProvider),
-      downloadNotifications: ref.watch(downloadNotificationsProvider),
       logger: ref.watch(loggerProvider),
       fs: ref.watch(appFileSystemProvider),
       androidSdkInt: ref.watch(

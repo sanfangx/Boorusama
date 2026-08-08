@@ -8,7 +8,6 @@ class DownloadTask extends Equatable {
   const DownloadTask({
     required this.id,
     required this.path,
-    required this.notifications,
     required this.skipIfExists,
     required this.createdAt,
     required this.updatedAt,
@@ -23,7 +22,6 @@ class DownloadTask extends Equatable {
     return DownloadTask(
       id: '',
       path: '',
-      notifications: true,
       skipIfExists: true,
       createdAt: DateTime(1),
       updatedAt: DateTime(1),
@@ -35,7 +33,6 @@ class DownloadTask extends Equatable {
   factory DownloadTask.fromJson(Map<String, dynamic> json) => DownloadTask(
     id: json['id'] as String? ?? '',
     path: json['path'] as String? ?? '',
-    notifications: json['notifications'] as bool? ?? false,
     skipIfExists: json['skipIfExists'] as bool? ?? false,
     quality: json['quality'] as String?,
     createdAt: json['createdAt'] != null
@@ -52,7 +49,6 @@ class DownloadTask extends Equatable {
 
   final String id;
   final String path;
-  final bool notifications;
   final bool skipIfExists;
   final String? quality;
   final DateTime createdAt;
@@ -68,7 +64,6 @@ class DownloadTask extends Equatable {
 
   DownloadTask copyWith({
     String? path,
-    bool? notifications,
     bool? skipIfExists,
     String? quality,
     int? perPage,
@@ -78,7 +73,6 @@ class DownloadTask extends Equatable {
   }) => DownloadTask(
     id: id,
     path: path ?? this.path,
-    notifications: notifications ?? this.notifications,
     skipIfExists: skipIfExists ?? this.skipIfExists,
     quality: quality ?? this.quality,
     createdAt: createdAt,
@@ -92,7 +86,6 @@ class DownloadTask extends Equatable {
   Map<String, dynamic> toJson() => {
     'id': id,
     'path': path,
-    'notifications': notifications,
     'skipIfExists': skipIfExists,
     'quality': quality,
     'createdAt': createdAt.toIso8601String(),
@@ -107,7 +100,6 @@ class DownloadTask extends Equatable {
   List<Object?> get props => [
     id,
     path,
-    notifications,
     skipIfExists,
     quality,
     createdAt,

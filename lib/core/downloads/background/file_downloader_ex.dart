@@ -6,7 +6,7 @@ import '../../../foundation/filesystem.dart';
 import '../downloader/types.dart';
 
 extension FileDownloaderX on FileDownloader {
-  Future<DownloadTaskInfo> enqueueIfNeeded(
+  Future<DownloadResult> enqueueIfNeeded(
     DownloadTask task, {
     bool? skipIfExists,
     required AppFileSystem fs,
@@ -15,18 +15,22 @@ extension FileDownloaderX on FileDownloader {
 
     if (skipIfExists ?? false) {
       if (fs.fileExistsSync(file)) {
-        return DownloadTaskInfo(
-          path: file,
-          id: task.taskId,
+        return DownloadSkipped(
+          DownloadTaskInfo(
+            path: file,
+            id: task.taskId,
+          ),
         );
       }
     }
 
     await enqueue(task);
 
-    return DownloadTaskInfo(
-      path: file,
-      id: task.taskId,
+    return DownloadEnqueued(
+      DownloadTaskInfo(
+        path: file,
+        id: task.taskId,
+      ),
     );
   }
 

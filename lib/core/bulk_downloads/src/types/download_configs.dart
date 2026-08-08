@@ -2,7 +2,6 @@
 import 'package:kurumi/material.dart';
 
 // Project imports:
-import '../../../../foundation/permissions/permission_utils.dart';
 import '../../../downloads/downloader/types.dart';
 import '../../../downloads/filename/types.dart';
 import '../../../downloads/urls/types.dart';
@@ -11,7 +10,6 @@ import '../../../settings/types.dart';
 class DownloadConfigs {
   const DownloadConfigs({
     this.downloader,
-    this.notificationPermissionManager,
     this.settings,
     this.fileNameBuilder,
     this.urlExtractor,
@@ -31,7 +29,6 @@ class DownloadConfigs {
 
   DownloadConfigs copyWith({
     DownloadService? downloader,
-    NotificationPermissionManager? notificationPermissionManager,
     Settings? settings,
     DownloadFilenameGenerator? fileNameBuilder,
     DownloadFileUrlExtractor? urlExtractor,
@@ -50,8 +47,6 @@ class DownloadConfigs {
   }) {
     return DownloadConfigs(
       downloader: downloader ?? this.downloader,
-      notificationPermissionManager:
-          notificationPermissionManager ?? this.notificationPermissionManager,
       settings: settings ?? this.settings,
       fileNameBuilder: fileNameBuilder ?? this.fileNameBuilder,
       urlExtractor: urlExtractor ?? this.urlExtractor,
@@ -74,7 +69,6 @@ class DownloadConfigs {
   }
 
   final DownloadService? downloader;
-  final NotificationPermissionManager? notificationPermissionManager;
   final Settings? settings;
   final DownloadFilenameGenerator? fileNameBuilder;
   final DownloadFileUrlExtractor? urlExtractor;

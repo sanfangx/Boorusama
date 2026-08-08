@@ -11,6 +11,7 @@ import '../../../../../foundation/permissions.dart';
 import '../../../../../foundation/platform.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../ddos/handler/providers.dart';
+import '../../../../download_activity/activity.dart';
 import '../../../../http/client/types.dart';
 import '../../../../posts/post/types.dart';
 import '../../../../router.dart';
@@ -53,14 +54,6 @@ class DownloadNotifier extends FamilyNotifier<void, DownloadNotifierParams> {
     return isAndroid() || isIOS() ? perm.storagePermission : null;
   }
 
-  void _showToastIfPossible({String? message}) {
-    final context = navigatorKey.currentState?.context;
-
-    if (context != null && context.mounted) {
-      showDownloadStartToast(context, message: message);
-    }
-  }
-
   Future<DownloadTaskInfo?> download(
     Post post, {
     String? overrideUrl,
@@ -75,11 +68,6 @@ class DownloadNotifier extends FamilyNotifier<void, DownloadNotifierParams> {
       permission: perm,
       overrideUrl: overrideUrl,
       onStarted: () {
-        final c = navigatorKey.currentState?.context;
-        if (c != null) {
-          showDownloadStartToast(c);
-        }
-
         observer?.onSingleDownloadStart();
       },
     );
@@ -101,10 +89,6 @@ class DownloadNotifier extends FamilyNotifier<void, DownloadNotifierParams> {
     }
 
     final perm = await _getPermissionStatus();
-
-    _showToastIfPossible(
-      message: 'Downloading ${posts.length} files...',
-    );
 
     arg.observer?.onBulkDownloadStart(
       total: posts.length,
@@ -149,10 +133,6 @@ Future<DownloadTaskInfo?> _download(
 
   final deviceStoragePermissionNotifier = ref.read(
     deviceStoragePermissionProvider.notifier,
-  );
-
-  final notificationPermManager = ref.read(
-    notificationPermissionManagerProvider,
   );
 
   final extractedUrlData = await params.downloadFileUrlExtractor
@@ -230,10 +210,26 @@ Future<DownloadTaskInfo?> _download(
       ),
     );
 
+    ref
+        .read(immediateDownloadActivitiesProvider.notifier)
+        .recordImmediateOutcome(
+          result,
+          label: fileName,
+          thumbnailUrl: downloadable.thumbnailImageUrl,
+        );
+
     return switch (result) {
-      DownloadSuccess(:final info) => () {
+      DownloadEnqueued(:final info) => () {
         onStarted?.call();
 
+        return info;
+      }(),
+      DownloadCompleted(:final info) => () {
+        onStarted?.call();
+        return info;
+      }(),
+      DownloadSkipped(:final info) => () {
+        onStarted?.call();
         return info;
       }(),
       final DownloadFailure e => () {
@@ -243,16 +239,9 @@ Future<DownloadTaskInfo?> _download(
           'Single Download',
           msg,
         );
-
-        showDownloadErrorToast(
-          navigatorKey.currentState?.context,
-          msg,
-        );
       }(),
     };
   }
-
-  await notificationPermManager.requestIfNotGranted();
 
   // Platform doesn't require permissions, just download it right away
   if (permission == null) {
