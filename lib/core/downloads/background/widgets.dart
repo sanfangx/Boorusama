@@ -117,6 +117,7 @@ class _BackgroundDownloadRuntimeState
         Config.holdingQueue,
         (5, null, null),
       ),
+      androidConfig: (Config.useCronet, true),
     );
 
     downloadUpdates = FileDownloader().updates.listen((update) {

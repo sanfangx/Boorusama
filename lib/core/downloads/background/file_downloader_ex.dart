@@ -38,10 +38,20 @@ extension FileDownloaderX on FileDownloader {
     Task task, {
     Map<String, String>? headers,
   }) async {
-    final taskToRetry = headers != null && headers.isNotEmpty
-        ? task.copyWith(headers: headers)
-        : task;
+    if (headers == null || headers.isEmpty) {
+      await enqueue(task);
+      return;
+    }
 
-    await enqueue(taskToRetry);
+    final mergedHeaders = Map<String, String>.from(task.headers);
+    for (final header in headers.entries) {
+      final existingKeys = mergedHeaders.keys
+          .where((key) => key.toLowerCase() == header.key.toLowerCase())
+          .toList();
+      existingKeys.forEach(mergedHeaders.remove);
+      mergedHeaders[header.key] = header.value;
+    }
+
+    await enqueue(task.copyWith(headers: mergedHeaders));
   }
 }
