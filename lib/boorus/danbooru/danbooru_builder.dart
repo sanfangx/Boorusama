@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import '../../core/boorus/defaults/widgets.dart';

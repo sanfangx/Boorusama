@@ -1,8 +1,8 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
+// Package imports:
+import 'package:kurumi/material.dart';
 
 extension TextEditingControllerX on TextEditingController {
   Stream<String> textAsStream() {

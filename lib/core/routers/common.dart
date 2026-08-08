@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-
 // Package imports:
 import 'package:go_router/go_router.dart';
+import 'package:kurumi/cupertino.dart';
 import 'package:kurumi/kurumi.dart';
 
 // Project imports:

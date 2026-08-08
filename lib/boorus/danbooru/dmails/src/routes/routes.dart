@@ -1,6 +1,6 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+// Package imports:
+import 'package:kurumi/cupertino.dart';
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import '../../../../../core/router.dart';

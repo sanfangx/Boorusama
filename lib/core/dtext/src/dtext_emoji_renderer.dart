@@ -1,9 +1,7 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:dtext/dtext.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import '../../configs/config/types.dart';

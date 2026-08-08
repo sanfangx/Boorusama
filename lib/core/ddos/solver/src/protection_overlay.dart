@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:i18n/i18n.dart';
+import 'package:kurumi/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ProtectionOverlay extends StatefulWidget {

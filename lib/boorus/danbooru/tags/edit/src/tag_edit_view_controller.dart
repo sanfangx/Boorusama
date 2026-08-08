@@ -1,7 +1,5 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
+import 'package:kurumi/material.dart';
 import 'package:multi_split_view/multi_split_view.dart';
 
 class TagEditViewController extends ChangeNotifier {

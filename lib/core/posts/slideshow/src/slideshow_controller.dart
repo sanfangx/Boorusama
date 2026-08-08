@@ -3,7 +3,9 @@ import 'dart:async';
 
 // Flutter imports:
 import 'package:flutter/foundation.dart' show ValueListenable, ValueNotifier;
-import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import 'slideshow_options.dart';

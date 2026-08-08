@@ -1,6 +1,8 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import '../../../../../foundation/keyboard.dart';

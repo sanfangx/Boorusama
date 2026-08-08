@@ -1,6 +1,8 @@
 // Flutter imports:
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:kurumi/material.dart';
 
 class ConditionalValueListenableBuilder extends StatelessWidget {
   const ConditionalValueListenableBuilder({

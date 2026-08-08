@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kurumi/cupertino.dart';
 
 // Project imports:
 import '../../../../router.dart';

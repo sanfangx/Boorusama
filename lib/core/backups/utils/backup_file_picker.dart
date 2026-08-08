@@ -1,10 +1,8 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:foundation/foundation.dart';
 import 'package:kurumi/kurumi.dart';
+import 'package:kurumi/material.dart';
 import 'package:path/path.dart' as p;
 
 // Project imports:

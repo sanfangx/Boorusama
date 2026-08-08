@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_scatter/flutter_scatter.dart';
+import 'package:kurumi/material.dart';
 
 class TagCloud extends StatelessWidget {
   const TagCloud({

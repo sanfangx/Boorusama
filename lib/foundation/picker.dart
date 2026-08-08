@@ -1,9 +1,7 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:file_picker/file_picker.dart';
 import 'package:kurumi/kurumi.dart';
+import 'package:kurumi/material.dart';
 
 export 'package:file_picker/file_picker.dart' show FileType;
 

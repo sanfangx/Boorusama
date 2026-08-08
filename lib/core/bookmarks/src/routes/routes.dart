@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/cupertino.dart';
-
 // Package imports:
 import 'package:foundation/foundation.dart';
+import 'package:kurumi/cupertino.dart';
 
 // Project imports:
 import '../../../posts/listing/providers.dart';

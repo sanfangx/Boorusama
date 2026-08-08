@@ -1,11 +1,9 @@
 // Dart imports:
 import 'dart:math';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:kurumi/kurumi.dart';
+import 'package:kurumi/material.dart';
 
 final _aspectRatio = [
   ...List<double>.generate(20, (_) => 0.71),

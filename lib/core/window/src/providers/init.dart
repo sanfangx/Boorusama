@@ -1,10 +1,8 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
+import 'package:kurumi/material.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> initialize() async {

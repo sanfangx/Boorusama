@@ -1,6 +1,8 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import 'post_details_page_view_controller.dart';

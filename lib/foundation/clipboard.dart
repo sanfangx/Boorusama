@@ -1,9 +1,9 @@
 // Flutter imports:
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:kurumi/kurumi.dart';
+import 'package:kurumi/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:pasteboard/pasteboard.dart';
 

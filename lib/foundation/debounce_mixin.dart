@@ -1,8 +1,8 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
+// Package imports:
+import 'package:kurumi/material.dart';
 
 mixin DebounceMixin {
   final Map<String, Timer> _timers = {};

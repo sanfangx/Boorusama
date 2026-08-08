@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:collection/collection.dart';
+import 'package:kurumi/material.dart';
 
 class TagEditUploadTextController extends TextEditingController {
   TagEditUploadTextController({super.text}) {

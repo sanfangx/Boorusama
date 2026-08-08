@@ -1,8 +1,6 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:equatable/equatable.dart';
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import '../configs/config/types.dart';

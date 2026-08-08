@@ -1,5 +1,5 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
+// Package imports:
+import 'package:kurumi/material.dart';
 
 class ShrinkVisualDensity extends VisualDensity {
   const ShrinkVisualDensity() : super(horizontal: -4, vertical: -4);

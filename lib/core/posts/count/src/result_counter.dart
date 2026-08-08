@@ -1,13 +1,11 @@
 // Dart imports:
 import 'dart:async';
 
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:i18n/i18n.dart';
 import 'package:kurumi/kurumi.dart';
+import 'package:kurumi/material.dart';
 
 class ResultCounter extends StatelessWidget {
   const ResultCounter({

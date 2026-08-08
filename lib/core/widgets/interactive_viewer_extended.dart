@@ -1,9 +1,7 @@
-// Flutter imports:
-import 'package:flutter/material.dart';
-
 // Package imports:
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kurumi/kurumi.dart';
+import 'package:kurumi/material.dart';
 
 // Project imports:
 import '../settings/providers.dart';
@@ -28,7 +26,7 @@ class InteractiveViewerExtended extends ConsumerWidget {
   final void Function(TapDownDetails?)? onDoubleTap;
   final VoidCallback? onLongPress;
   final void Function(KurumiTransformationDetails details)?
-      onTransformationChanged;
+  onTransformationChanged;
   final TransformationController? controller;
   final bool enable;
   final Size? contentSize;
