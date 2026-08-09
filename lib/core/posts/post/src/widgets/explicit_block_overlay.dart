@@ -60,7 +60,7 @@ class _ExplicitContentBlockOverlayState
                 valueListenable: _block,
                 builder: (_, block, _) => block
                     ? Positioned.fill(
-                        child: KurumiSelectableChip(
+                        child: KurumiMaterialActionChip(
                           side: BorderSide(
                             color: Kurumi.themeOf(
                               context,

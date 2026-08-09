@@ -134,7 +134,7 @@ class _LabelTile extends ConsumerWidget {
   }
 
   Future<void> _rename(BuildContext context, WidgetRef ref) async {
-    final newLabel = await Kurumi.showModalBottomSheet<String>(
+    final newLabel = await Kurumi.showAppModalBottomSheet<String>(
       context: context,
       routeSettings: const RouteSettings(name: 'rename_favorite_tag_label'),
       resizeToAvoidBottomInset: true,
@@ -149,7 +149,7 @@ class _LabelTile extends ConsumerWidget {
   }
 
   Future<void> _merge(BuildContext context, WidgetRef ref) async {
-    final target = await Kurumi.showModalBottomSheet<String>(
+    final target = await Kurumi.showAppModalBottomSheet<String>(
       context: context,
       routeSettings: const RouteSettings(name: 'merge_favorite_tag_label'),
       showDragHandle: false,

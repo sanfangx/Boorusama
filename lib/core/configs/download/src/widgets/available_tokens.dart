@@ -31,7 +31,7 @@ class AvailableTokens extends ConsumerWidget {
           context.t.booru.downloads.filename.available_tokens,
         ),
         for (final token in availableTokens)
-          KurumiSelectableChip(
+          KurumiMaterialRawChip(
             backgroundColor: Kurumi.themeOf(
               context,
             ).colorScheme.secondaryContainer,

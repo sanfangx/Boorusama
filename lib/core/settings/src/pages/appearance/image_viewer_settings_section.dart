@@ -188,7 +188,7 @@ class ImageViewerSettingsSection extends ConsumerWidget {
             context: context,
           ),
           onTap: () {
-            Kurumi.showModalBottomSheet(
+            Kurumi.showAppModalBottomSheet(
               context: context,
               builder: (context) => _VideoEngineSelectorSheet(
                 currentEngine: viewer.videoPlayerEngine,

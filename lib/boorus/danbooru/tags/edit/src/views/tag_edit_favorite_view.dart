@@ -71,7 +71,7 @@ class _TagEditFavoriteViewState extends ConsumerState<TagEditFavoriteView> {
                       children: tags.map((tag) {
                         final selected = widget.isSelected(tag.name);
 
-                        return KurumiSelectableChip(
+                        return KurumiMaterialFilterChip(
                           selected: selected,
                           showCheckmark: false,
                           visualDensity: VisualDensity.compact,

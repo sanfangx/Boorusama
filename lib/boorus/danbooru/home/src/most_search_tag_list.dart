@@ -79,7 +79,7 @@ class _Chip extends ConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: KurumiSelectableChip(
+      child: KurumiMaterialChoiceChip(
         showCheckmark: false,
         disabledColor: Kurumi.themeOf(context).chipTheme.disabledColor,
         backgroundColor:

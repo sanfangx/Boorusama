@@ -14,7 +14,7 @@ void goToSavedSearchCreatePage(
   String? initialValue,
 }) {
   if (kPreferredLayout.isMobile) {
-    Kurumi.showModalBottomSheet(
+    Kurumi.showAppModalBottomSheet(
       context: context,
       resizeToAvoidBottomInset: true,
       routeSettings: const RouteSettings(
@@ -61,7 +61,7 @@ void goToSavedSearchPatchPage(
   BuildContext context,
   SavedSearch savedSearch,
 ) {
-  Kurumi.showModalBottomSheet(
+  Kurumi.showAppModalBottomSheet(
     context: context,
     resizeToAvoidBottomInset: true,
     routeSettings: const RouteSettings(

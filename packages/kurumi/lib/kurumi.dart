@@ -48,6 +48,8 @@ export 'src/components/image_placeholder.dart';
 export 'src/components/image_error_placeholder.dart';
 export 'src/components/refresh_indicator.dart';
 export 'src/components/media_query.dart';
+export 'src/components/material_controls.dart';
+export 'src/components/material_chips.dart';
 export 'src/components/navigation_tile.dart';
 export 'src/components/option_dropdown.dart';
 export 'src/components/option_searchable_sheet.dart';

@@ -91,7 +91,7 @@ class DefaultCookieAuthConfigSection extends ConsumerWidget {
           ),
           Row(
             children: [
-              KurumiSelectableChip(
+              KurumiMaterialRawChip(
                 backgroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.secondaryContainer,
@@ -101,7 +101,7 @@ class DefaultCookieAuthConfigSection extends ConsumerWidget {
                 label: Text(context.t.auth.relogin),
               ),
               const SizedBox(width: 8),
-              KurumiSelectableChip(
+              KurumiMaterialRawChip(
                 backgroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.secondaryContainer,

@@ -49,8 +49,7 @@ class MetatagListPage extends StatelessWidget {
                   },
                   title: Text(tag.name),
                   trailing: tag.isFree
-                      ? KurumiSelectableChip(
-                          tapEnabled: false,
+                      ? KurumiMaterialChip(
                           backgroundColor: Kurumi.themeOf(
                             context,
                           ).colorScheme.primary,

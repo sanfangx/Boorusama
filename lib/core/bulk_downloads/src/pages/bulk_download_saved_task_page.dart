@@ -74,7 +74,7 @@ class _AddButton extends ConsumerWidget {
       icon: const Icon(Symbols.add),
       onPressed: () {
         if (hasSavedTaskLocked != true) {
-          Kurumi.showModalBottomSheet(
+          Kurumi.showAppModalBottomSheet(
             context: context,
             builder: (context) => BulkDownloadEditSavedTaskPage(
               savedTask: SavedDownloadTask.empty(),

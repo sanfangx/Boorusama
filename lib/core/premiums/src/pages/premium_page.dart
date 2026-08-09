@@ -204,7 +204,7 @@ class _GetPremiumButton extends ConsumerWidget {
   }
 
   Future<dynamic> _showPlans(BuildContext context, WidgetRef ref) {
-    return Kurumi.showModalBottomSheet(
+    return Kurumi.showAppModalBottomSheet(
       enableDrag: false,
       context: context,
       routeSettings: const RouteSettings(name: 'select_subscription_plan'),

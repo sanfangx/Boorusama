@@ -202,8 +202,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
                     runSpacing: 5,
                     children: [
                       for (final label in selectedLabels)
-                        KurumiSelectableChip(
-                          tapEnabled: false,
+                        KurumiMaterialChip(
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           label: Text(label),
                           deleteIcon: Icon(
@@ -248,7 +247,7 @@ class _EditFavoriteTagSheetState extends ConsumerState<EditFavoriteTagSheet> {
                     runSpacing: 5,
                     children: [
                       for (final label in suggestions.take(6))
-                        KurumiSelectableChip(
+                        KurumiMaterialActionChip(
                           label: Text(label),
                           backgroundColor: colorScheme.surfaceContainerHighest,
                           onPressed: () => _addLabel(label),

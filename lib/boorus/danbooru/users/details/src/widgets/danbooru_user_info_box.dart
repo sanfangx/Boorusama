@@ -38,8 +38,7 @@ class DanbooruUserInfoBox extends ConsumerWidget {
             ? userColor.fromLevel(user.level)
             : colors?.foregroundColor,
       ),
-      userLevel: KurumiSelectableChip(
-        tapEnabled: false,
+      userLevel: KurumiMaterialChip(
         label: Text(
           user.level?.name.sentenceCase ?? 'Unknown',
           style: TextStyle(

@@ -444,8 +444,7 @@ class _SwipeTo extends StatelessWidget {
       swipeLeftEnabled: controller.hasNextPage(),
       hapticFeedbackEnabled:
           options.hapticFeedbackLevel?.isBalanceAndAbove ?? false,
-      rightSwipeWidget: KurumiSelectableChip(
-        tapEnabled: false,
+      rightSwipeWidget: KurumiMaterialChip(
         visualDensity: VisualDensity.compact,
         side: BorderSide(
           color: colorScheme.hintColor,
@@ -468,8 +467,7 @@ class _SwipeTo extends StatelessWidget {
           ],
         ),
       ),
-      leftSwipeWidget: KurumiSelectableChip(
-        tapEnabled: false,
+      leftSwipeWidget: KurumiMaterialChip(
         visualDensity: VisualDensity.compact,
         side: BorderSide(
           color: colorScheme.hintColor,

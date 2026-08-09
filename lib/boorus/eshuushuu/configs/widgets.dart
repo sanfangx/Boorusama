@@ -99,7 +99,7 @@ class EshuushuuAuthView extends ConsumerWidget {
               ),
               Row(
                 children: [
-                  KurumiSelectableChip(
+                  KurumiMaterialRawChip(
                     backgroundColor: Kurumi.themeOf(
                       context,
                     ).colorScheme.secondaryContainer,
@@ -107,7 +107,7 @@ class EshuushuuAuthView extends ConsumerWidget {
                     label: Text(context.t.auth.relogin),
                   ),
                   const SizedBox(width: 8),
-                  KurumiSelectableChip(
+                  KurumiMaterialRawChip(
                     backgroundColor: Kurumi.themeOf(
                       context,
                     ).colorScheme.secondaryContainer,
@@ -144,6 +144,7 @@ class EshuushuuAuthView extends ConsumerWidget {
 
     Kurumi.showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (sheetContext) => Padding(
         padding: EdgeInsets.only(
           bottom: MediaQuery.of(sheetContext).viewInsets.bottom,

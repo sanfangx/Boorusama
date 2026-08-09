@@ -82,7 +82,7 @@ class OtherNameChip extends StatelessWidget {
             otherName,
           );
         },
-        child: KurumiSelectableChip(
+        child: KurumiMaterialRawChip(
           onPressed: () {},
           side: BorderSide(
             color: Kurumi.themeOf(context).colorScheme.hintColor,

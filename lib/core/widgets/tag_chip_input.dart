@@ -35,7 +35,7 @@ class TagChipInput extends StatelessWidget {
         runSpacing: isMobilePlatform() ? -4 : 8,
         children: [
           for (final value in values)
-            KurumiSelectableChip(
+            KurumiMaterialChip(
               backgroundColor: colorScheme.surfaceContainerHighest,
               label: Text(
                 displayValue?.call(value) ?? value.replaceAll('_', ' '),

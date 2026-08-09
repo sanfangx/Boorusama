@@ -90,7 +90,7 @@ class _MetatagsSectionState extends ConsumerState<MetatagsSection> {
           Kurumi.themeOf(context).colorScheme.primary,
         );
 
-    return KurumiSelectableChip(
+    return KurumiMaterialRawChip(
       visualDensity: VisualDensity.compact,
       label: Text(tag, style: TextStyle(color: colors?.foregroundColor)),
       backgroundColor: colors?.backgroundColor,

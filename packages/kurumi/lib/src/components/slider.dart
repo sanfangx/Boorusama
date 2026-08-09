@@ -52,27 +52,26 @@ class KurumiSlider extends StatelessWidget {
 
     return Slider(
       value: value,
-      onChanged: (newValue) {
-        if (newValue == min || newValue == max) {
-          behavior?.sliderLimitFeedback?.call();
-        }
-
-        if (onChanged case final callback?) {
-          callback(newValue);
-        }
-      },
-      onChangeStart: (value) {
-        behavior?.sliderInteractionFeedback?.call();
-        if (onChangeStart case final callback?) {
-          callback(value);
-        }
-      },
-      onChangeEnd: (value) {
-        behavior?.sliderInteractionFeedback?.call();
-        if (onChangeEnd case final callback?) {
-          callback(value);
-        }
-      },
+      onChanged: onChanged == null
+          ? null
+          : (newValue) {
+              if (newValue == min || newValue == max) {
+                behavior?.sliderLimitFeedback?.call();
+              }
+              onChanged!(newValue);
+            },
+      onChangeStart: onChangeStart == null
+          ? null
+          : (value) {
+              behavior?.sliderInteractionFeedback?.call();
+              onChangeStart!(value);
+            },
+      onChangeEnd: onChangeEnd == null
+          ? null
+          : (value) {
+              behavior?.sliderInteractionFeedback?.call();
+              onChangeEnd!(value);
+            },
       min: min,
       max: max,
       divisions: divisions,

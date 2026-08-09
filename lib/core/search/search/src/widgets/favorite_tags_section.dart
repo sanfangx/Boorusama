@@ -66,7 +66,7 @@ class FavoriteTagsSection extends ConsumerWidget {
               Kurumi.themeOf(ref.context).colorScheme.onSurface,
             );
 
-        return KurumiSelectableChip(
+        return KurumiMaterialRawChip(
           visualDensity: VisualDensity.compact,
           onPressed: () => onTagTap?.call(tag),
           avatar: tag.queryType == QueryType.simple

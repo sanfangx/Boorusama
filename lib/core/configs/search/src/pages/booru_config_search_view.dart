@@ -176,8 +176,7 @@ class BooruConfigSearchView extends ConsumerWidget {
       runSpacing: 5,
       children: [
         ...tags.map(
-          (e) => KurumiSelectableChip(
-            tapEnabled: false,
+          (e) => KurumiMaterialChip(
             backgroundColor: colorScheme.secondaryContainer,
             label: Text(e.replaceAll('_', ' ')),
             deleteIcon: Icon(

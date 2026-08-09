@@ -91,7 +91,7 @@ Future<bool?> goToMassEditRatingSheet(
   WidgetRef ref,
   List<DanbooruPost> posts,
 ) {
-  return Kurumi.showModalBottomSheet<bool?>(
+  return Kurumi.showAppModalBottomSheet<bool?>(
     context: context,
     builder: (context) {
       return MassEditRatingSheet(

@@ -129,7 +129,7 @@ class _CreateBooruConfigGranularRatingOptionsState
           (e) {
             return Padding(
               padding: const EdgeInsets.only(right: 8),
-              child: KurumiSelectableChip(
+              child: KurumiMaterialFilterChip(
                 visualDensity: VisualDensity.compact,
                 showCheckmark: false,
                 label: Text(e.toFullString()),

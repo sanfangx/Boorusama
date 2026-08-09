@@ -77,7 +77,7 @@ class SavedTaskListTile extends ConsumerWidget {
             borderRadius: BorderRadius.circular(8),
             onTap: enableTap
                 ? () async {
-                    await Kurumi.showModalBottomSheet(
+                    await Kurumi.showAppModalBottomSheet(
                       context: context,
                       routeSettings: const RouteSettings(
                         name: 'bulk_download_create',

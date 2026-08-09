@@ -221,8 +221,7 @@ class _EshuushuuUserOverview extends StatelessWidget {
               _buildDatesRow(context, dateFormat),
               if (user.isAdmin) ...[
                 const SizedBox(height: 6),
-                KurumiSelectableChip(
-                  tapEnabled: false,
+                KurumiMaterialChip(
                   label: Text(
                     'Admin',
                     style: TextStyle(

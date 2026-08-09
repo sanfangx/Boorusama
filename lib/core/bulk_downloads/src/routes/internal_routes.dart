@@ -46,7 +46,7 @@ void goToNewBulkDownloadTaskPage(
     return;
   }
 
-  Kurumi.showModalBottomSheet(
+  Kurumi.showAppModalBottomSheet(
     context: context,
     routeSettings: const RouteSettings(name: 'bulk_download_create'),
     builder: (_) => CreateDownloadOptionsSheet(

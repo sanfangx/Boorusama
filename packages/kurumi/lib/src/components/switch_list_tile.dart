@@ -78,12 +78,12 @@ class KurumiSwitchListTile extends StatelessWidget {
 
     return SwitchListTile(
       value: value,
-      onChanged: (value) {
-        selectionFeedback?.call();
-        if (onChanged case final callback?) {
-          callback(value);
-        }
-      },
+      onChanged: onChanged == null
+          ? null
+          : (value) {
+              selectionFeedback?.call();
+              onChanged!(value);
+            },
       title: title,
       subtitle: subtitle,
       secondary: secondary,

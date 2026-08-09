@@ -139,7 +139,7 @@ class _RelatedTagChips extends ConsumerWidget {
           ),
         );
 
-        return KurumiSelectableChip(
+        return KurumiMaterialRawChip(
           selected: selected,
           showCheckmark: false,
           checkmarkColor: colors?.foregroundColor,

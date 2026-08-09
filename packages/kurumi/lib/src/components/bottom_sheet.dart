@@ -97,14 +97,12 @@ Future<T?> showKurumiModalBottomSheet<T>({
   bool resizeToAvoidBottomInset = false,
   bool useSafeArea = false,
   Color? backgroundColor,
-  ShapeBorder? shape,
 }) {
   return showModalBottomSheet<T>(
     context: context,
     isScrollControlled: true,
     enableDrag: enableDrag,
     routeSettings: routeSettings,
-    shape: shape,
     scrollControlDisabledMaxHeightRatio: 0.9,
     builder: (context) => _ResizeToAvoidBottomInset(
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,

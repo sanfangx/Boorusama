@@ -77,8 +77,7 @@ class _ArtistCardState extends ConsumerState<ArtistSearchInfoCard> {
                   ),
                 ),
                 const SizedBox(width: 8),
-                KurumiSelectableChip(
-                  tapEnabled: false,
+                KurumiMaterialChip(
                   padding: const EdgeInsets.all(2),
                   backgroundColor: Kurumi.themeOf(
                     context,
@@ -143,8 +142,7 @@ class _TagOtherNames extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: KurumiSelectableChip(
-              tapEnabled: false,
+            child: KurumiMaterialChip(
               backgroundColor: Kurumi.themeOf(
                 context,
               ).colorScheme.secondaryContainer,

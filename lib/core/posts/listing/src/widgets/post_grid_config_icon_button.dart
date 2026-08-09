@@ -118,7 +118,7 @@ class PostGridConfigIconButton<T> extends ConsumerWidget {
                             if (isGlobal) {
                               goToGlobalBlacklistedTagsPage(ref);
                             } else {
-                              Kurumi.showModalBottomSheet(
+                              Kurumi.showAppModalBottomSheet(
                                 context: context,
                                 routeSettings: const RouteSettings(
                                   name: 'edit_blacklist_select',
@@ -160,7 +160,7 @@ class PostGridConfigIconButton<T> extends ConsumerWidget {
     BuildContext context,
     SettingsNotifier settingsNotifier,
   ) {
-    return Kurumi.showModalBottomSheet(
+    return Kurumi.showAppModalBottomSheet(
       context: context,
       routeSettings: const RouteSettings(name: 'grid_config'),
       builder: (_) => PostGridActionSheet(

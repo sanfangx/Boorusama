@@ -345,8 +345,7 @@ class _ExcludedTagsSection extends ConsumerWidget {
                         runSpacing: 5,
                         children: [
                           ...extraTags.map(
-                            (e) => KurumiSelectableChip(
-                              tapEnabled: false,
+                            (e) => KurumiMaterialChip(
                               backgroundColor: colorScheme.surfaceContainer,
                               label: Text(e.replaceAll('_', ' ')),
                               deleteIcon: Icon(

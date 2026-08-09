@@ -113,7 +113,7 @@ class AdvancedAuthSection extends ConsumerWidget {
           ),
           Row(
             children: [
-              KurumiSelectableChip(
+              KurumiMaterialRawChip(
                 backgroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.secondaryContainer,
@@ -125,7 +125,7 @@ class AdvancedAuthSection extends ConsumerWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              KurumiSelectableChip(
+              KurumiMaterialRawChip(
                 backgroundColor: Kurumi.themeOf(
                   context,
                 ).colorScheme.secondaryContainer,

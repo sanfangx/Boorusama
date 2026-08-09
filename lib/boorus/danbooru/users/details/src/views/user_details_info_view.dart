@@ -97,8 +97,7 @@ class UserDetailsInfoView extends ConsumerWidget {
             child: Wrap(
               children: previousNames
                   .map(
-                    (e) => KurumiSelectableChip(
-                      tapEnabled: false,
+                    (e) => KurumiMaterialChip(
                       label: Text(e.replaceAll('_', ' ')),
                       visualDensity: VisualDensity.compact,
                     ),

@@ -159,7 +159,7 @@ class FavoriteTagsPage extends ConsumerWidget {
 
   void _showAddSheet(BuildContext context, WidgetRef ref) {
     final duplicateError = context.t.favorite_tags.duplicate_error;
-    Kurumi.showModalBottomSheet(
+    Kurumi.showAppModalBottomSheet(
       context: context,
       routeSettings: const RouteSettings(name: 'add_favorite_tag'),
       resizeToAvoidBottomInset: true,
@@ -634,7 +634,7 @@ class _FavoriteTagTile extends ConsumerWidget {
 
   void _edit(BuildContext context, WidgetRef ref) {
     final duplicateError = context.t.favorite_tags.duplicate_error;
-    Kurumi.showModalBottomSheet(
+    Kurumi.showAppModalBottomSheet(
       context: context,
       routeSettings: const RouteSettings(name: 'edit_favorite_tag'),
       resizeToAvoidBottomInset: true,

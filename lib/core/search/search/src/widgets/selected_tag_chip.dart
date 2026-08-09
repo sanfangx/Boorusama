@@ -50,8 +50,7 @@ class SelectedTagChip extends StatelessWidget {
           },
         );
       },
-      child: KurumiSelectableChip(
-        tapEnabled: false,
+      child: KurumiMaterialChip(
         visualDensity: const ShrinkVisualDensity(),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),

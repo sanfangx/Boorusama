@@ -15,6 +15,7 @@ Future<bool?> goToAddToFavoriteGroupSelectionPage(
 ) {
   return Kurumi.showModalBottomSheet<bool>(
     context: context,
+    isScrollControlled: true,
     routeSettings: const RouteSettings(
       name: 'add_to_favorite_group',
     ),
@@ -29,7 +30,7 @@ Future<Object?> goToFavoriteGroupCreatePage(
   BuildContext context, {
   bool enableManualPostInput = true,
 }) {
-  return Kurumi.showModalBottomSheet(
+  return Kurumi.showAppModalBottomSheet(
     context: context,
     resizeToAvoidBottomInset: true,
     routeSettings: const RouteSettings(
@@ -46,7 +47,7 @@ Future<Object?> goToFavoriteGroupEditPage(
   BuildContext context,
   DanbooruFavoriteGroup group,
 ) {
-  return Kurumi.showModalBottomSheet(
+  return Kurumi.showAppModalBottomSheet(
     context: context,
     resizeToAvoidBottomInset: true,
     routeSettings: const RouteSettings(

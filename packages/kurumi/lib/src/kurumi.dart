@@ -1,6 +1,7 @@
 // ignore_for_file: use_full_hex_values_for_flutter_colors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' as material;
 import 'package:dynamic_color/dynamic_color.dart';
 
 import 'components/adaptive_sheet.dart' as adaptive_sheet;
@@ -127,7 +128,57 @@ abstract final class Kurumi {
 
   static const bool enableHeroTransition = hero.kKurumiEnableHeroTransition;
 
+  /// Shows Flutter's Material modal bottom sheet without adding an app-level
+  /// wrapper. This keeps direct Material call sites behavior-compatible while
+  /// still routing the API through Kurumi.
   static Future<T?> showModalBottomSheet<T>({
+    required BuildContext context,
+    required WidgetBuilder builder,
+    Color? backgroundColor,
+    String? barrierLabel,
+    double? elevation,
+    ShapeBorder? shape,
+    Clip? clipBehavior,
+    BoxConstraints? constraints,
+    Color? barrierColor,
+    bool isScrollControlled = false,
+    double scrollControlDisabledMaxHeightRatio = 0.5625,
+    bool useRootNavigator = false,
+    bool isDismissible = true,
+    bool enableDrag = true,
+    bool? showDragHandle,
+    bool useSafeArea = false,
+    RouteSettings? routeSettings,
+    AnimationController? transitionAnimationController,
+    Offset? anchorPoint,
+    AnimationStyle? sheetAnimationStyle,
+    bool? requestFocus,
+  }) => material.showModalBottomSheet<T>(
+    context: context,
+    builder: builder,
+    backgroundColor: backgroundColor,
+    barrierLabel: barrierLabel,
+    elevation: elevation,
+    shape: shape,
+    clipBehavior: clipBehavior,
+    constraints: constraints,
+    barrierColor: barrierColor,
+    isScrollControlled: isScrollControlled,
+    scrollControlDisabledMaxHeightRatio: scrollControlDisabledMaxHeightRatio,
+    useRootNavigator: useRootNavigator,
+    isDismissible: isDismissible,
+    enableDrag: enableDrag,
+    showDragHandle: showDragHandle,
+    useSafeArea: useSafeArea,
+    routeSettings: routeSettings,
+    transitionAnimationController: transitionAnimationController,
+    anchorPoint: anchorPoint,
+    sheetAnimationStyle: sheetAnimationStyle,
+    requestFocus: requestFocus,
+  );
+
+  /// Shows Kurumi's app-styled modal bottom sheet used by legacy app sheets.
+  static Future<T?> showAppModalBottomSheet<T>({
     required BuildContext context,
     required WidgetBuilder builder,
     RouteSettings? routeSettings,
@@ -136,7 +187,6 @@ abstract final class Kurumi {
     bool resizeToAvoidBottomInset = false,
     bool useSafeArea = false,
     Color? backgroundColor,
-    ShapeBorder? shape,
   }) => bottom_sheet.showKurumiModalBottomSheet<T>(
     context: context,
     builder: builder,
@@ -146,7 +196,6 @@ abstract final class Kurumi {
     resizeToAvoidBottomInset: resizeToAvoidBottomInset,
     useSafeArea: useSafeArea,
     backgroundColor: backgroundColor,
-    shape: shape,
   );
 
   static void showSuccessToast(

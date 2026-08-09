@@ -27,7 +27,26 @@ class KurumiSelectableChip extends StatelessWidget {
     this.visualDensity,
     this.labelStyle,
     this.showCheckmark = true,
-    this.tapEnabled = true,
+    this.tapEnabled,
+    this.isEnabled = true,
+    this.defaultProperties,
+    this.deleteIconColor,
+    this.pressElevation,
+    this.tooltip,
+    this.clipBehavior = Clip.none,
+    this.focusNode,
+    this.autofocus = false,
+    this.color,
+    this.elevation,
+    this.shadowColor,
+    this.surfaceTintColor,
+    this.iconTheme,
+    this.selectedShadowColor,
+    this.avatarBorder = const CircleBorder(),
+    this.avatarBoxConstraints,
+    this.deleteIconBoxConstraints,
+    this.chipAnimationStyle,
+    this.mouseCursor,
     this.materialTapTargetSize,
   });
 
@@ -50,36 +69,75 @@ class KurumiSelectableChip extends StatelessWidget {
   final VisualDensity? visualDensity;
   final TextStyle? labelStyle;
   final bool showCheckmark;
-  final bool tapEnabled;
+  final bool? tapEnabled;
+  final bool isEnabled;
+  final ChipThemeData? defaultProperties;
+  final Color? deleteIconColor;
+  final double? pressElevation;
+  final String? tooltip;
+  final Clip clipBehavior;
+  final FocusNode? focusNode;
+  final bool autofocus;
+  final WidgetStateProperty<Color?>? color;
+  final double? elevation;
+  final Color? shadowColor;
+  final Color? surfaceTintColor;
+  final IconThemeData? iconTheme;
+  final Color? selectedShadowColor;
+  final ShapeBorder avatarBorder;
+  final BoxConstraints? avatarBoxConstraints;
+  final BoxConstraints? deleteIconBoxConstraints;
+  final ChipAnimationStyle? chipAnimationStyle;
+  final MouseCursor? mouseCursor;
   final MaterialTapTargetSize? materialTapTargetSize;
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
+    final chip = RawChip(
+      defaultProperties: defaultProperties,
+      label: label,
       selected: selected,
-      child: RawChip(
-        label: label,
-        selected: selected,
-        onSelected: onSelected,
-        onPressed: onPressed,
-        onDeleted: onDeleted,
-        deleteIcon: deleteIcon,
-        deleteButtonTooltipMessage: deleteButtonTooltipMessage,
-        avatar: avatar,
-        backgroundColor: backgroundColor,
-        selectedColor: selectedColor,
-        disabledColor: disabledColor,
-        checkmarkColor: checkmarkColor,
-        side: side,
-        shape: shape,
-        padding: padding,
-        labelPadding: labelPadding,
-        visualDensity: visualDensity,
-        labelStyle: labelStyle,
-        showCheckmark: showCheckmark,
-        tapEnabled: tapEnabled,
-        materialTapTargetSize: materialTapTargetSize,
-      ),
+      onSelected: onSelected,
+      onPressed: onPressed,
+      onDeleted: onDeleted,
+      deleteIcon: deleteIcon,
+      deleteIconColor: deleteIconColor,
+      deleteButtonTooltipMessage: deleteButtonTooltipMessage,
+      avatar: avatar,
+      backgroundColor: backgroundColor,
+      selectedColor: selectedColor,
+      disabledColor: disabledColor,
+      checkmarkColor: checkmarkColor,
+      side: side,
+      shape: shape,
+      padding: padding,
+      labelPadding: labelPadding,
+      visualDensity: visualDensity,
+      labelStyle: labelStyle,
+      showCheckmark: showCheckmark,
+      tapEnabled: tapEnabled ?? (onSelected != null || onPressed != null),
+      isEnabled: isEnabled,
+      pressElevation: pressElevation,
+      tooltip: tooltip,
+      clipBehavior: clipBehavior,
+      focusNode: focusNode,
+      autofocus: autofocus,
+      color: color,
+      materialTapTargetSize: materialTapTargetSize,
+      elevation: elevation,
+      shadowColor: shadowColor,
+      surfaceTintColor: surfaceTintColor,
+      iconTheme: iconTheme,
+      selectedShadowColor: selectedShadowColor,
+      avatarBorder: avatarBorder,
+      avatarBoxConstraints: avatarBoxConstraints,
+      deleteIconBoxConstraints: deleteIconBoxConstraints,
+      chipAnimationStyle: chipAnimationStyle,
+      mouseCursor: mouseCursor,
     );
+
+    return onSelected != null || selected
+        ? Semantics(selected: selected, child: chip)
+        : chip;
   }
 }

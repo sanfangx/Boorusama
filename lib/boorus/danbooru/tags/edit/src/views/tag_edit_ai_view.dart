@@ -65,7 +65,7 @@ class _TagEditAITagViewState extends ConsumerState<TagEditAITagView> {
                   );
                   final selected = widget.isSelected(tag.name);
 
-                  return KurumiSelectableChip(
+                  return KurumiMaterialRawChip(
                     selected: selected,
                     showCheckmark: false,
                     checkmarkColor: colors?.foregroundColor,

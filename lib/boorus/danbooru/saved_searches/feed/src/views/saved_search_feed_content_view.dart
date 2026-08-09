@@ -129,7 +129,7 @@ class _SavedSearchList extends ConsumerWidget {
       search: search,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
-        child: KurumiSelectableChip(
+        child: KurumiMaterialChoiceChip(
           selected: isSelected,
           onSelected: (selected) {
             if (!isSelected) {

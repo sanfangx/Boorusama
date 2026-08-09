@@ -54,7 +54,7 @@ class BlacklistControls extends StatelessWidget {
     final tagsNonPaginated = [
       ...tags,
       if (allTagsHidden != null)
-        KurumiSelectableChip(
+        KurumiMaterialActionChip(
           visualDensity: const ShrinkVisualDensity(),
           side: BorderSide(
             color: Kurumi.themeOf(context).colorScheme.outlineVariant,
@@ -231,7 +231,7 @@ class _BadgedChip extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      child: KurumiSelectableChip(
+      child: KurumiMaterialChoiceChip(
         showCheckmark: false,
         visualDensity: const ShrinkVisualDensity(),
         selected: active,

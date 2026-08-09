@@ -40,7 +40,8 @@ class TagChipsPlaceholder extends ConsumerWidget {
               left: index == 0 ? 8 : 4,
               right: 4,
             ),
-            child: KurumiSelectableChip(
+            child: KurumiMaterialChoiceChip(
+              selected: false,
               disabledColor: colorScheme.surfaceContainer,
               label: SizedBox(width: Random().nextInt(40).toDouble() + 40),
               padding: const EdgeInsets.all(4),

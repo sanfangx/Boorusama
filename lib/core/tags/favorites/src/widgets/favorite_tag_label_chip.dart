@@ -26,8 +26,7 @@ class FavoriteTagLabelChip extends ConsumerWidget {
 
     return SizedBox(
       height: 28,
-      child: KurumiSelectableChip(
-        tapEnabled: false,
+      child: KurumiMaterialChip(
         padding: kPreferredLayout.isMobile
             ? const EdgeInsets.all(4)
             : EdgeInsets.zero,

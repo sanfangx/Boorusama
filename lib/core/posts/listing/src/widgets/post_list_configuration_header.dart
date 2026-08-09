@@ -90,8 +90,7 @@ class _PostListConfigurationHeaderState
                         if (hiddenCount != null)
                           if (hiddenCount > 0)
                             if (constraints.maxWidth > 250)
-                              KurumiSelectableChip(
-                                tapEnabled: false,
+                              KurumiMaterialChip(
                                 padding: EdgeInsets.zero,
                                 visualDensity: const ShrinkVisualDensity(),
                                 backgroundColor: colorScheme.primary,

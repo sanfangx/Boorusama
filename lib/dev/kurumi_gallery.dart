@@ -348,7 +348,7 @@ class _ComponentColumn extends StatelessWidget {
         ),
         TextButton(
           onPressed: () => useKurumi
-              ? Kurumi.showModalBottomSheet<void>(
+              ? Kurumi.showAppModalBottomSheet<void>(
                   context: context,
                   builder: (context) => const Padding(
                     padding: EdgeInsets.all(16),

@@ -26,7 +26,7 @@ class SettingsSelector<T> extends StatelessWidget {
     final selectedLabel = itemBuilder(value);
 
     void openSheet() {
-      Kurumi.showModalBottomSheet<void>(
+      Kurumi.showAppModalBottomSheet<void>(
         context: context,
         builder: (context) => SettingsSheet<T>(
           title: title,

@@ -182,13 +182,26 @@ class NozomiSearchOrderControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return KurumiSegmentedButton<NozomiPostOrder>(
-      segments: const {
-        NozomiPostOrder.date: 'Date',
-        NozomiPostOrder.popular: 'Popular',
+    return KurumiMaterialSegmentedButton<NozomiPostOrder>(
+      showSelectedIcon: false,
+      style: KurumiMaterialSegmentedButton.styleFrom(
+        visualDensity: VisualDensity.compact,
+      ),
+      segments: const [
+        KurumiMaterialButtonSegment(
+          value: NozomiPostOrder.date,
+          label: Text('Date'),
+        ),
+        KurumiMaterialButtonSegment(
+          value: NozomiPostOrder.popular,
+          label: Text('Popular'),
+        ),
+      ],
+      selected: {order},
+      onSelectionChanged: (selection) {
+        if (selection.isEmpty) return;
+        onOrderChanged(selection.first);
       },
-      initialValue: order,
-      onChanged: onOrderChanged,
     );
   }
 }
