@@ -1,10 +1,17 @@
-name: Build IPA
+name: GitHub release
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -18,12 +25,12 @@ jobs:
 
     steps:
       - name: Check out Boorusama
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 3.44.0
+          flutter-version: 3.41.9
           cache: true
 
       - name: Set up Xcode
@@ -35,7 +42,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          brew install create-dmg meson ninja pkg-config
+          brew install create-dmg
           sudo gem install cocoapods
 
       - name: Initialize workspace
@@ -44,26 +51,28 @@ jobs:
           set -euo pipefail
           ./init.sh
 
-      - name: Build IPA
+      - name: Build GitHub release artifact
         shell: bash
         run: |
           set -euo pipefail
+
           args=(
             release
             github
             build
-            "ipa"
+            ipa
             --ci
             --allow-dirty
+            --no-codesign
             --output-dir
             "$OUTPUT_DIR"
-            --no-codesign
           )
+
           ./build.sh "${args[@]}"
 
       - name: Upload release artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: boorusama-ipa
-          path: ${{ env.OUTPUT_DIR }}/**
+          path: ${{ env.OUTPUT_DIR }}/*ios*.ipa
           if-no-files-found: error
