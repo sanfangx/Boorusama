@@ -35,7 +35,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          brew install create-dmg
+          brew install create-dmg meson ninja pkg-config
           sudo gem install cocoapods
 
       - name: Initialize workspace
