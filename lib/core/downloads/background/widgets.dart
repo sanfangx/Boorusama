@@ -16,6 +16,7 @@ import '../../configs/config/providers.dart';
 import '../../ddos/handler/providers.dart';
 import '../../ddos/solver/types.dart';
 import '../../download_manager/providers.dart';
+import '../../settings/providers.dart';
 import '../downloader/types.dart' show DownloaderMetadata;
 import '../sidecar/data.dart';
 import '../sidecar/providers.dart';
@@ -86,14 +87,17 @@ class _BackgroundDownloadRuntimeState
             if (platform.isAndroid) {
               await MediaScanner.loadMedia(path: path);
             } else if (platform.isIOS) {
-              try {
-                final hasAccess = await Gal.hasAccess(toAlbum: true);
-                if (!hasAccess) {
-                  await Gal.requestAccess(toAlbum: true);
+              final settings = ref.read(settingsProvider);
+              if (settings.saveToGallery) {
+                try {
+                  final hasAccess = await Gal.hasAccess(toAlbum: true);
+                  if (!hasAccess) {
+                    await Gal.requestAccess(toAlbum: true);
+                  }
+                  await Gal.putImage(path);
+                } on GalException catch (e) {
+                  debugPrint('Failed to save image to gallery: ${e.type}');
                 }
-                await Gal.putImage(path);
-              } on GalException catch (e) {
-                debugPrint('Failed to save image to gallery: ${e.type}');
               }
             }
           },

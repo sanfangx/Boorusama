@@ -1,5 +1,11 @@
+// Dart imports:
+import 'dart:io';
+
 // Package imports:
+import 'package:background_downloader/background_downloader.dart'
+    hide PermissionStatus;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gal/gal.dart';
 import 'package:i18n/i18n.dart';
 import 'package:kurumi/kurumi.dart';
 import 'package:kurumi/material.dart';
@@ -9,11 +15,15 @@ import 'package:oktoast/oktoast.dart';
 import '../../../../../foundation/loggers.dart';
 import '../../../../../foundation/permissions.dart';
 import '../../../../../foundation/platform.dart';
+import '../../../../bookmarks/providers.dart';
 import '../../../../configs/config/types.dart';
 import '../../../../configs/network/providers.dart';
 import '../../../../ddos/handler/providers.dart';
 import '../../../../download_activity/activity.dart';
+import '../../../../download_manager/providers.dart';
+import '../../../../http/client/providers.dart';
 import '../../../../http/client/types.dart';
+import '../../../../posts/favorites/providers.dart';
 import '../../../../posts/post/providers.dart';
 import '../../../../posts/post/types.dart';
 import '../../../../router.dart';
@@ -55,8 +65,9 @@ class DownloadNotifier extends FamilyNotifier<void, DownloadNotifierParams> {
   }
 
   Future<PermissionStatus?> _getPermissionStatus() async {
+    if (ref.read(appPlatformProvider).isIOS) return null;
     final perm = await ref.read(deviceStoragePermissionProvider.future);
-    return ref.read(appPlatformProvider).isMobile
+    return ref.read(appPlatformProvider).isAndroid
         ? perm.storagePermission
         : null;
   }
@@ -77,6 +88,23 @@ class DownloadNotifier extends FamilyNotifier<void, DownloadNotifierParams> {
       overrideUrl: overrideUrl,
       quality: quality,
       onStarted: () {
+        final c = ref
+            .read(appNavigationProvider)
+            .navigatorKey
+            .currentState
+            ?.context;
+        if (c != null && (!isIOS() || !arg.settings.saveToGallery)) {
+          showDownloadStartToast(c);
+        }
+
+        if (arg.settings.autoFavoriteOnDownload) {
+          ref.read(favoritesProvider(arg.auth).notifier).add(post.id);
+        }
+
+        if (arg.settings.autoBookmarkOnDownload) {
+          ref.read(bookmarkProvider.notifier).addBookmark(arg.auth, post);
+        }
+
         observer?.onSingleDownloadStart();
       },
     );
@@ -126,6 +154,15 @@ class DownloadNotifier extends FamilyNotifier<void, DownloadNotifierParams> {
           'index': i.toString(),
         },
         networkConstraint: networkConstraint,
+        onStarted: () {
+          if (arg.settings.autoFavoriteOnDownload) {
+            ref.read(favoritesProvider(arg.auth).notifier).add(post.id);
+          }
+
+          if (arg.settings.autoBookmarkOnDownload) {
+            ref.read(bookmarkProvider.notifier).addBookmark(arg.auth, post);
+          }
+        },
       );
     }
   }
@@ -218,6 +255,112 @@ Future<DownloadTaskInfo?> _download(
     final bypassHeaders = await ref.read(
       bypassDdosHeadersProvider(request.url).future,
     );
+
+    if (ref.read(appPlatformProvider).isIOS && params.settings.saveToGallery) {
+      try {
+        onStarted?.call();
+
+        final dio = ref.read(dioForWidgetProvider(params.auth));
+        final tempDir = await Directory.systemTemp.createTemp('boorusama_');
+        final tempPath = '${tempDir.path}/$fileName';
+
+        final taskId =
+            'ios_gallery_${DateTime.now().millisecondsSinceEpoch}_${downloadable.id}';
+        final dummyTask = DownloadTask(
+          taskId: taskId,
+          url: request.url,
+          filename: fileName,
+          headers: {
+            ...request.headers,
+            ...bypassHeaders,
+            if (!request.overridden && urlData.cookie != null)
+              AppHttpHeaders.cookieHeader: urlData.cookie!,
+          },
+          metaData: DownloaderMetadata(
+            mediaHostOverridden: request.overridden,
+            thumbnailUrl: downloadable.thumbnailImageUrl,
+            fileSize: downloadable.fileSize,
+            siteUrl: params.auth.url,
+            profileIconUrl: params.profileIconUrl,
+            group: group,
+            isVideo: downloadable.isVideo,
+          ).toJsonString(),
+        );
+
+        ref.read(downloadTaskEventIngressProvider).publish(
+          TaskStatusUpdate(dummyTask, TaskStatus.enqueued),
+        );
+
+        await dio.download(
+          request.url,
+          tempPath,
+          options: Options(
+            headers: {
+              ...request.headers,
+              ...bypassHeaders,
+              if (!request.overridden && urlData.cookie != null)
+                AppHttpHeaders.cookieHeader: urlData.cookie!,
+            },
+          ),
+          onReceiveProgress: (received, total) {
+            if (total > 0) {
+              ref.read(downloadTaskEventIngressProvider).publish(
+                TaskProgressUpdate(
+                  dummyTask,
+                  received / total,
+                  expectedFileSize: total,
+                ),
+              );
+            }
+          },
+        );
+
+        ref.read(downloadTaskEventIngressProvider).publish(
+          TaskStatusUpdate(dummyTask, TaskStatus.complete),
+        );
+
+        final hasAccess = await Gal.hasAccess(toAlbum: true);
+        if (!hasAccess) {
+          await Gal.requestAccess(toAlbum: true);
+        }
+
+        if (downloadable.isVideo) {
+          await Gal.putVideo(tempPath);
+        } else {
+          await Gal.putImage(tempPath);
+        }
+
+        try {
+          await tempDir.delete(recursive: true);
+        } catch (_) {}
+
+        final c = ref
+            .read(appNavigationProvider)
+            .navigatorKey
+            .currentState
+            ?.context;
+        if (c != null && c.mounted) {
+          showDownloadStartToast(c, message: 'Saved to Photos');
+        }
+
+        return DownloadTaskInfo(
+          path: tempPath,
+          id: taskId,
+        );
+      } catch (e) {
+        logger.error(
+          'Single Download',
+          'Direct gallery save failed: $e',
+        );
+        final c = ref
+            .read(appNavigationProvider)
+            .navigatorKey
+            .currentState
+            ?.context;
+        showDownloadErrorToast(c, 'Download failed: $e');
+        return null;
+      }
+    }
 
     final result = await service.download(
       DownloadOptions.fromSettings(
@@ -337,7 +480,7 @@ void showDownloadStartToast(BuildContext context, {String? message}) {
 
   showToast(
     message ?? context.t.download.notification.started,
-    position: ToastPosition.bottom,
+    position: ToastPosition.top,
     margin: const EdgeInsets.symmetric(
       horizontal: 20,
       vertical: 60,

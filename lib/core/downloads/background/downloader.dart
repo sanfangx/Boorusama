@@ -10,6 +10,7 @@ import 'package:path/path.dart';
 // Project imports:
 import '../../../foundation/filesystem.dart';
 import '../../../foundation/loggers.dart';
+import '../../../foundation/platform.dart';
 import '../../ddos/solver/types.dart';
 import '../downloader/types.dart';
 import '../path/types.dart';
@@ -234,6 +235,14 @@ class BackgroundDownloader implements DownloadService {
 
   Future<(String?, BaseDirectory, DownloadError?)>
   _getDefaultDirectory() async {
+    if (isIOS()) {
+      return (
+        null,
+        BaseDirectory.applicationDocuments,
+        null,
+      );
+    }
+
     return switch (await tryGetDownloadDirectory(fs)) {
       DownloadDirectorySuccess(:final path) => (
         path,

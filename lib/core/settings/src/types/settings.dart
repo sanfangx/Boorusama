@@ -64,10 +64,16 @@ class Settings extends Equatable {
     required this.hapticFeedbackLevel,
     required this.autoBackup,
     required this.videoCacheMaxSize,
+    this.saveToGallery = true,
+    this.autoFavoriteOnDownload = false,
+    this.autoBookmarkOnDownload = false,
   });
 
   Settings.fromJson(Map<String, dynamic> json)
     : safeMode = json['safeMode'] ?? true,
+      saveToGallery = json['saveToGallery'] ?? true,
+      autoFavoriteOnDownload = json['autoFavoriteOnDownload'] ?? false,
+      autoBookmarkOnDownload = json['autoBookmarkOnDownload'] ?? false,
       listing = ImageListingSettings.fromJson(json),
       viewer = ImageViewerSettings.fromJson(json),
       blacklistedTags = json['hideBlacklist'] ?? '',
@@ -202,6 +208,9 @@ class Settings extends Equatable {
     hapticFeedbackLevel: HapticFeedbackLevel.defaultValue,
     autoBackup: AutoBackupSettings.defaultValue,
     videoCacheMaxSize: CacheSize.defaultValue,
+    saveToGallery: true,
+    autoFavoriteOnDownload: false,
+    autoBookmarkOnDownload: false,
   );
 
   final ImageListingSettings listing;
@@ -271,6 +280,12 @@ class Settings extends Equatable {
 
   final CacheSize videoCacheMaxSize;
 
+  final bool saveToGallery;
+
+  final bool autoFavoriteOnDownload;
+
+  final bool autoBookmarkOnDownload;
+
   Settings copyWith({
     String? blacklistedTags,
     String? language,
@@ -309,6 +324,9 @@ class Settings extends Equatable {
     HapticFeedbackLevel? hapticFeedbackLevel,
     AutoBackupSettings? autoBackup,
     CacheSize? videoCacheMaxSize,
+    bool? saveToGallery,
+    bool? autoFavoriteOnDownload,
+    bool? autoBookmarkOnDownload,
   }) => Settings(
     listing: listing ?? this.listing,
     viewer: viewer ?? this.viewer,
@@ -360,6 +378,11 @@ class Settings extends Equatable {
     hapticFeedbackLevel: hapticFeedbackLevel ?? this.hapticFeedbackLevel,
     autoBackup: autoBackup ?? this.autoBackup,
     videoCacheMaxSize: videoCacheMaxSize ?? this.videoCacheMaxSize,
+    saveToGallery: saveToGallery ?? this.saveToGallery,
+    autoFavoriteOnDownload:
+        autoFavoriteOnDownload ?? this.autoFavoriteOnDownload,
+    autoBookmarkOnDownload:
+        autoBookmarkOnDownload ?? this.autoBookmarkOnDownload,
   );
 
   Map<String, dynamic> toJson() {
@@ -404,6 +427,9 @@ class Settings extends Equatable {
       'hapticFeedbackLevel': hapticFeedbackLevel.toData(),
       'autoBackup': autoBackup.toJson(),
       'videoCacheMaxSize': videoCacheMaxSize.displayString(),
+      'saveToGallery': saveToGallery,
+      'autoFavoriteOnDownload': autoFavoriteOnDownload,
+      'autoBookmarkOnDownload': autoBookmarkOnDownload,
     };
   }
 
@@ -445,6 +471,9 @@ class Settings extends Equatable {
     hapticFeedbackLevel,
     autoBackup,
     videoCacheMaxSize,
+    saveToGallery,
+    autoFavoriteOnDownload,
+    autoBookmarkOnDownload,
   ];
 
   List<int> get booruConfigIdOrderList {

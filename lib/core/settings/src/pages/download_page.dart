@@ -54,6 +54,21 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
           ),
         ),
         const SizedBox(height: 12),
+        if (ref.watch(appPlatformProvider).isIOS) ...[
+          KurumiSwitchListTile(
+            title: Text(context.t.settings.download.save_to_gallery),
+            subtitle: Text(
+              context.t.settings.download.save_to_gallery_explanation,
+            ),
+            value: settings.saveToGallery,
+            onChanged: (value) async {
+              await notifer.updateSettings(
+                settings.copyWith(saveToGallery: value),
+              );
+            },
+          ),
+          const SizedBox(height: 4),
+        ],
         KurumiSettingsTile(
           title: Text(context.t.settings.download.quality),
           selectedOption: settings.downloadQuality,
@@ -151,6 +166,32 @@ class _DownloadPageState extends ConsumerState<DownloadPage> {
                     ? DownloadFileExistedBehavior.skip
                     : DownloadFileExistedBehavior.appDecide,
               ),
+            );
+          },
+        ),
+        const SizedBox(height: 4),
+        KurumiSwitchListTile(
+          title: Text(context.t.settings.download.auto_favorite_on_download),
+          subtitle: Text(
+            context.t.settings.download.auto_favorite_on_download_explanation,
+          ),
+          value: settings.autoFavoriteOnDownload,
+          onChanged: (value) async {
+            await notifer.updateSettings(
+              settings.copyWith(autoFavoriteOnDownload: value),
+            );
+          },
+        ),
+        const SizedBox(height: 4),
+        KurumiSwitchListTile(
+          title: Text(context.t.settings.download.auto_bookmark_on_download),
+          subtitle: Text(
+            context.t.settings.download.auto_bookmark_on_download_explanation,
+          ),
+          value: settings.autoBookmarkOnDownload,
+          onChanged: (value) async {
+            await notifer.updateSettings(
+              settings.copyWith(autoBookmarkOnDownload: value),
             );
           },
         ),
