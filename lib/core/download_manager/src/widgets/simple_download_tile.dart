@@ -276,13 +276,19 @@ class _ModalOptions extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 title: Text(context.t.post.detail.share.file),
-                onTap: () {
+                onTap: () async {
+                  final box = context.findRenderObject() as RenderBox?;
+                  final rect = box != null
+                      ? box.localToGlobal(Offset.zero) & box.size
+                      : null;
                   navigator.pop();
+                  await Future.delayed(const Duration(milliseconds: 300));
 
-                  SharePlus.instance.share(
+                  await SharePlus.instance.share(
                     ShareParams(
                       files: [XFile(path)],
                       subject: task.task.filename,
+                      sharePositionOrigin: rect,
                     ),
                   );
                 },

@@ -142,13 +142,19 @@ class DownloadAndShareDialogInternal extends ConsumerWidget {
         task.status == TaskStatus.complete;
 
     // Auto-share on completion
-    ref.listen(_downloadTaskDetailsProvider(info.id), (previous, next) {
+    ref.listen(_downloadTaskDetailsProvider(info.id), (previous, next) async {
       if (next is TaskStatusUpdate && next.status == TaskStatus.complete) {
+        final box = context.findRenderObject() as RenderBox?;
+        final rect = box != null
+            ? box.localToGlobal(Offset.zero) & box.size
+            : null;
         Navigator.of(context).pop();
-        SharePlus.instance.share(
+        await Future.delayed(const Duration(milliseconds: 300));
+        await SharePlus.instance.share(
           ShareParams(
             files: [XFile(info.path)],
             subject: fileName,
+            sharePositionOrigin: rect,
           ),
         );
       }
@@ -215,12 +221,18 @@ class DownloadAndShareDialogInternal extends ConsumerWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: FilledButton(
-                onPressed: () {
+                onPressed: () async {
+                  final box = context.findRenderObject() as RenderBox?;
+                  final rect = box != null
+                      ? box.localToGlobal(Offset.zero) & box.size
+                      : null;
                   Navigator.of(context).pop();
-                  SharePlus.instance.share(
+                  await Future.delayed(const Duration(milliseconds: 300));
+                  await SharePlus.instance.share(
                     ShareParams(
                       files: [XFile(info.path)],
                       subject: fileName,
+                      sharePositionOrigin: rect,
                     ),
                   );
                 },

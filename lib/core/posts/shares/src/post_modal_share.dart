@@ -96,9 +96,19 @@ class PostModalShare extends ConsumerWidget {
                 title: Text(context.t.post.detail.share.source),
                 subtitle: Text(s.uri.toString()),
                 leading: ConfigAwareWebsiteLogo(url: s.url),
-                onTap: () {
+                onTap: () async {
+                  final box = context.findRenderObject() as RenderBox?;
+                  final rect = box != null
+                      ? box.localToGlobal(Offset.zero) & box.size
+                      : null;
                   Navigator.of(context).pop();
-                  SharePlus.instance.share(ShareParams(uri: s.uri));
+                  await Future.delayed(const Duration(milliseconds: 300));
+                  await SharePlus.instance.share(
+                    ShareParams(
+                      uri: s.uri,
+                      sharePositionOrigin: rect,
+                    ),
+                  );
                 },
               ),
               _ => const SizedBox.shrink(),
@@ -109,12 +119,18 @@ class PostModalShare extends ConsumerWidget {
                   title: Text(context.t.post.detail.share.booru),
                   subtitle: Text(booruLink),
                   leading: ConfigAwareWebsiteLogo(url: booruLink),
-                  onTap: () {
+                  onTap: () async {
+                    final box = context.findRenderObject() as RenderBox?;
+                    final rect = box != null
+                        ? box.localToGlobal(Offset.zero) & box.size
+                        : null;
                     Navigator.of(context).pop();
-                    SharePlus.instance.share(
+                    await Future.delayed(const Duration(milliseconds: 300));
+                    await SharePlus.instance.share(
                       ShareParams(
                         uri: uri,
                         subject: booruLink,
+                        sharePositionOrigin: rect,
                       ),
                     );
                   },
@@ -152,13 +168,22 @@ class PostModalShare extends ConsumerWidget {
                                 Symbols.image,
                                 fill: 1,
                               ),
-                              onTap: () {
+                              onTap: () async {
+                                final box =
+                                    context.findRenderObject() as RenderBox?;
+                                final rect = box != null
+                                    ? box.localToGlobal(Offset.zero) & box.size
+                                    : null;
                                 Navigator.of(context).pop();
+                                await Future.delayed(
+                                  const Duration(milliseconds: 300),
+                                );
 
-                                SharePlus.instance.share(
+                                await SharePlus.instance.share(
                                   ShareParams(
                                     files: [file],
                                     subject: file.name,
+                                    sharePositionOrigin: rect,
                                   ),
                                 );
                               },

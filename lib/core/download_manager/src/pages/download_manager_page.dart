@@ -231,6 +231,12 @@ class _DownloadManagerPageState extends ConsumerState<DownloadManagerPage> {
                         MultiSelectButton(
                           onPressed: selectedItems.isNotEmpty
                               ? () async {
+                                  final box =
+                                      context.findRenderObject() as RenderBox?;
+                                  final rect = box != null
+                                      ? box.localToGlobal(Offset.zero) &
+                                            box.size
+                                      : null;
                                   final futures = selectedItems
                                       .map(
                                         (task) => ref
@@ -245,6 +251,7 @@ class _DownloadManagerPageState extends ConsumerState<DownloadManagerPage> {
                                       files: paths
                                           .map((path) => XFile(path))
                                           .toList(),
+                                      sharePositionOrigin: rect,
                                     ),
                                   );
                                 }
