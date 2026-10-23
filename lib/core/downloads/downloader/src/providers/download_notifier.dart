@@ -4,6 +4,7 @@ import 'dart:io';
 // Package imports:
 import 'package:background_downloader/background_downloader.dart'
     hide PermissionStatus;
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gal/gal.dart';
 import 'package:i18n/i18n.dart';
@@ -308,7 +309,7 @@ Future<DownloadTaskInfo?> _download(
                 TaskProgressUpdate(
                   dummyTask,
                   received / total,
-                  expectedFileSize: total,
+                  total,
                 ),
               );
             }
@@ -329,10 +330,6 @@ Future<DownloadTaskInfo?> _download(
         } else {
           await Gal.putImage(tempPath);
         }
-
-        try {
-          await tempDir.delete(recursive: true);
-        } catch (_) {}
 
         final c = ref
             .read(appNavigationProvider)
