@@ -481,7 +481,13 @@
       },
       "title": "下载",
       "skip_existing_files": "跳过现有文件",
-      "skip_existing_files_explanation": "这将防止下载文件夹中已存在的文件。当您不想多次下载同一文件时很有用。"
+      "skip_existing_files_explanation": "这将防止下载文件夹中已存在的文件。当您不想多次下载同一文件时很有用。",
+      "save_to_gallery": "保存到系统相册",
+      "save_to_gallery_explanation": "在 iOS 上自动将下载的图片和视频保存到系统“照片”应用中。",
+      "auto_favorite_on_download": "下载时自动收藏",
+      "auto_favorite_on_download_explanation": "下载图片时自动收藏该帖子。",
+      "auto_bookmark_on_download": "下载时自动添加书签",
+      "auto_bookmark_on_download_explanation": "下载图片时自动将该帖子加入书签。"
     },
     "help_us_translate": "帮助我们翻译",
     "other_settings": "其他设置",
@@ -1060,6 +1066,8 @@
       "add_to_blacklist": "添加到黑名单",
       "search": "搜索标签",
       "search_single": "搜索",
+      "add_to_search": "加入搜索",
+      "exclude_from_search": "排除搜索",
       "copy": "复制标签",
       "copy_single": "复制",
       "blacklist": "黑名单",

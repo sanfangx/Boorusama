@@ -564,7 +564,13 @@
         "large": "Large",
         "preview": "Thumbnail"
       },
-      "title": "Download"
+      "title": "Download",
+      "save_to_gallery": "Save to Photos",
+      "save_to_gallery_explanation": "Automatically save downloaded images and videos to the system Photos app on iOS.",
+      "auto_favorite_on_download": "Auto-favorite on download",
+      "auto_favorite_on_download_explanation": "Automatically favorite the post when downloading an image.",
+      "auto_bookmark_on_download": "Auto-bookmark on download",
+      "auto_bookmark_on_download_explanation": "Automatically bookmark the post when downloading an image."
     },
     "help_us_translate": "Help us translate",
     "need_more_questions": "Need more?",
@@ -1314,6 +1320,8 @@
     "actions": {
       "search": "Search Tags",
       "search_single": "Search",
+      "add_to_search": "Add to search",
+      "exclude_from_search": "Exclude from search",
       "copy": "Copy Tags",
       "copy_single": "Copy",
       "blacklist": "Blacklist",
