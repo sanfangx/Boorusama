@@ -10,6 +10,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../../../../../core/widgets/widgets.dart';
 import '../../../../../foundation/display/media_query_utils.dart';
 import '../../../../../foundation/platform.dart';
+import '../../../../tags/autocompletes/translation.dart';
 import '../../../selected_tags/types.dart';
 import '../types/search_history.dart';
 
@@ -113,21 +114,25 @@ class SearchHistoryQueryWidget extends StatelessWidget {
         children: history
             .queryAsList()
             .map(
-              (e) => IgnorePointer(
-                child: KurumiCompactChip(
-                  label: e,
-                  borderRadius: BorderRadius.circular(8),
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 2,
-                    horizontal: 8,
+              (e) {
+                final trans = TagTranslation.translate(e);
+                final label = trans != null ? '$e ($trans)' : e;
+                return IgnorePointer(
+                  child: KurumiCompactChip(
+                    label: label,
+                    borderRadius: BorderRadius.circular(8),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 2,
+                      horizontal: 8,
+                    ),
+                    backgroundColor: (reverseScheme ?? false)
+                        ? Kurumi.themeOf(context).colorScheme.surface
+                        : Kurumi.themeOf(
+                            context,
+                          ).colorScheme.surfaceContainerHighest,
                   ),
-                  backgroundColor: (reverseScheme ?? false)
-                      ? Kurumi.themeOf(context).colorScheme.surface
-                      : Kurumi.themeOf(
-                          context,
-                        ).colorScheme.surfaceContainerHighest,
-                ),
-              ),
+                );
+              },
             )
             .toList(),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 
 // Project imports:
 import '../../../foundation/debugs/print.dart';
+import 'translation.dart';
 import 'types.dart';
 
 abstract class AutocompleteRepository {
@@ -28,9 +29,12 @@ class AutocompleteRepositoryBuilder
       return Future.value([]);
     }
 
-    final fresh = await autocomplete(query);
-
-    return fresh;
+    final matches = TagTranslation.searchLocal(query.text);
+    if (matches.length >= 20) {
+      return matches +
+          [const AutocompleteData(label: '__more__', value: '__more__')];
+    }
+    return matches;
   }
 
   @override

@@ -8,6 +8,7 @@ import 'package:kurumi/material.dart';
 import '../../boorus/engine/providers.dart';
 import '../../configs/config/types.dart';
 import '../../tags/autocompletes/types.dart';
+import 'suggestions_notifier.dart';
 import 'tag_suggestion_item.dart';
 
 class TagSuggestionItems extends ConsumerWidget {
@@ -72,6 +73,48 @@ class TagSuggestionItems extends ConsumerWidget {
                 itemCount: _tags.length,
                 itemBuilder: (context, index) {
                   final tag = _tags[index];
+                  if (tag.label == '__more__') {
+                    final colorScheme = Kurumi.themeOf(context).colorScheme;
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: InkWell(
+                        onTap: () {
+                          ref
+                              .read(suggestionsNotifierProvider(config).notifier)
+                              .loadMoreSuggestions(currentQuery);
+                        },
+                        borderRadius: BorderRadius.circular(8),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 12),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: colorScheme.outline.withValues(alpha: 0.3),
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '点击加载更多本地翻译建议',
+                                style: TextStyle(
+                                  color: colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              Icon(
+                                Icons.arrow_drop_down,
+                                color: colorScheme.primary,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+
                   final item =
                       tagSuggestionItemBuilder?.call(
                         config,

@@ -13,6 +13,7 @@ import '../../../../routers/utils.dart';
 import '../../../../search/search/routes.dart';
 import '../../../../search/search/widgets.dart';
 import '../../../../search/selected_tags/types.dart';
+import '../../../autocompletes/translation.dart';
 import '../providers/favorite_tags_notifier.dart';
 import '../providers/local_providers.dart';
 import '../types/favorite_tag.dart';
@@ -580,10 +581,35 @@ class _FavoriteTagTile extends ConsumerWidget {
         title: Row(
           children: [
             Flexible(
-              child: Text(
-                tag.name,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+              child: Builder(
+                builder: (context) {
+                  final translation = TagTranslation.translate(tag.name);
+                  if (translation != null) {
+                    return Text.rich(
+                      TextSpan(
+                        text: tag.name,
+                        children: [
+                          TextSpan(
+                            text: ' • $translation',
+                            style: TextStyle(
+                              color: Kurumi.themeOf(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    );
+                  }
+                  return Text(
+                    tag.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  );
+                },
               ),
             ),
             if (isRaw) ...[

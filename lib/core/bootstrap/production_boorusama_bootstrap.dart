@@ -11,6 +11,7 @@ import 'package:hive_ce/hive.dart';
 import 'package:i18n/i18n.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:path/path.dart' show join;
 import 'package:stack_trace/stack_trace.dart';
 
 // Project imports:
@@ -20,6 +21,7 @@ import '../../foundation/applock/src/local_auth_device_authenticator.dart';
 import '../../foundation/boot.dart';
 import '../../foundation/boot/providers.dart';
 import '../../foundation/browser/factory.dart';
+import '../../foundation/database/utils.dart';
 import '../../foundation/display_mode.dart';
 import '../../foundation/filesystem.dart';
 import '../../foundation/iap/iap.dart';
@@ -54,6 +56,8 @@ import '../images/providers.dart';
 import '../search/histories/providers.dart';
 import '../settings/providers.dart';
 import '../settings/types.dart';
+import '../tags/autocompletes/tag_translation_repo.dart';
+import '../tags/autocompletes/translation.dart';
 import '../tags/configs/providers.dart';
 import '../tags/favorites/src/data/favorite_tag_repository_factory_hive.dart';
 import '../window/providers.dart' as window;
@@ -193,6 +197,25 @@ final class ProductionBoorusamaBootstrap implements BoorusamaBootstrap {
 
       logger.debugBoot('Initialize i18n');
       await ensureI18nInitialized(settings.language);
+
+      logger.debugBoot('Initialize tag translations');
+      final tagTransDb = await createDb(
+        fs: fileSystem,
+        folderPath: join(dbDirectoryPath, 'data'),
+        name: 'tag_translations.db',
+        logger: logger,
+      );
+      if (tagTransDb != null) {
+        final tagTransRepo = TagTranslationRepository(db: tagTransDb)
+          ..initialize();
+        if (tagTransRepo.needsImport) {
+          logger.debugBoot('Importing tag translations from CSV');
+          final csvData = await TagTranslation.loadCsvData();
+          tagTransRepo.clearAndImportFromCsv(csvData);
+          logger.debugBoot('Tag translations imported successfully');
+        }
+        TagTranslation.setRepository(tagTransRepo);
+      }
 
       FlutterError.demangleStackTrace = (stack) {
         if (stack is Trace) return stack.vmTrace;

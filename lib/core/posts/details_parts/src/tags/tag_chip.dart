@@ -7,6 +7,7 @@ import 'package:kurumi/material.dart';
 // Project imports:
 import '../../../../configs/config/providers.dart';
 import '../../../../configs/config/types.dart';
+import '../../../../tags/autocompletes/translation.dart';
 import '../../../../tags/categories/providers.dart';
 import '../../../../themes/colors/providers.dart';
 import 'raw_tag_chip.dart';
@@ -74,14 +75,25 @@ class TagChip extends ConsumerWidget {
   }
 
   String? _buildSubtitle(BooruLoginDetails loginDetails) {
-    if (!showPostCount ||
-        loginDetails.hasStrictSFW ||
-        postCount == null ||
-        postCount! <= 0) {
-      return null;
-    }
+    final translation = TagTranslation.translate(text);
 
-    return NumberFormat.compact().format(postCount);
+    final displayCount =
+        showPostCount &&
+        !loginDetails.hasStrictSFW &&
+        postCount != null &&
+        postCount! > 0;
+
+    final countStr = displayCount
+        ? NumberFormat.compact().format(postCount)
+        : null;
+
+    if (translation != null && countStr != null) {
+      return '$translation · $countStr';
+    } else if (translation != null) {
+      return translation;
+    } else {
+      return countStr;
+    }
   }
 }
 
