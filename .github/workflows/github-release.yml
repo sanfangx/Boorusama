@@ -58,7 +58,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ./init.sh
+          git config --global http.version HTTP/1.1
+          git config --global http.postBuffer 1048576000
+          git config --global http.lowSpeedLimit 0
+          git config --global http.lowSpeedTime 999999
+          for attempt in 1 2 3; do
+            if ./init.sh; then
+              break
+            fi
+            if [[ "$attempt" -eq 3 ]]; then
+              exit 1
+            fi
+            echo "init.sh failed on attempt $attempt/3, retrying in 5s..."
+            sleep 5
+          done
 
       - name: Build iOS IPA artifact
         shell: bash
