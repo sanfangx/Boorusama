@@ -48,6 +48,11 @@ class _MobileHomePageScaffoldState
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(activeSearchTagsProvider.notifier).state =
+          selectedTagController.tagSet;
+    });
+
     final postRepo = ref.watch(postRepoProvider(ref.watchConfigSearch));
     final searchBarPosition = ref.watch(searchBarPositionProvider);
 

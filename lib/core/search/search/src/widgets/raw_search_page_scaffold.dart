@@ -248,6 +248,11 @@ class _SearchPageScaffoldState<T extends Post>
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(activeSearchTagsProvider.notifier).state =
+          _tagsController.tagSet;
+    });
+
     final colorScheme = Kurumi.themeOf(context).colorScheme;
 
     return InheritedSearchPageController(

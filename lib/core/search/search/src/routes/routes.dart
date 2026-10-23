@@ -10,12 +10,18 @@ import '../../../../router.dart';
 import '../pages/search_page.dart';
 import 'params.dart';
 
+final lastSearchParamsProvider = StateProvider<SearchParams?>((ref) => null);
+
 GoRoute searchRoutes(Ref ref) => GoRoute(
   path: 'search',
   name: '/search',
   pageBuilder: (context, state) {
     final customHomeViewKey = ref.read(customHomeViewKeyProvider);
     final params = SearchParams.fromUri(state.uri);
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(lastSearchParamsProvider.notifier).state = params;
+    });
 
     final page = InheritedInitialSearchQuery(
       params: params,
